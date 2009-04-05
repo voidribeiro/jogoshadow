@@ -20,6 +20,7 @@ private:
   IrrlichtDevice* device;
   irr::video::IVideoDriver* driver;
   irr::scene::ISceneManager* sceneManager;
+  irr::scene::ICameraSceneNode* camera;
 
   EventListener eventListener;
   
