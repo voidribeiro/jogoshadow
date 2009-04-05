@@ -29,6 +29,9 @@ bool GameManager::init(){
     succesful = true;
   }
 
+  camera = sceneManager->addCameraSceneNodeFPS(0, 100.0f, .3f, -1, 0, 0, true, 3.f);
+  camera->setPosition(core::vector3df(-100,75,-150));
+
   /*
    * HARDCODE! remover depois
    */
@@ -96,12 +99,6 @@ void GameManager::draw(){
 
     if (device->isWindowActive()){
 		  driver->beginScene(true, true, 0);
-
-		  irr::scene::ICameraSceneNode* camera = sceneManager->getActiveCamera();
-
-		  if (camera == NULL){
-			  std::cout<<"Nao tem camera aqui não!"<<std::endl;
-		  }
 
       sceneManager->drawAll();
 
