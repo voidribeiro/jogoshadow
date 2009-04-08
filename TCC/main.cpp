@@ -7,7 +7,7 @@ int main()
 {
   GameManager* game = new GameManager();
   if( game->init() ){
-    game->draw();
+    game->run();
   }
 
 	return 0;

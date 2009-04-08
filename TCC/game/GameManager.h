@@ -5,8 +5,10 @@
 #include <map>
 
 #include "../include/irrlicht.h"
+
 #include "../core/Singleton.h"
 #include "../core/EventListener.h"
+#include "../core/Script.h"
 
 //namescpaces
 using namespace irr;
@@ -21,6 +23,8 @@ private:
   irr::video::IVideoDriver* driver;
   irr::scene::ISceneManager* sceneManager;
   irr::scene::ICameraSceneNode* camera;
+
+  Script luaScript;
 
   EventListener eventListener;
   
