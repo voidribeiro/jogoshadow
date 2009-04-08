@@ -127,7 +127,8 @@ void GameManager::displayWindowCaption(){
 }
 
 bool GameManager::processLUAScripts(){
-  //TODO
+  luaScript.startScript("teste.lua");
+  luaScript.endScript();
   return true;
 }
 
@@ -137,5 +138,7 @@ bool GameManager::update(){
 }
 
 void GameManager::run(){
-  //TODO
+  processLUAScripts();
+  update();
+  draw();
 }
