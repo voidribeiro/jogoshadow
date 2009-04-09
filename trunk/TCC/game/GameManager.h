@@ -35,6 +35,10 @@ private:
   std::map <int, scene::IAnimatedMesh*> meshes;
   std::map <int, scene::ISceneNode*> nodes;
 
+  std::map< int, scene::IAnimatedMesh*>::iterator meshIt;
+  std::map< int, scene::ISceneNode*>::iterator nodeIt;
+
+
 public:
   explicit GameManager();
   ~GameManager();

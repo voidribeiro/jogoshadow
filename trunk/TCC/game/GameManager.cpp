@@ -57,9 +57,6 @@ bool GameManager::init(){
 //adiciona uma Mesh e um Node aos respectivos maps
 void GameManager::pushMesh(const char* filename){
 
-  std::map< int, scene::IAnimatedMesh*>::iterator meshIt;
-  std::map< int, scene::ISceneNode*>::iterator nodeIt;
-
   int meshIndex, nodeIndex;
 
   scene::IAnimatedMesh* tempMesh;

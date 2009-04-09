@@ -189,6 +189,10 @@
 				Name="core"
 				>
 				<File
+					RelativePath=".\core\EventListener.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\core\Script.cpp"
 					>
 				</File>
