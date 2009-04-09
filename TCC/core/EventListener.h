@@ -1,49 +1,44 @@
 #ifndef _EVENTLISTENER_H_
 #define _EVENTLISTENER_H_
 
+#include <map>
 #include "../include/irrlicht.h"
 
-//IrrLicht namescpaces
-using namespace irr;
-using namespace core;
-using namespace scene;
-using namespace video;
-using namespace io;
-using namespace gui;
-
-class EventListener : public IEventReceiver
-{
-
-	public:
+class EventListener : public irr::IEventReceiver{
+  private: 
+    /* 
+     * The keysPressed map is composed by the keys from the IrrLicht Enum and a boolean
+     * representing if the key is pressed or not. This map observes only the KEYS referenced 
+     * by the pushKeyEvent() function.
+     *
+     * keycodes in http://irrlicht.sourceforge.net/docu/_keycodes_8h-source.html 
+     *
+     */
+    std::map <irr::EKEY_CODE, bool> keysPressed;
+    std::map <irr::EKEY_CODE, bool>::iterator it;
 
     // We'll create a struct to record info on the mouse state
 	  struct SMouseState{
-		  core::position2di pos;
+      irr::core::position2di pos;
 		  bool LeftButtonDown;
 		  SMouseState() : LeftButtonDown(false) { }
 	  } MouseState;
 
-    EventListener(){}
+	public:
+
+    EventListener();
+    ~EventListener();
+
+    void pushKeyEvent(irr::EKEY_CODE code);
+    void popKeyEvent(irr::EKEY_CODE code);
+
+    // retrieves the current key state (pressed/ not pressed)
+    bool isPressed(irr::EKEY_CODE code);
 
 	  // This is the one method that we have to implement
-	  virtual bool OnEvent(const SEvent& event){
+    virtual bool OnEvent(const irr::SEvent& event);
 
-		  // Remember the mouse state
-      if (event.EventType == irr::EET_MOUSE_INPUT_EVENT){
-			  switch(event.MouseInput.Event){
-			    case EMIE_LMOUSE_PRESSED_DOWN:
-				    MouseState.LeftButtonDown = true;
-				    break;
-
-			    case EMIE_LMOUSE_LEFT_UP:
-				    MouseState.LeftButtonDown = false;
-				    break;
-		    }
-		  }
-		  return false;
-	  }
-
-    const SMouseState & GetMouseState(void) const{
+    const SMouseState &GetMouseState(void) const{
 		  return MouseState;
 	  }
 
