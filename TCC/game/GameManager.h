@@ -4,11 +4,13 @@
 #include <iostream>
 #include <map>
 
-#include "../include/irrlicht.h"
+//#include "../include/irrlicht.h"
 
 #include "../core/Singleton.h"
 #include "../core/EventListener.h"
 #include "../core/Script.h"
+
+#include "ModelManager.h"
 
 //namescpaces
 using namespace irr;
@@ -27,16 +29,11 @@ private:
   Script luaScript;
 
   EventListener eventListener;
+  ModelManager* modelManager;
   
   irr::s32 lastFPS;
   //irr::s32 fps;
   //irr::u32 deltaTime;
-
-  std::map <int, scene::IAnimatedMesh*> meshes;
-  std::map <int, scene::ISceneNode*> nodes;
-
-  std::map< int, scene::IAnimatedMesh*>::iterator meshIt;
-  std::map< int, scene::ISceneNode*>::iterator nodeIt;
 
 
 public:
@@ -52,15 +49,12 @@ public:
   void draw();
   void displayWindowCaption();
   
-  void pushMesh(const char* filename);
-  void popMesh();
-
   //gets
   irr::video::IVideoDriver*  getVideoDriver() { return driver; }
   irr::scene::ISceneManager* getSceneManager(){ return sceneManager; }
 
-  //irr::s32 getFPS();
-  //irr::u32 getDeltaTime();
+  irr::s32 getFPS();
+  irr::u32 getDeltaTime();
 
   friend class Singleton<GameManager>;
 

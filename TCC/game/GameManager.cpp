@@ -9,10 +9,6 @@ using namespace gui;
 GameManager::GameManager(){}
 
 GameManager::~GameManager(){
-
-  nodes.clear();
-  meshes.clear();
-
   device->drop();
 }
 
@@ -32,6 +28,8 @@ bool GameManager::init(){
   camera = sceneManager->addCameraSceneNodeFPS(0, 100.0f, .3f, -1, 0, 0, true, 3.f);
   camera->setPosition(core::vector3df(-100,75,-150));
 
+  modelManager = new ModelManager(sceneManager);
+
   /*
    * HARDCODE! remover depois
    */
@@ -49,45 +47,9 @@ bool GameManager::init(){
                 driver->getTexture("resources/irrlicht2_ft.jpg"),
                 driver->getTexture("resources/irrlicht2_bk.jpg"));
 
-  pushMesh("resources/plano.3DS");
+  modelManager->pushModel("resources/plano.3DS", SCENARIO_MODEL);
 
   return succesful;
-}
-
-//adiciona uma Mesh e um Node aos respectivos maps
-void GameManager::pushMesh(const char* filename){
-
-  int meshIndex, nodeIndex;
-
-  scene::IAnimatedMesh* tempMesh;
-  scene::ISceneNode* tempNode;
-
-  meshIt = meshes.begin();
-  nodeIt = nodes.begin();
-
-  meshIndex = (int) meshes.size();
-  nodeIndex = (int) nodes.size();
-
-  tempMesh = sceneManager->getMesh( filename );
-
-  meshes.insert( meshIt, pair< int, scene::IAnimatedMesh* >( meshIndex, tempMesh ) );
-
-  //sets the node
-  if ( meshes.find(meshIndex)->second ){
-    tempNode = sceneManager->addAnimatedMeshSceneNode( tempMesh );
-    nodes.insert( nodeIt, pair< int,  scene::ISceneNode* >( nodeIndex, tempNode ) );
-  }
-
-}
-
-void GameManager::popMesh(){
-/*
-  // isso remove o(s) node(s) também?
-  irr::scene::IMeshCache* buf;
-
-  buf = sceneManager->getMeshCache();
-  buf->removeMesh( mesh );
-*/
 }
 
 void GameManager::draw(){
@@ -130,7 +92,7 @@ bool GameManager::processLUAScripts(){
 }
 
 bool GameManager::update(){
-  //TODO
+  modelManager->update();
   return true;
 }
 
@@ -138,4 +100,12 @@ void GameManager::run(){
   processLUAScripts();
   update();
   draw();
+}
+
+irr::s32 GameManager::getFPS(){
+  return driver->getFPS();
+}
+
+irr::u32 GameManager::getDeltaTime(){
+  return device->getTimer()->getTime();
 }

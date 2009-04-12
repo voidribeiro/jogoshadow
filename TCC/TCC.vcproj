@@ -184,6 +184,14 @@
 					RelativePath=".\game\GameManager.cpp"
 					>
 				</File>
+				<File
+					RelativePath=".\game\Model.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\game\ModelManager.cpp"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="core"
@@ -216,6 +224,18 @@
 				</File>
 				<File
 					RelativePath=".\game\Item.h"
+					>
+				</File>
+				<File
+					RelativePath=".\game\Model.h"
+					>
+				</File>
+				<File
+					RelativePath=".\game\ModelManager.h"
+					>
+				</File>
+				<File
+					RelativePath=".\game\ModelTypes.h"
 					>
 				</File>
 			</Filter>
