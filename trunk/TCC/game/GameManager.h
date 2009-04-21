@@ -11,6 +11,7 @@
 #include "../core/Script.h"
 
 #include "ModelManager.h"
+#include "SoundManager.h"
 
 //namescpaces
 using namespace irr;
@@ -22,6 +23,7 @@ private:
   bool gameOver;
   
   IrrlichtDevice* device;
+
   irr::video::IVideoDriver* driver;
   irr::scene::ISceneManager* sceneManager;
   irr::scene::ICameraSceneNode* camera;
@@ -29,6 +31,7 @@ private:
   Script luaScript;
 
   EventListener eventListener;
+  SoundManager  soundManager;
   ModelManager* modelManager;
   
   irr::s32 lastFPS;

@@ -9,16 +9,14 @@ class Model{
     int modelType;
 
     irr::scene::IAnimatedMesh* mesh;
-    irr::scene::ISceneNode* node;
 
   public:
 
     Model();
-    Model(int id, int modelType, irr::scene::IAnimatedMesh* mesh, irr::scene::ISceneNode* node);
+    Model(int id, int modelType, irr::scene::IAnimatedMesh* mesh);
     ~Model();
 
     irr::scene::IAnimatedMesh* getMesh() { return mesh; }
-    irr::scene::ISceneNode* getNode() { return node; }
 
 };
 

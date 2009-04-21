@@ -5,18 +5,24 @@ ModelManager::ModelManager(irr::scene::ISceneManager* sm){
 }
 
 ModelManager::~ModelManager(){
- models.clear();
+ objects.clear();
+ npcs.clear();
 }
 
 void ModelManager::pushModel(const char *filename, int modelType){
-  std::map <int, Model*>::iterator modelIt = models.end();
-  
-  Model* model;
   scene::IAnimatedMesh* mesh;
-  scene::ISceneNode* node;
+
+  scene::ISceneNode* scenarioNode;
+  scene::IAnimatedMeshSceneNode* animatedNode;
+  scene::IMeshSceneNode* staticNode;
+
+  std::map <int, ObjectModel*>::iterator objIt = objects.end();
+  std::map <int, NpcModel*>::iterator npcIt = npcs.end();
+
+  NpcModel* npc;
+  ObjectModel* obj;
 
   mesh = sceneManager->getMesh( filename );
-
   
   //se não conseguir criar a mesh retorna
   if(!mesh)
@@ -25,28 +31,66 @@ void ModelManager::pushModel(const char *filename, int modelType){
   //cria o node baseado no parâmetro modelType
   switch(modelType){
     case HERO_MODEL:
-      node = sceneManager->addAnimatedMeshSceneNode( mesh );
-      break;
-
-    case NPC_MODEL:
-      node = sceneManager->addAnimatedMeshSceneNode( mesh );
+      animatedNode = sceneManager->addAnimatedMeshSceneNode( mesh );
+      hero = new HeroModel(1, HERO_MODEL, mesh, animatedNode);
       break;
 
     case SCENARIO_MODEL:
-      node = sceneManager->addOctTreeSceneNode( mesh );
+      scenarioNode = sceneManager->addOctTreeSceneNode( mesh );
+
+      scenario = new ScenarioModel(2, SCENARIO_MODEL, mesh, scenarioNode);
+      break;
+
+    case NPC_MODEL:
+      animatedNode = sceneManager->addAnimatedMeshSceneNode( mesh );
+
+      npc = new NpcModel( (int)npcs.size(), NPC_MODEL, mesh, animatedNode);
+      npcs.insert(npcIt, pair<int, NpcModel*>( (int)npcs.size(), npc) );
+
+      getNpcNodeById( 0 )->setMD2Animation(scene::EMAT_RUN);
       break;
 
     case OBJECT_MODEL:
-      node = sceneManager->addMeshSceneNode( mesh );
+      staticNode = sceneManager->addMeshSceneNode( mesh );
+
+      obj = new ObjectModel( (int)objects.size(), OBJECT_MODEL, mesh, staticNode);
+      objects.insert(objIt, pair<int, ObjectModel*>( (int)objects.size(), obj) );
       break;
   }
-  
-
-  model = new Model( (int) models.size(), modelType, mesh, node);
-
-  models.insert(modelIt, pair<int, Model*>( (int) models.size(), model ));
 
 }
+
+void ModelManager::pushModel(const char *filename, int modelType, ITexture* texture){
+  scene::IAnimatedMesh* mesh;
+
+  scene::IAnimatedMeshSceneNode* animatedNode;
+
+  std::map <int, ObjectModel*>::iterator objIt = objects.end();
+  std::map <int, NpcModel*>::iterator npcIt = npcs.end();
+
+  NpcModel* npc;
+
+  mesh = sceneManager->getMesh( filename );
+  
+  //se não conseguir criar a mesh retorna
+  if(!mesh)
+    return;
+
+  //cria o node baseado no parâmetro modelType
+  switch(modelType){
+    case NPC_MODEL:
+      animatedNode = sceneManager->addAnimatedMeshSceneNode( mesh );
+
+      npc = new NpcModel( (int)npcs.size(), NPC_MODEL, mesh, animatedNode, texture);
+      npcs.insert(npcIt, pair<int, NpcModel*>( (int)npcs.size(), npc) );
+
+      getNpcNodeById( 0 )->setMD2Animation(scene::EMAT_STAND);
+      break;
+
+  }
+
+}
+
 
 void ModelManager::popModel(){
   // TODO
@@ -59,6 +103,17 @@ void ModelManager::update(){
   //pode-se alterar diretamente o map de nós
   //outra coisa é que este update estando separado, ele pode rodar um número de vezes diferente do gameManager principal
 
-  //altera a escala do node
-  models.find(0)->second->getNode()->setScale( irr::core::vector3df(1,1,2) );
+  //altera a escala do cenário
+  scenario->getNode()->setScale( irr::core::vector3df(1,1,2) );
+  
+  //altera a posição do MD2
+  getNpcNodeById(0)->setPosition(irr::core::vector3df(0,30,0));
+}
+
+scene::ISceneNode* ModelManager::getObjectNodeById(int id){
+  return objects.find(id)->second->getNode();
+}
+
+scene::IAnimatedMeshSceneNode* ModelManager::getNpcNodeById(int id){
+  return npcs.find(id)->second->getNode();
 }
