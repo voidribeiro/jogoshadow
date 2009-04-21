@@ -29,6 +29,7 @@ bool GameManager::init(){
   camera->setPosition(core::vector3df(-100,75,-150));
 
   modelManager = new ModelManager(sceneManager);
+  gui = new GUIManager( device->getGUIEnvironment() );
   
   if( !soundManager.init() )
     printf("Unable to initialize IrrKlang\n");
@@ -69,6 +70,7 @@ void GameManager::draw(){
       update();
 
       sceneManager->drawAll();
+      gui->drawAll();
 
       //draw everything
 		  driver->endScene();

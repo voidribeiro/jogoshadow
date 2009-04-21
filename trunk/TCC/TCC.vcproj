@@ -221,6 +221,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\core\GUIManager.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\core\Script.cpp"
 					>
 				</File>
@@ -284,6 +288,10 @@
 				>
 				<File
 					RelativePath=".\core\EventListener.h"
+					>
+				</File>
+				<File
+					RelativePath=".\core\GUIManager.h"
 					>
 				</File>
 				<File

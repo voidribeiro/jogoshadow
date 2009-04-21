@@ -4,11 +4,10 @@
 #include <iostream>
 #include <map>
 
-//#include "../include/irrlicht.h"
-
 #include "../core/Singleton.h"
 #include "../core/EventListener.h"
 #include "../core/Script.h"
+#include "../core/GUIManager.h"
 
 #include "ModelManager.h"
 #include "SoundManager.h"
@@ -29,6 +28,7 @@ private:
   irr::scene::ICameraSceneNode* camera;
 
   Script luaScript;
+  GUIManager* gui;
 
   EventListener eventListener;
   SoundManager  soundManager;

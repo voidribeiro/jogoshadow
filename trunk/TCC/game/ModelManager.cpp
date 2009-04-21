@@ -16,6 +16,8 @@ void ModelManager::pushModel(const char *filename, int modelType){
   scene::IAnimatedMeshSceneNode* animatedNode;
   scene::IMeshSceneNode* staticNode;
 
+  scene::ITriangleSelector* selector;
+
   std::map <int, ObjectModel*>::iterator objIt = objects.end();
   std::map <int, NpcModel*>::iterator npcIt = npcs.end();
 
@@ -23,12 +25,12 @@ void ModelManager::pushModel(const char *filename, int modelType){
   ObjectModel* obj;
 
   mesh = sceneManager->getMesh( filename );
-  
+
   //se não conseguir criar a mesh retorna
   if(!mesh)
     return;
 
-  //cria o node baseado no parâmetro modelType
+  //cria o Model baseado no parâmetro modelType
   switch(modelType){
     case HERO_MODEL:
       animatedNode = sceneManager->addAnimatedMeshSceneNode( mesh );
@@ -37,8 +39,9 @@ void ModelManager::pushModel(const char *filename, int modelType){
 
     case SCENARIO_MODEL:
       scenarioNode = sceneManager->addOctTreeSceneNode( mesh );
+      selector = sceneManager->createOctTreeTriangleSelector( mesh, scenarioNode, 128 );
 
-      scenario = new ScenarioModel(2, SCENARIO_MODEL, mesh, scenarioNode);
+      scenario = new ScenarioModel(2, SCENARIO_MODEL, mesh, scenarioNode, selector);
       break;
 
     case NPC_MODEL:
@@ -76,7 +79,7 @@ void ModelManager::pushModel(const char *filename, int modelType, ITexture* text
   if(!mesh)
     return;
 
-  //cria o node baseado no parâmetro modelType
+  //cria o Model baseado no parâmetro modelType
   switch(modelType){
     case NPC_MODEL:
       animatedNode = sceneManager->addAnimatedMeshSceneNode( mesh );
@@ -85,6 +88,7 @@ void ModelManager::pushModel(const char *filename, int modelType, ITexture* text
       npcs.insert(npcIt, pair<int, NpcModel*>( (int)npcs.size(), npc) );
 
       getNpcNodeById( 0 )->setMD2Animation(scene::EMAT_STAND);
+      getNpcNodeById( 0 )->setAnimationSpeed(60);
       break;
 
   }
@@ -95,6 +99,12 @@ void ModelManager::pushModel(const char *filename, int modelType, ITexture* text
 void ModelManager::popModel(){
   // TODO
   // meus testes pra desregistrar um mesh e um node estão resultando em erros grotescos de execução
+
+	/*
+  if (mesh)
+		mesh->remove();
+	mesh = 0;
+  */
 }
 
 void ModelManager::update(){

@@ -14,6 +14,7 @@ class HeroModel : public Model{
   public:
     HeroModel();
     HeroModel(int id, int modelType, IAnimatedMesh* mesh, IAnimatedMeshSceneNode* node);
+    HeroModel(int id, int modelType, IAnimatedMesh* mesh, IAnimatedMeshSceneNode* node, ITexture* texture);
     ~HeroModel();
     
     IAnimatedMeshSceneNode* getNode() { return node; }
