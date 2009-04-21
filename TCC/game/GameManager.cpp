@@ -29,6 +29,11 @@ bool GameManager::init(){
   camera->setPosition(core::vector3df(-100,75,-150));
 
   modelManager = new ModelManager(sceneManager);
+  
+  if( !soundManager.init() )
+    printf("Unable to initialize IrrKlang\n");
+  else
+    soundManager.playSound("resources/IrrlichtTheme.ogg",true);
 
   /*
    * HARDCODE! remover depois
@@ -48,6 +53,7 @@ bool GameManager::init(){
                 driver->getTexture("resources/irrlicht2_bk.jpg"));
 
   modelManager->pushModel("resources/plano.3DS", SCENARIO_MODEL);
+  modelManager->pushModel("resources/faerie.md2", NPC_MODEL, driver->getTexture("resources/faerie2.bmp") );
 
   return succesful;
 }
@@ -58,6 +64,9 @@ void GameManager::draw(){
 
     if (device->isWindowActive()){
 		  driver->beginScene(true, true, 0);
+
+      processLUAScripts();
+      update();
 
       sceneManager->drawAll();
 
@@ -86,8 +95,10 @@ void GameManager::displayWindowCaption(){
 }
 
 bool GameManager::processLUAScripts(){
+  /*
   luaScript.startScript("teste.lua");
   luaScript.endScript();
+  */
   return true;
 }
 
@@ -97,8 +108,6 @@ bool GameManager::update(){
 }
 
 void GameManager::run(){
-  processLUAScripts();
-  update();
   draw();
 }
 
