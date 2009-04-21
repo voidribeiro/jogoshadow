@@ -22,38 +22,38 @@ bool EventListener::isPressed(irr::EKEY_CODE code){
 
 bool EventListener::OnEvent(const irr::SEvent &event){
 
-	  // Remember the mouse state
-    switch (event.EventType){
-      case irr::EET_MOUSE_INPUT_EVENT:
+  // Remember the mouse state
+  switch (event.EventType){
+    case irr::EET_MOUSE_INPUT_EVENT:
 
-        switch(event.MouseInput.Event){
-		      case irr::EMIE_LMOUSE_PRESSED_DOWN:
-			      MouseState.LeftButtonDown = true;
-			      break;
+      switch(event.MouseInput.Event){
+	      case irr::EMIE_LMOUSE_PRESSED_DOWN:
+		      MouseState.LeftButtonDown = true;
+		      break;
 
-		      case irr::EMIE_LMOUSE_LEFT_UP:
-			      MouseState.LeftButtonDown = false;
-			      break;
+	      case irr::EMIE_LMOUSE_LEFT_UP:
+		      MouseState.LeftButtonDown = false;
+		      break;
 
-        }
+      }
 
-        break;
+      break;
 
-      case irr::EET_KEY_INPUT_EVENT:
+    case irr::EET_KEY_INPUT_EVENT:
 
-        //quando um evento de KEY_INPUT aconteçe a tecla muda o status de true ou false
-        irr::EKEY_CODE code = event.KeyInput.Key;
-        bool pressed = event.KeyInput.PressedDown;
+      //quando um evento de KEY_INPUT aconteçe a tecla muda o status de true ou false
+      irr::EKEY_CODE code = event.KeyInput.Key;
+      bool pressed = event.KeyInput.PressedDown;
 
-        if(keysPressed.find(code) == keysPressed.end())
-          pushKeyEvent(code);
+      if(keysPressed.find(code) == keysPressed.end())
+        pushKeyEvent(code);
 
-        keysPressed.find(code)->second = pressed;
-        //printf("%d",keysPressed.find(code)->second);
+      keysPressed.find(code)->second = pressed;
+      //printf("%d",keysPressed.find(code)->second);
 
-        break;
+      break;
 
-    }
+  }
 
-  	return false;
+	return false;
 }

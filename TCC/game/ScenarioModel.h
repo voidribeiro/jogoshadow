@@ -3,10 +3,14 @@
 
 #include "Model.h"
 
+using namespace irr;
+using namespace scene;
+
 class ScenarioModel : public Model{
   private:
-    irr::scene::ISceneNode* node;
-    
+    ISceneNode* node;
+    ITriangleSelector* selector;
+
     // como a gente vai tratar a movimentação na malha?
     // isto ficaria aqui ou seria tratada num classe controller da vida?
     
@@ -14,10 +18,11 @@ class ScenarioModel : public Model{
 
   public:
     ScenarioModel();
-    ScenarioModel(int id, int modelType, irr::scene::IAnimatedMesh* mesh, irr::scene::ISceneNode* node);
+    ScenarioModel(int id, int modelType, IAnimatedMesh* mesh, ISceneNode* node, ITriangleSelector* selector);
     ~ScenarioModel();
     
-    irr::scene::ISceneNode* getNode() { return node; }
+    ISceneNode* getNode() { return node; }
+    ITriangleSelector* getSelector() { return selector; }
 
 };
 
