@@ -6,32 +6,58 @@ EventListener::~EventListener(){
   keysPressed.clear();
 }
 
-void EventListener::pushKeyEvent(irr::EKEY_CODE code){
-  keysPressed.insert( std::pair<irr::EKEY_CODE,bool>(code,false) );
+/*
+ * KEY EVENTS
+ */
+ 
+void EventListener::pushKeyEvent( EKEY_CODE code ){
+  keysPressed.insert( std::pair< EKEY_CODE,bool >( code,false ) );
 }
 
-void EventListener::popKeyEvent(irr::EKEY_CODE code){
+void EventListener::popKeyEvent( EKEY_CODE code ){
+  std::map < EKEY_CODE, bool>::iterator it;
   it = keysPressed.find(code);
   keysPressed.erase(it);
 }
 
-bool EventListener::isPressed(irr::EKEY_CODE code){
+bool EventListener::isPressed( EKEY_CODE code ){
   return keysPressed.find(code)->second;
 }
 
 
-bool EventListener::OnEvent(const irr::SEvent &event){
+/*
+ * GUI EVENTS
+ */
 
-  // Remember the mouse state
+void EventListener::pushGUIEvent(gui::EGUI_EVENT_TYPE type, int id){
+  //TODO
+}
+
+void EventListener::popGUIEvent(gui::EGUI_EVENT_TYPE type, int id){
+  //TODO
+}
+
+
+bool EventListener::OnEvent(const  SEvent &event){
+
+  //KEY Event Variables
+  bool pressed;
+  EKEY_CODE code;
+
+  //GUI Event Variables
+  s32 id;
+  gui::EGUI_EVENT_TYPE eventType;
+
   switch (event.EventType){
-    case irr::EET_MOUSE_INPUT_EVENT:
+
+    case EET_MOUSE_INPUT_EVENT:
 
       switch(event.MouseInput.Event){
-	      case irr::EMIE_LMOUSE_PRESSED_DOWN:
+	      case EMIE_LMOUSE_PRESSED_DOWN:
 		      MouseState.LeftButtonDown = true;
 		      break;
 
-	      case irr::EMIE_LMOUSE_LEFT_UP:
+	      case EMIE_LMOUSE_LEFT_UP:
 		      MouseState.LeftButtonDown = false;
 		      break;
 
@@ -39,17 +65,26 @@ bool EventListener::OnEvent(const irr::SEvent &event){
 
       break;
 
-    case irr::EET_KEY_INPUT_EVENT:
+    case EET_KEY_INPUT_EVENT:
 
       //quando um evento de KEY_INPUT aconteçe a tecla muda o status de true ou false
-      irr::EKEY_CODE code = event.KeyInput.Key;
-      bool pressed = event.KeyInput.PressedDown;
+      code    = event.KeyInput.Key;
+      pressed = event.KeyInput.PressedDown;
 
       if(keysPressed.find(code) == keysPressed.end())
         pushKeyEvent(code);
 
       keysPressed.find(code)->second = pressed;
       //printf("%d",keysPressed.find(code)->second);
+
+      break;
+
+    case EET_GUI_EVENT:
+      id        = event.GUIEvent.Caller->getID();
+      eventType = event.GUIEvent.EventType;
+
+      if(keysPressed.find(code) == keysPressed.end())
+        pushGUIEvent(eventType, id);
 
       break;
 

@@ -3,8 +3,11 @@
 SoundManager::SoundManager(){
 }
 
+/*
+ * Destroys the main sound device
+ */
 SoundManager::~SoundManager(){
-  soundDevice->drop(); // delete device
+  soundDevice->drop();
 }
 
 bool SoundManager::init(){
@@ -17,5 +20,9 @@ bool SoundManager::init(){
 }
 
 void SoundManager::playSound( char* filename, bool loop ){
+
+  /*
+   * Play a sound in loop
+   */
   soundDevice->play2D(filename, true);
 }

@@ -1,9 +1,18 @@
 #ifndef _MODELHMANAGER_H_
 #define _MODELMANAGER_H_
 
-#include <map>
+/*
 
-//#include "../include/irrlicht.h"
+Name: ModelManager.h
+
+Description:
+  This class is responsible for hold all the references to the models in the game, Scenario, Hero, NPCs and Objects
+  It has a map of pointers to Objects and NPCs models
+
+*/
+
+
+#include <map>
 
 #include "ModelTypes.h"
 
@@ -13,20 +22,37 @@ using namespace std;
 class ModelManager{
 private:
 
+  /*
+   * This class requires a pointer to the main SceneManager to create the Nodes and the Meshes
+   */
   irr::scene::ISceneManager* sceneManager;
   
-  //a princípio vou estipular que o modelo do Hero tem id = 1 SEMPRE (por ser o mesmo valor do ENUM no ModelTypes.h inclusive)
+  /*
+   * The Hero Model, assuming that there is only one hero, this instance is kept separatedly
+   */
   HeroModel* hero; 
-  //a princípio vou estipular que o modelo do Scenario tem id = 2 SEMPRE (por ser o mesmo valor do ENUM no ModelTypes.h inclusive)
+
+ /*
+  * The Scenario Model, assuming that there is only one scenario, this instance is kept separatedly
+  */
   ScenarioModel* scenario;
 
-  //map de todos os objetos na cena
+  /*
+   * Map of all the Object Models in the scene
+   * This map keeps the ID and the pointer to the ObjectModel instance
+   */
   std::map <int, ObjectModel*> objects;
 
-  //map com todos os NPCs da cena
+  /*
+   * Map of all the NPC Models in the scene
+   * This map keeps the ID and the pointer to the NpcModel instance
+   */
   std::map <int, NpcModel*> npcs;
 
-  //estes métodos estão privados por ser responsabilidade da Clase ModelManager tratar os maps de Model
+  /*
+   * This methods are used to make a cleaner code. They are used to get the SceneNode of the Object or the NPC map
+   * based on the ID
+   */
   scene::ISceneNode* getObjectNodeById(int id);
   scene::IAnimatedMeshSceneNode* getNpcNodeById(int id);
 
@@ -34,14 +60,29 @@ public:
   ModelManager(irr::scene::ISceneManager* sm);
   ~ModelManager();
 
-  //adiciona um modelo sem textura
+  /*
+   * create a Model without texture
+   */
   void pushModel(const char* filename, int modelType);
 
-  //adiciona um modelo com textura
+  /*
+   * [TODO]: other modelTypes than an NPC
+   * create a Model with texture
+   */
   void pushModel(const char* filename, int modelType, ITexture* texture);
 
+  /* 
+   * [TODO]: all
+   * removes the model from memory
+   */
   void popModel();
 
+  /*
+   * Still Harcoded, but ModelManager has his own update function to change the SceneNodes.
+   * This is useful because is possible to process Physics separetedly from the GameManager
+   * changing the SceneNodes directly.
+   * This function being here, allows it to run a different number of times from the main loop.
+   */
   void update();
 
 };
