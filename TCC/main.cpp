@@ -1,7 +1,6 @@
-/** IrrLicht First Time Walk **/
+/** Shadows of Time - Adventure Game **/
 
 #include "game/GameManager.h"
-#include <iostream>
 
 int main()
 {
