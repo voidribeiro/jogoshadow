@@ -152,10 +152,10 @@ void GameManager::displayWindowCaption(){
 }
 
 bool GameManager::processLUAScripts(){
-  /*
-  luaScript.startScript("teste.lua");
+
+  //The test folder could be some folder that specifies some stage
+  luaScript.startScript("LuaScripts/teste/teste.lua");
   luaScript.endScript();
-  */
   return true;
 }
 
