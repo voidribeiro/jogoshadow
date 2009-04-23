@@ -65,7 +65,9 @@ bool GameManager::init(){
    * instantiates the auxiliar managers
    */
   modelManager = new ModelManager( sceneManager );
-  guiManager   = new GUIManager( device->getGUIEnvironment() );
+  guiManager   = new GUIManager( device->getGUIEnvironment() ); //, &eventListener );
+
+  eventListener.setGUIManager( guiManager );
 
   /*
    * Plays a 2D backgound music using the SoundManager

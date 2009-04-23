@@ -14,6 +14,7 @@ affect the whole application
 
 #include <map>
 #include "../include/irrlicht.h"
+#include "GUIManager.h"
 
 using namespace irr;
 
@@ -30,6 +31,8 @@ class EventListener : public irr::IEventReceiver{
     std::map <EKEY_CODE, bool> keysPressed;
     std::map <int, gui::EGUI_EVENT_TYPE> guiEvents;
 
+    GUIManager* guiManager;
+
     // We'll create a struct to record info on the mouse state
 	  struct SMouseState{
       irr::core::position2di pos;
@@ -45,16 +48,14 @@ class EventListener : public irr::IEventReceiver{
     void pushKeyEvent(EKEY_CODE code);
     void popKeyEvent(EKEY_CODE code);
 
-    void pushGUIEvent(gui::EGUI_EVENT_TYPE type, int id);
-    void popGUIEvent(gui::EGUI_EVENT_TYPE type, int id);
-
     /*
      * Retrieves the current key state (pressed/ not pressed)
      */
     bool isPressed(EKEY_CODE code);
 
+    void setGUIManager( GUIManager* guiManager );
+
     /*
-     * [TODO] GUI Event callbacks
      * Processes all the events
      */
     virtual bool OnEvent(const SEvent& event);

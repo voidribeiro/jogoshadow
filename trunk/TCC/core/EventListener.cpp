@@ -29,14 +29,9 @@ bool EventListener::isPressed( EKEY_CODE code ){
  * GUI EVENTS
  */
 
-void EventListener::pushGUIEvent(gui::EGUI_EVENT_TYPE type, int id){
-  //TODO
+void EventListener::setGUIManager(GUIManager* guiManager){
+  this->guiManager = guiManager;
 }
-
-void EventListener::popGUIEvent(gui::EGUI_EVENT_TYPE type, int id){
-  //TODO
-}
-
 
 bool EventListener::OnEvent(const  SEvent &event){
 
@@ -83,8 +78,8 @@ bool EventListener::OnEvent(const  SEvent &event){
       id        = event.GUIEvent.Caller->getID();
       eventType = event.GUIEvent.EventType;
 
-      if(keysPressed.find(code) == keysPressed.end())
-        pushGUIEvent(eventType, id);
+      if(guiManager)
+        guiManager->processEventCallback(eventType, id);
 
       break;
 

@@ -28,3 +28,7 @@ void GUIManager::update(){
 void GUIManager::drawAll(){
   env->drawAll();
 }
+
+void GUIManager::processEventCallback(EGUI_EVENT_TYPE type, int id){
+  //  printf("Evento na GUI!\n");
+}
