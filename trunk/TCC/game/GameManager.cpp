@@ -65,7 +65,7 @@ bool GameManager::init(){
    * instantiates the auxiliar managers
    */
   modelManager = new ModelManager( sceneManager );
-  guiManager   = new GUIManager( device->getGUIEnvironment() ); //, &eventListener );
+  guiManager   = new GUIManager( device->getGUIEnvironment() ); 
 
   eventListener.setGUIManager( guiManager );
 
@@ -102,6 +102,8 @@ bool GameManager::init(){
    */
   modelManager->pushModel("resources/plano.3DS", SCENARIO_MODEL);
   modelManager->pushModel("resources/faerie.md2", NPC_MODEL, driver->getTexture("resources/faerie2.bmp") );
+
+  modelManager->pushModel("resources/skeleton/player.x", SKELETAL_MODEL);
 
   return succesful;
 }
@@ -154,8 +156,11 @@ void GameManager::displayWindowCaption(){
 bool GameManager::processLUAScripts(){
 
   //The test folder could be some folder that specifies some stage
-  luaScript.startScript("LuaScripts/teste/teste.lua");
-  luaScript.endScript();
+
+  //commented for performance issues
+
+  //luaScript.startScript("LuaScripts/teste/teste.lua");
+  //luaScript.endScript();
   return true;
 }
 

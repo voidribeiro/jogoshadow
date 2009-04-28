@@ -47,6 +47,11 @@ bool EventListener::OnEvent(const  SEvent &event){
 
     case EET_MOUSE_INPUT_EVENT:
 
+      MouseState.pos = irr::core::position2di(event.MouseInput.X, event.MouseInput.Y);
+
+			//mouseDeltaX = event.MouseInput.X - mouseX;
+			//mouseDeltaY = event.MouseInput.Y - mouseY;
+
       switch(event.MouseInput.Event){
 	      case EMIE_LMOUSE_PRESSED_DOWN:
 		      MouseState.LeftButtonDown = true;

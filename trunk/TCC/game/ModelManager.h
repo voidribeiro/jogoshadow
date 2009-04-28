@@ -49,6 +49,9 @@ private:
    */
   std::map <int, NpcModel*> npcs;
 
+
+  SkeletalModel* skeleton;
+
   /*
    * This methods are used to make a cleaner code. They are used to get the SceneNode of the Object or the NPC map
    * based on the ID
