@@ -100,7 +100,6 @@ void ModelManager::pushModel(const char *filename, int modelType){
       npc = new NpcModel( (int)npcs.size(), NPC_MODEL, mesh, animatedNode);
       npcs.insert(npcIt, pair<int, NpcModel*>( (int)npcs.size(), npc) );
 
-      getNpcNodeById( 0 )->setMD2Animation(scene::EMAT_RUN);
       break;
 
     case OBJECT_MODEL:
@@ -117,6 +116,13 @@ void ModelManager::pushModel(const char *filename, int modelType){
        */
       obj = new ObjectModel( (int)objects.size(), OBJECT_MODEL, mesh, staticNode);
       objects.insert(objIt, pair<int, ObjectModel*>( (int)objects.size(), obj) );
+      break;
+
+    case SKELETAL_MODEL:
+      animatedNode = sceneManager->addAnimatedMeshSceneNode( mesh );
+      skeleton = new SkeletalModel(5,SKELETAL_MODEL, mesh, animatedNode, 2);
+      skeleton->setAnimType(CSK_ANIM_WALK);
+
       break;
   }
 
@@ -203,6 +209,11 @@ void ModelManager::update(){
    * changes the NPC position
    */
   getNpcNodeById(0)->setPosition(irr::core::vector3df(0,30,0));
+
+  skeleton->getSkeletonSceneNode()->setScale( core::vector3df(8,8,8) );
+  skeleton->getSkeletonSceneNode()->setPosition( core::vector3df(50,30,-50) );
+
+  skeleton->animSkeleton( core::position2di(200,10) );
 }
 
 scene::ISceneNode* ModelManager::getObjectNodeById(int id){

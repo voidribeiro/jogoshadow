@@ -211,6 +211,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\game\SkeletalModel.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\game\SoundManager.cpp"
 					>
 				</File>
@@ -218,6 +222,10 @@
 			<Filter
 				Name="core"
 				>
+				<File
+					RelativePath=".\core\BMaths.cpp"
+					>
+				</File>
 				<File
 					RelativePath=".\core\EventListener.cpp"
 					>
@@ -281,6 +289,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\game\SkeletalModel.h"
+					>
+				</File>
+				<File
 					RelativePath=".\game\SoundManager.h"
 					>
 				</File>
@@ -288,6 +300,10 @@
 			<Filter
 				Name="core"
 				>
+				<File
+					RelativePath=".\core\BMaths.h"
+					>
+				</File>
 				<File
 					RelativePath=".\core\EventListener.h"
 					>
