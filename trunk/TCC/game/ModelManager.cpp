@@ -99,7 +99,7 @@ void ModelManager::pushModel(const char *filename, int modelType){
        */
       npc = new NpcModel( (int)npcs.size(), NPC_MODEL, mesh, animatedNode);
       npcs.insert(npcIt, pair<int, NpcModel*>( (int)npcs.size(), npc) );
-
+      
       break;
 
     case OBJECT_MODEL:
@@ -120,7 +120,18 @@ void ModelManager::pushModel(const char *filename, int modelType){
 
     case SKELETAL_MODEL:
       animatedNode = sceneManager->addAnimatedMeshSceneNode( mesh );
+
+      /*
+       *  SkeletalModel( 
+       *    int id, 
+       *    int modelType, 
+       *    IAnimatedMesh* mesh, 
+       *    IAnimatedMeshSceneNode* node, 
+       *    u32 animationSpeed )
+       *
+       */
       skeleton = new SkeletalModel(5,SKELETAL_MODEL, mesh, animatedNode, 2);
+      
       skeleton->setAnimType(CSK_ANIM_WALK);
 
       break;
@@ -181,8 +192,8 @@ void ModelManager::pushModel(const char *filename, int modelType, ITexture* text
       /*
        * HARDCODE! changing animation and animationSpeed to a MD2 file
        */
-      getNpcNodeById( 0 )->setMD2Animation(scene::EMAT_STAND);
-      getNpcNodeById( 0 )->setAnimationSpeed(60);
+      animatedNode->setMD2Animation(scene::EMAT_STAND);
+      animatedNode->setAnimationSpeed(60);
       break;
 
   }
@@ -213,7 +224,7 @@ void ModelManager::update(){
   skeleton->getSkeletonSceneNode()->setScale( core::vector3df(8,8,8) );
   skeleton->getSkeletonSceneNode()->setPosition( core::vector3df(50,30,-50) );
 
-  skeleton->animSkeleton( core::position2di(200,10) );
+  skeleton->animSkeleton( core::position2di(200,200) );
 }
 
 scene::ISceneNode* ModelManager::getObjectNodeById(int id){

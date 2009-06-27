@@ -102,6 +102,7 @@ bool GameManager::init(){
    */
   modelManager->pushModel("resources/plano.3DS", SCENARIO_MODEL);
   modelManager->pushModel("resources/faerie.md2", NPC_MODEL, driver->getTexture("resources/faerie2.bmp") );
+  //modelManager->pushModel("resources/biped.X", NPC_MODEL);
 
   modelManager->pushModel("resources/skeleton/player.x", SKELETAL_MODEL);
 
