@@ -88,7 +88,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="xcopy /y /e /i $(ProjectDir)\LuaScripts $(OutDir)\LuaScripts"
+				CommandLine=""
 			/>
 		</Configuration>
 		<Configuration
@@ -290,6 +290,10 @@
 				</File>
 				<File
 					RelativePath=".\game\SkeletalModel.h"
+					>
+				</File>
+				<File
+					RelativePath=".\game\Skeleton.h"
 					>
 				</File>
 				<File

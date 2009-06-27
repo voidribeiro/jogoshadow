@@ -29,7 +29,7 @@ Model(id, modelType, mesh){
 SkeletalModel::~SkeletalModel() {
 }
 
-// Initialisation
+// Initialization
 void SkeletalModel::init(scene::IAnimatedMeshSceneNode *node, u32 setSpeed) {
 
   for(unsigned int idx=0; idx < node->getMaterialCount(); idx++)
