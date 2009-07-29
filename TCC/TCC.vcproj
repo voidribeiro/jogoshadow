@@ -235,7 +235,15 @@
 					>
 				</File>
 				<File
+					RelativePath=".\core\ProcessManager.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\core\Script.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\core\StateManager.cpp"
 					>
 				</File>
 			</Filter>
@@ -317,6 +325,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\core\ProcessManager.h"
+					>
+				</File>
+				<File
 					RelativePath=".\core\Script.h"
 					>
 				</File>
@@ -324,13 +336,11 @@
 					RelativePath=".\core\Singleton.h"
 					>
 				</File>
+				<File
+					RelativePath=".\core\StateManager.h"
+					>
+				</File>
 			</Filter>
-		</Filter>
-		<Filter
-			Name="Resource Files"
-			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
-			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
-			>
 		</Filter>
 	</Files>
 	<Globals>
