@@ -88,7 +88,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy $(ProjectDir)dlls\Irrlicht.dll $(OutDir)&#x0D;&#x0A;copy $(ProjectDir)dlls\lua5.1.dll $(OutDir)&#x0D;&#x0A;copy $(ProjectDir)dlls\irrKlang.dll $(OutDir)"
+				CommandLine="echo Copiando $(ProjectDir)dlls\Irrlicht.dll para $(OutDir)&#x0D;&#x0A;copy $(ProjectDir)dlls\Irrlicht.dll $(OutDir)&#x0D;&#x0A;echo Copiando $(ProjectDir)dlls\lua5.1.dll para $(OutDir)&#x0D;&#x0A;copy $(ProjectDir)dlls\lua5.1.dll $(OutDir)&#x0D;&#x0A;echo Copiando $(ProjectDir)dlls\irrKlang.dll para $(OutDir)&#x0D;&#x0A;copy $(ProjectDir)dlls\irrKlang.dll $(OutDir)&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
