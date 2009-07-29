@@ -1,6 +1,6 @@
 /** Shadows of Time - Adventure Game **/
 
-#include "game/GameManager.h"
+#include "GameManager.h"
 
 int main()
 {

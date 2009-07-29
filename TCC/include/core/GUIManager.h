@@ -11,7 +11,7 @@ referenced to GUI, sent by the eventListener
 
 */
 
-#include "../include/irrlicht.h"
+#include "irrlicht.h"
 
 using namespace irr;
 using namespace gui;

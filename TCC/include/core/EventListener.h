@@ -13,7 +13,7 @@ affect the whole application
 
 
 #include <map>
-#include "../include/irrlicht.h"
+#include "irrlicht.h"
 #include "GUIManager.h"
 
 using namespace irr;

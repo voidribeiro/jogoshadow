@@ -10,8 +10,8 @@ By "xray" on Irrlicht forums
 
 */
 
-#include "../include/irrlicht.h"
-#include "../core/BMaths.h"
+#include "irrlicht.h"
+#include "BMaths.h"
 #include "Model.h"
 #include "Skeleton.h"
 
