@@ -6,7 +6,7 @@ Bone Maths
 
 */
 
-#include "../include/irrlicht.h"
+#include "irrlicht.h"
 
 using namespace irr;
 using namespace core;

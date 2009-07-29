@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(InputDir)\include"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)\include\irrKlang&quot;;&quot;$(ProjectDir)\include\lua&quot;;&quot;$(ProjectDir)\include\irrLicht&quot;;&quot;$(ProjectDir)\include\core&quot;;&quot;$(ProjectDir)\include\game&quot;;&quot;$(ProjectDir)\include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -257,55 +257,55 @@
 				Name="game"
 				>
 				<File
-					RelativePath=".\game\GameManager.h"
+					RelativePath=".\include\game\GameManager.h"
 					>
 				</File>
 				<File
-					RelativePath=".\game\HeroModel.h"
+					RelativePath=".\include\game\HeroModel.h"
 					>
 				</File>
 				<File
-					RelativePath=".\game\Inventory.h"
+					RelativePath=".\include\game\Inventory.h"
 					>
 				</File>
 				<File
-					RelativePath=".\game\Item.h"
+					RelativePath=".\include\game\Item.h"
 					>
 				</File>
 				<File
-					RelativePath=".\game\Model.h"
+					RelativePath=".\include\game\Model.h"
 					>
 				</File>
 				<File
-					RelativePath=".\game\ModelManager.h"
+					RelativePath=".\include\game\ModelManager.h"
 					>
 				</File>
 				<File
-					RelativePath=".\game\ModelTypes.h"
+					RelativePath=".\include\game\ModelTypes.h"
 					>
 				</File>
 				<File
-					RelativePath=".\game\NpcModel.h"
+					RelativePath=".\include\game\NpcModel.h"
 					>
 				</File>
 				<File
-					RelativePath=".\game\ObjectModel.h"
+					RelativePath=".\include\game\ObjectModel.h"
 					>
 				</File>
 				<File
-					RelativePath=".\game\ScenarioModel.h"
+					RelativePath=".\include\game\ScenarioModel.h"
 					>
 				</File>
 				<File
-					RelativePath=".\game\SkeletalModel.h"
+					RelativePath=".\include\game\SkeletalModel.h"
 					>
 				</File>
 				<File
-					RelativePath=".\game\Skeleton.h"
+					RelativePath=".\include\game\Skeleton.h"
 					>
 				</File>
 				<File
-					RelativePath=".\game\SoundManager.h"
+					RelativePath=".\include\game\SoundManager.h"
 					>
 				</File>
 			</Filter>
@@ -313,31 +313,31 @@
 				Name="core"
 				>
 				<File
-					RelativePath=".\core\BMaths.h"
+					RelativePath=".\include\core\BMaths.h"
 					>
 				</File>
 				<File
-					RelativePath=".\core\EventListener.h"
+					RelativePath=".\include\core\EventListener.h"
 					>
 				</File>
 				<File
-					RelativePath=".\core\GUIManager.h"
+					RelativePath=".\include\core\GUIManager.h"
 					>
 				</File>
 				<File
-					RelativePath=".\core\ProcessManager.h"
+					RelativePath=".\include\core\ProcessManager.h"
 					>
 				</File>
 				<File
-					RelativePath=".\core\Script.h"
+					RelativePath=".\include\core\Script.h"
 					>
 				</File>
 				<File
-					RelativePath=".\core\Singleton.h"
+					RelativePath=".\include\core\Singleton.h"
 					>
 				</File>
 				<File
-					RelativePath=".\core\StateManager.h"
+					RelativePath=".\include\core\StateManager.h"
 					>
 				</File>
 			</Filter>

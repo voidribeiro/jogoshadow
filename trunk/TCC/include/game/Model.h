@@ -16,7 +16,7 @@ Description:
 
 */
 
-#include "../include/irrlicht.h"
+#include "irrlicht.h"
 
 class Model{
   private:
