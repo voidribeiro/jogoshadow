@@ -15,13 +15,15 @@ the game features making them interact correctly.
 #include <iostream>
 #include <map>
 
-#include "../core/Singleton.h"
-#include "../core/EventListener.h"
-#include "../core/Script.h"
-#include "../core/GUIManager.h"
+#include "Singleton.h"
+#include "EventListener.h"
+#include "Script.h"
+#include "GUIManager.h"
 
 #include "ModelManager.h"
 #include "SoundManager.h"
+
+#include "ProcessManager.h"
 
 using namespace irr;
 using namespace std;
@@ -52,6 +54,7 @@ private:
   //irr::s32 fps;
   //irr::u32 deltaTime;
 
+  ProcessManager pm;
 
 public:
   explicit GameManager();
@@ -85,11 +88,15 @@ public:
   /*
    * Updates the window caption with FPS
    */
-  void displayWindowCaption();
+  bool displayWindowCaption();
   
+  static void process1(void *ptr, long purpose);
+  static void process2(void *ptr, long purpose);
+
   //gets
   irr::video::IVideoDriver*  getVideoDriver() { return driver; }
   irr::scene::ISceneManager* getSceneManager(){ return sceneManager; }
+  irr::IrrlichtDevice*       getDevice()      { return device; }
 
   irr::s32 getFPS();
   irr::u32 getDeltaTime();

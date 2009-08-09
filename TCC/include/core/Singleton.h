@@ -2,8 +2,7 @@
 #define _SINGLETON_H_
 
 template <class T>
-class Singleton
-{
+class Singleton{
 public:
     static T* Instance()
     {
