@@ -14,7 +14,7 @@ Description:
 #include <stdio.h>
 #include <conio.h>
 
-#include "../irrKlang/irrKlang.h"
+#include "irrKlang.h"
 
 using namespace irrklang;
 

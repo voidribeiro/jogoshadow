@@ -173,6 +173,21 @@ void ModelManager::pushModel(const char *filename, int modelType, ITexture* text
    * Creates the model based on parameter modelType
    */
   switch(modelType){
+    case HERO_MODEL:
+      animatedNode = sceneManager->addAnimatedMeshSceneNode( mesh );
+      /*
+       * Create a HeroModel
+       *
+       *  HeroModel(
+       *   int id, 
+       *   int modelType, 
+       *   IAnimatedMesh* mesh, 
+       *   IAnimatedMeshSceneNode* node,
+       *   ITexture* texture) 
+       */
+      hero = new HeroModel(1, HERO_MODEL, mesh, animatedNode, texture);
+      break;
+
     case NPC_MODEL:
       animatedNode = sceneManager->addAnimatedMeshSceneNode( mesh );
 

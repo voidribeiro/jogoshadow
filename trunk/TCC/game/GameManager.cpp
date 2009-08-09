@@ -6,7 +6,9 @@ using namespace video;
 using namespace io;
 using namespace gui;
 
-GameManager::GameManager(){}
+GameManager::GameManager(){
+  //pm = new ProcessManager();
+}
 
 /*
  * frees all IrrLicht allocated memory
@@ -106,15 +108,19 @@ bool GameManager::init(){
 
   modelManager->pushModel("resources/skeleton/player.x", SKELETAL_MODEL);
 
+  pm.push(process1, this);
+  //pm.push(process2, this);
+
   return succesful;
 }
 
 void GameManager::draw(){
-
   /*
    * while the device is running processes the main game loop
    */
   while(device->run()){
+
+    pm.process();
 
     if (device->isWindowActive()){
 		  driver->beginScene(true, true, 0);
@@ -137,14 +143,14 @@ void GameManager::draw(){
     displayWindowCaption();
 
   }
+  //return true;
 
 }
 
-void GameManager::displayWindowCaption(){
+bool GameManager::displayWindowCaption(){
   irr::s32 fps = driver->getFPS();
 
-  if (lastFPS != fps)
-  {
+  if (lastFPS != fps){
 	  core::stringw str = L"Shadows of Time - Irrlicht Engine [";
 	  str += driver->getName();
 	  str += "] FPS:";
@@ -152,6 +158,7 @@ void GameManager::displayWindowCaption(){
 
 	  device->setWindowCaption(str.c_str());
   }
+  return true;
 }
 
 bool GameManager::processLUAScripts(){
@@ -180,4 +187,13 @@ irr::s32 GameManager::getFPS(){
 
 irr::u32 GameManager::getDeltaTime(){
   return device->getTimer()->getTime();
+}
+
+void GameManager::process1(void *ptr, long purpose){
+  GameManager* gm = (GameManager*) ptr;
+  printf("Draw!\n");
+}
+
+void GameManager::process2(void *ptr, long purpose){
+  printf("p2!\n");
 }
