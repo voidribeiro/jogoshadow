@@ -13,5 +13,7 @@ Model::Model(int id, int modelType, irr::scene::IAnimatedMesh* mesh){
 }
 
 Model::~Model(){
-
+  if (mesh)
+    mesh->drop();
+	mesh = 0;
 }

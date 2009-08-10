@@ -19,7 +19,7 @@ Description:
 #include "irrlicht.h"
 
 class Model{
-  private:
+  protected:
     int id;
     int modelType;
 

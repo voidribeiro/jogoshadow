@@ -33,7 +33,7 @@ void EventListener::setGUIManager(GUIManager* guiManager){
   this->guiManager = guiManager;
 }
 
-bool EventListener::OnEvent(const  SEvent &event){
+bool EventListener::OnEvent(const SEvent &event){
 
   //KEY Event Variables
   bool pressed;

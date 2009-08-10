@@ -60,14 +60,14 @@ bool GameManager::init(){
    *     bool noVerticalMovement=false,
 	 *	   f32 jumpSpeed = 0.f) = 0;
    */
-  camera = sceneManager->addCameraSceneNodeFPS( 0, 100.0f, .3f, -1, 0, 0, true, 3.f);
+  camera = sceneManager->addCameraSceneNodeFPS( 0, 100.0f, .3f, -1, 0, 0, false, 3.f);
   camera->setPosition( core::vector3df( -100, 75, -150 ) );
 
   /*
    * instantiates the auxiliar managers
    */
   modelManager = new ModelManager( sceneManager );
-  guiManager   = new GUIManager( device->getGUIEnvironment() ); 
+  guiManager   = new GUIManager( device->getGUIEnvironment(), device->getVideoDriver() ); 
 
   eventListener.setGUIManager( guiManager );
 
@@ -110,6 +110,8 @@ bool GameManager::init(){
 
   pm.push(process1, this);
   //pm.push(process2, this);
+
+  modelManager->popNpc(0);
 
   return succesful;
 }

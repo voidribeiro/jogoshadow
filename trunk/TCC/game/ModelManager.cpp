@@ -8,8 +8,21 @@ ModelManager::ModelManager(irr::scene::ISceneManager* sm){
  * Clear both Model maps
  */
 ModelManager::~ModelManager(){
- objects.clear();
- npcs.clear();
+  std::map <int, ObjectModel*>::iterator objIt;
+  std::map <int, NpcModel*>::iterator npcIt;
+
+  for ( objIt = objects.begin(); objIt != objects.end(); objIt++ ){
+    //objects.find(objIt)->second->~ObjectModel();
+    objects.erase(objIt);
+  }
+
+  for ( npcIt = npcs.begin(); npcIt != npcs.end(); npcIt++ ){
+    //npcs.find(npcIt)->second->~NpcModel();
+    npcs.erase(npcIt);
+  }
+
+  objects.clear();
+  npcs.clear();
 }
 
 void ModelManager::pushModel(const char *filename, int modelType){
@@ -215,14 +228,30 @@ void ModelManager::pushModel(const char *filename, int modelType, ITexture* text
 
 }
 
+void ModelManager::popObject(const int id){
 
-void ModelManager::popModel(){
-	/*
-  if (mesh)
-		mesh->remove();
-	mesh = 0;
-  */
+  std::map <int, ObjectModel*>::iterator objIt;
+  objIt = objects.find(id);
+
+  //se não encontrar um objeto no map
+  if(objIt == objects.end())
+    return;
+
+  objIt->second->~ObjectModel();
+
 }
+
+void ModelManager::popNpc(const int id){
+  std::map <int, NpcModel*>::iterator npcIt;
+  npcIt = npcs.find(id);
+
+  //se não encontrar um objeto no map
+  if(npcIt == npcs.end())
+    return;
+
+  npcIt->second->~NpcModel();
+}
+
 
 void ModelManager::update(){
 
@@ -234,7 +263,7 @@ void ModelManager::update(){
   /*
    * changes the NPC position
    */
-  getNpcNodeById(0)->setPosition(irr::core::vector3df(0,30,0));
+  //getNpcNodeById(0)->setPosition(irr::core::vector3df(0,30,0));
 
   skeleton->getSkeletonSceneNode()->setScale( core::vector3df(8,8,8) );
   skeleton->getSkeletonSceneNode()->setPosition( core::vector3df(50,30,-50) );

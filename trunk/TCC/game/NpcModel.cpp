@@ -24,5 +24,13 @@ NpcModel::NpcModel(int id, int modelType, IAnimatedMesh* mesh, IAnimatedMeshScen
 }
 
 NpcModel::~NpcModel(){
+  if (node)
+    node->remove();
+  node = 0;
+  //delete node;
 
+  if (mesh)
+    mesh->drop();
+	mesh = 0;
+  //delete mesh;
 }
