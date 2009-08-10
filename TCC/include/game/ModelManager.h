@@ -76,9 +76,15 @@ public:
 
   /* 
    * [TODO]: all
-   * removes the model from memory
+   * removes the ObjectModel from memory
    */
-  void popModel();
+  void popObject(const int id);
+
+  /* 
+   * [TODO]: all
+   * removes the NpcModel from memory
+   */
+  void popNpc(const int id);
 
   /*
    * Still Harcoded, but ModelManager has his own update function to change the SceneNodes.

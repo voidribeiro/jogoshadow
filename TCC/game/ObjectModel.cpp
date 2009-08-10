@@ -11,5 +11,14 @@ ObjectModel::ObjectModel(int id, int modelType, irr::scene::IAnimatedMesh* mesh,
 }
 
 ObjectModel::~ObjectModel(){
+  if (node)
+    node->remove();
+  node = 0;
+  //delete node;
+
+  if (mesh)
+    mesh->drop();
+  mesh = 0;
+  //delete mesh;
 
 }

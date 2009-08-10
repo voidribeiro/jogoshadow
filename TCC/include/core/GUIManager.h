@@ -15,6 +15,7 @@ referenced to GUI, sent by the eventListener
 
 using namespace irr;
 using namespace gui;
+using namespace video;
 
 class GUIManager{
 
@@ -23,10 +24,11 @@ class GUIManager{
       * This class requires a pointer to the main IGUIEnviroment to create and manage the GUI
       */
     IGUIEnvironment* env;
+    IVideoDriver* driver;
 
   public:
     GUIManager();
-    GUIManager(IGUIEnvironment* env);
+    GUIManager(IGUIEnvironment* _env, IVideoDriver* _driver);
     ~GUIManager();
     
     void update();
