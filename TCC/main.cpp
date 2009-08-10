@@ -2,9 +2,9 @@
 
 #include "GameManager.h"
 
-int main()
+int main(int argc, char* argv[])
 {
-  GameManager* game = new GameManager();
+  GameManager* game = new GameManager(argv[0]);
   if( game->init() ){
     game->run();
   }
