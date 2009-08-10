@@ -6,7 +6,10 @@ using namespace video;
 using namespace io;
 using namespace gui;
 
-GameManager::GameManager(){
+GameManager::GameManager(std::string path){
+  //TODO - Remove this hack
+  int pos = path.find("TCC.exe");
+  this->path = path.substr(0,pos);
   //pm = new ProcessManager();
 }
 
@@ -46,6 +49,18 @@ bool GameManager::init(){
 	  sceneManager = device->getSceneManager();
     succesful = true;
   }
+
+  /*
+	Using the loader
+  */
+
+  std::string scriptsPath = path + "Scripts\\";
+
+  luaScript.startScript("Scripts/loader.lua");
+  luaScript.addGlobalVar("path",(char*)scriptsPath.c_str());
+  luaScript.callFunction("startScript",0,0,0,0);
+  luaScript.endScript();
+
 
   /*
    * Sets the main camera
@@ -130,7 +145,7 @@ void GameManager::draw(){
       /*
        * update all the elements positions, scales etc...
        */
-      processLUAScripts();
+      //processLUAScripts();
       update();
 
       /*
@@ -193,9 +208,9 @@ irr::u32 GameManager::getDeltaTime(){
 
 void GameManager::process1(void *ptr, long purpose){
   GameManager* gm = (GameManager*) ptr;
-  printf("Draw!\n");
+  //printf("Draw!\n");
 }
 
 void GameManager::process2(void *ptr, long purpose){
-  printf("p2!\n");
+  //printf("p2!\n");
 }

@@ -135,3 +135,8 @@ void Script::callFunction(char* name, int *args, int nArgs , int *res, int nRes)
 
 	lua_pop(state, 1);
 }
+
+void Script::addGlobalVar(char* name, char* value){
+	lua_pushfstring(state, value);
+	lua_setglobal(state, name);
+}

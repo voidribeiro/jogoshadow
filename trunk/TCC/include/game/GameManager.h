@@ -14,6 +14,7 @@ the game features making them interact correctly.
 
 #include <iostream>
 #include <map>
+#include <string>
 
 #include "Singleton.h"
 #include "EventListener.h"
@@ -32,6 +33,7 @@ class GameManager{
 private:
 
   bool gameOver;
+  std::string path;
 
   /*
    *main IrrLicht device, needed to run everything in the engine
@@ -57,7 +59,7 @@ private:
   ProcessManager pm;
 
 public:
-  explicit GameManager();
+  explicit GameManager(std::string path);
   ~GameManager();
 
   /* 

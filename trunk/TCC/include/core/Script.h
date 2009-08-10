@@ -71,6 +71,8 @@ class Script{
      * Calls a LUA function
      */
     void callFunction( char* name, int *args, int nArgs , int *res, int nRes);
+
+	void addGlobalVar(char* name, char* value);
 };
 
 #endif
