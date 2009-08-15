@@ -54,13 +54,8 @@ bool GameManager::init(){
 	Using the loader
   */
 
-  std::string scriptsPath = path + "Scripts\\";
-
-  luaScript.startScript("Scripts/loader.lua");
-  luaScript.addGlobalVar("path",(char*)scriptsPath.c_str());
-  luaScript.callFunction("startScript",0,0,0,0);
-  luaScript.endScript();
-
+  Loader loader(path);
+  loader.LoadLevel("Level1");
 
   /*
    * Sets the main camera
@@ -92,8 +87,8 @@ bool GameManager::init(){
 
   if( !soundManager.init() )
     printf("Unable to initialize IrrKlang\n");
-  else
-    soundManager.playSound("resources/IrrlichtTheme.ogg",true);
+  else;
+    //soundManager.playSound("resources/IrrlichtTheme.ogg",true);
 
   /*
    * HARDCODE!

@@ -16,6 +16,7 @@ the game features making them interact correctly.
 #include <map>
 #include <string>
 
+#include "Loader.h"
 #include "Singleton.h"
 #include "EventListener.h"
 #include "Script.h"
