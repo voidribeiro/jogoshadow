@@ -1,9 +1,9 @@
 function startScript()
   print("Loading Level1.")
-  dofile(path .. "Level1\\Scene\\" .. loaderScript);
+  dofile(levelScriptsPath .. "Scene\\" .. loaderScript);
   startScript();
-  dofile(path .. "Level1\\Objects\\" .. loaderScript);
+  dofile(levelScriptsPath .. "Objects\\" .. loaderScript);
   startScript();
-  dofile(path .. "Level1\\NPCs\\" .. loaderScript);
+  dofile(levelScriptsPath .. "NPCs\\" .. loaderScript);
   startScript();
 end
