@@ -2,6 +2,10 @@ function startScript()
   --configure the scripts path
   levelScriptsPath = path .. "Scripts\\" .. level .. "\\"
   --Loads the level loader script
+  
+  --Just testing
+  print(Create(999444,""))
+  
   print("Loading: " .. levelScriptsPath .. loaderScript)
   dofile(levelScriptsPath .. loaderScript);
   startScript();

@@ -55,6 +55,7 @@ bool GameManager::init(){
   */
 
   Loader loader(path);
+  loader.RegisterFunction("Create",Factory::Create);
   loader.LoadLevel("Level1");
 
   /*
