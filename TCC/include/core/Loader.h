@@ -19,14 +19,13 @@ class Loader{
     string executablePath;
     Script luaScript;
 
-    string funcName;
     lua_CFunction func;
 
   public:
     Loader(string appPath);
     virtual ~Loader();
     //Register funcions to be used in the Lua Loader
-    void RegisterFunction(const char* functionName, lua_CFunction function);
+    void RegisterFunction(lua_CFunction function);
     void LoadLevel(char* level);
 };
 
