@@ -243,6 +243,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\core\LuaBinder.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\core\ProcessManager.cpp"
 					>
 				</File>
@@ -338,6 +342,10 @@
 				</File>
 				<File
 					RelativePath=".\include\core\Loader.h"
+					>
+				</File>
+				<File
+					RelativePath=".\include\core\LuaBinder.h"
 					>
 				</File>
 				<File

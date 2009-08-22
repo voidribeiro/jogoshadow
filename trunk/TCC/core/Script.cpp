@@ -136,8 +136,12 @@ void Script::callFunction(char* name, int *args, int nArgs , int *res, int nRes)
 	lua_pop(state, 1);
 }
 
-void Script::registerFunction(const char* functionName, lua_CFunction function){
-  lua_register(state, functionName, function);
+void Script::registerFunction(lua_CFunction function){
+  lua_pushcfunction(state, function);
+  //Call register function to register the rest
+  if (lua_pcall(state,0,0,0)) {
+        fprintf(stderr,"%s\n",lua_tostring(state,-1));
+  }
 }
 
 void Script::addGlobalVar(char* name, char* value){

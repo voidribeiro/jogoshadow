@@ -14,17 +14,28 @@ extern "C"{
 	#include "lualib.h"
 };
 
+#include "LuaBinder.h"
+
 class Factory{
-  private:
-    
   public:
     Factory();
     virtual ~Factory();
-    //Same method but use C++
-    static int Create(int type,char* path);
+    
+    int Create(int type,const char* path);
+};
 
-    //Method to be registered in lua
-    static int Create(lua_State* luaState);
+class FactoryBinder{
+  public:
+    static int registerFunctions(lua_State* L);
+    static int bnd_Instantiate (lua_State* L);
+    static int bnd_Destroy (lua_State* L);
+    static int bnd_Create (lua_State* L);
+};
+
+static const luaL_reg factoryFunctions[] = {
+    {"Instantiate", FactoryBinder::bnd_Instantiate},
+    {"Create", FactoryBinder::bnd_Create},
+    {NULL, NULL}
 };
 
 #endif

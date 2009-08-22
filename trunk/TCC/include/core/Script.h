@@ -72,7 +72,7 @@ class Script{
      */
     void callFunction( char* name, int *args, int nArgs , int *res, int nRes);
 
-  void registerFunction( const char* functionName, lua_CFunction function);
+  void registerFunction(lua_CFunction function);
 
 	void addGlobalVar(char* name, char* value);
 };

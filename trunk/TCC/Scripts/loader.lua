@@ -4,7 +4,8 @@ function startScript()
   --Loads the level loader script
   
   --Just testing
-  print(Create(999444,""))
+  local factory = Factory.Instantiate()
+  print(factory:Create(100,"C:\\aaaa"))
   
   print("Loading: " .. levelScriptsPath .. loaderScript)
   dofile(levelScriptsPath .. loaderScript);
