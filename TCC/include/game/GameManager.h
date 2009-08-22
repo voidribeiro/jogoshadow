@@ -17,6 +17,7 @@ the game features making them interact correctly.
 #include <string>
 
 #include "Loader.h"
+#include "Factory.h"
 #include "Singleton.h"
 #include "EventListener.h"
 #include "Script.h"
