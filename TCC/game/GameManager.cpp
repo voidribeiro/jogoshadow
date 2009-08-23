@@ -115,7 +115,6 @@ bool GameManager::init(){
    */
   modelManager->pushModel("resources/plano.3DS", SCENARIO_MODEL);
   modelManager->pushModel("resources/faerie.md2", NPC_MODEL, driver->getTexture("resources/faerie2.bmp") );
-  //modelManager->pushModel("resources/biped.X", NPC_MODEL);
 
   modelManager->pushModel("resources/skeleton/player.x", SKELETAL_MODEL);
 
@@ -196,14 +195,46 @@ bool GameManager::update(){
 
 	core::vector3df intersection;
   core::triangle3df tri;
-  
+  core::vector3df tempvec;
+
+  scene::ISceneNodeAnimator* anim;
+
   ITriangleSelector* selector;
+
+  tempvec.set(0,0,0);
   selector = modelManager->getScenario()->getSelector();
 
+  IAnimatedMeshSceneNode* node = modelManager->getSkeleton()->getSkeletonSceneNode();
+
   if (sceneManager->getSceneCollisionManager()->getCollisionPoint(
-			line, selector, intersection, tri))
-  {
+			line, selector, intersection, tri)){
+
  			driver->draw3DTriangle(tri, video::SColor(0,255,0,0));
+      
+      if (eventListener.GetMouseState().LeftButtonDown){
+					tempvec = tri.pointA;
+					tempvec = tempvec.getInterpolated(tri.pointB,0.5);
+					tempvec = tempvec.getInterpolated(tri.pointC,0.5);
+					tempvec.Y += 30;
+
+					core::vector3df requiredRotation = (tempvec-node->getAbsolutePosition());
+					requiredRotation = requiredRotation.getHorizontalAngle();
+					
+					//Doesnt require to point down... so just rotates on Y axis
+					requiredRotation.X = 0;
+					requiredRotation.Z = 0;
+					
+					node->setRotation(requiredRotation);
+
+					anim =	sceneManager->createFlyStraightAnimator(
+             node->getPosition(), 
+             tempvec,
+             10*tempvec.getDistanceFrom(node->getPosition()),
+             false);
+
+ 					node->addAnimator(anim);
+					anim->drop();
+      }
   }
 
   return true;

@@ -147,6 +147,8 @@ void ModelManager::pushModel(const char *filename, int modelType){
       
       skeleton->setAnimType(CSK_ANIM_WALK);
 
+      skeleton->getSkeletonSceneNode()->setPosition( core::vector3df(80,30,-50) );
+
       break;
   }
 
@@ -271,18 +273,6 @@ void ModelManager::update(position2di pos){
   node = skeleton->getSkeletonSceneNode();
 
   node->setScale( core::vector3df(8,8,8) );
-  node->setPosition( core::vector3df(80,30,-50) );
-
-	core::vector3df requiredRotation = (node->getAbsolutePosition());
-	requiredRotation = requiredRotation.getHorizontalAngle();
-	
-	//Doesnt require to point down... so just rotates on Y axis
-	requiredRotation.X = 0;
-	requiredRotation.Z = 0;
-	
-	//For some reason it needs correction. Maybe the model start with a rotation
-	requiredRotation.Y -= 180;
-	node->setRotation(requiredRotation);
 
   //ponto onde o modelo olha
   skeleton->animSkeleton( pos );
