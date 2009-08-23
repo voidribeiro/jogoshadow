@@ -186,7 +186,26 @@ bool GameManager::processLUAScripts(){
 }
 
 bool GameManager::update(){
-  modelManager->update();
+  position2di pos = eventListener.GetMouseState().pos;
+
+  modelManager->update( pos );
+
+	core::line3d<f32> line;
+	line.start = camera->getPosition();
+	line.end = line.start + (camera->getTarget() - line.start).normalize() * 1000.0f;
+
+	core::vector3df intersection;
+  core::triangle3df tri;
+  
+  ITriangleSelector* selector;
+  selector = modelManager->getScenario()->getSelector();
+
+  if (sceneManager->getSceneCollisionManager()->getCollisionPoint(
+			line, selector, intersection, tri))
+  {
+ 			driver->draw3DTriangle(tri, video::SColor(0,255,0,0));
+  }
+
   return true;
 }
 

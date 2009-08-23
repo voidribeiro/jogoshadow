@@ -83,7 +83,7 @@ void ModelManager::pushModel(const char *filename, int modelType){
 
     case SCENARIO_MODEL:
       scenarioNode = sceneManager->addOctTreeSceneNode( mesh );
-      selector = sceneManager->createOctTreeTriangleSelector( mesh, scenarioNode, 128 );
+      selector = sceneManager->createOctTreeTriangleSelector( mesh, scenarioNode, 256 );
 
       /*
        * Create a ScenarioModel
@@ -253,22 +253,39 @@ void ModelManager::popNpc(const int id){
 }
 
 
-void ModelManager::update(){
+void ModelManager::update(position2di pos){
 
   /*
    * changes the scenario scale
    */
-  scenario->getNode()->setScale( irr::core::vector3df(1,1,2) );
+  //escala no cenário afeta o triangleSelector!
+  //scenario->getNode()->setScale( irr::core::vector3df(1,1,1) );
+  
 
   /*
    * changes the NPC position
    */
   //getNpcNodeById(0)->setPosition(irr::core::vector3df(0,30,0));
 
-  skeleton->getSkeletonSceneNode()->setScale( core::vector3df(8,8,8) );
-  skeleton->getSkeletonSceneNode()->setPosition( core::vector3df(50,30,-50) );
+  IAnimatedMeshSceneNode* node;
+  node = skeleton->getSkeletonSceneNode();
 
-  skeleton->animSkeleton( core::position2di(200,200) );
+  node->setScale( core::vector3df(8,8,8) );
+  node->setPosition( core::vector3df(80,30,-50) );
+
+	core::vector3df requiredRotation = (node->getAbsolutePosition());
+	requiredRotation = requiredRotation.getHorizontalAngle();
+	
+	//Doesnt require to point down... so just rotates on Y axis
+	requiredRotation.X = 0;
+	requiredRotation.Z = 0;
+	
+	//For some reason it needs correction. Maybe the model start with a rotation
+	requiredRotation.Y -= 180;
+	node->setRotation(requiredRotation);
+
+  //ponto onde o modelo olha
+  skeleton->animSkeleton( pos );
 }
 
 scene::ISceneNode* ModelManager::getObjectNodeById(int id){
