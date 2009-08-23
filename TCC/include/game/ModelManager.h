@@ -92,7 +92,10 @@ public:
    * changing the SceneNodes directly.
    * This function being here, allows it to run a different number of times from the main loop.
    */
-  void update();
+  void update( position2di pos );
+
+  ScenarioModel* getScenario() { return scenario; } 
+  HeroModel*     getHero()     { return hero; } 
 
 };
 
