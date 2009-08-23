@@ -96,6 +96,7 @@ public:
 
   ScenarioModel* getScenario() { return scenario; } 
   HeroModel*     getHero()     { return hero; } 
+  SkeletalModel* getSkeleton() { return skeleton; } 
 
 };
 
