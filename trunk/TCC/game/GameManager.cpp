@@ -71,7 +71,7 @@ bool GameManager::init(){
    *     bool noVerticalMovement=false,
 	 *	   f32 jumpSpeed = 0.f) = 0;
    */
-  camera = sceneManager->addCameraSceneNodeFPS( 0, 100.0f, .3f, -1, 0, 0, false, 3.f);
+  camera = sceneManager->addCameraSceneNodeFPS( 0, 100.0f, .3f, -1, 0, 0, true, 3.f);
   camera->setPosition( core::vector3df( -100, 75, -150 ) );
 
   /*
@@ -210,12 +210,18 @@ bool GameManager::update(){
 			line, selector, intersection, tri)){
 
  			driver->draw3DTriangle(tri, video::SColor(0,255,0,0));
-      
+
+			tempvec = tri.pointA;
+			tempvec = tempvec.getInterpolated(tri.pointB,0.5);
+			tempvec = tempvec.getInterpolated(tri.pointC,0.5);
+			tempvec.Y += 30;
+
+      if(tempvec.getDistanceFrom(node->getPosition()) < 0.5f)
+        modelManager->getSkeleton()->setAnimType(CSK_ANIM_STAND);
+
       if (eventListener.GetMouseState().LeftButtonDown){
-					tempvec = tri.pointA;
-					tempvec = tempvec.getInterpolated(tri.pointB,0.5);
-					tempvec = tempvec.getInterpolated(tri.pointC,0.5);
-					tempvec.Y += 30;
+ 
+          modelManager->getSkeleton()->setAnimType(CSK_ANIM_WALK);
 
 					core::vector3df requiredRotation = (tempvec-node->getAbsolutePosition());
 					requiredRotation = requiredRotation.getHorizontalAngle();
