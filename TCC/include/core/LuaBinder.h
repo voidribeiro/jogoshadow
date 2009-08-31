@@ -1,5 +1,5 @@
-#ifndef __LUABINDER_H__
-#define __LUABINDER_H__
+#ifndef _LUABINDER_H_
+#define _LUABINDER_H_
 
 extern "C" {
   #include "lua.h" 
@@ -21,7 +21,7 @@ class LuaBinder
     const char* checkstring (int index);
  
     void init (const char* tname, const char* bname, 
-	       const luaL_reg *flist, int (*destroy) (lua_State*)); 
+	  const luaL_reg *flist, int (*destroy) (lua_State*)); 
 
     void pushusertype (void* udata, char* tname);
 

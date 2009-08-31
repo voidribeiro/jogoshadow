@@ -6,7 +6,20 @@ Factory::Factory(){
 Factory::~Factory(){
 }
 
+
+
 int Factory::Create(int type,const char *path){
+  modelFactory->pushModel(path, type);
+  return type;
+}
+
+void Factory::setModelFactory(ModelManager* factory){
+  modelFactory = factory;  
+}
+
+int Factory::pushAction(int type, const char *path){
+  std::map <int, const char*>::iterator it = actions.end();
+  actions.insert(it, pair<int, const char*>( type, path ) );
   return type;
 }
 
@@ -36,6 +49,6 @@ int FactoryBinder::bnd_Destroy(lua_State* L){
 int FactoryBinder::bnd_Create(lua_State* L){
   LuaBinder binder(L);
   Factory* factory = (Factory*) binder.checkusertype(1,"Factory");
-  binder.pushnumber(factory->Create(lua_tointeger(L,2),lua_tostring(L,3)));
+  binder.pushnumber(factory->pushAction(lua_tointeger(L,2),lua_tostring(L,3)));
   return 1;
 }

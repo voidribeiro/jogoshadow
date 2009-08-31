@@ -39,7 +39,7 @@ bool GameManager::init(){
 	 *	  bool vsync = false,
 	 *	  IEventReceiver* receiver = 0);
    */
-  device = createDevice( video::EDT_DIRECT3D9, core::dimension2d<s32>(800, 600), 32, false, false, false, &eventListener );
+  device = createDevice( video::EDT_DIRECT3D9, core::dimension2d<s32>(800, 600), 32, false, false, true, &eventListener );
 
   /*
    * retrives the pointers to video driver and sceneManager
@@ -53,6 +53,7 @@ bool GameManager::init(){
   /*
 	Using the loader
   */
+
 
   Loader loader(path);
   loader.RegisterFunction(FactoryBinder::registerFunctions);
@@ -71,7 +72,7 @@ bool GameManager::init(){
    *     bool noVerticalMovement=false,
 	 *	   f32 jumpSpeed = 0.f) = 0;
    */
-  camera = sceneManager->addCameraSceneNodeFPS( 0, 100.0f, .3f, -1, 0, 0, true, 3.f);
+  camera = sceneManager->addCameraSceneNodeFPS( 0, 100.0f, .3f, -1, 0, 0, false, 3.f);
   camera->setPosition( core::vector3df( -100, 75, -150 ) );
 
   /*
@@ -84,7 +85,8 @@ bool GameManager::init(){
 
   /*
    * Plays a 2D backgound music using the SoundManager
-   */
+  
+  */
 
   if( !soundManager.init() )
     printf("Unable to initialize IrrKlang\n");

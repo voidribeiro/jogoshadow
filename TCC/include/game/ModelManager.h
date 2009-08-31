@@ -1,4 +1,4 @@
-#ifndef _MODELHMANAGER_H_
+#ifndef _MODELMANAGER_H_
 #define _MODELMANAGER_H_
 
 /*

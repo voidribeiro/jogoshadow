@@ -14,17 +14,30 @@ extern "C"{
 	#include "lualib.h"
 };
 
+#include <map>
+#include "ModelManager.h"
 #include "LuaBinder.h"
 
+using namespace std;
+
 class Factory{
+  private:
+    ModelManager* modelFactory;
+    std::map <int, const char*> actions;
+  
   public:
-    Factory();
+    explicit Factory();
     virtual ~Factory();
     
+    void setModelFactory(ModelManager* factory);
+
     int Create(int type,const char* path);
+    int pushAction(int type, const char* path);
 };
 
+
 class FactoryBinder{
+
   public:
     static int registerFunctions(lua_State* L);
     static int bnd_Instantiate (lua_State* L);
