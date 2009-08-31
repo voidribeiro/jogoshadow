@@ -26,6 +26,10 @@ int Factory::pushAction(int type, const char *path){
 /****************************************************/
 //Binder to Lua
 
+void FactoryBinder::setModelFactory(ModelManager* factory){
+  modelFactory = factory;  
+}
+
 int FactoryBinder::registerFunctions(lua_State* L){
   LuaBinder binder(L);
   binder.init("Factory",0,factoryFunctions,FactoryBinder::bnd_Destroy);

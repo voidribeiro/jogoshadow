@@ -37,8 +37,12 @@ class Factory{
 
 
 class FactoryBinder{
+  private:
+    ModelManager* modelFactory;
 
   public:
+    void setModelFactory(ModelManager* factory);
+
     static int registerFunctions(lua_State* L);
     static int bnd_Instantiate (lua_State* L);
     static int bnd_Destroy (lua_State* L);

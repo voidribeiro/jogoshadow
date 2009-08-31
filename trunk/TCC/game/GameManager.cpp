@@ -54,10 +54,19 @@ bool GameManager::init(){
 	Using the loader
   */
 
+  FactoryBinder binder;
 
+  binder.setModelFactory(modelManager);
+
+  Loader loader(path);
+  loader.RegisterFunction(binder.registerFunctions);
+  loader.LoadLevel("Level1");
+
+/* 
   Loader loader(path);
   loader.RegisterFunction(FactoryBinder::registerFunctions);
   loader.LoadLevel("Level1");
+*/
 
   /*
    * Sets the main camera
