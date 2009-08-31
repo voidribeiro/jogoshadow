@@ -1,6 +1,6 @@
 #include "Loader.h"
 
-Loader::Loader(string appPath){
+Loader::Loader(std::string appPath){
   executablePath = appPath;
 }
 

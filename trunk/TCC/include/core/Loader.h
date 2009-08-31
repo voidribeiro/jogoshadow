@@ -1,5 +1,5 @@
-#ifndef __LOADER_H__
-#define __LOADER_H__
+#ifndef _LOADER_H_
+#define _LOADER_H_
 
 extern "C"{
 	#include "lua.h"
@@ -10,19 +10,20 @@ extern "C"{
 #include <string>
 
 #include "Script.h"
+//#include "CoreFactory.h"
 #include "Factory.h"
 
 using namespace std;
 
 class Loader{
   private:
-    string executablePath;
+    std::string executablePath;
     Script luaScript;
 
     lua_CFunction func;
 
   public:
-    Loader(string appPath);
+    Loader(std::string appPath);
     virtual ~Loader();
     //Register funcions to be used in the Lua Loader
     void RegisterFunction(lua_CFunction function);

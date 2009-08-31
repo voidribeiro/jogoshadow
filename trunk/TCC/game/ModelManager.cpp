@@ -143,7 +143,7 @@ void ModelManager::pushModel(const char *filename, int modelType){
        *    u32 animationSpeed )
        *
        */
-      skeleton = new SkeletalModel(5,SKELETAL_MODEL, mesh, animatedNode, 2);
+      skeleton = new SkeletalModel(5,SKELETAL_MODEL, mesh, animatedNode, 8);
       
       skeleton->setAnimType(CSK_ANIM_WALK);
 
