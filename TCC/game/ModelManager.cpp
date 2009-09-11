@@ -46,8 +46,8 @@ void ModelManager::pushModel(const char *filename, int modelType){
   /*
    * Iterators to the maps
    */
-  std::map <int, ObjectModel*>::iterator objIt = objects.end();
   std::map <int, NpcModel*>::iterator npcIt = npcs.end();
+  std::map <int, ObjectModel*>::iterator objIt = objects.end();
 
   /*
    * Bufers for NPC and Object Models
