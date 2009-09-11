@@ -4,8 +4,8 @@ function startScript()
   --Loads the level loader script
   
   --Just testing
-  local factory = Factory.Instantiate()
-  print(factory:Create(3,"C:\\[posgrad]\\VisualStudioWorkspace\\jogoshadow\\TCC\\resources\\faerie.md2"))
+  local factory = Factory.GetInstance()
+  print(factory:Create(3,"E:\\UNICENP\\TCC\\Source\\jogoshadow\\TCC\\resources\\faerie.md2"))
   
   print("Loading: " .. levelScriptsPath .. loaderScript)
   dofile(levelScriptsPath .. loaderScript);

@@ -51,12 +51,21 @@ bool GameManager::init(){
   }
 
   /*
+   * instantiates the auxiliar managers
+   */
+  modelManager = new ModelManager( sceneManager );
+  guiManager   = new GUIManager( device->getGUIEnvironment(), device->getVideoDriver() ); 
+
+  eventListener.setGUIManager( guiManager );
+
+  /*
 	Using the loader
   */
+  Factory factory;
+  factory.setModelFactory(modelManager);
 
   FactoryBinder binder;
-
-  binder.setModelFactory(modelManager);
+  binder.factory = &factory;
 
   Loader loader(path);
   loader.RegisterFunction(binder.registerFunctions);
@@ -84,13 +93,7 @@ bool GameManager::init(){
   camera = sceneManager->addCameraSceneNodeFPS( 0, 100.0f, .3f, -1, 0, 0, false, 3.f);
   camera->setPosition( core::vector3df( -100, 75, -150 ) );
 
-  /*
-   * instantiates the auxiliar managers
-   */
-  modelManager = new ModelManager( sceneManager );
-  guiManager   = new GUIManager( device->getGUIEnvironment(), device->getVideoDriver() ); 
-
-  eventListener.setGUIManager( guiManager );
+  
 
   /*
    * Plays a 2D backgound music using the SoundManager
@@ -125,7 +128,7 @@ bool GameManager::init(){
    * Creates a Scenario and a NPC
    */
   modelManager->pushModel("resources/plano.3DS", SCENARIO_MODEL);
-  modelManager->pushModel("resources/faerie.md2", NPC_MODEL, driver->getTexture("resources/faerie2.bmp") );
+  //modelManager->pushModel("resources/faerie.md2", NPC_MODEL, driver->getTexture("resources/faerie2.bmp") );
 
   modelManager->pushModel("resources/skeleton/player.x", SKELETAL_MODEL);
 

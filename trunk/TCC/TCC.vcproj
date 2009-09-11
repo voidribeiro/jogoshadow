@@ -227,10 +227,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\core\CoreFactory.cpp"
-					>
-				</File>
-				<File
 					RelativePath=".\core\EventListener.cpp"
 					>
 				</File>
@@ -330,10 +326,6 @@
 				>
 				<File
 					RelativePath=".\include\core\BMaths.h"
-					>
-				</File>
-				<File
-					RelativePath=".\include\core\CoreFactory.h"
 					>
 				</File>
 				<File

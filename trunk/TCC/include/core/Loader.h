@@ -10,7 +10,6 @@ extern "C"{
 #include <string>
 
 #include "Script.h"
-//#include "CoreFactory.h"
 #include "Factory.h"
 
 using namespace std;

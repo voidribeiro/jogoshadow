@@ -23,7 +23,6 @@ using namespace std;
 class Factory{
   private:
     ModelManager* modelFactory;
-    std::map <int, const char*> actions;
   
   public:
     explicit Factory();
@@ -35,22 +34,20 @@ class Factory{
     int pushAction(int type, const char* path);
 };
 
-
 class FactoryBinder{
-  private:
-    ModelManager* modelFactory;
-
   public:
-    void setModelFactory(ModelManager* factory);
-
+    static Factory* factory;
     static int registerFunctions(lua_State* L);
-    static int bnd_Instantiate (lua_State* L);
-    static int bnd_Destroy (lua_State* L);
+    //static int bnd_Instantiate (lua_State* L);
+    static int bnd_GetInstance (lua_State* L);
+    //static int bnd_Destroy (lua_State* L);
+    static int bnd_DontDestroy (lua_State* L);
     static int bnd_Create (lua_State* L);
 };
 
 static const luaL_reg factoryFunctions[] = {
-    {"Instantiate", FactoryBinder::bnd_Instantiate},
+    //{"Instantiate", FactoryBinder::bnd_Instantiate},
+    {"GetInstance", FactoryBinder::bnd_GetInstance},
     {"Create", FactoryBinder::bnd_Create},
     {NULL, NULL}
 };
