@@ -13,13 +13,13 @@ class ScenarioModel : public Model{
 
     // como a gente vai tratar a movimentação na malha?
     // isto ficaria aqui ou seria tratada num classe controller da vida?
-    
+
     // irr::scene::IAnimatedMesh* navMesh;
 
   public:
-    ScenarioModel();
-    ScenarioModel(int id, int modelType, IAnimatedMesh* mesh, ISceneNode* node, ITriangleSelector* selector);
-    ~ScenarioModel();
+    explicit ScenarioModel();
+    explicit ScenarioModel(int id, int modelType, IAnimatedMesh* mesh, ISceneNode* node, ITriangleSelector* selector);
+    virtual ~ScenarioModel();
     
     ISceneNode* getNode() { return node; }
     ITriangleSelector* getSelector() { return selector; }

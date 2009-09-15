@@ -12,10 +12,10 @@ class HeroModel : public Model{
     irr::scene::IAnimatedMeshSceneNode* node;
 
   public:
-    HeroModel();
-    HeroModel(int id, int modelType, IAnimatedMesh* mesh, IAnimatedMeshSceneNode* node);
-    HeroModel(int id, int modelType, IAnimatedMesh* mesh, IAnimatedMeshSceneNode* node, ITexture* texture);
-    ~HeroModel();
+    explicit HeroModel();
+    explicit HeroModel(int id, int modelType, IAnimatedMesh* mesh, IAnimatedMeshSceneNode* node);
+    explicit HeroModel(int id, int modelType, IAnimatedMesh* mesh, IAnimatedMeshSceneNode* node, ITexture* texture);
+    virtual ~HeroModel();
     
     IAnimatedMeshSceneNode* getNode() { return node; }
 

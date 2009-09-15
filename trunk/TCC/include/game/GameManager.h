@@ -62,7 +62,7 @@ private:
 
 public:
   explicit GameManager(std::string path);
-  ~GameManager();
+  virtual ~GameManager();
 
   /* 
    * initialization function, makes startup tests and instantiate the base classes

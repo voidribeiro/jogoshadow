@@ -1,6 +1,7 @@
 #include "ModelManager.h"
 
-ModelManager::ModelManager(irr::scene::ISceneManager* sm){
+ModelManager::ModelManager(irr::scene::ISceneManager* sm)
+: hero(), skeleton(),scenario(){
   sceneManager = sm;
 }
 
@@ -25,207 +26,205 @@ ModelManager::~ModelManager(){
   npcs.clear();
 }
 
-void ModelManager::pushModel(const char *filename, int modelType){
-  /*
-   * Mesh used by all models
-   */
+void ModelManager::setHero(const char *filename, ITexture* texture){
   scene::IAnimatedMesh* mesh;
-
-  /*
-   * Specific nodes based on each type of Model
-   */
-  scene::ISceneNode* scenarioNode;
   scene::IAnimatedMeshSceneNode* animatedNode;
-  scene::IMeshSceneNode* staticNode;
-
-  /*
-   * Triangle selector used by ScenarioModel
-   */
-  scene::ITriangleSelector* selector;
-
-  /*
-   * Iterators to the maps
-   */
-  std::map <int, NpcModel*>::iterator npcIt = npcs.end();
-  std::map <int, ObjectModel*>::iterator objIt = objects.end();
-
-  /*
-   * Bufers for NPC and Object Models
-   */
-  NpcModel* npc;
-  ObjectModel* obj;
 
   mesh = sceneManager->getMesh( filename );
 
-  /*
-   * Returns if the mesh can't be created
-   */
   if(!mesh)
     return;
 
-  /*
-   * Creates the model based on parameter modelType
-   */
-  switch(modelType){
-    case HERO_MODEL:
-      animatedNode = sceneManager->addAnimatedMeshSceneNode( mesh );
-      /*
-       * Create a HeroModel
-       *
-       *  HeroModel(
-       *   int id, 
-       *   int modelType, 
-       *   IAnimatedMesh* mesh, 
-       *   IAnimatedMeshSceneNode* node) 
-       */
-      hero = new HeroModel(1, HERO_MODEL, mesh, animatedNode);
-      break;
+  animatedNode = sceneManager->addAnimatedMeshSceneNode( mesh );
 
-    case SCENARIO_MODEL:
-      scenarioNode = sceneManager->addOctTreeSceneNode( mesh );
-      selector = sceneManager->createOctTreeTriangleSelector( mesh, scenarioNode, 256 );
-
-      /*
-       * Create a ScenarioModel
-       *
-       *  ScenarioModel(
-       *   int id, 
-       *   int modelType, 
-       *   IAnimatedMesh* mesh, 
-       *   ISceneNode* node, 
-       *   ITriangleSelector* selector) 
-       */
-      scenario = new ScenarioModel(2, SCENARIO_MODEL, mesh, scenarioNode, selector);
-      break;
-
-    case NPC_MODEL:
-      animatedNode = sceneManager->addAnimatedMeshSceneNode( mesh );
-
-      /*
-       * Create a NpcModel and push it to the NPC map
-       *
-       *  NpcModel(
-       *   int id, 
-       *   int modelType, 
-       *   IAnimatedMesh* mesh, 
-       *   IAnimatedMeshSceneNode* node)
-       */
-      npc = new NpcModel( (int)npcs.size(), NPC_MODEL, mesh, animatedNode);
-      npcs.insert(npcIt, pair<int, NpcModel*>( (int)npcs.size(), npc) );
-      
-      break;
-
-    case OBJECT_MODEL:
-      staticNode = sceneManager->addMeshSceneNode( mesh );
-
-      /*
-       * Create a NpcModel and push it to the NPC map
-       *
-       * ObjectModel(
-       *   int id, 
-       *   int modelType, 
-       *   IAnimatedMesh* mesh, 
-       *   IMeshSceneNode* node) 
-       */
-      obj = new ObjectModel( (int)objects.size(), OBJECT_MODEL, mesh, staticNode);
-      objects.insert(objIt, pair<int, ObjectModel*>( (int)objects.size(), obj) );
-      break;
-
-    case SKELETAL_MODEL:
-      animatedNode = sceneManager->addAnimatedMeshSceneNode( mesh );
-
-      /*
-       *  SkeletalModel( 
-       *    int id, 
-       *    int modelType, 
-       *    IAnimatedMesh* mesh, 
-       *    IAnimatedMeshSceneNode* node, 
-       *    u32 animationSpeed )
-       *
-       */
-      skeleton = new SkeletalModel(5,SKELETAL_MODEL, mesh, animatedNode, 8);
-      
-      skeleton->setAnimType(CSK_ANIM_WALK);
-
-      skeleton->getSkeletonSceneNode()->setPosition( core::vector3df(80,30,-50) );
-
-      break;
+  if(hero){
+    hero->~HeroModel();
+    hero = 0;
   }
+
+  /*
+   * Create a HeroModel
+   *
+   *  HeroModel(
+   *   int id, 
+   *   int modelType, 
+   *   IAnimatedMesh* mesh, 
+   *   IAnimatedMeshSceneNode* node) 
+   */
+  hero = new HeroModel(1, HERO_MODEL, mesh, animatedNode, texture);
+}
+
+void ModelManager::setScenario(const char *filename){
+  scene::IAnimatedMesh* mesh;
+  scene::ISceneNode* scenarioNode;
+  scene::ITriangleSelector* selector;
+
+  mesh = sceneManager->getMesh( filename );
+
+  if(!mesh)
+    return;
+
+  scenarioNode = sceneManager->addOctTreeSceneNode( mesh );
+  selector = sceneManager->createOctTreeTriangleSelector( mesh, scenarioNode, 256 );
+
+  if(scenario){
+    scenario->~ScenarioModel();
+    scenario = 0;
+  }
+
+  /*
+   * Create a ScenarioModel
+   *
+   *  ScenarioModel(
+   *   int id, 
+   *   int modelType, 
+   *   IAnimatedMesh* mesh, 
+   *   ISceneNode* node, 
+   *   ITriangleSelector* selector) 
+   */
+  scenario = new ScenarioModel(2, SCENARIO_MODEL, mesh, scenarioNode, selector);
+}
+
+void ModelManager::setSkeleton(const char *filename){
+  scene::IAnimatedMesh* mesh;
+  scene::IAnimatedMeshSceneNode* animatedNode;
+
+  mesh = sceneManager->getMesh( filename );
+
+  if(!mesh)
+    return;
+
+  animatedNode = sceneManager->addAnimatedMeshSceneNode( mesh );
+
+  if(skeleton){
+    skeleton->~SkeletalModel();
+    skeleton = 0;
+  }
+
+  /*
+   *  SkeletalModel( 
+   *    int id, 
+   *    int modelType, 
+   *    IAnimatedMesh* mesh, 
+   *    IAnimatedMeshSceneNode* node, 
+   *    u32 animationSpeed )
+   */
+
+  skeleton = new SkeletalModel(5, SKELETAL_MODEL, mesh, animatedNode, 8);
+  skeleton->setAnimType(CSK_ANIM_WALK);
+  skeleton->getSkeletonSceneNode()->setPosition( core::vector3df(80,30,-50) );
+}
+
+void ModelManager::pushNpc(const char *filename, ITexture* texture){
+  NpcModel* npc;
+  scene::IAnimatedMesh* mesh;
+  scene::IAnimatedMeshSceneNode* animatedNode;
+  std::map <int, NpcModel*>::iterator npcIt = npcs.end();
+
+  mesh = sceneManager->getMesh( filename );
+
+  if(!mesh)
+    return;
+
+  animatedNode = sceneManager->addAnimatedMeshSceneNode( mesh );
+
+  /*
+   * Create a NpcModel with texture and push it to the NPC map
+   *
+   *  NpcModel(
+   *   int id, 
+   *   int modelType, 
+   *   IAnimatedMesh* mesh, 
+   *   IAnimatedMeshSceneNode* node,
+   *   ITexture* texture)
+   */
+  npc = new NpcModel( (int)npcs.size(), NPC_MODEL, mesh, animatedNode, texture);
+  npcs.insert(npcIt, pair<int, NpcModel*>( (int)npcs.size(), npc) );
+
+  animatedNode->setMD2Animation(scene::EMAT_STAND);
+  animatedNode->setAnimationSpeed(60);
+}
+
+void ModelManager::pushNpc(const char *filename){
+  NpcModel* npc;
+  scene::IAnimatedMesh* mesh;
+  scene::IAnimatedMeshSceneNode* animatedNode;
+  std::map <int, NpcModel*>::iterator npcIt = npcs.end();
+
+  mesh = sceneManager->getMesh( filename );
+
+  if(!mesh)
+    return;
+
+  animatedNode = sceneManager->addAnimatedMeshSceneNode( mesh );
+
+  /*
+   * Create a NpcModel with texture and push it to the NPC map
+   *
+   *  NpcModel(
+   *   int id, 
+   *   int modelType, 
+   *   IAnimatedMesh* mesh, 
+   *   IAnimatedMeshSceneNode* node,
+   *   ITexture* texture)
+   */
+  npc = new NpcModel( (int)npcs.size(), NPC_MODEL, mesh, animatedNode);
+  npcs.insert(npcIt, pair<int, NpcModel*>( (int)npcs.size(), npc) );
+
+  animatedNode->setMD2Animation(scene::EMAT_STAND);
+  animatedNode->setAnimationSpeed(60);
+}
+
+
+
+void ModelManager::pushObject(const char *filename, ITexture* texture){
+  ObjectModel* obj;
+  scene::IAnimatedMesh* mesh;
+  scene::IMeshSceneNode* staticNode;
+  std::map <int, ObjectModel*>::iterator objIt = objects.end();
+
+  mesh = sceneManager->getMesh( filename );
+
+  if(!mesh)
+    return;
+
+  staticNode = sceneManager->addMeshSceneNode( mesh );
+
+  /*
+   * Create a ObjectModel and push it to the Object map
+   *
+   * ObjectModel(
+   *   int id, 
+   *   int modelType, 
+   *   IAnimatedMesh* mesh, 
+   *   IMeshSceneNode* node) 
+   */
+  obj = new ObjectModel( (int)objects.size(), OBJECT_MODEL, mesh, staticNode);
+  objects.insert(objIt, pair<int, ObjectModel*>( (int)objects.size(), obj) );
 
 }
 
-void ModelManager::pushModel(const char *filename, int modelType, ITexture* texture){
-  /*
-   * Mesh used by all models
-   */
-  scene::IAnimatedMesh* mesh;
-
-  /*
-   * Specific nodes based on each type of Model
-   */
-  scene::IAnimatedMeshSceneNode* animatedNode;
-
-  /*
-   * Iterator to the maps
-   */
-  std::map <int, ObjectModel*>::iterator objIt = objects.end();
-  std::map <int, NpcModel*>::iterator npcIt = npcs.end();
-
-  /*
-   * Buffer Objects
-   */
-  NpcModel* npc;
-
-  mesh = sceneManager->getMesh( filename );
-  
-  /*
-   * Returns if the mesh can't be created
-   */
-  if(!mesh)
-    return;
-
-  /*
-   * Creates the model based on parameter modelType
-   */
+void ModelManager::pushModel(const char *filename, int modelType){
   switch(modelType){
     case HERO_MODEL:
-      animatedNode = sceneManager->addAnimatedMeshSceneNode( mesh );
-      /*
-       * Create a HeroModel
-       *
-       *  HeroModel(
-       *   int id, 
-       *   int modelType, 
-       *   IAnimatedMesh* mesh, 
-       *   IAnimatedMeshSceneNode* node,
-       *   ITexture* texture) 
-       */
-      hero = new HeroModel(1, HERO_MODEL, mesh, animatedNode, texture);
+      //setHero(filename, texture);
+      break;
+
+    case SCENARIO_MODEL:
+      setScenario(filename);
       break;
 
     case NPC_MODEL:
-      animatedNode = sceneManager->addAnimatedMeshSceneNode( mesh );
-
-      /*
-       * Create a NpcModel with texture and push it to the NPC map
-       *
-       *  NpcModel(
-       *   int id, 
-       *   int modelType, 
-       *   IAnimatedMesh* mesh, 
-       *   IAnimatedMeshSceneNode* node,
-       *   ITexture* texture)
-       */
-      npc = new NpcModel( (int)npcs.size(), NPC_MODEL, mesh, animatedNode, texture);
-      npcs.insert(npcIt, pair<int, NpcModel*>( (int)npcs.size(), npc) );
-
-      /*
-       * HARDCODE! changing animation and animationSpeed to a MD2 file
-       */
-      animatedNode->setMD2Animation(scene::EMAT_STAND);
-      animatedNode->setAnimationSpeed(60);
+      pushNpc(filename);
       break;
 
+    case OBJECT_MODEL:
+      //pushObject(filename, texture);
+      break;
+
+    case SKELETAL_MODEL:
+      setSkeleton(filename);
+      break;
   }
 
 }
@@ -260,28 +259,32 @@ void ModelManager::update(position2di pos){
   /*
    * changes the scenario scale
    */
-  //escala no cenário afeta o triangleSelector!
-  //scenario->getNode()->setScale( irr::core::vector3df(1,1,1) );
+  /*
+  escala no cenário afeta o triangleSelector!
+  scenario->getNode()->setScale( irr::core::vector3df(1,1,1) );
+  */
   
 
   /*
    * changes the NPC position
    */
-  //getNpcNodeById(0)->setPosition(irr::core::vector3df(0,30,0));
+  /*
+  getNpcNodeById(0)->setPosition(irr::core::vector3df(0,30,0));
+  */
 
   IAnimatedMeshSceneNode* node;
   node = skeleton->getSkeletonSceneNode();
 
   node->setScale( core::vector3df(8,8,8) );
 
-  //ponto onde o modelo olha
+  /* ponto onde o modelo olha */
   skeleton->animSkeleton( pos );
 }
 
-scene::ISceneNode* ModelManager::getObjectNodeById(int id){
+scene::ISceneNode* ModelManager::getObjectNodeById(const int id){
   return objects.find(id)->second->getNode();
 }
 
-scene::IAnimatedMeshSceneNode* ModelManager::getNpcNodeById(int id){
+scene::IAnimatedMeshSceneNode* ModelManager::getNpcNodeById(const int id){
   return npcs.find(id)->second->getNode();
 }

@@ -27,9 +27,9 @@ class GUIManager{
     IVideoDriver* driver;
 
   public:
-    GUIManager();
-    GUIManager(IGUIEnvironment* _env, IVideoDriver* _driver);
-    ~GUIManager();
+    explicit GUIManager();
+    explicit GUIManager(IGUIEnvironment* _env, IVideoDriver* _driver);
+    virtual ~GUIManager();
     
     void update();
     void drawAll();

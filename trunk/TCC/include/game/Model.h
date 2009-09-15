@@ -27,9 +27,9 @@ class Model{
 
   public:
 
-    Model();
-    Model(int id, int modelType, irr::scene::IAnimatedMesh* mesh);
-    ~Model();
+    explicit Model();
+    explicit Model(int id, int modelType, irr::scene::IAnimatedMesh* mesh);
+    virtual ~Model();
 
     irr::scene::IAnimatedMesh* getMesh() { return mesh; }
 

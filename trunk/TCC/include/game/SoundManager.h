@@ -26,8 +26,8 @@ private:
   ISoundEngine* soundDevice;
 
 public:
-  SoundManager();
-  ~SoundManager();
+  explicit SoundManager();
+  virtual ~SoundManager();
 
   /*
    * Initializtion

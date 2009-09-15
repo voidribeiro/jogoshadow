@@ -24,5 +24,6 @@ HeroModel::HeroModel(int id, int modelType, IAnimatedMesh* mesh, IAnimatedMeshSc
 
 
 HeroModel::~HeroModel(){
-
+  if(node)
+    node->drop();
 }

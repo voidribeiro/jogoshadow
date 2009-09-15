@@ -27,8 +27,8 @@ class ProcessManager{
     Process *parentProcess; 
 
   public:
-    ProcessManager();
-    ~ProcessManager();
+    explicit ProcessManager();
+    virtual ~ProcessManager();
 
     void push(void (*process)(void *ptr, long purpose), void *dataPtr = NULL);
     bool pop(void *dataPtr = NULL);

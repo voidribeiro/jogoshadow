@@ -32,7 +32,7 @@ class Script{
 
   public:
     explicit Script();
-    ~Script();
+    virtual ~Script();
 
     /*
      * Open and closes LUA script files
