@@ -15,7 +15,9 @@ Description:
 #include <map>
 
 #include "ModelTypes.h"
-#include "noncopyable.hpp"
+
+//Boost includes
+#include <noncopyable.hpp>
 
 using namespace irr;
 using namespace std;
