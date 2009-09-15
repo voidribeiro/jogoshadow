@@ -12,7 +12,7 @@ class LuaBinder
     lua_State* L;
 
   public:
-    LuaBinder (lua_State* L): L(L){ }
+    explicit LuaBinder (lua_State* L): L(L){ }
  
     void pushnumber (double n);
     double checknumber (int index);

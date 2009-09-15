@@ -22,7 +22,7 @@ class Loader{
     lua_CFunction func;
 
   public:
-    Loader(std::string appPath);
+    explicit Loader(std::string appPath);
     virtual ~Loader();
     //Register funcions to be used in the Lua Loader
     void RegisterFunction(lua_CFunction function);

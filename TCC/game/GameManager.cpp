@@ -71,12 +71,6 @@ bool GameManager::init(){
   loader.RegisterFunction(binder.registerFunctions);
   loader.LoadLevel("Level1");
 
-/* 
-  Loader loader(path);
-  loader.RegisterFunction(FactoryBinder::registerFunctions);
-  loader.LoadLevel("Level1");
-*/
-
   /*
    * Sets the main camera
    *
@@ -92,8 +86,6 @@ bool GameManager::init(){
    */
   camera = sceneManager->addCameraSceneNodeFPS( 0, 100.0f, .3f, -1, 0, 0, false, 3.f);
   camera->setPosition( core::vector3df( -100, 75, -150 ) );
-
-  
 
   /*
    * Plays a 2D backgound music using the SoundManager
@@ -127,22 +119,24 @@ bool GameManager::init(){
   /* 
    * Creates a Scenario and a NPC
    */
-  modelManager->pushModel("resources/plano.3DS", SCENARIO_MODEL);
+  modelManager->setScenario("resources/plano.3DS");
+  //modelManager->pushModel("resources/plano.3DS", SCENARIO_MODEL);
   //modelManager->pushModel("resources/faerie.md2", NPC_MODEL, driver->getTexture("resources/faerie2.bmp") );
 
-  modelManager->pushModel("resources/skeleton/player.x", SKELETAL_MODEL);
+  modelManager->setSkeleton("resources/skeleton/player.x");
+  //modelManager->pushModel("resources/skeleton/player.x", SKELETAL_MODEL);
 
   pm.push(process1, this);
   //pm.push(process2, this);
 
-  modelManager->popNpc(0);
+  //modelManager->popNpc(0);
 
   return succesful;
 }
 
 void GameManager::draw(){
   /*
-   * while the device is running processes the main game loop
+   * while the device is running, processes the main game loop
    */
   while(device->run()){
 

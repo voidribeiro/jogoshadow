@@ -56,23 +56,25 @@ private:
    * This methods are used to make a cleaner code. They are used to get the SceneNode of the Object or the NPC map
    * based on the ID
    */
-  scene::ISceneNode* getObjectNodeById(int id);
-  scene::IAnimatedMeshSceneNode* getNpcNodeById(int id);
+  scene::ISceneNode* getObjectNodeById(const int id);
+  scene::IAnimatedMeshSceneNode* getNpcNodeById(const int id);
 
 public:
-  ModelManager(irr::scene::ISceneManager* sm);
-  ~ModelManager();
+  explicit ModelManager(irr::scene::ISceneManager* sm);
+  virtual ~ModelManager();
 
   /*
-   * create a Model without texture
+   * create a Model based on Script
    */
   void pushModel(const char* filename, int modelType);
 
-  /*
-   * [TODO]: other modelTypes than an NPC
-   * create a Model with texture
-   */
-  void pushModel(const char* filename, int modelType, ITexture* texture);
+  void setHero      (const char* filename, ITexture* texture);
+  void setScenario  (const char* filename);
+  void setSkeleton  (const char* filename);
+
+  void pushNpc      (const char* filename);
+  void pushNpc      (const char* filename, ITexture* texture);
+  void pushObject   (const char* filename, ITexture* texture);
 
   /* 
    * [TODO]: all

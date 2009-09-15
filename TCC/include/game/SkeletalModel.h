@@ -23,15 +23,15 @@ class SkeletalModel : public Model{
 public:
 
 	// constructor
-	SkeletalModel();
+	explicit SkeletalModel();
 
   // node = player scene node with bones
 	// setSpeed = how fast should the animation run
 	// caution: you should only take numbers between 2 and 50
-  SkeletalModel(int id, int modelType, IAnimatedMesh* mesh, IAnimatedMeshSceneNode* node, u32 setSpeed=12);
+  explicit SkeletalModel(int id, int modelType, IAnimatedMesh* mesh, IAnimatedMeshSceneNode* node, u32 setSpeed=12);
 
 	// destructor
-	~SkeletalModel();
+	virtual ~SkeletalModel();
 
 	// set the type of animation
 	void setAnimType(CSK_ANIM setAnimType);

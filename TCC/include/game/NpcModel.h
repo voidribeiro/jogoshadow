@@ -14,10 +14,10 @@ class NpcModel : public Model{
     //haverá algum tipo de trinagle selector aqui? se não, esta classe é exatamente igual a classe de HeroModel
 
   public:
-    NpcModel();
-    NpcModel(int id, int modelType, IAnimatedMesh* mesh, IAnimatedMeshSceneNode* node);
-    NpcModel(int id, int modelType, IAnimatedMesh* mesh, IAnimatedMeshSceneNode* node, ITexture* texture);
-    ~NpcModel();
+    explicit NpcModel();
+    explicit NpcModel(int id, int modelType, IAnimatedMesh* mesh, IAnimatedMeshSceneNode* node);
+    explicit NpcModel(int id, int modelType, IAnimatedMesh* mesh, IAnimatedMeshSceneNode* node, ITexture* texture);
+    virtual ~NpcModel();
     
     irr::scene::IAnimatedMeshSceneNode* getNode() { return node; }
 

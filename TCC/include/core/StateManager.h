@@ -25,8 +25,8 @@ class StateManager{
     State *parentState;
 
   public:
-    StateManager();
-    ~StateManager();
+    explicit StateManager();
+    virtual ~StateManager();
 
     void push(void (*function)( void *ptr, long purpose ), void *dataPtr = NULL);
     bool pop(void *dataPtr = NULL);

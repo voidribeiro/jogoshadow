@@ -5,7 +5,7 @@ function startScript()
   
   --Just testing
   local factory = Factory.GetInstance()
-  print(factory:Create(3,"E:\\UNICENP\\TCC\\Source\\jogoshadow\\TCC\\resources\\faerie.md2"))
+  print(factory:Create(3,"resources/faerie.md2"))
   
   print("Loading: " .. levelScriptsPath .. loaderScript)
   dofile(levelScriptsPath .. loaderScript);

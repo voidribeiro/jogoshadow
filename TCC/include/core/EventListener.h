@@ -42,8 +42,8 @@ class EventListener : public irr::IEventReceiver{
 
 	public:
 
-    EventListener();
-    ~EventListener();
+    explicit EventListener();
+    virtual ~EventListener();
 
     void pushKeyEvent(EKEY_CODE code);
     void popKeyEvent(EKEY_CODE code);

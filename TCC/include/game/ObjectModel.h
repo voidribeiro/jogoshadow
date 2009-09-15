@@ -8,9 +8,9 @@ class ObjectModel : public Model{
     irr::scene::IMeshSceneNode* node;
 
   public:
-    ObjectModel();
-    ObjectModel(int id, int modelType, irr::scene::IAnimatedMesh* mesh, irr::scene::IMeshSceneNode* node);
-    ~ObjectModel();
+    explicit ObjectModel();
+    explicit ObjectModel(int id, int modelType, irr::scene::IAnimatedMesh* mesh, irr::scene::IMeshSceneNode* node);
+    virtual ~ObjectModel();
     
     irr::scene::ISceneNode* getNode() { return node; }
 
