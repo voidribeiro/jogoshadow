@@ -34,7 +34,7 @@ private:
   /*
    * The Hero Model, assuming that there is only one hero, this instance is kept separatedly
    */
-  HeroModel* hero; 
+  boost::shared_ptr<HeroModel> hero; 
 
  /*
   * The Scenario Model, assuming that there is only one scenario, this instance is kept separatedly
@@ -99,7 +99,7 @@ public:
   void update( position2di pos );
 
   ScenarioModel* getScenario() { return scenario; } 
-  HeroModel*     getHero()     { return hero; } 
+  boost::shared_ptr<HeroModel>  getHero()     { return hero; } 
   SkeletalModel* getSkeleton() { return skeleton; } 
 
 };

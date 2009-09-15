@@ -37,10 +37,8 @@ void ModelManager::setHero(const char *filename, ITexture* texture){
 
   animatedNode = sceneManager->addAnimatedMeshSceneNode( mesh );
 
-  if(hero){
+  if(hero)
     hero->~HeroModel();
-    hero = 0;
-  }
 
   /*
    * Create a HeroModel
@@ -51,7 +49,7 @@ void ModelManager::setHero(const char *filename, ITexture* texture){
    *   IAnimatedMesh* mesh, 
    *   IAnimatedMeshSceneNode* node) 
    */
-  hero = new HeroModel(1, HERO_MODEL, mesh, animatedNode, texture);
+  boost::shared_ptr<HeroModel> hero (new HeroModel(1, HERO_MODEL, mesh, animatedNode, texture));
 }
 
 void ModelManager::setScenario(const char *filename){
