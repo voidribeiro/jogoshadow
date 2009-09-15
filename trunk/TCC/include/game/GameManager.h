@@ -16,6 +16,8 @@ the game features making them interact correctly.
 #include <map>
 #include <string>
 
+#include "noncopyable.hpp"
+
 #include "Loader.h"
 #include "Factory.h"
 #include "Singleton.h"
@@ -31,7 +33,8 @@ the game features making them interact correctly.
 using namespace irr;
 using namespace std;
 
-class GameManager{
+class GameManager : private boost::noncopyable
+{
 private:
 
   bool gameOver;
