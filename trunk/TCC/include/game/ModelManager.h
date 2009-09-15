@@ -18,6 +18,7 @@ Description:
 
 //Boost includes
 #include <noncopyable.hpp>
+#include <smart_ptr\shared_ptr.hpp>
 
 using namespace irr;
 using namespace std;
