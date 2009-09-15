@@ -13,8 +13,9 @@ class HeroModel : public Model{
 
   public:
     explicit HeroModel();
-    explicit HeroModel(int id, int modelType, IAnimatedMesh* mesh, IAnimatedMeshSceneNode* node);
-    explicit HeroModel(int id, int modelType, IAnimatedMesh* mesh, IAnimatedMeshSceneNode* node, ITexture* texture);
+//    explicit HeroModel(const HeroModel& hero);
+    explicit HeroModel(const int id, const int modelType, IAnimatedMesh* mesh, IAnimatedMeshSceneNode* node);
+    explicit HeroModel(const int id, const int modelType, IAnimatedMesh* mesh, IAnimatedMeshSceneNode* node, ITexture* texture);
     virtual ~HeroModel();
     
     IAnimatedMeshSceneNode* getNode() { return node; }
