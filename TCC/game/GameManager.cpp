@@ -124,6 +124,7 @@ bool GameManager::init(){
   //modelManager->pushModel("resources/faerie.md2", NPC_MODEL, driver->getTexture("resources/faerie2.bmp") );
 
   modelManager->setSkeleton("resources/skeleton/player.x");
+  //modelManager->pushNpc("resources/faerie.md2");
   //modelManager->pushModel("resources/skeleton/player.x", SKELETAL_MODEL);
 
   pm.push(process1, this);

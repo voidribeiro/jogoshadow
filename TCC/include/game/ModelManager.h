@@ -15,11 +15,12 @@ Description:
 #include <map>
 
 #include "ModelTypes.h"
+#include "noncopyable.hpp"
 
 using namespace irr;
 using namespace std;
 
-class ModelManager{
+class ModelManager: private boost::noncopyable{
 private:
 
   /*
@@ -77,13 +78,11 @@ public:
   void pushObject   (const char* filename, ITexture* texture);
 
   /* 
-   * [TODO]: all
    * removes the ObjectModel from memory
    */
   void popObject(const int id);
 
   /* 
-   * [TODO]: all
    * removes the NpcModel from memory
    */
   void popNpc(const int id);

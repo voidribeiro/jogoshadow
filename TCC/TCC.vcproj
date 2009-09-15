@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(ProjectDir)\include\irrKlang&quot;;&quot;$(ProjectDir)\include\lua&quot;;&quot;$(ProjectDir)\include\irrLicht&quot;;&quot;$(ProjectDir)\include\core&quot;;&quot;$(ProjectDir)\include\game&quot;;&quot;$(ProjectDir)\include&quot;"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)\include\irrKlang&quot;;&quot;$(ProjectDir)\include\lua&quot;;&quot;$(ProjectDir)\include\irrLicht&quot;;&quot;$(ProjectDir)\include\core&quot;;&quot;$(ProjectDir)\include\game&quot;;&quot;$(ProjectDir)\boost&quot;;&quot;$(ProjectDir)\include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
