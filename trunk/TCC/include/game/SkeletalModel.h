@@ -28,7 +28,7 @@ public:
   // node = player scene node with bones
 	// setSpeed = how fast should the animation run
 	// caution: you should only take numbers between 2 and 50
-  explicit SkeletalModel(int id, int modelType, IAnimatedMesh* mesh, IAnimatedMeshSceneNode* node, u32 setSpeed=12);
+  explicit SkeletalModel(const int id, IAnimatedMesh* mesh, IAnimatedMeshSceneNode* node, const u32 setSpeed=12);
 
 	// destructor
 	virtual ~SkeletalModel();
@@ -56,8 +56,8 @@ public:
 
 
 private:
-
-	scene::IAnimatedMeshSceneNode *skeletonNode;
+  IAnimatedMesh*          mesh;
+	IAnimatedMeshSceneNode* skeletonNode;
 
 	core::array<core::vector3df> bonesOsci;
 	core::array<core::vector3df> bonesOsciPos;

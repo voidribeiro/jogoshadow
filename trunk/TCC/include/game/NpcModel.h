@@ -9,17 +9,18 @@ using namespace video;
 
 class NpcModel : public Model{
   private:
+    IAnimatedMesh* mesh;
     IAnimatedMeshSceneNode* node;
-
-    //haverá algum tipo de trinagle selector aqui? se não, esta classe é exatamente igual a classe de HeroModel
+    ITriangleSelector* selector;
 
   public:
     explicit NpcModel();
-    explicit NpcModel(int id, int modelType, IAnimatedMesh* mesh, IAnimatedMeshSceneNode* node);
-    explicit NpcModel(int id, int modelType, IAnimatedMesh* mesh, IAnimatedMeshSceneNode* node, ITexture* texture);
+    explicit NpcModel(int id, IAnimatedMesh* mesh, IAnimatedMeshSceneNode* node);
+    explicit NpcModel(int id, IAnimatedMesh* mesh, IAnimatedMeshSceneNode* node, ITexture* texture);
     virtual ~NpcModel();
     
-    irr::scene::IAnimatedMeshSceneNode* getNode() { return node; }
+    IAnimatedMesh*          getMesh() { return mesh; }
+    IAnimatedMeshSceneNode* getNode() { return node; }
 
 };
 

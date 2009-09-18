@@ -120,6 +120,10 @@ bool GameManager::init(){
    * Creates a Scenario and a NPC
    */
   modelManager->setScenario("resources/plano.3DS");
+  modelManager->setTerrain( "resources/terrain-heightmap.bmp", 
+                            driver->getTexture("resources/terrain-texture.jpg"),
+                            driver->getTexture("resources/detailmap3.jpg"));
+
   //modelManager->pushModel("resources/plano.3DS", SCENARIO_MODEL);
   //modelManager->pushModel("resources/faerie.md2", NPC_MODEL, driver->getTexture("resources/faerie2.bmp") );
 
@@ -211,21 +215,19 @@ bool GameManager::update(){
   ITriangleSelector* selector;
 
   tempvec.set(0,0,0);
-  selector = modelManager->getScenario()->getSelector();
+  selector = modelManager->getTerrain()->getSelector();
 
   IAnimatedMeshSceneNode* node = modelManager->getSkeleton()->getSkeletonSceneNode();
 
   if (sceneManager->getSceneCollisionManager()->getCollisionPoint(
 			line, selector, intersection, tri)){
 
- 			driver->draw3DTriangle(tri, video::SColor(0,255,0,0));
+ 			driver->draw3DTriangle(tri, video::SColor(255,255,0,0));
 
-			tempvec = tri.pointA;
-			tempvec = tempvec.getInterpolated(tri.pointB,0.5);
-			tempvec = tempvec.getInterpolated(tri.pointC,0.5);
-			tempvec.Y += 30;
+      tempvec = intersection;
+      tempvec.Y += 30;
 
-      if(tempvec.getDistanceFrom(node->getPosition()) < 0.5f)
+      if(tempvec.getDistanceFrom(node->getPosition()) < 1.0f)
         modelManager->getSkeleton()->setAnimType(CSK_ANIM_STAND);
 
       if (eventListener.GetMouseState().LeftButtonDown){

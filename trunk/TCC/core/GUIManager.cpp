@@ -22,7 +22,7 @@ GUIManager::GUIManager(IGUIEnvironment* _env, IVideoDriver* _driver){
 	gui::IGUIToolBar* bar = env->addToolBar();
 
   video::ITexture* image = driver->getTexture("resources/open.png");
-	bar->addButton(1001, 0, L"Open a model",image, 0, false, true);
+	bar->addButton(1001, 0, L"Open a model", image, 0, false, true);
 
 	image = driver->getTexture("resources/tools.png");
 	bar->addButton(1002, 0, L"Open Toolset",image, 0, false, true);
@@ -49,6 +49,6 @@ void GUIManager::drawAll(){
   env->drawAll();
 }
 
-void GUIManager::processEventCallback(EGUI_EVENT_TYPE type, int id){
+void GUIManager::processEventCallback(EGUI_EVENT_TYPE type, const int id){
   //  printf("Evento na GUI!\n");
 }

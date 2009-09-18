@@ -4,6 +4,7 @@ EventListener::EventListener(){}
 
 EventListener::~EventListener(){
   keysPressed.clear();
+  delete guiManager;
 }
 
 /*

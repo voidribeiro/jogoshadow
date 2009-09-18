@@ -38,7 +38,7 @@ class GUIManager{
       * When a GUI event happen, the EventListener will call this function
       * The EGUI_EVENT_TYPE is passed by IrrLicht, the id is the unique ID of the GUI element
       */
-    void processEventCallback(EGUI_EVENT_TYPE type, int id);
+    void processEventCallback(EGUI_EVENT_TYPE type, const int id);
 
 };
 

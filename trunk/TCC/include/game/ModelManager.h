@@ -40,6 +40,7 @@ private:
   * The Scenario Model, assuming that there is only one scenario, this instance is kept separatedly
   */
   ScenarioModel* scenario;
+  TerrainModel* terrain;
 
   /*
    * Map of all the Object Models in the scene
@@ -74,6 +75,7 @@ public:
 
   void setHero      (const char* filename, ITexture* texture);
   void setScenario  (const char* filename);
+  void setTerrain   (const char* filename, ITexture* texture0, ITexture* texture1);
   void setSkeleton  (const char* filename);
 
   void pushNpc      (const char* filename);
@@ -101,6 +103,7 @@ public:
   ScenarioModel* getScenario() { return scenario; } 
   boost::shared_ptr<HeroModel>  getHero()     { return hero; } 
   SkeletalModel* getSkeleton() { return skeleton; } 
+  TerrainModel* getTerrain() { return terrain; } 
 
 };
 
