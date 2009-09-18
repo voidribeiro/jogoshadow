@@ -12,8 +12,8 @@ SkeletalModel::SkeletalModel() {
 	skeletonVelocity=core::vector3df(0,0,0);
 }
 
-SkeletalModel::SkeletalModel( int id, int modelType, IAnimatedMesh* mesh, IAnimatedMeshSceneNode* node, u32 setSpeed ):
-Model(id, modelType, mesh){
+SkeletalModel::SkeletalModel( const int id,  IAnimatedMesh* _mesh, IAnimatedMeshSceneNode* node, const u32 setSpeed ):
+Model(id, 5), mesh(_mesh){
 	i=b=a=c=kTemp=k=0;
 	sinAlpha=sinGamma=0;
 	sinAlphaTwo=0;

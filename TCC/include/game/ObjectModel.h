@@ -3,16 +3,22 @@
 
 #include "Model.h"
 
+using namespace irr;
+using namespace scene;
+using namespace video;
+
 class ObjectModel : public Model{
   private:
-    irr::scene::IMeshSceneNode* node;
+    IAnimatedMesh*  mesh;
+    IMeshSceneNode* node;
 
   public:
     explicit ObjectModel();
-    explicit ObjectModel(int id, int modelType, irr::scene::IAnimatedMesh* mesh, irr::scene::IMeshSceneNode* node);
+    explicit ObjectModel(int id, int modelType, IAnimatedMesh* mesh, IMeshSceneNode* node);
     virtual ~ObjectModel();
     
-    irr::scene::ISceneNode* getNode() { return node; }
+    IAnimatedMesh*  getMesh() { return mesh; }
+    ISceneNode*     getNode() { return node; }
 
 };
 

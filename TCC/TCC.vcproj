@@ -218,6 +218,10 @@
 					RelativePath=".\game\SoundManager.cpp"
 					>
 				</File>
+				<File
+					RelativePath=".\game\TerrainModel.cpp"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="core"
@@ -318,6 +322,10 @@
 				</File>
 				<File
 					RelativePath=".\include\game\SoundManager.h"
+					>
+				</File>
+				<File
+					RelativePath=".\include\game\TerrainModel.h"
 					>
 				</File>
 			</Filter>

@@ -4,33 +4,26 @@ NpcModel::NpcModel() : Model(){
 
 }
 
-NpcModel::NpcModel(int id, int modelType, IAnimatedMesh* mesh, IAnimatedMeshSceneNode* node)
-: Model(id, modelType, mesh)
-{
-  this->node = node;
+NpcModel::NpcModel(int id, IAnimatedMesh* _mesh, IAnimatedMeshSceneNode* _node)
+: Model(id, 2), mesh(_mesh), node(_node){
+
 }
 
 
-NpcModel::NpcModel(int id, int modelType, IAnimatedMesh* mesh, IAnimatedMeshSceneNode* node, ITexture* texture)
-: Model(id, modelType, mesh)
-{
+NpcModel::NpcModel(int id, IAnimatedMesh* _mesh, IAnimatedMeshSceneNode* _node, ITexture* texture)
+: Model(id, 2), mesh(_mesh), node(_node){
   video::SMaterial material;
-
-	material.setTexture(0, texture);
-	material.Lighting = false;
-
-  this->node = node;
-  this->node->getMaterial(0) = material;
+  material.setTexture(0, texture);
+  node->getMaterial(0) = material;
 }
 
 NpcModel::~NpcModel(){
   if (node)
     node->remove();
   node = 0;
-  //delete node;
 
   if (mesh)
     mesh->drop();
 	mesh = 0;
-  //delete mesh;
+
 }

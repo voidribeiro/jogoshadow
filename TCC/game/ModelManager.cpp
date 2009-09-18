@@ -24,6 +24,9 @@ ModelManager::~ModelManager(){
 
   objects.clear();
   npcs.clear();
+
+  delete scenario;
+  delete terrain;
 }
 
 void ModelManager::setHero(const char *filename, ITexture* texture){
@@ -49,7 +52,7 @@ void ModelManager::setHero(const char *filename, ITexture* texture){
    *   IAnimatedMesh* mesh, 
    *   IAnimatedMeshSceneNode* node) 
    */
-  boost::shared_ptr<HeroModel> hero (new HeroModel(1, HERO_MODEL, mesh, animatedNode, texture));
+  boost::shared_ptr<HeroModel> hero (new HeroModel(1, mesh, animatedNode, texture));
 }
 
 void ModelManager::setScenario(const char *filename){
@@ -63,6 +66,7 @@ void ModelManager::setScenario(const char *filename){
     return;
 
   scenarioNode = sceneManager->addOctTreeSceneNode( mesh );
+  //scenarioNode = sceneManager->addTerrainSceneNode( mesh );
   selector = sceneManager->createOctTreeTriangleSelector( mesh, scenarioNode, 256 );
 
   if(scenario){
@@ -80,8 +84,51 @@ void ModelManager::setScenario(const char *filename){
    *   ISceneNode* node, 
    *   ITriangleSelector* selector) 
    */
-  scenario = new ScenarioModel(2, SCENARIO_MODEL, mesh, scenarioNode, selector);
+  scenario = new ScenarioModel(2, mesh, scenarioNode, selector);
 }
+
+void ModelManager::setTerrain(const char *filename, ITexture* texture0, ITexture* texture1){
+  //scene::IAnimatedMesh* mesh;
+  scene::ITerrainSceneNode* terrainNode;
+  scene::ITriangleSelector* selector;
+
+  //mesh = sceneManager->getMesh( filename );
+
+  //if(!mesh)
+  //  return;
+
+  terrainNode = sceneManager->addTerrainSceneNode(
+                filename,
+                0,                                      // parent node
+                -1,                                     // node id
+                core::vector3df(-50.0f, -350.0f, 0.f),      // position
+                core::vector3df(0.f, 0.f, 0.f),         // rotation
+                core::vector3df(40.f, 4.4f, 40.f),      // scale
+                video::SColor ( 255, 255, 255, 255 ),   // vertexColor
+                5,                                      // maxLOD
+                scene::ETPS_17,                         // patchSize
+                4                                       // smoothFactor
+                );
+
+  //scenarioNode = sceneManager->addTerrainSceneNode( mesh );
+  selector = sceneManager->createTerrainTriangleSelector( terrainNode, 0 );
+
+	terrainNode->setMaterialFlag(video::EMF_LIGHTING, false);
+
+	terrainNode->setMaterialTexture(0,texture0);
+	terrainNode->setMaterialTexture(1,texture1);
+	
+	terrainNode->setMaterialType(video::EMT_DETAIL_MAP);
+
+	terrainNode->scaleTexture(1.0f, 20.0f);
+
+//  if(terrain)
+//    terrain->~TerrainModel();
+
+  terrain = new TerrainModel(6, terrainNode, selector);
+
+}
+
 
 void ModelManager::setSkeleton(const char *filename){
   scene::IAnimatedMesh* mesh;
@@ -108,7 +155,7 @@ void ModelManager::setSkeleton(const char *filename){
    *    u32 animationSpeed )
    */
 
-  skeleton = new SkeletalModel(5, SKELETAL_MODEL, mesh, animatedNode, 8);
+  skeleton = new SkeletalModel(5, mesh, animatedNode, 8);
   skeleton->setAnimType(CSK_ANIM_WALK);
   skeleton->getSkeletonSceneNode()->setPosition( core::vector3df(80,30,-50) );
 }
@@ -136,7 +183,7 @@ void ModelManager::pushNpc(const char *filename, ITexture* texture){
    *   IAnimatedMeshSceneNode* node,
    *   ITexture* texture)
    */
-  npc = new NpcModel( (int)npcs.size(), NPC_MODEL, mesh, animatedNode, texture);
+  npc = new NpcModel( (int)npcs.size(), mesh, animatedNode, texture);
   npcs.insert(npcIt, pair<int, NpcModel*>( (int)npcs.size(), npc) );
 
   animatedNode->setMD2Animation(scene::EMAT_STAND);
@@ -166,7 +213,7 @@ void ModelManager::pushNpc(const char *filename){
    *   IAnimatedMeshSceneNode* node,
    *   ITexture* texture)
    */
-  npc = new NpcModel( (int)npcs.size(), NPC_MODEL, mesh, animatedNode);
+  npc = new NpcModel( (int)npcs.size(), mesh, animatedNode);
   npcs.insert(npcIt, pair<int, NpcModel*>( (int)npcs.size(), npc) );
 
   animatedNode->setMD2Animation(scene::EMAT_STAND);
@@ -272,7 +319,6 @@ void ModelManager::update(position2di pos){
 
   IAnimatedMeshSceneNode* node;
   node = skeleton->getSkeletonSceneNode();
-
   node->setScale( core::vector3df(8,8,8) );
 
   /* ponto onde o modelo olha */

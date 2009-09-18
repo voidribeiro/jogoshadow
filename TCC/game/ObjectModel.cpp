@@ -4,10 +4,9 @@ ObjectModel::ObjectModel() : Model(){
 
 }
 
-ObjectModel::ObjectModel(int id, int modelType, irr::scene::IAnimatedMesh* mesh, irr::scene::IMeshSceneNode* node) 
-: Model(id, modelType, mesh)
-{
-  this->node = node;
+ObjectModel::ObjectModel(int id, int modelType, IAnimatedMesh* _mesh, IMeshSceneNode* _node) 
+: Model(id, modelType), mesh(_mesh), node(_node){
+
 }
 
 ObjectModel::~ObjectModel(){

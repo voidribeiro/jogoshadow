@@ -4,12 +4,10 @@ ScenarioModel::ScenarioModel() : Model(){
 
 }
 
-ScenarioModel::ScenarioModel(int id, int modelType, IAnimatedMesh* mesh, ISceneNode* node, ITriangleSelector* selector) 
-: Model(id, modelType, mesh)
+ScenarioModel::ScenarioModel(const int id, IAnimatedMesh* _mesh, ISceneNode* _node, ITriangleSelector* selector) 
+: Model(id, modelType), mesh(_mesh), node(_node)
 {
-  this->node = node;
-  this->selector = selector;
-  this->node->setTriangleSelector(selector);
+  node->setTriangleSelector(selector);
 }
 
 ScenarioModel::~ScenarioModel(){
