@@ -24,6 +24,7 @@ the game features making them interact correctly.
 #include "EventListener.h"
 #include "Script.h"
 #include "GUIManager.h"
+#include "TextureManager.h"
 
 #include "ModelManager.h"
 #include "SoundManager.h"
@@ -54,6 +55,7 @@ private:
   EventListener eventListener;
 
   ModelManager* modelManager;
+  TextureManager* textureManager;
   GUIManager*   guiManager;
   SoundManager  soundManager;
 
