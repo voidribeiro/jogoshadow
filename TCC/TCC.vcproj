@@ -258,6 +258,10 @@
 					RelativePath=".\core\StateManager.cpp"
 					>
 				</File>
+				<File
+					RelativePath=".\core\TextureManager.cpp"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<Filter
@@ -366,6 +370,10 @@
 				</File>
 				<File
 					RelativePath=".\include\core\StateManager.h"
+					>
+				</File>
+				<File
+					RelativePath=".\include\core\TextureManager.h"
 					>
 				</File>
 			</Filter>

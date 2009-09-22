@@ -54,7 +54,8 @@ bool GameManager::init(){
    * instantiates the auxiliar managers
    */
   modelManager = new ModelManager( sceneManager );
-  guiManager   = new GUIManager( device->getGUIEnvironment(), device->getVideoDriver() ); 
+  guiManager   = new GUIManager( device->getGUIEnvironment(), device->getVideoDriver() );
+  textureManager = new TextureManager(device->getVideoDriver());
 
   eventListener.setGUIManager( guiManager );
 
@@ -109,20 +110,20 @@ bool GameManager::init(){
    * Creates a skybox
    */
   sceneManager->addSkyBoxSceneNode(
-                driver->getTexture("resources/irrlicht2_up.jpg"),
-                driver->getTexture("resources/irrlicht2_dn.jpg"),
-                driver->getTexture("resources/irrlicht2_lf.jpg"),
-                driver->getTexture("resources/irrlicht2_rt.jpg"),
-                driver->getTexture("resources/irrlicht2_ft.jpg"),
-                driver->getTexture("resources/irrlicht2_bk.jpg"));
+				textureManager->GetTexture("resources/irrlicht2_up.jpg"),
+				textureManager->GetTexture("resources/irrlicht2_dn.jpg"),
+				textureManager->GetTexture("resources/irrlicht2_lf.jpg"),
+				textureManager->GetTexture("resources/irrlicht2_rt.jpg"),
+				textureManager->GetTexture("resources/irrlicht2_ft.jpg"),
+				textureManager->GetTexture("resources/irrlicht2_bk.jpg"));
 
   /* 
    * Creates a Scenario and a NPC
    */
   modelManager->setScenario("resources/plano.3DS");
   modelManager->setTerrain( "resources/terrain-heightmap.bmp", 
-                            driver->getTexture("resources/terrain-texture.jpg"),
-                            driver->getTexture("resources/detailmap3.jpg"));
+                            textureManager->GetTexture("resources/terrain-texture.jpg"),
+                            textureManager->GetTexture("resources/detailmap3.jpg"));
 
   //modelManager->pushModel("resources/plano.3DS", SCENARIO_MODEL);
   //modelManager->pushModel("resources/faerie.md2", NPC_MODEL, driver->getTexture("resources/faerie2.bmp") );
