@@ -17,10 +17,12 @@ extern "C"{
 #include <map>
 #include "ModelManager.h"
 #include "LuaBinder.h"
+#include "noncopyable.hpp"
 
 using namespace std;
 
-class Factory{
+class Factory : private boost::noncopyable
+{
   private:
     ModelManager* modelFactory;
   
