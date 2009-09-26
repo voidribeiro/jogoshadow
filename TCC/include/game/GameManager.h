@@ -18,6 +18,7 @@ the game features making them interact correctly.
 
 #include "noncopyable.hpp"
 
+#include "ComponentManager.h"
 #include "Loader.h"
 #include "Factory.h"
 #include "Singleton.h"

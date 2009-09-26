@@ -1,6 +1,9 @@
 /** Shadows of Time - Adventure Game **/
 
 #include "GameManager.h"
+#include "ComponentManager.h"
+
+ComponentManager* ComponentManager::instance = new ComponentManager();
 
 int main(int argc, char* argv[])
 {
