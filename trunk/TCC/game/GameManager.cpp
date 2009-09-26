@@ -39,13 +39,16 @@ bool GameManager::init(){
 	 *	  bool vsync = false,
 	 *	  IEventReceiver* receiver = 0);
    */
-  device = createDevice( video::EDT_DIRECT3D9, core::dimension2d<s32>(800, 600), 32, false, false, true, &eventListener );
+  ComponentManager::getComponentManager()->initialize(&eventListener);
+  device = ComponentManager::getComponentManager()->getDevice();
+  //device = createDevice( video::EDT_DIRECT3D9, core::dimension2d<s32>(800, 600), 32, false, false, true, &eventListener );
 
   /*
    * retrives the pointers to video driver and sceneManager
    */
   if (device != 0){
-	  driver = device->getVideoDriver();
+	  //driver = device->getVideoDriver();
+    driver = ComponentManager::getComponentManager()->getDriver();
 	  sceneManager = device->getSceneManager();
     succesful = true;
   }

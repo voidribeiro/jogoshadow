@@ -227,6 +227,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\core\ComponentManager.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\core\EventListener.cpp"
 					>
 				</File>
@@ -337,6 +341,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\include\core\ComponentManager.h"
+					>
+				</File>
+				<File
 					RelativePath=".\include\core\EventListener.h"
 					>
 				</File>
@@ -346,6 +354,10 @@
 				</File>
 				<File
 					RelativePath=".\include\core\GUIManager.h"
+					>
+				</File>
+				<File
+					RelativePath=".\include\core\ImageLoader.h"
 					>
 				</File>
 				<File
