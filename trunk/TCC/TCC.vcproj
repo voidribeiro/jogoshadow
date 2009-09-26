@@ -183,6 +183,10 @@
 				Name="game"
 				>
 				<File
+					RelativePath=".\game\Game.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\game\GameManager.cpp"
 					>
 				</File>
@@ -280,6 +284,10 @@
 			<Filter
 				Name="game"
 				>
+				<File
+					RelativePath=".\include\game\Game.h"
+					>
+				</File>
 				<File
 					RelativePath=".\include\game\GameManager.h"
 					>
@@ -405,7 +413,7 @@
 				Name="interfaces"
 				>
 				<File
-					RelativePath=".\include\interface\IDrawable.h"
+					RelativePath=".\include\interfaces\IDrawable.h"
 					>
 				</File>
 			</Filter>

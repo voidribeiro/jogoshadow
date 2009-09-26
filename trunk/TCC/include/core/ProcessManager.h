@@ -34,6 +34,7 @@ class ProcessManager{
     bool pop(void *dataPtr = NULL);
     void popAll(void *dataPtr = NULL);
     void process(void *ptr = NULL);
+    void yeild();
 };
 
 #endif

@@ -1,0 +1,42 @@
+
+Main
+-- chama o GameManager
+-- manda rodar
+  
+  GameManager
+  -- inicializa os devices
+  -- registra as funções do Game no Script ( criar método )
+  -- carrega o script inicial
+  -- espera os comandos do script
+  -- registerBinds
+  
+    Script Inicial
+    -- pega a instancia do Game (Game:getInstance)
+    -- carrega imagem (somente de carga)
+    -- aguarda
+    -- carrega um script
+
+    Game 
+    -- pilha de eventos(principal)
+    -- array de pilha de eventos(de cada objeto)
+
+    Script de Carga
+    -- não empilha evento, faz uma chamada direta a Factory
+
+    Script de Execução
+    -- Empilha evento, pode fazer uma chamada a Factory
+
+    ProcessManager
+    -- empilha funções estáticas (hoje) (podem ser callbacks do LUA) (chamar coisas do BIND?)
+    -- para o processamento durante a execução (hoje)
+
+           @
+             @    v
+            @
+     v       @               v
+         ____||____    
+    ____|   oooooo |_______
+    \                      /
+~~~~~\____________________/~~~~~~~~~~~~
+~~    ~~~~~~~~     ~~~~~~~~~     ~~~~~~
+  ~~~~    ~~~~~~~          ~~~~~~~~
