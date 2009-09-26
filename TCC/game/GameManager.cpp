@@ -280,7 +280,7 @@ irr::u32 GameManager::getDeltaTime(){
 
 void GameManager::process1(void *ptr, long purpose){
   GameManager* gm = (GameManager*) ptr;
-  ..printf("p1!\n");
+  //printf("p1!\n");
 }
 
 void GameManager::process2(void *ptr, long purpose){
