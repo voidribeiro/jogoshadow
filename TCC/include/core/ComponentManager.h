@@ -14,7 +14,7 @@ class ComponentManager{
     static ComponentManager* instance;
     
   public:
-    ComponentManager ();
+    explicit ComponentManager ();
     virtual ~ComponentManager();
 
     //Parameters from irrlicht create device (modified defaults)

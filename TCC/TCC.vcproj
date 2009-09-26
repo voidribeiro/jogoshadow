@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(ProjectDir)\include\irrKlang&quot;;&quot;$(ProjectDir)\include\lua&quot;;&quot;$(ProjectDir)\include\irrLicht&quot;;&quot;$(ProjectDir)\include\core&quot;;&quot;$(ProjectDir)\include\game&quot;;&quot;$(ProjectDir)\include&quot;;&quot;$(ProjectDir)\include\boost&quot;"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)\include\irrKlang&quot;;&quot;$(ProjectDir)\include\lua&quot;;&quot;$(ProjectDir)\include\irrLicht&quot;;&quot;$(ProjectDir)\include\core&quot;;&quot;$(ProjectDir)\include\game&quot;;&quot;$(ProjectDir)\include\game\constants&quot;;&quot;$(ProjectDir)\include&quot;;&quot;$(ProjectDir)\include\boost&quot;;&quot;$(ProjectDir)\include\interfaces&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -243,6 +243,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\game\Image2D.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\core\Loader.cpp"
 					>
 				</File>
@@ -332,6 +336,14 @@
 					RelativePath=".\include\game\TerrainModel.h"
 					>
 				</File>
+				<Filter
+					Name="constants"
+					>
+					<File
+						RelativePath=".\include\game\constants\DrawableTypes.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="core"
@@ -357,7 +369,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\include\core\ImageLoader.h"
+					RelativePath=".\include\core\Image2D.h"
 					>
 				</File>
 				<File
@@ -386,6 +398,14 @@
 				</File>
 				<File
 					RelativePath=".\include\core\TextureManager.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="interfaces"
+				>
+				<File
+					RelativePath=".\include\interface\IDrawable.h"
 					>
 				</File>
 			</Filter>
