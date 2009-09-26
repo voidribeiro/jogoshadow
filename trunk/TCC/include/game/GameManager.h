@@ -45,9 +45,9 @@ private:
   /*
    *main IrrLicht device, needed to run everything in the engine
    */
-  IrrlichtDevice* device;
+  //IrrlichtDevice* device;
 
-  irr::video::IVideoDriver* driver;
+  //irr::video::IVideoDriver* driver;
   irr::scene::ISceneManager* sceneManager;
   irr::scene::ICameraSceneNode* camera;
 
@@ -104,9 +104,9 @@ public:
   static void process2(void *ptr, long purpose);
 
   //gets
-  irr::video::IVideoDriver*  getVideoDriver() { return driver; }
+  //irr::video::IVideoDriver*  getVideoDriver() { return driver; }
   irr::scene::ISceneManager* getSceneManager(){ return sceneManager; }
-  irr::IrrlichtDevice*       getDevice()      { return device; }
+  //irr::IrrlichtDevice*       getDevice()      { return device; }
 
   irr::s32 getFPS();
   irr::u32 getDeltaTime();
