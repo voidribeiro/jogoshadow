@@ -6,6 +6,8 @@
 #include <map>
 #include <string>
 
+#include "ComponentManager.h"
+
 using namespace std;
 using namespace irr;
 using namespace video;
@@ -13,9 +15,8 @@ using namespace video;
 class TextureManager{
 	private:
 		std::map<std::string, video::ITexture*> textureMap;
-		IVideoDriver* driver;
 	public:
-		TextureManager(IVideoDriver* driver);
+		TextureManager();
 		virtual ~TextureManager();
 		video::ITexture* GetTexture(std::string imagePath);
 		void RemoveTexture(std::string imagePath);

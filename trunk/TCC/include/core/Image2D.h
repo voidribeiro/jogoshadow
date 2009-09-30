@@ -10,6 +10,8 @@ class Image2D:public IDrawable{
   private:
     std::string filename;
     TextureManager* textureManager;
+    
+
   public:
     explicit Image2D(const std::string filename, TextureManager* textureManager);
     virtual ~Image2D();

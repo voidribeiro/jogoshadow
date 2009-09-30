@@ -17,8 +17,8 @@ GameManager::GameManager(std::string path){
  * frees all IrrLicht allocated memory
  */
 GameManager::~GameManager(){
-  IrrlichtDevice* device = ComponentManager::getComponentManager()->getDevice();
-  irr::video::IVideoDriver* driver = ComponentManager::getComponentManager()->getDriver();
+  IrrlichtDevice* device = ComponentManager::getInstance()->getDevice();
+  irr::video::IVideoDriver* driver = ComponentManager::getInstance()->getDriver();
 
   device->drop();
 }
@@ -42,8 +42,8 @@ bool GameManager::init(){
 	 *	  bool vsync = false,
 	 *	  IEventReceiver* receiver = 0);
    */
-  ComponentManager::getComponentManager()->initialize(&eventListener);
-  IrrlichtDevice* device = ComponentManager::getComponentManager()->getDevice();
+  ComponentManager::getInstance()->initialize(&eventListener);
+  IrrlichtDevice* device = ComponentManager::getInstance()->getDevice();
 
   sceneManager = device->getSceneManager();
 
@@ -52,7 +52,7 @@ bool GameManager::init(){
    */
   modelManager = new ModelManager( sceneManager );
   guiManager   = new GUIManager( device->getGUIEnvironment(), device->getVideoDriver() );
-  textureManager = new TextureManager(device->getVideoDriver());
+  textureManager = new TextureManager();
 
   eventListener.setGUIManager( guiManager );
 
@@ -141,8 +141,8 @@ void GameManager::draw(){
   /*
    * while the device is running, processes the main game loop
    */
-  IrrlichtDevice* device = ComponentManager::getComponentManager()->getDevice();
-  irr::video::IVideoDriver* driver = ComponentManager::getComponentManager()->getDriver();
+  IrrlichtDevice* device = ComponentManager::getInstance()->getDevice();
+  irr::video::IVideoDriver* driver = ComponentManager::getInstance()->getDriver();
 
   while(device->run()){
 
@@ -162,6 +162,9 @@ void GameManager::draw(){
        */
       sceneManager->drawAll();
       guiManager->drawAll();
+      
+      Image2D image("resources/001shot.jpg",textureManager);
+      image.draw();
 
 		  driver->endScene();
     }
@@ -174,8 +177,8 @@ void GameManager::draw(){
 }
 
 bool GameManager::displayWindowCaption(){
-  IrrlichtDevice* device = ComponentManager::getComponentManager()->getDevice();
-  irr::video::IVideoDriver* driver = ComponentManager::getComponentManager()->getDriver();
+  IrrlichtDevice* device = ComponentManager::getInstance()->getDevice();
+  irr::video::IVideoDriver* driver = ComponentManager::getInstance()->getDriver();
 
   irr::s32 fps = driver->getFPS();
 
@@ -202,8 +205,8 @@ bool GameManager::processLUAScripts(){
 }
 
 bool GameManager::update(){
-  IrrlichtDevice* device = ComponentManager::getComponentManager()->getDevice();
-  irr::video::IVideoDriver* driver = ComponentManager::getComponentManager()->getDriver();
+  IrrlichtDevice* device = ComponentManager::getInstance()->getDevice();
+  irr::video::IVideoDriver* driver = ComponentManager::getInstance()->getDriver();
 
   position2di pos = eventListener.GetMouseState().pos;
 
@@ -269,18 +272,18 @@ void GameManager::run(){
 }
 
 irr::s32 GameManager::getFPS(){
-  irr::video::IVideoDriver* driver = ComponentManager::getComponentManager()->getDriver();
+  irr::video::IVideoDriver* driver = ComponentManager::getInstance()->getDriver();
   return driver->getFPS();
 }
 
 irr::u32 GameManager::getDeltaTime(){
-  IrrlichtDevice* device = ComponentManager::getComponentManager()->getDevice();
+  IrrlichtDevice* device = ComponentManager::getInstance()->getDevice();
   return device->getTimer()->getTime();
 }
 
 void GameManager::process1(void *ptr, long purpose){
   GameManager* gm = (GameManager*) ptr;
-  //printf("p1!\n");
+  printf("p1!\n");
 }
 
 void GameManager::process2(void *ptr, long purpose){

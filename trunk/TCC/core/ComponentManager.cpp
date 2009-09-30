@@ -21,6 +21,6 @@ void ComponentManager::initialize(
   driver = device->getVideoDriver();
 }
 
-ComponentManager* ComponentManager::getComponentManager(){
+ComponentManager* ComponentManager::getInstance(){
   return instance;
 }
