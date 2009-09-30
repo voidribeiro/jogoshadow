@@ -22,5 +22,9 @@ void ComponentManager::initialize(
 }
 
 ComponentManager* ComponentManager::getInstance(){
+  if (instance == NULL)
+    ComponentManager::instance = new ComponentManager();
   return instance;
 }
+
+ComponentManager* ComponentManager::instance;
