@@ -28,7 +28,7 @@ class ComponentManager{
 		  bool stencilbuffer = false,
 		  bool vsync = true);
 
-    static ComponentManager* getComponentManager();
+    static ComponentManager* getInstance();
 
     IrrlichtDevice* getDevice(){return device;}
     video::IVideoDriver* getDriver(){return driver;}
