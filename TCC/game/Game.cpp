@@ -13,6 +13,7 @@ void Game::showImage(string handle){
 void Game::wait(int miliseconds){
 
 }
+
 void Game::load(string handle){
 
 }
