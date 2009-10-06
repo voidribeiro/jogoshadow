@@ -10,7 +10,6 @@ GameManager::GameManager(std::string path){
   //TODO - Remove this hack
   int pos = path.find("TCC.exe");
   this->path = path.substr(0,pos);
-  //pm = new ProcessManager();
 }
 
 /*
@@ -18,8 +17,6 @@ GameManager::GameManager(std::string path){
  */
 GameManager::~GameManager(){
   IrrlichtDevice* device = ComponentManager::getInstance()->getDevice();
-  irr::video::IVideoDriver* driver = ComponentManager::getInstance()->getDriver();
-
   device->drop();
 }
 
@@ -158,14 +155,21 @@ void GameManager::drawTriangleSelection(){
 
 	core::line3d<f32> line;
 	line.start = camera->getPosition();
-	line.end = line.start + (camera->getTarget() - line.start).normalize() * 5000.0f;
+	line.end = line.start + (camera->getTarget() - line.start).normalize() * 1000.0f;
 
 	core::vector3df intersection;
   core::triangle3df tri;
 
   ITriangleSelector* selector;
-  selector = modelManager->getTerrain()->getSelector();
 
+  selector = modelManager->getNpcById(0)->getSelector();
+  if (sceneManager->getSceneCollisionManager()->getCollisionPoint(
+		line, selector, intersection, tri)){
+
+    driver->draw3DTriangle(tri, video::SColor(255,0,255,0));
+  }
+
+  selector = modelManager->getTerrain()->getSelector();
   if (sceneManager->getSceneCollisionManager()->getCollisionPoint(
 		line, selector, intersection, tri)){
 
@@ -231,7 +235,7 @@ void GameManager::run(){
 
 		  driver->endScene();
     }
-    
+
     displayWindowCaption();
 
   }

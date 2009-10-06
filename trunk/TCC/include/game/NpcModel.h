@@ -22,6 +22,9 @@ class NpcModel : public Model{
     IAnimatedMesh*          getMesh() { return mesh; }
     IAnimatedMeshSceneNode* getNode() { return node; }
 
+    void setSelector(ITriangleSelector* _selector);
+    ITriangleSelector* getSelector(){ return selector; }
+
 };
 
 #endif

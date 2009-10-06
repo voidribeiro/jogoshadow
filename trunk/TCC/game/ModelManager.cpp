@@ -164,6 +164,7 @@ void ModelManager::pushNpc(const char *filename, ITexture* texture){
   NpcModel* npc;
   scene::IAnimatedMesh* mesh;
   scene::IAnimatedMeshSceneNode* animatedNode;
+  scene::ITriangleSelector* selector;
   std::map <int, NpcModel*>::iterator npcIt = npcs.end();
 
   mesh = sceneManager->getMesh( filename );
@@ -172,6 +173,7 @@ void ModelManager::pushNpc(const char *filename, ITexture* texture){
     return;
 
   animatedNode = sceneManager->addAnimatedMeshSceneNode( mesh );
+  selector = sceneManager->createOctTreeTriangleSelector( mesh, animatedNode, 128 );
 
   /*
    * Create a NpcModel with texture and push it to the NPC map
@@ -184,6 +186,8 @@ void ModelManager::pushNpc(const char *filename, ITexture* texture){
    *   ITexture* texture)
    */
   npc = new NpcModel( (int)npcs.size(), mesh, animatedNode, texture);
+  npc->setSelector(selector);
+
   npcs.insert(npcIt, pair<int, NpcModel*>( (int)npcs.size(), npc) );
 
   animatedNode->setMD2Animation(scene::EMAT_STAND);
@@ -194,6 +198,7 @@ void ModelManager::pushNpc(const char *filename){
   NpcModel* npc;
   scene::IAnimatedMesh* mesh;
   scene::IAnimatedMeshSceneNode* animatedNode;
+  scene::ITriangleSelector* selector;
   std::map <int, NpcModel*>::iterator npcIt = npcs.end();
 
   mesh = sceneManager->getMesh( filename );
@@ -202,6 +207,7 @@ void ModelManager::pushNpc(const char *filename){
     return;
 
   animatedNode = sceneManager->addAnimatedMeshSceneNode( mesh );
+  selector = sceneManager->createOctTreeTriangleSelector( mesh, animatedNode, 128 );
 
   /*
    * Create a NpcModel with texture and push it to the NPC map
@@ -214,6 +220,8 @@ void ModelManager::pushNpc(const char *filename){
    *   ITexture* texture)
    */
   npc = new NpcModel( (int)npcs.size(), mesh, animatedNode);
+  npc->setSelector(selector);
+
   npcs.insert(npcIt, pair<int, NpcModel*>( (int)npcs.size(), npc) );
 
   animatedNode->setMD2Animation(scene::EMAT_STAND);
@@ -360,6 +368,14 @@ void ModelManager::animateSkeleton(vector3df pos, bool mousePresed){
     anim->drop();
   }
 
+}
+
+NpcModel* ModelManager::getNpcById(const int id){
+  return npcs.find(id)->second;
+}
+
+ObjectModel* ModelManager::getObjectById(const int id){
+  return objects.find(id)->second;
 }
 
 scene::ISceneNode* ModelManager::getObjectNodeById(const int id){

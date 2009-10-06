@@ -1,5 +1,5 @@
-#ifndef __FACTORY_H__
-#define __FACTORY_H__
+#ifndef _FACTORY_H_
+#define _FACTORY_H_
 
 namespace FactoryType{
   static enum FactoryEnum{

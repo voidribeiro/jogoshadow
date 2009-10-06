@@ -57,13 +57,6 @@ private:
 
   SkeletalModel* skeleton;
 
-  /*
-   * This methods are used to make a cleaner code. They are used to get the SceneNode of the Object or the NPC map
-   * based on the ID
-   */
-  scene::ISceneNode* getObjectNodeById(const int id);
-  scene::IAnimatedMeshSceneNode* getNpcNodeById(const int id);
-
 public:
   explicit ModelManager(irr::scene::ISceneManager* sm);
   virtual ~ModelManager();
@@ -106,6 +99,16 @@ public:
   boost::shared_ptr<HeroModel>  getHero()     { return hero; } 
   SkeletalModel* getSkeleton() { return skeleton; } 
   TerrainModel* getTerrain() { return terrain; } 
+
+  /*
+   * This methods are used to make a cleaner code. They are used to get the SceneNode of the Object or the NPC map
+   * based on the ID
+   */
+  scene::ISceneNode* getObjectNodeById(const int id);
+  scene::IAnimatedMeshSceneNode* getNpcNodeById(const int id);
+
+  NpcModel* ModelManager::getNpcById(const int id);
+  ObjectModel* ModelManager::getObjectById(const int id);
 
 };
 

@@ -43,11 +43,10 @@ class GameBinder{
 static const luaL_reg gameFunctions[] = {
     {"GetInstance", GameBinder::bnd_GetInstance},
     {"ShowImage", GameBinder::bnd_ShowImage},
-    {"ShowWait", GameBinder::bnd_Wait},
-    {"ShowLoad", GameBinder::bnd_Load},
+    {"Wait", GameBinder::bnd_Wait},
+    {"Load", GameBinder::bnd_Load},
     {NULL, NULL}
 };
-
 
 
 #endif

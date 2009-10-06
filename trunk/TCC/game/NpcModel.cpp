@@ -17,7 +17,14 @@ NpcModel::NpcModel(int id, IAnimatedMesh* _mesh, IAnimatedMeshSceneNode* _node, 
   node->getMaterial(0) = material;
 }
 
+void NpcModel::setSelector(ITriangleSelector* _selector){
+  selector = _selector;
+}
+
 NpcModel::~NpcModel(){
+
+  delete selector;
+
   if (node)
     node->remove();
   node = 0;
