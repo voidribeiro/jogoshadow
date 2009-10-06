@@ -1,7 +1,6 @@
 /** Shadows of Time - Adventure Game **/
 
 #include "GameManager.h"
-#include "ComponentManager.h"
 
 int main(int argc, char* argv[])
 {

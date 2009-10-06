@@ -100,6 +100,8 @@ public:
    */
   void update( position2di pos );
 
+  void animateSkeleton( vector3df pos, bool mousePresed );
+
   ScenarioModel* getScenario() { return scenario; } 
   boost::shared_ptr<HeroModel>  getHero()     { return hero; } 
   SkeletalModel* getSkeleton() { return skeleton; } 

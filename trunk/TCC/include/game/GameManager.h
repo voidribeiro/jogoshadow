@@ -96,6 +96,8 @@ public:
    */
   void draw();
 
+  void drawTriangleSelection();
+
   /*
    * Updates the window caption with FPS
    */

@@ -323,6 +323,43 @@ void ModelManager::update(position2di pos){
 
   /* ponto onde o modelo olha */
   skeleton->animSkeleton( pos );
+
+}
+
+void ModelManager::animateSkeleton(vector3df pos, bool mousePresed){
+
+  IAnimatedMeshSceneNode* node = getSkeleton()->getSkeletonSceneNode();
+  scene::ISceneNodeAnimator* anim;
+
+  pos.Y += 30;
+
+  anim =	sceneManager->createFlyStraightAnimator(node->getPosition(), pos, 10 * pos.getDistanceFrom(node->getPosition()), false);
+
+  if(pos.getDistanceFrom(node->getPosition()) < 1.0f)
+    getSkeleton()->setAnimType(CSK_ANIM_STAND);
+
+  if (mousePresed){
+    getSkeleton()->setAnimType(CSK_ANIM_WALK);
+
+    core::vector3df requiredRotation = (pos - node->getAbsolutePosition());
+    requiredRotation = requiredRotation.getHorizontalAngle();
+
+    //Doesnt require to point down... so just rotates on Y axis
+    requiredRotation.X = 0;
+    requiredRotation.Z = 0;
+
+    node->setRotation(requiredRotation);
+
+    anim =	sceneManager->createFlyStraightAnimator(
+             node->getPosition(), 
+             pos,
+             10*pos.getDistanceFrom(node->getPosition()),
+             false);
+
+    node->addAnimator(anim);
+    anim->drop();
+  }
+
 }
 
 scene::ISceneNode* ModelManager::getObjectNodeById(const int id){
