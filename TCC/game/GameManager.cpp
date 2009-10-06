@@ -130,7 +130,7 @@ bool GameManager::init(){
   //modelManager->pushModel("resources/skeleton/player.x", SKELETAL_MODEL);
 
   pm.push(process1, this);
-  //pm.push(process2, this);
+  pm.push(process2, this);
 
   //modelManager->popNpc(0);
 
@@ -138,41 +138,42 @@ bool GameManager::init(){
 }
 
 void GameManager::draw(){
-  /*
-   * while the device is running, processes the main game loop
-   */
+      
+  sceneManager->drawAll();
+  guiManager->drawAll();
+  
+  Image2D image("resources/001shot.jpg",textureManager);
+  image.draw();
+
+  drawTriangleSelection();
+
+  //return true;
+
+}
+
+void GameManager::drawTriangleSelection(){
+
   IrrlichtDevice* device = ComponentManager::getInstance()->getDevice();
   irr::video::IVideoDriver* driver = ComponentManager::getInstance()->getDriver();
 
-  while(device->run()){
+	core::line3d<f32> line;
+	line.start = camera->getPosition();
+	line.end = line.start + (camera->getTarget() - line.start).normalize() * 5000.0f;
 
-    pm.process();
+	core::vector3df intersection;
+  core::triangle3df tri;
 
-    if (device->isWindowActive()){
-		  driver->beginScene(true, true, 0);
+  ITriangleSelector* selector;
+  selector = modelManager->getTerrain()->getSelector();
 
-      /*
-       * update all the elements positions, scales etc...
-       */
-      //processLUAScripts();
-      update();
+  if (sceneManager->getSceneCollisionManager()->getCollisionPoint(
+		line, selector, intersection, tri)){
 
-      /*
-       * Draws the scene and the GUI
-       */
-      sceneManager->drawAll();
-      guiManager->drawAll();
-      
-      Image2D image("resources/001shot.jpg",textureManager);
-      image.draw();
+    driver->draw3DTriangle(tri, video::SColor(255,255,0,0));
 
-		  driver->endScene();
-    }
-    
-    displayWindowCaption();
-
+    //mudar isso de lugar depois
+    modelManager->animateSkeleton(intersection, eventListener.GetMouseState().LeftButtonDown );
   }
-  //return true;
 
 }
 
@@ -205,70 +206,36 @@ bool GameManager::processLUAScripts(){
 }
 
 bool GameManager::update(){
-  IrrlichtDevice* device = ComponentManager::getInstance()->getDevice();
-  irr::video::IVideoDriver* driver = ComponentManager::getInstance()->getDriver();
 
+  //pm.process();
   position2di pos = eventListener.GetMouseState().pos;
-
   modelManager->update( pos );
-
-	core::line3d<f32> line;
-	line.start = camera->getPosition();
-	line.end = line.start + (camera->getTarget() - line.start).normalize() * 1000.0f;
-
-	core::vector3df intersection;
-  core::triangle3df tri;
-  core::vector3df tempvec;
-
-  scene::ISceneNodeAnimator* anim;
-
-  ITriangleSelector* selector;
-
-  tempvec.set(0,0,0);
-  selector = modelManager->getTerrain()->getSelector();
-
-  IAnimatedMeshSceneNode* node = modelManager->getSkeleton()->getSkeletonSceneNode();
-
-  if (sceneManager->getSceneCollisionManager()->getCollisionPoint(
-			line, selector, intersection, tri)){
-
- 			driver->draw3DTriangle(tri, video::SColor(255,255,0,0));
-
-      tempvec = intersection;
-      tempvec.Y += 30;
-
-      if(tempvec.getDistanceFrom(node->getPosition()) < 1.0f)
-        modelManager->getSkeleton()->setAnimType(CSK_ANIM_STAND);
-
-      if (eventListener.GetMouseState().LeftButtonDown){
- 
-          modelManager->getSkeleton()->setAnimType(CSK_ANIM_WALK);
-
-					core::vector3df requiredRotation = (tempvec-node->getAbsolutePosition());
-					requiredRotation = requiredRotation.getHorizontalAngle();
-					
-					//Doesnt require to point down... so just rotates on Y axis
-					requiredRotation.X = 0;
-					requiredRotation.Z = 0;
-					
-					node->setRotation(requiredRotation);
-
-					anim =	sceneManager->createFlyStraightAnimator(
-             node->getPosition(), 
-             tempvec,
-             10*tempvec.getDistanceFrom(node->getPosition()),
-             false);
-
- 					node->addAnimator(anim);
-					anim->drop();
-      }
-  }
 
   return true;
 }
 
 void GameManager::run(){
-  draw();
+  /*
+   * while the device is running, processes the main game loop
+   */
+  IrrlichtDevice* device = ComponentManager::getInstance()->getDevice();
+  irr::video::IVideoDriver* driver = ComponentManager::getInstance()->getDriver();
+
+  while(device->run()){
+
+    if (device->isWindowActive()){
+		  driver->beginScene(true, true, 0);
+
+      update();
+      draw();
+
+		  driver->endScene();
+    }
+    
+    displayWindowCaption();
+
+  }
+  
 }
 
 irr::s32 GameManager::getFPS(){
