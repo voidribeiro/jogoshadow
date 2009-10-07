@@ -162,11 +162,14 @@ void GameManager::drawTriangleSelection(){
 
   ITriangleSelector* selector;
 
-  selector = modelManager->getNpcById(0)->getSelector();
-  if (sceneManager->getSceneCollisionManager()->getCollisionPoint(
-		line, selector, intersection, tri)){
+  for(int i = 0; i < modelManager->getNpcCount(); i++ ){
+    selector = modelManager->getNpcById(i)->getSelector();
+    if (sceneManager->getSceneCollisionManager()->getCollisionPoint(
+	    line, selector, intersection, tri)){
 
-    driver->draw3DTriangle(tri, video::SColor(255,0,255,0));
+      driver->draw3DTriangle(tri, video::SColor(255,0,255,0));
+      return;
+    }
   }
 
   selector = modelManager->getTerrain()->getSelector();
