@@ -110,6 +110,9 @@ public:
   NpcModel* ModelManager::getNpcById(const int id);
   ObjectModel* ModelManager::getObjectById(const int id);
 
+  int getNpcCount();
+  int getObjectCount();
+
 };
 
 #endif
