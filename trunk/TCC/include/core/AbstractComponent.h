@@ -3,6 +3,7 @@
 
 #include "ComponentTypes.h"
 #include "GameObject.h"
+#include "LuaBinder.h"
 
 class GameObject;
 

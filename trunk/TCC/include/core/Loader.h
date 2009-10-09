@@ -12,6 +12,8 @@ extern "C"{
 #include "Script.h"
 #include "Factory.h"
 
+#include <list>
+
 using namespace std;
 
 class Loader{
@@ -19,7 +21,7 @@ class Loader{
     std::string executablePath;
     Script luaScript;
 
-    lua_CFunction func;
+    std::list<lua_CFunction> functions;
 
   public:
     explicit Loader(std::string appPath);

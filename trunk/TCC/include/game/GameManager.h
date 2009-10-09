@@ -33,6 +33,8 @@ the game features making them interact correctly.
 
 #include "ProcessManager.h"
 
+#include "ComponentImage.h"
+
 using namespace irr;
 using namespace std;
 

@@ -63,6 +63,7 @@ bool GameManager::init(){
 
   Loader loader(path);
   loader.RegisterFunction(binder.registerFunctions);
+  loader.RegisterFunction(ComponentImageBinder::registerFunctions);
   loader.LoadLevel("Level1");
 
   /*

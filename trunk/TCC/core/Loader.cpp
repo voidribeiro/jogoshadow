@@ -9,7 +9,8 @@ Loader::~Loader(){
 
 void Loader::LoadLevel(char* level){
   luaScript.startScript("Scripts/loader.lua");
-  luaScript.registerFunction(func);
+  for (std::list<lua_CFunction>::iterator it = functions.begin(); it!=functions.end(); it++)
+    luaScript.registerFunction(*it);
   luaScript.addGlobalVar("path",(char*)executablePath.c_str());
   luaScript.addGlobalVar("level",level);
   luaScript.callFunction("startScript",0,0,0,0);
@@ -17,5 +18,5 @@ void Loader::LoadLevel(char* level){
 }
 
 void Loader::RegisterFunction(lua_CFunction function){
-  func = function;
+  functions.push_back(function);
 }
