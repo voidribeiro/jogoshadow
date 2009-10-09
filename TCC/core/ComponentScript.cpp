@@ -1,6 +1,6 @@
 #include "ComponentScript.h"
 
-ComponentScript::ComponentScript(GameObject* parent):AbstractComponent(parent){
+ComponentScript::ComponentScript(){
 }
 
 ComponentScript::~ComponentScript(){

@@ -9,7 +9,7 @@ class ComponentImage : public AbstractComponent{
   private:
     std::string filename;
   public:
-    explicit ComponentImage(GameObject* parent);
+    explicit ComponentImage();
     virtual ~ComponentImage();
     
     virtual void Draw();

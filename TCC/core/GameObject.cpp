@@ -9,6 +9,7 @@ GameObject::~GameObject(){
 //TODO - Implement all of this
 
 void GameObject::AddComponent(AbstractComponent* component){
+  component->SetParent(this);
   componentList.push_back(component);
 }
 
