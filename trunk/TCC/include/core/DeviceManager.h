@@ -1,5 +1,5 @@
-#ifndef __COMPONENTMANAGER_H__
-#define __COMPONENTMANAGER_H__
+#ifndef __DEVICEMANAGER_H__
+#define __DEVICEMANAGER_H__
 
 #include <irrlicht.h>
 #include <exception>
@@ -7,15 +7,15 @@
 using namespace irr;
 using namespace std;
 
-class ComponentManager{
+class DeviceManager{
   private:
     IrrlichtDevice* device;
     video::IVideoDriver* driver;
-    static ComponentManager* instance;
+    static DeviceManager* instance;
     
   public:
-    explicit ComponentManager ();
-    virtual ~ComponentManager();
+    explicit DeviceManager ();
+    virtual ~DeviceManager();
 
     //Parameters from irrlicht create device (modified defaults)
     void initialize(
@@ -28,7 +28,7 @@ class ComponentManager{
 		  bool stencilbuffer = false,
 		  bool vsync = true);
 
-    static ComponentManager* getInstance();
+    static DeviceManager* getInstance();
 
     IrrlichtDevice* getDevice(){return device;}
     video::IVideoDriver* getDriver(){return driver;}

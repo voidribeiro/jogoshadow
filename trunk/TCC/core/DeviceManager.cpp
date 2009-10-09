@@ -1,12 +1,12 @@
-#include "ComponentManager.h"
+#include "DeviceManager.h"
 
-ComponentManager::ComponentManager(){
+DeviceManager::DeviceManager(){
 }
 
-ComponentManager::~ComponentManager(){
+DeviceManager::~DeviceManager(){
 }
 
-void ComponentManager::initialize(
+void DeviceManager::initialize(
       IEventReceiver* receiver,
       video::E_DRIVER_TYPE deviceType,
 		  const core::dimension2d<s32>& windowSize,
@@ -21,10 +21,10 @@ void ComponentManager::initialize(
   driver = device->getVideoDriver();
 }
 
-ComponentManager* ComponentManager::getInstance(){
+DeviceManager* DeviceManager::getInstance(){
   if (instance == NULL)
-    ComponentManager::instance = new ComponentManager();
+    DeviceManager::instance = new DeviceManager();
   return instance;
 }
 
-ComponentManager* ComponentManager::instance;
+DeviceManager* DeviceManager::instance;

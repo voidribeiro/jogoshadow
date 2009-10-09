@@ -3,7 +3,7 @@
 
 #include <string>
 #include "IDrawable.h"
-#include "ComponentManager.h"
+#include "DeviceManager.h"
 #include "TextureManager.h"
 
 class Image2D:public IDrawable{

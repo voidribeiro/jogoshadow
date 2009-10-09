@@ -6,7 +6,7 @@
 #include <map>
 #include <string>
 
-#include "ComponentManager.h"
+#include "DeviceManager.h"
 
 using namespace std;
 using namespace irr;
