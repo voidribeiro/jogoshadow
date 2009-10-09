@@ -231,6 +231,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\core\ComponentScript.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\core\DeviceManager.cpp"
 					>
 				</File>
@@ -240,6 +244,10 @@
 				</File>
 				<File
 					RelativePath=".\core\Factory.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\core\GameObject.cpp"
 					>
 				</File>
 				<File
@@ -357,7 +365,19 @@
 				Name="core"
 				>
 				<File
+					RelativePath=".\include\core\AbstractComponent.h"
+					>
+				</File>
+				<File
 					RelativePath=".\include\core\BMaths.h"
+					>
+				</File>
+				<File
+					RelativePath=".\include\core\ComponentScript.h"
+					>
+				</File>
+				<File
+					RelativePath=".\include\core\ComponentTypes.h"
 					>
 				</File>
 				<File
@@ -370,6 +390,10 @@
 				</File>
 				<File
 					RelativePath=".\include\core\Factory.h"
+					>
+				</File>
+				<File
+					RelativePath=".\include\core\GameObject.h"
 					>
 				</File>
 				<File
