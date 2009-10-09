@@ -12,14 +12,15 @@ using namespace std;
 using namespace irr;
 using namespace video;
 
-class TextureManager{
+static class TextureManager{
 	private:
-		std::map<std::string, video::ITexture*> textureMap;
+		static std::map<std::string, video::ITexture*> textureMap;
+    //static TextureManager instance;
 	public:
 		TextureManager();
 		virtual ~TextureManager();
-		video::ITexture* GetTexture(std::string imagePath);
-		void RemoveTexture(std::string imagePath);
+		static video::ITexture* GetTexture(std::string imagePath);
+		static void RemoveTexture(std::string imagePath);
 };
 
 #endif

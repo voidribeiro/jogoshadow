@@ -3,7 +3,6 @@
 
 #include "AbstractComponent.h"
 
-
 class ComponentScript : public AbstractComponent{
   public:
     explicit ComponentScript();
