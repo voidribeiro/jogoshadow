@@ -10,6 +10,6 @@ Image2D::~Image2D(){
 }
 
 void Image2D::draw(){
-  irr::video::IVideoDriver* driver = ComponentManager::getInstance()->getDriver();
+  irr::video::IVideoDriver* driver = DeviceManager::getInstance()->getDriver();
   driver->draw2DImage(textureManager->GetTexture(filename), core::position2d<s32>(0,0));
 }

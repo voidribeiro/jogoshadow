@@ -231,7 +231,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\core\ComponentManager.cpp"
+					RelativePath=".\core\DeviceManager.cpp"
 					>
 				</File>
 				<File
@@ -361,7 +361,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\include\core\ComponentManager.h"
+					RelativePath=".\include\core\DeviceManager.h"
 					>
 				</File>
 				<File
