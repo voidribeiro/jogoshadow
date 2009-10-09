@@ -7,6 +7,8 @@ function startScript()
   local factory = Factory.GetInstance()
   print(factory:Create(3,"resources/faerie.md2"))
   
+  local component = ComponentImage.Instantiate(path .. "resources\\splash\\lucasarts_logo.jpg")
+  
   print("Loading: " .. levelScriptsPath .. loaderScript)
   dofile(levelScriptsPath .. loaderScript);
   startScript();

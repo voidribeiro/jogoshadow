@@ -11,7 +11,7 @@ class AbstractComponent;
 
 class GameObject{
   private:  
-    list<AbstractComponent*> componentList;
+    std::list<AbstractComponent*> componentList;
   public:
     explicit GameObject ();
     virtual ~GameObject();
