@@ -1,6 +1,6 @@
 #include "ComponentImage.h"
 
-ComponentImage::ComponentImage(GameObject* parent):AbstractComponent(parent){
+ComponentImage::ComponentImage(){
 }
 
 ComponentImage::~ComponentImage(){

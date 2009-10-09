@@ -5,7 +5,7 @@
 
 class ComponentScript : public AbstractComponent{
   public:
-    explicit ComponentScript(GameObject* parent);
+    explicit ComponentScript();
     virtual ~ComponentScript();
     int GetType();
 };
