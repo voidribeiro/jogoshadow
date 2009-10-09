@@ -231,6 +231,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\core\ComponentImage.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\core\ComponentScript.cpp"
 					>
 				</File>
@@ -370,6 +374,10 @@
 				</File>
 				<File
 					RelativePath=".\include\core\BMaths.h"
+					>
+				</File>
+				<File
+					RelativePath=".\include\core\ComponentImage.h"
 					>
 				</File>
 				<File

@@ -57,7 +57,6 @@ private:
   EventListener eventListener;
 
   ModelManager* modelManager;
-  TextureManager* textureManager;
   GUIManager*   guiManager;
   SoundManager  soundManager;
 

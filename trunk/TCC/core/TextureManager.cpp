@@ -3,6 +3,8 @@
 TextureManager::TextureManager(){
 }
 
+std::map<std::string, video::ITexture*> TextureManager::textureMap;
+
 TextureManager::~TextureManager(){
 	for(std::map<std::string, video::ITexture*>::const_iterator it = textureMap.begin(); it != textureMap.end(); ++it){
 		if (it->second != NULL){

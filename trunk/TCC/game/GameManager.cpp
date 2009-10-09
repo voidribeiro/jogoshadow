@@ -49,7 +49,6 @@ bool GameManager::init(){
    */
   modelManager = new ModelManager( sceneManager );
   guiManager   = new GUIManager( device->getGUIEnvironment(), device->getVideoDriver() );
-  textureManager = new TextureManager();
 
   eventListener.setGUIManager( guiManager );
 
@@ -104,20 +103,20 @@ bool GameManager::init(){
    * Creates a skybox
    */
   sceneManager->addSkyBoxSceneNode(
-				textureManager->GetTexture("resources/irrlicht2_up.jpg"),
-				textureManager->GetTexture("resources/irrlicht2_dn.jpg"),
-				textureManager->GetTexture("resources/irrlicht2_lf.jpg"),
-				textureManager->GetTexture("resources/irrlicht2_rt.jpg"),
-				textureManager->GetTexture("resources/irrlicht2_ft.jpg"),
-				textureManager->GetTexture("resources/irrlicht2_bk.jpg"));
+        TextureManager::GetTexture("resources/irrlicht2_up.jpg"),
+				TextureManager::GetTexture("resources/irrlicht2_dn.jpg"),
+				TextureManager::GetTexture("resources/irrlicht2_lf.jpg"),
+				TextureManager::GetTexture("resources/irrlicht2_rt.jpg"),
+				TextureManager::GetTexture("resources/irrlicht2_ft.jpg"),
+				TextureManager::GetTexture("resources/irrlicht2_bk.jpg"));
 
   /* 
    * Creates a Scenario and a NPC
    */
   modelManager->setScenario("resources/plano.3DS");
   modelManager->setTerrain( "resources/terrain-heightmap.bmp", 
-                            textureManager->GetTexture("resources/terrain-texture.jpg"),
-                            textureManager->GetTexture("resources/detailmap3.jpg"));
+                            TextureManager::GetTexture("resources/terrain-texture.jpg"),
+                            TextureManager::GetTexture("resources/detailmap3.jpg"));
 
   //modelManager->pushModel("resources/plano.3DS", SCENARIO_MODEL);
   //modelManager->pushModel("resources/faerie.md2", NPC_MODEL, driver->getTexture("resources/faerie2.bmp") );
@@ -139,7 +138,7 @@ void GameManager::draw(){
   sceneManager->drawAll();
   guiManager->drawAll();
   
-  Image2D image("resources/001shot.jpg",textureManager);
+  Image2D image("resources/001shot.jpg");
   image.draw();
 
   drawTriangleSelection();

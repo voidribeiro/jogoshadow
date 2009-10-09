@@ -5,13 +5,16 @@
 
 #include <List>
 
+using namespace std;
+
 class GameObject{
   private:  
-    std::list<AbstractComponent*> componentList;
+    list<AbstractComponent*> componentList;
   public:
     explicit GameObject ();
     virtual ~GameObject();
-    void AddComponent(AbstractComponent*);
+    void AddComponent(AbstractComponent* component);
+    void RemoveAllComponents();
     void RemoveComponent(int componentType);
     void RemoveComponentByIndex(int index);
     int GetComponentsCount();
