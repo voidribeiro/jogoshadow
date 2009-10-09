@@ -6,14 +6,17 @@
 #include <List>
 
 class GameObject{
-  private:
+  private:  
+    std::list<AbstractComponent*> componentList;
   public:
     explicit GameObject ();
     virtual ~GameObject();
-    //AbstractComponent* GetComponent();
-
-    //TODO - This is for test only
-    AbstractComponent* abstractComponent;
+    void AddComponent(AbstractComponent*);
+    void RemoveComponent(int componentType);
+    void RemoveComponentByIndex(int index);
+    int GetComponentsCount();
+    AbstractComponent* GetComponent(int componentType);
+    AbstractComponent* GetComponentByIndex(int index);
 };
 
 #endif
