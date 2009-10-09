@@ -2,9 +2,9 @@
 #define __GAMEOBJECT_H__
 
 #include "AbstractComponent.h"
+#include "LuaBinder.h"
 
 #include <List>
-
 using namespace std;
 
 class AbstractComponent;
@@ -15,6 +15,7 @@ class GameObject{
   public:
     explicit GameObject ();
     virtual ~GameObject();
+    void Draw();
     void AddComponent(AbstractComponent* component);
     void RemoveAllComponents();
     void RemoveComponent(int componentType);
@@ -23,5 +24,22 @@ class GameObject{
     AbstractComponent* GetComponent(int componentType);
     AbstractComponent* GetComponentByIndex(int index);
 };
+
+static class GameObjectBinder{
+  public:
+    static int registerFunctions(lua_State* L);
+    static int bnd_Instantiate (lua_State* L);
+    static int bnd_DontDestroy (lua_State* L);
+    static int bnd_AddComponent (lua_State* L);
+};
+
+static const luaL_reg gameObjectFunctions[] = {
+    {"Instantiate", GameObjectBinder::bnd_Instantiate},
+    {"AddComponent", GameObjectBinder::bnd_AddComponent},
+    {NULL, NULL}
+};
+
+//TODO - See a better way to do this list
+static std::list<GameObject*> gameObjectList;
 
 #endif
