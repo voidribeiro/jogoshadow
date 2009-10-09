@@ -7,6 +7,8 @@
 
 using namespace std;
 
+class AbstractComponent;
+
 class GameObject{
   private:  
     list<AbstractComponent*> componentList;
