@@ -30,12 +30,10 @@ static class GameObjectBinder{
     static int registerFunctions(lua_State* L);
     static int bnd_Instantiate (lua_State* L);
     static int bnd_DontDestroy (lua_State* L);
-    static int bnd_AddComponent (lua_State* L);
 };
 
 static const luaL_reg gameObjectFunctions[] = {
     {"Instantiate", GameObjectBinder::bnd_Instantiate},
-    {"AddComponent", GameObjectBinder::bnd_AddComponent},
     {NULL, NULL}
 };
 

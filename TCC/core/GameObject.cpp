@@ -70,13 +70,3 @@ int GameObjectBinder::bnd_Instantiate(lua_State* L){
   binder.pushusertype(gameObject,"GameObject");
   return 1;
 }
-#include "ComponentImage.h"
-
-int GameObjectBinder::bnd_AddComponent(lua_State* L){
-  LuaBinder binder(L);
-  GameObject* gameObject = (GameObject*) binder.checkusertype(1,"GameObject");
-  ComponentImage* component = (ComponentImage*) binder.checkusertype(2,"ComponentImage");
-  //gameObject->AddComponent((AbstractComponent*)lua_touserdata(L,1));
-  //std::cout<<"AAAAAAAAAAAAAAAAAAAAAAAA"<<((AbstractComponent*)lua_tointeger(L,1))->GetType();
-  return 1;
-}
