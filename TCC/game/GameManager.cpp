@@ -145,6 +145,8 @@ void GameManager::draw(){
 
   drawTriangleSelection();
 
+  GameObjectList::Draw();
+
   //return true;
 
 }

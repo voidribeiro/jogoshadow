@@ -66,7 +66,23 @@ int GameObjectBinder::bnd_Instantiate(lua_State* L){
   LuaBinder binder(L);
   GameObject* gameObject = new GameObject();
   //Add object to the list - maybe we have to change this
-  gameObjectList.push_back(gameObject);
+  GameObjectList::Add(gameObject);
   binder.pushusertype(gameObject,"GameObject");
   return 1;
+}
+
+
+//---------------------------------------------------------
+
+std::list<GameObject*> GameObjectList::gameObjectList;
+
+void GameObjectList::Add(GameObject* gObj){
+  GameObjectList::gameObjectList.push_back(gObj);
+}
+
+void GameObjectList::Draw(){
+  list<GameObject*>::iterator it;
+  for (it = gameObjectList.begin(); it != gameObjectList.end(); it++)
+    if ((*it) != NULL)
+      (*it)->Draw();
 }
