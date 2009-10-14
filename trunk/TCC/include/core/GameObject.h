@@ -38,6 +38,12 @@ static const luaL_reg gameObjectFunctions[] = {
 };
 
 //TODO - See a better way to do this list
-static std::list<GameObject*> gameObjectList;
+static class GameObjectList{
+  private:
+    static std::list<GameObject*> gameObjectList;
+  public:
+    static void Add(GameObject* gObj);
+    static void Draw();
+};
 
 #endif
