@@ -32,3 +32,11 @@ int ComponentImageBinder::bnd_Instantiate(lua_State* L){
   binder.pushusertype(componentImage,"ComponentImage");
   return 1;
 }
+
+int ComponentImageBinder::bnd_AddTo(lua_State* L){
+  LuaBinder binder(L);
+  ComponentImage* componentImage  = (ComponentImage*) binder.checkusertype(1,"ComponentImage");
+  GameObject* gameObject = (GameObject*) binder.checkusertype(2,"GameObject");
+  gameObject->AddComponent(componentImage);
+  return 1;
+}

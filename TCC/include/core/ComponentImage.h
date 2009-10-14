@@ -21,10 +21,12 @@ static class ComponentImageBinder{
     static int registerFunctions(lua_State* L);
     static int bnd_Instantiate (lua_State* L);
     static int bnd_DontDestroy (lua_State* L);
+    static int bnd_AddTo (lua_State* L);
 };
 
 static const luaL_reg componentImageFunctions[] = {
     {"Instantiate", ComponentImageBinder::bnd_Instantiate},
+    {"AddTo", ComponentImageBinder::bnd_AddTo},
     {NULL, NULL}
 };
 
