@@ -9,7 +9,8 @@ function startScript()
   
   local gameObject = GameObject.Instantiate()
   local component = ComponentImage.Instantiate(path .. "resources\\splash\\lucasarts_logo.jpg")
-  gameObject:AddComponent(component);
+  component:AddTo(gameObject)
+  --gameObject:AddComponent(component)
   
   print("Loading: " .. levelScriptsPath .. loaderScript)
   dofile(levelScriptsPath .. loaderScript);
