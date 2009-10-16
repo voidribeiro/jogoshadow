@@ -43,6 +43,7 @@ static class GameObjectList{
     static std::list<GameObject*> gameObjectList;
   public:
     static void Add(GameObject* gObj);
+    static void Clear();
     static void Draw();
 };
 

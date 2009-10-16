@@ -55,6 +55,8 @@ bool GameManager::init(){
   /*
 	Using the loader
   */
+//Factory will go to hell - Components rules
+/*
   Factory factory;
   factory.setModelFactory(modelManager);
 
@@ -66,6 +68,9 @@ bool GameManager::init(){
   loader.RegisterFunction(GameObjectBinder::registerFunctions);
   loader.RegisterFunction(ComponentImageBinder::registerFunctions);
   loader.LoadLevel("Level1");
+*/
+
+  LoadLevel("Start");
 
   /*
    * Sets the main camera
@@ -223,6 +228,21 @@ bool GameManager::update(){
 
   return true;
 }
+
+void GameManager::LoadLevel(std::string level){
+  //Remove the objects from another scene
+  GameObjectList::Clear();
+  Loader loader(path);
+  RegisterLoaderComponents(&loader);
+  loader.LoadLevel(level.c_str());
+}
+
+void GameManager::RegisterLoaderComponents(Loader* loader){
+  loader->RegisterFunction(GameObjectBinder::registerFunctions);
+  loader->RegisterFunction(ComponentImageBinder::registerFunctions);
+}
+
+
 
 void GameManager::run(){
   /*
