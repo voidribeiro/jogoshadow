@@ -28,7 +28,7 @@ class Loader{
     virtual ~Loader();
     //Register funcions to be used in the Lua Loader
     void RegisterFunction(lua_CFunction function);
-    void LoadLevel(char* level);
+    void LoadLevel(const char* level);
 };
 
 #endif

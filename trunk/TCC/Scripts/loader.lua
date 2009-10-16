@@ -1,17 +1,8 @@
 function startScript()
   --configure the scripts path
   levelScriptsPath = path .. "Scripts\\" .. level .. "\\"
+
   --Loads the level loader script
-  
-  --Just testing
-  local factory = Factory.GetInstance()
-  print(factory:Create(3,"resources/faerie.md2"))
-  
-  local gameObject = GameObject.Instantiate()
-  local component = ComponentImage.Instantiate(path .. "resources\\splash\\lucasarts_logo.jpg")
-  component:AddTo(gameObject)
-  --gameObject:AddComponent(component)
-  
   print("Loading: " .. levelScriptsPath .. loaderScript)
   dofile(levelScriptsPath .. loaderScript);
   startScript();

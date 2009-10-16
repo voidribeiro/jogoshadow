@@ -4,6 +4,15 @@ GameObject::GameObject(){
 }
 
 GameObject::~GameObject(){
+  while (componentList.size() != 0){
+    AbstractComponent* c = (*componentList.begin());
+    componentList.pop_front();
+    if (c != NULL){
+      delete c;
+      //TODO - Why doesn't work? It will require if the component ref twice (never should happen)
+      //c = NULL:
+    }
+  }
 }
 
 //TODO - Implement all of this
@@ -78,6 +87,17 @@ std::list<GameObject*> GameObjectList::gameObjectList;
 
 void GameObjectList::Add(GameObject* gObj){
   GameObjectList::gameObjectList.push_back(gObj);
+}
+
+void GameObjectList::Clear(){
+  while (gameObjectList.size() != 0){
+    GameObject* gObj = (*gameObjectList.begin());
+    gameObjectList.pop_front();
+    if (gObj != NULL){
+      delete gObj;
+      gObj = NULL;
+    }
+  }
 }
 
 void GameObjectList::Draw(){

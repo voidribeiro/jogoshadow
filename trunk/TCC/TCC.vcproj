@@ -231,14 +231,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\core\ComponentImage.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\core\ComponentScript.cpp"
-					>
-				</File>
-				<File
 					RelativePath=".\core\DeviceManager.cpp"
 					>
 				</File>
@@ -286,6 +278,18 @@
 					RelativePath=".\core\TextureManager.cpp"
 					>
 				</File>
+				<Filter
+					Name="Components"
+					>
+					<File
+						RelativePath=".\core\ComponentImage.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\core\ComponentScript.cpp"
+						>
+					</File>
+				</Filter>
 			</Filter>
 		</Filter>
 		<Filter
@@ -369,23 +373,7 @@
 				Name="core"
 				>
 				<File
-					RelativePath=".\include\core\AbstractComponent.h"
-					>
-				</File>
-				<File
 					RelativePath=".\include\core\BMaths.h"
-					>
-				</File>
-				<File
-					RelativePath=".\include\core\ComponentImage.h"
-					>
-				</File>
-				<File
-					RelativePath=".\include\core\ComponentScript.h"
-					>
-				</File>
-				<File
-					RelativePath=".\include\core\ComponentTypes.h"
 					>
 				</File>
 				<File
@@ -440,6 +428,26 @@
 					RelativePath=".\include\core\TextureManager.h"
 					>
 				</File>
+				<Filter
+					Name="Components"
+					>
+					<File
+						RelativePath=".\include\core\AbstractComponent.h"
+						>
+					</File>
+					<File
+						RelativePath=".\include\core\ComponentImage.h"
+						>
+					</File>
+					<File
+						RelativePath=".\include\core\ComponentScript.h"
+						>
+					</File>
+					<File
+						RelativePath=".\include\core\ComponentTypes.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="interfaces"

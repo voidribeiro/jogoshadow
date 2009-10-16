@@ -68,6 +68,9 @@ private:
 
   ProcessManager pm;
 
+  void GameManager::LoadLevel(std::string level);
+  void RegisterLoaderComponents(Loader* loader);
+
 public:
   explicit GameManager(std::string path);
   virtual ~GameManager();
@@ -116,7 +119,6 @@ public:
   irr::u32 getDeltaTime();
 
   friend class Singleton<GameManager>;
-
 };
 
 typedef Singleton<GameManager> gm;
