@@ -1,0 +1,34 @@
+#ifndef __COMPONENTTIMER_H__
+#define __COMPONENTTIMER_H__
+
+#include "AbstractComponent.h"
+
+class ComponentTimer : public AbstractComponent{
+  private:
+    int timeStart;
+    int timeOut;
+    std::string scriptToExec;
+    std::string functionToExec;
+  public:
+    explicit ComponentTimer(int _timeOut, std::string _script, std::string _function);
+    virtual ~ComponentTimer();
+    virtual void Update();
+    virtual void Draw(){};
+    int GetType() { return CTIMER; };
+};
+
+static class ComponentTimerBinder{
+  public:
+    static int registerFunctions(lua_State* L);
+    static int bnd_Instantiate (lua_State* L);
+    static int bnd_DontDestroy (lua_State* L);
+    static int bnd_AddTo (lua_State* L);
+};
+
+static const luaL_reg componentTimerFunctions[] = {
+    {"Instantiate", ComponentTimerBinder::bnd_Instantiate},
+    {"AddTo", ComponentTimerBinder::bnd_AddTo},
+    {NULL, NULL}
+};
+
+#endif
