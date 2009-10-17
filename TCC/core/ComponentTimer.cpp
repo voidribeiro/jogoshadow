@@ -13,7 +13,9 @@ ComponentTimer::~ComponentTimer(){
 
 void ComponentTimer::Update(){
   if (DeviceManager::getInstance()->getDevice()->getTimer()->getTime()>timeOut){
-    std::cout << "Change me for the timer function" << std::endl;
+    std::cout << scriptToExec.c_str() << " - " << functionToExec.c_str() << std::endl;
+    ScriptObject scriptObj;
+    scriptObj.Execute(scriptToExec.c_str(), functionToExec.c_str());
   }
 }
 

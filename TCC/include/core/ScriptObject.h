@@ -1,5 +1,5 @@
-#ifndef _LOADER_H_
-#define _LOADER_H_
+#ifndef _SCRIPTOBJECT_H_
+#define _SCRIPTOBJECT_H_
 
 extern "C"{
 	#include "lua.h"
@@ -14,19 +14,16 @@ extern "C"{
 
 using namespace std;
 
-class Loader{
+class ScriptObject{
   private:
-    std::string executablePath;
     Script luaScript;
-
     std::list<lua_CFunction> functions;
-
   public:
-    explicit Loader(std::string appPath);
-    virtual ~Loader();
-    //Register funcions to be used in the Lua Loader
+    explicit ScriptObject();
+    virtual ~ScriptObject();
+    //Register funcions to be used
     void RegisterFunction(lua_CFunction function);
-    void LoadLevel(const char* level);
+    void Execute(const char* scriptToExecute, const char* functionToExecute);
 };
 
 #endif

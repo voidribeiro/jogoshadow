@@ -4,6 +4,8 @@
 #include "AbstractComponent.h"
 #include "DeviceManager.h"
 
+#include "ScriptObject.h"
+
 class ComponentTimer : public AbstractComponent{
   private:
     int timeOut;
