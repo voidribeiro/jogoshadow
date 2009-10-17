@@ -1,4 +1,4 @@
---local splashTime = 3000
+local splashTime = 3000
 
 function startScript()
   print("Loading Start.")
@@ -7,8 +7,8 @@ function startScript()
   local component = ComponentImage.Instantiate(path .. "resources\\splash\\lucasarts_logo.jpg")
   component:AddTo(gameObject)
   --Set a Timer Function
-  --local component = ComponentTimer.Instantiate(splashTime,path .. "Scripts\\Start\\loader.lua","onTimeOut")
-  --component:AddTo(gameObject)
+  local component = ComponentTimer.Instantiate(splashTime,path .. "Scripts\\Start\\loader.lua","onTimeOut")
+  component:AddTo(gameObject)
 end
 
 function onTimeOut()

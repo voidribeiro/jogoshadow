@@ -15,6 +15,7 @@ class GameObject{
   public:
     explicit GameObject ();
     virtual ~GameObject();
+    void Update();
     void Draw();
     void AddComponent(AbstractComponent* component);
     void RemoveAllComponents();
@@ -45,6 +46,7 @@ static class GameObjectList{
     static void Add(GameObject* gObj);
     static void Clear();
     static void Draw();
+    static void Update();
 };
 
 #endif
