@@ -1,4 +1,4 @@
-local splashTime = 3000
+local splashTime = 5000
 
 function startScript()
   print("Loading Start.")
