@@ -34,6 +34,7 @@ the game features making them interact correctly.
 #include "ProcessManager.h"
 
 #include "ComponentImage.h"
+#include "ComponentTimer.h"
 
 using namespace irr;
 using namespace std;

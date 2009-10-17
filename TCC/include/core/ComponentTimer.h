@@ -2,10 +2,10 @@
 #define __COMPONENTTIMER_H__
 
 #include "AbstractComponent.h"
+#include "DeviceManager.h"
 
 class ComponentTimer : public AbstractComponent{
   private:
-    int timeStart;
     int timeOut;
     std::string scriptToExec;
     std::string functionToExec;

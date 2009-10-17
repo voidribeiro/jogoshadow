@@ -17,6 +17,13 @@ GameObject::~GameObject(){
 
 //TODO - Implement all of this
 
+void GameObject::Update(){
+  list<AbstractComponent*>::iterator it;
+  for (it = componentList.begin(); it != componentList.end(); it++)
+    if ((*it) != NULL)
+      (*it)->Update();
+} 
+
 void GameObject::Draw(){
   list<AbstractComponent*>::iterator it;
   for (it = componentList.begin(); it != componentList.end(); it++)
@@ -98,6 +105,13 @@ void GameObjectList::Clear(){
       gObj = NULL;
     }
   }
+}
+
+void GameObjectList::Update(){
+  list<GameObject*>::iterator it;
+  for (it = gameObjectList.begin(); it != gameObjectList.end(); it++)
+    if ((*it) != NULL)
+      (*it)->Update();
 }
 
 void GameObjectList::Draw(){

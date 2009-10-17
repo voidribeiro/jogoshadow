@@ -150,8 +150,6 @@ void GameManager::draw(){
 
   drawTriangleSelection();
 
-  GameObjectList::Draw();
-
   //return true;
 
 }
@@ -240,6 +238,7 @@ void GameManager::LoadLevel(std::string level){
 void GameManager::RegisterLoaderComponents(Loader* loader){
   loader->RegisterFunction(GameObjectBinder::registerFunctions);
   loader->RegisterFunction(ComponentImageBinder::registerFunctions);
+  loader->RegisterFunction(ComponentTimerBinder::registerFunctions);
 }
 
 
@@ -258,6 +257,10 @@ void GameManager::run(){
 
       update();
       draw();
+
+      GameObjectList::Update();
+      GameObjectList::Draw();
+
 
 		  driver->endScene();
     }

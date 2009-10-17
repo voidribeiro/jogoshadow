@@ -289,6 +289,10 @@
 						RelativePath=".\core\ComponentScript.cpp"
 						>
 					</File>
+					<File
+						RelativePath=".\core\ComponentTimer.cpp"
+						>
+					</File>
 				</Filter>
 			</Filter>
 		</Filter>
