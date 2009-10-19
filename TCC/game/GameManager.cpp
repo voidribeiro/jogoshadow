@@ -231,17 +231,8 @@ void GameManager::LoadLevel(std::string level){
   //Remove the objects from another scene
   GameObjectList::Clear();
   Loader loader(path);
-  RegisterLoaderComponents(&loader);
   loader.LoadLevel(level.c_str());
 }
-
-void GameManager::RegisterLoaderComponents(Loader* loader){
-  loader->RegisterFunction(GameObjectBinder::registerFunctions);
-  loader->RegisterFunction(ComponentImageBinder::registerFunctions);
-  loader->RegisterFunction(ComponentTimerBinder::registerFunctions);
-}
-
-
 
 void GameManager::run(){
   /*

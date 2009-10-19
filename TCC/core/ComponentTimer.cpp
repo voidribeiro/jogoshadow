@@ -9,11 +9,8 @@ scriptToExec(_script),functionToExec(_function){
 ComponentTimer::~ComponentTimer(){
 }
 
-#include <iostream>
-
 void ComponentTimer::Update(){
   if (DeviceManager::getInstance()->getDevice()->getTimer()->getTime()>timeOut){
-    std::cout << scriptToExec.c_str() << " - " << functionToExec.c_str() << std::endl;
     ScriptObject scriptObj;
     scriptObj.Execute(scriptToExec.c_str(), functionToExec.c_str());
   }

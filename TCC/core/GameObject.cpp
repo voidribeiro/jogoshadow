@@ -91,6 +91,7 @@ int GameObjectBinder::bnd_Instantiate(lua_State* L){
 //---------------------------------------------------------
 
 std::list<GameObject*> GameObjectList::gameObjectList;
+bool GameObjectList::stepOver;
 
 void GameObjectList::Add(GameObject* gObj){
   GameObjectList::gameObjectList.push_back(gObj);
@@ -109,14 +110,26 @@ void GameObjectList::Clear(){
 
 void GameObjectList::Update(){
   list<GameObject*>::iterator it;
-  for (it = gameObjectList.begin(); it != gameObjectList.end(); it++)
+  for (it = gameObjectList.begin(); it != gameObjectList.end(); it++){
     if ((*it) != NULL)
       (*it)->Update();
+    //Only update require stepOver that is why don't start with a stepOver
+    if (stepOver)
+      break;
+  }
 }
 
 void GameObjectList::Draw(){
   list<GameObject*>::iterator it;
-  for (it = gameObjectList.begin(); it != gameObjectList.end(); it++)
-    if ((*it) != NULL)
-      (*it)->Draw();
+  //If update required stepOver will wait one drawcall before draw again
+  if (!stepOver)
+    for (it = gameObjectList.begin(); it != gameObjectList.end(); it++)
+      if ((*it) != NULL)
+        (*it)->Draw();
+
+  stepOver = false;
+}
+
+void GameObjectList::StepOver(){
+  stepOver = true;
 }

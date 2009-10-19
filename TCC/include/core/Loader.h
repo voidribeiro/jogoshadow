@@ -10,22 +10,17 @@ extern "C"{
 #include <string>
 #include <list>
 
-#include "Script.h"
+#include "ScriptObject.h"
 
 using namespace std;
 
-class Loader{
+class Loader : public ScriptObject{
   private:
     std::string executablePath;
-    Script luaScript;
-
-    std::list<lua_CFunction> functions;
 
   public:
     explicit Loader(std::string appPath);
     virtual ~Loader();
-    //Register funcions to be used in the Lua Loader
-    void RegisterFunction(lua_CFunction function);
     void LoadLevel(const char* level);
 };
 

@@ -1,6 +1,6 @@
 #include "Loader.h"
 
-Loader::Loader(std::string appPath){
+Loader::Loader(std::string appPath):ScriptObject(){
   executablePath = appPath;
 }
 
@@ -15,8 +15,4 @@ void Loader::LoadLevel(const char* level){
   luaScript.addGlobalVar("level",(char*)level);
   luaScript.callFunction("startScript",0,0,0,0);
   luaScript.endScript();
-}
-
-void Loader::RegisterFunction(lua_CFunction function){
-  functions.push_back(function);
 }

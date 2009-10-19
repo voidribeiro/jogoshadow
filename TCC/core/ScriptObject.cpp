@@ -1,9 +1,14 @@
 #include "ScriptObject.h"
 
 ScriptObject::ScriptObject(){
+  RegisterFunction(GameObjectBinder::registerFunctions);
+  RegisterFunction(ComponentImageBinder::registerFunctions);
+  RegisterFunction(ComponentTimerBinder::registerFunctions);
 }
 
 ScriptObject::~ScriptObject(){
+  while (functions.size()>0)
+    functions.pop_front();
 }
 
 void ScriptObject::Execute(const char* scriptToExecute, const char* functionToExecute){

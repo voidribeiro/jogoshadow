@@ -33,9 +33,6 @@ the game features making them interact correctly.
 
 #include "ProcessManager.h"
 
-#include "ComponentImage.h"
-#include "ComponentTimer.h"
-
 using namespace irr;
 using namespace std;
 
@@ -70,7 +67,6 @@ private:
   ProcessManager pm;
 
   void GameManager::LoadLevel(std::string level);
-  void RegisterLoaderComponents(Loader* loader);
 
 public:
   explicit GameManager(std::string path);

@@ -42,11 +42,13 @@ static const luaL_reg gameObjectFunctions[] = {
 static class GameObjectList{
   private:
     static std::list<GameObject*> gameObjectList;
+    static bool stepOver;
   public:
     static void Add(GameObject* gObj);
     static void Clear();
     static void Draw();
     static void Update();
+    static void StepOver();
 };
 
 #endif
