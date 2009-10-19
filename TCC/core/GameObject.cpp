@@ -9,8 +9,7 @@ GameObject::~GameObject(){
     componentList.pop_front();
     if (c != NULL){
       delete c;
-      //TODO - Why doesn't work? It will require if the component ref twice (never should happen)
-      //c = NULL:
+      c = NULL;
     }
   }
 }
