@@ -11,21 +11,18 @@ extern "C"{
 #include <string>
 #include "LuaBinder.h"
 #include "noncopyable.hpp"
+#include "GameManager.h"
 
 using namespace std;
 
 class Game : private boost::noncopyable
 {
   private:
+    GameManager* gameManager;
 
   public:
-    explicit Game();
+    explicit Game(GameManager* _gameManager);
     virtual ~Game();
-
-    void showImage(string handle);
-    void wait(int miliseconds);
-    void load(string handle); // que ele vai carregar???
-
 };
 
 
@@ -35,16 +32,12 @@ class GameBinder{
     static int registerFunctions(lua_State* L);
     static int bnd_GetInstance (lua_State* L);
     static int bnd_DontDestroy (lua_State* L);
-    static int bnd_ShowImage (lua_State* L);
-    static int bnd_Wait (lua_State* L);
-    static int bnd_Load (lua_State* L);
+    static int bnd_LoadLevel (lua_State* L);
 };
 
 static const luaL_reg gameFunctions[] = {
     {"GetInstance", GameBinder::bnd_GetInstance},
-    {"ShowImage", GameBinder::bnd_ShowImage},
-    {"Wait", GameBinder::bnd_Wait},
-    {"Load", GameBinder::bnd_Load},
+    {"LoadLevel", GameBinder::bnd_LoadLevel},
     {NULL, NULL}
 };
 

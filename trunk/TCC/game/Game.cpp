@@ -1,21 +1,9 @@
 #include "Game.h"
 
-Game::Game(){
+Game::Game(GameManager* _gameManager):gameManager(_gameManager){
 }
 
 Game::~Game(){
-}
-
-void Game::showImage(string handle){
-
-}
-
-void Game::wait(int miliseconds){
-
-}
-
-void Game::load(string handle){
-
 }
 
 /****************************************************/
@@ -40,21 +28,7 @@ int GameBinder::bnd_GetInstance(lua_State* L){
   return 1;
 }
 
-int GameBinder::bnd_ShowImage(lua_State* L){
-  LuaBinder binder(L);
-//  Game* game = (Game*) binder.checkusertype(1,"Game");
-
-  return 1;
-}
-
-int GameBinder::bnd_Wait(lua_State* L){
-  LuaBinder binder(L);
-//  Game* game = (Game*) binder.checkusertype(1,"Game");
-
-  return 1;
-}
-
-int GameBinder::bnd_Load(lua_State* L){
+int GameBinder::bnd_LoadLevel(lua_State* L){
   LuaBinder binder(L);
 //  Game* game = (Game*) binder.checkusertype(1,"Game");
 
