@@ -11,8 +11,8 @@ ComponentTimer::~ComponentTimer(){
 
 void ComponentTimer::Update(){
   if (DeviceManager::getInstance()->getDevice()->getTimer()->getTime()>timeOut){
-    ScriptObject scriptObj;
-    scriptObj.Execute(scriptToExec.c_str(), functionToExec.c_str());
+    ScriptObject scriptObj(scriptToExec.c_str());
+    scriptObj.Execute(functionToExec.c_str());
   }
 }
 
