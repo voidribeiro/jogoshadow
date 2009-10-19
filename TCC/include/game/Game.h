@@ -15,6 +15,8 @@ extern "C"{
 
 using namespace std;
 
+class GameManager;
+
 class Game : private boost::noncopyable
 {
   private:
@@ -23,6 +25,7 @@ class Game : private boost::noncopyable
   public:
     explicit Game(GameManager* _gameManager);
     virtual ~Game();
+    void LoadLevel(std::string level);
 };
 
 

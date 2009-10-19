@@ -26,7 +26,7 @@ class GameObject{
     AbstractComponent* GetComponentByIndex(int index);
 };
 
-static class GameObjectBinder{
+ class GameObjectBinder{
   public:
     static int registerFunctions(lua_State* L);
     static int bnd_Instantiate (lua_State* L);
@@ -39,7 +39,7 @@ static const luaL_reg gameObjectFunctions[] = {
 };
 
 //TODO - See a better way to do this list
-static class GameObjectList{
+class GameObjectList{
   private:
     static std::list<GameObject*> gameObjectList;
     static bool stepOver;
