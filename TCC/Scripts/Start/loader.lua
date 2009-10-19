@@ -13,6 +13,6 @@ end
 
 function onTimeOut()
   print("It should not get here before call timeout")
-	--local game = Game.GetInstance()
-	--game:LoadLevel("Level1");
+	local game = Game.GetInstance()
+	game:LoadLevel("Level1");
 end

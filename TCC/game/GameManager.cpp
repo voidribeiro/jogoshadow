@@ -7,10 +7,10 @@ using namespace io;
 using namespace gui;
 
 GameManager::GameManager(std::string path){
-  GameBinder::game = new Game(this);  
   //TODO - Remove this hack
   int pos = path.find("TCC.exe");
   this->path = path.substr(0,pos);
+  GameBinder::game = new Game(this->path);  
 }
 
 /*
@@ -72,7 +72,7 @@ bool GameManager::init(){
   loader.LoadLevel("Level1");
 */
 
-  LoadLevel("Start");
+  GameBinder::game->LoadLevel("Start");
 
   /*
    * Sets the main camera
@@ -227,15 +227,6 @@ bool GameManager::update(){
   modelManager->update( pos );
 
   return true;
-}
-
-void GameManager::LoadLevel(std::string level){
-  //Remove the objects from another scene
-  GameObjectList::Clear();
-  Loader loader(path);
-  loader.LoadLevel(level.c_str());
-  //Turn to step the first iteration after update list
-  GameObjectList::StepOver();
 }
 
 void GameManager::run(){

@@ -12,6 +12,7 @@ class AbstractComponent;
 class GameObject{
   private:  
     std::list<AbstractComponent*> componentList;
+    bool stepOver;
   public:
     explicit GameObject ();
     virtual ~GameObject();
@@ -21,6 +22,7 @@ class GameObject{
     void RemoveAllComponents();
     void RemoveComponent(int componentType);
     void RemoveComponentByIndex(int index);
+    void StepOver();
     int GetComponentsCount();
     AbstractComponent* GetComponent(int componentType);
     AbstractComponent* GetComponentByIndex(int index);

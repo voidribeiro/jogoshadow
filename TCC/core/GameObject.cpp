@@ -18,17 +18,30 @@ GameObject::~GameObject(){
 
 void GameObject::Update(){
   list<AbstractComponent*>::iterator it;
-  for (it = componentList.begin(); it != componentList.end(); it++)
+  for (it = componentList.begin(); it != componentList.end(); it++){
     if ((*it) != NULL)
       (*it)->Update();
+    //TODO - resolve this problem. This happen due a object list update
+    if (componentList.empty()){
+      return;
+    }
+    if (stepOver)
+      return;
+  }
 } 
 
 void GameObject::Draw(){
   list<AbstractComponent*>::iterator it;
-  for (it = componentList.begin(); it != componentList.end(); it++)
-    if ((*it) != NULL)
-      (*it)->Draw();
-} 
+  if (!stepOver)
+    for (it = componentList.begin(); it != componentList.end(); it++)
+      if ((*it) != NULL)
+        (*it)->Draw();
+  stepOver = false;
+}
+
+void GameObject::StepOver(){
+  stepOver = true;
+}
 
 void GameObject::AddComponent(AbstractComponent* component){
   component->SetParent(this);
@@ -44,8 +57,10 @@ void GameObject::RemoveComponentByIndex(int index){
 void GameObject::RemoveAllComponents(){
   list<AbstractComponent*>::iterator it;
   for (it = componentList.begin(); it != componentList.end(); it++)
-    if ((*it) != NULL)
+    if ((*it) != NULL){
       delete (*it);
+      (*it) = NULL;
+    }
 }
 
 int GameObject::GetComponentsCount(){
@@ -97,7 +112,7 @@ void GameObjectList::Add(GameObject* gObj){
 }
 
 void GameObjectList::Clear(){
-  while (gameObjectList.size() != 0){
+  while (gameObjectList.size() > 0){
     GameObject* gObj = (*gameObjectList.begin());
     gameObjectList.pop_front();
     if (gObj != NULL){
@@ -105,6 +120,7 @@ void GameObjectList::Clear(){
       gObj = NULL;
     }
   }
+  StepOver();
 }
 
 void GameObjectList::Update(){
@@ -114,7 +130,7 @@ void GameObjectList::Update(){
       (*it)->Update();
     //Only update require stepOver that is why don't start with a stepOver
     if (stepOver)
-      break;
+      return;
   }
 }
 
