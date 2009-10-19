@@ -6,6 +6,10 @@ Game::Game(GameManager* _gameManager):gameManager(_gameManager){
 Game::~Game(){
 }
 
+void Game::LoadLevel(std::string level){
+  gameManager->LoadLevel(level);
+}
+
 /****************************************************/
 //Binder to Lua
 
@@ -30,7 +34,7 @@ int GameBinder::bnd_GetInstance(lua_State* L){
 
 int GameBinder::bnd_LoadLevel(lua_State* L){
   LuaBinder binder(L);
-//  Game* game = (Game*) binder.checkusertype(1,"Game");
-
+  Game* game = (Game*) binder.checkusertype(1,"Game");
+  game->LoadLevel(lua_tostring(L,1));
   return 1;
 }

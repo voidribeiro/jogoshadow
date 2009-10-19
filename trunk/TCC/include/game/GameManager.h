@@ -18,6 +18,8 @@ the game features making them interact correctly.
 
 #include "noncopyable.hpp"
 
+#include "game.h"
+
 #include "DeviceManager.h"
 #include "Loader.h"
 #include "Factory.h"
@@ -65,8 +67,6 @@ private:
   //irr::u32 deltaTime;
 
   ProcessManager pm;
-
-  void GameManager::LoadLevel(std::string level);
 
 public:
   explicit GameManager(std::string path);
@@ -116,6 +116,7 @@ public:
   irr::u32 getDeltaTime();
 
   friend class Singleton<GameManager>;
+  void LoadLevel(std::string level);
 };
 
 typedef Singleton<GameManager> gm;

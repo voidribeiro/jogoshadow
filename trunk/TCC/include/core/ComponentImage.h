@@ -16,7 +16,7 @@ class ComponentImage : public AbstractComponent{
     int GetType() { return CIMAGE; };
 };
 
-static class ComponentImageBinder{
+class ComponentImageBinder{
   public:
     static int registerFunctions(lua_State* L);
     static int bnd_Instantiate (lua_State* L);

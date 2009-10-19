@@ -2,6 +2,7 @@
 
 ScriptObject::ScriptObject(const char* scriptToExecute){
   luaScript.startScript((char*)scriptToExecute);
+  //luaScript.registerFunction(GameBinder::registerFunctions);
   luaScript.registerFunction(GameObjectBinder::registerFunctions);
   luaScript.registerFunction(ComponentImageBinder::registerFunctions);
   luaScript.registerFunction(ComponentTimerBinder::registerFunctions);

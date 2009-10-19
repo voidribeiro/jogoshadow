@@ -10,6 +10,9 @@ extern "C"{
 #include <string>
 
 #include "Script.h"
+
+//Include classes for bind
+//#include "Game.h"
 #include "GameObject.h"
 #include "ComponentImage.h"
 #include "ComponentTimer.h"

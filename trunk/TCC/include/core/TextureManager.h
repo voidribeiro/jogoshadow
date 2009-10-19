@@ -12,7 +12,7 @@ using namespace std;
 using namespace irr;
 using namespace video;
 
-static class TextureManager{
+class TextureManager{
 	private:
 		static std::map<std::string, video::ITexture*> textureMap;
     //static TextureManager instance;

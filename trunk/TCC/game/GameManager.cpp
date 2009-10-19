@@ -7,6 +7,7 @@ using namespace io;
 using namespace gui;
 
 GameManager::GameManager(std::string path){
+  GameBinder::game = new Game(this);  
   //TODO - Remove this hack
   int pos = path.find("TCC.exe");
   this->path = path.substr(0,pos);
@@ -16,6 +17,7 @@ GameManager::GameManager(std::string path){
  * frees all IrrLicht allocated memory
  */
 GameManager::~GameManager(){
+  delete(GameBinder::game);
   IrrlichtDevice* device = DeviceManager::getInstance()->getDevice();
   device->drop();
 }
@@ -232,6 +234,8 @@ void GameManager::LoadLevel(std::string level){
   GameObjectList::Clear();
   Loader loader(path);
   loader.LoadLevel(level.c_str());
+  //Turn to step the first iteration after update list
+  GameObjectList::StepOver();
 }
 
 void GameManager::run(){
