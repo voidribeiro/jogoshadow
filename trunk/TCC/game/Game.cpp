@@ -1,13 +1,20 @@
 #include "Game.h"
 
-Game::Game(GameManager* _gameManager):gameManager(_gameManager){
+Game::Game(std::string _path):path(_path){
 }
 
 Game::~Game(){
 }
 
 void Game::LoadLevel(std::string level){
-  gameManager->LoadLevel(level);
+  //Remove the objects from another scene
+  GameObjectList::Clear();
+  ScriptObject loader("Scripts/loader.lua");
+  loader.AddGlobalVar("path", (char*)path.c_str());
+  loader.AddGlobalVar("level",(char*)level.c_str());
+  loader.Execute("startScript");
+  //Turn to step the first iteration after update list
+  GameObjectList::StepOver();
 }
 
 /****************************************************/
@@ -35,6 +42,6 @@ int GameBinder::bnd_GetInstance(lua_State* L){
 int GameBinder::bnd_LoadLevel(lua_State* L){
   LuaBinder binder(L);
   Game* game = (Game*) binder.checkusertype(1,"Game");
-  game->LoadLevel(lua_tostring(L,1));
+  game->LoadLevel(lua_tostring(L,2));
   return 1;
 }

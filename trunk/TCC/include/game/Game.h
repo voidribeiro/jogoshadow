@@ -11,19 +11,19 @@ extern "C"{
 #include <string>
 #include "LuaBinder.h"
 #include "noncopyable.hpp"
-#include "GameManager.h"
+#include "ScriptObject.h"
+#include "GameObject.h"
 
 using namespace std;
 
-class GameManager;
+class ScriptObject;
 
 class Game : private boost::noncopyable
 {
   private:
-    GameManager* gameManager;
-
+    std::string path;
   public:
-    explicit Game(GameManager* _gameManager);
+    explicit Game(std::string _path);
     virtual ~Game();
     void LoadLevel(std::string level);
 };

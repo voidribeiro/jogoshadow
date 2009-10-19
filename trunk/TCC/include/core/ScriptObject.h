@@ -12,7 +12,7 @@ extern "C"{
 #include "Script.h"
 
 //Include classes for bind
-//#include "Game.h"
+#include "Game.h"
 #include "GameObject.h"
 #include "ComponentImage.h"
 #include "ComponentTimer.h"
@@ -26,6 +26,7 @@ class ScriptObject{
     explicit ScriptObject(const char* scriptToExecute);
     virtual ~ScriptObject();
     void Execute(const char* functionToExecute);
+    void AddGlobalVar(const char* name, const char* value);
 };
 
 #endif

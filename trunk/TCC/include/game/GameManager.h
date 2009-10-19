@@ -21,7 +21,6 @@ the game features making them interact correctly.
 #include "game.h"
 
 #include "DeviceManager.h"
-#include "Loader.h"
 #include "Factory.h"
 #include "Singleton.h"
 #include "EventListener.h"
@@ -116,7 +115,6 @@ public:
   irr::u32 getDeltaTime();
 
   friend class Singleton<GameManager>;
-  void LoadLevel(std::string level);
 };
 
 typedef Singleton<GameManager> gm;
