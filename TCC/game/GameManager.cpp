@@ -111,6 +111,7 @@ bool GameManager::init(){
   /*
    * Creates a skybox
    */
+  /*
   sceneManager->addSkyBoxSceneNode(
         TextureManager::GetTexture("resources/irrlicht2_up.jpg"),
 				TextureManager::GetTexture("resources/irrlicht2_dn.jpg"),
@@ -118,6 +119,7 @@ bool GameManager::init(){
 				TextureManager::GetTexture("resources/irrlicht2_rt.jpg"),
 				TextureManager::GetTexture("resources/irrlicht2_ft.jpg"),
 				TextureManager::GetTexture("resources/irrlicht2_bk.jpg"));
+  */
 
   /* 
    * Creates a Scenario and a NPC
@@ -146,7 +148,7 @@ void GameManager::draw(){
       
   sceneManager->drawAll();
   guiManager->drawAll();
-  
+
   Image2D image("resources/001shot.jpg");
   image.draw();
 

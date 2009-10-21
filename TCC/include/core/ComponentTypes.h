@@ -5,9 +5,10 @@
 
 enum COMPONENT_TYPES{
   CSCRIPT  = 1,
-  CMODEL  = 2,
-  CIMAGE = 3,
-  CTIMER = 4
+  CMODEL   = 2,
+  CIMAGE   = 3,
+  CTIMER   = 4,
+  CSKYBOX  = 5
 };
 
 #endif
