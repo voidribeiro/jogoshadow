@@ -5,15 +5,15 @@ function startScript()
   local gameObject = GameObject.Instantiate()
   
   --Load Splash Image
-  local component = ComponentSkybox.Instantiate(path .. "resources\\level2\\skybox\\irrlicht2_up_i.jpg",
-                                                path .. "resources\\level2\\skybox\\irrlicht2_dn_i.jpg",
-                                                path .. "resources\\level2\\skybox\\irrlicht2_lf_i.jpg",
-                                                path .. "resources\\level2\\skybox\\irrlicht2_rt_i.jpg",
-                                                path .. "resources\\level2\\skybox\\irrlicht2_ft_i.jpg",
-                                                path .. "resources\\level2\\skybox\\irrlicht2_bk_i.jpg"  )
+  local component = ComponentSkybox.Instantiate(path .. "resources\\level1\\skybox\\irrlicht2_up.jpg",
+                                                path .. "resources\\level1\\skybox\\irrlicht2_dn.jpg",
+                                                path .. "resources\\level1\\skybox\\irrlicht2_lf.jpg",
+                                                path .. "resources\\level1\\skybox\\irrlicht2_rt.jpg",
+                                                path .. "resources\\level1\\skybox\\irrlicht2_ft.jpg",
+                                                path .. "resources\\level1\\skybox\\irrlicht2_bk.jpg"  )
   component:AddTo(gameObject)                                              
   
-  local component = ComponentTimer.Instantiate(10000, path .. "Scripts\\Level2\\Scene\\loader.lua","onTimeOut")
+  local component = ComponentTimer.Instantiate(10000, path .. "Scripts\\Level1\\Scene\\loader.lua","onTimeOut")
   component:AddTo(gameObject)
 
 end
