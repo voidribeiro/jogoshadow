@@ -9,16 +9,15 @@ using namespace std;
 
 class DeviceManager{
   private:
-    IrrlichtDevice* device;
-    video::IVideoDriver* driver;
-    static DeviceManager* instance;
-    
+    static IrrlichtDevice* device;
+    static video::IVideoDriver* driver;
+
   public:
     explicit DeviceManager ();
     virtual ~DeviceManager();
 
     //Parameters from irrlicht create device (modified defaults)
-    void initialize(
+    static void initialize(
       IEventReceiver* receiver = 0,
       video::E_DRIVER_TYPE deviceType = video::EDT_DIRECT3D9,
 		  // parantheses are necessary for some compilers
@@ -28,10 +27,8 @@ class DeviceManager{
 		  bool stencilbuffer = false,
 		  bool vsync = true);
 
-    static DeviceManager* getInstance();
-
-    IrrlichtDevice* getDevice(){return device;}
-    video::IVideoDriver* getDriver(){return driver;}
+    static IrrlichtDevice* GetDevice();
+    static video::IVideoDriver* GetDriver();
 };
 
 #endif

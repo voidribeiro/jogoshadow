@@ -8,8 +8,8 @@ ComponentSkybox::ComponentSkybox( const std::string _upTexture,
                                   const std::string _bkTexture)
 {
 
-  IrrlichtDevice* device = DeviceManager::getInstance()->getDevice();
-  irr::video::IVideoDriver* driver = DeviceManager::getInstance()->getDriver(); 
+  IrrlichtDevice* device = DeviceManager::GetDevice();
+  irr::video::IVideoDriver* driver = DeviceManager::GetDriver(); 
   
   irr::scene::ISceneManager* sceneManager = device->getSceneManager();
 
