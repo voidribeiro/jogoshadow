@@ -149,9 +149,6 @@ void GameManager::draw(){
   sceneManager->drawAll();
   guiManager->drawAll();
 
-  Image2D image("resources/001shot.jpg");
-  image.draw();
-
   drawTriangleSelection();
 
   //return true;

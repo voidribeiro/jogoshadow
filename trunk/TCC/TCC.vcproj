@@ -251,14 +251,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\game\Image2D.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\core\Loader.cpp"
-					>
-				</File>
-				<File
 					RelativePath=".\core\LuaBinder.cpp"
 					>
 				</File>
@@ -406,14 +398,6 @@
 				</File>
 				<File
 					RelativePath=".\include\core\GUIManager.h"
-					>
-				</File>
-				<File
-					RelativePath=".\include\core\Image2D.h"
-					>
-				</File>
-				<File
-					RelativePath=".\include\core\Loader.h"
 					>
 				</File>
 				<File

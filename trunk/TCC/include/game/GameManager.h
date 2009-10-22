@@ -27,7 +27,6 @@ the game features making them interact correctly.
 #include "Script.h"
 #include "GUIManager.h"
 #include "TextureManager.h"
-#include "Image2D.h"
 
 #include "ModelManager.h"
 #include "SoundManager.h"
