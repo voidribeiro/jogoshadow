@@ -7,6 +7,7 @@ ScriptObject::ScriptObject(const char* scriptToExecute){
   luaScript.registerFunction(ComponentImageBinder::registerFunctions);
   luaScript.registerFunction(ComponentTimerBinder::registerFunctions);
   luaScript.registerFunction(ComponentSkyboxBinder::registerFunctions);
+  luaScript.registerFunction(ComponentModelBinder::registerFunctions);
 }
 
 ScriptObject::~ScriptObject(){

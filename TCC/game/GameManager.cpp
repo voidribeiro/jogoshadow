@@ -124,7 +124,7 @@ bool GameManager::init(){
   /* 
    * Creates a Scenario and a NPC
    */
-  modelManager->setScenario("resources/plano.3DS");
+  //modelManager->setScenario("resources/plano.3DS");
   modelManager->setTerrain( "resources/terrain-heightmap.bmp", 
                             TextureManager::GetTexture("resources/terrain-texture.jpg"),
                             TextureManager::GetTexture("resources/detailmap3.jpg"));

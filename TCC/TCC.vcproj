@@ -282,6 +282,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\core\ComponentModel.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\core\ComponentScript.cpp"
 						>
 					</File>
@@ -437,6 +441,10 @@
 					</File>
 					<File
 						RelativePath=".\include\core\ComponentImage.h"
+						>
+					</File>
+					<File
+						RelativePath=".\include\core\ComponentModel.h"
 						>
 					</File>
 					<File
