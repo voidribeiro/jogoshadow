@@ -2,7 +2,7 @@
 
 ComponentTimer::ComponentTimer(int _timeOut, std::string _script, std::string _function):
 scriptToExec(_script),functionToExec(_function){
-  int timeStart = DeviceManager::getInstance()->getDevice()->getTimer()->getTime();
+  int timeStart = DeviceManager::GetDevice()->getTimer()->getTime();
   timeOut = timeStart + _timeOut;
 }
 
@@ -10,7 +10,7 @@ ComponentTimer::~ComponentTimer(){
 }
 
 void ComponentTimer::Update(){
-  if (DeviceManager::getInstance()->getDevice()->getTimer()->getTime()>timeOut){
+  if (DeviceManager::GetDevice()->getTimer()->getTime()>timeOut){
     ScriptObject scriptObj(scriptToExec.c_str());
     scriptObj.Execute(functionToExec.c_str());
   }

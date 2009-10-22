@@ -18,7 +18,7 @@ GameManager::GameManager(std::string path){
  */
 GameManager::~GameManager(){
   delete(GameBinder::game);
-  IrrlichtDevice* device = DeviceManager::getInstance()->getDevice();
+  IrrlichtDevice* device = DeviceManager::GetDevice();
   device->drop();
 }
 
@@ -41,8 +41,8 @@ bool GameManager::init(){
 	 *	  bool vsync = false,
 	 *	  IEventReceiver* receiver = 0);
    */
-  DeviceManager::getInstance()->initialize(&eventListener);
-  IrrlichtDevice* device = DeviceManager::getInstance()->getDevice();
+  DeviceManager::initialize(&eventListener);
+  IrrlichtDevice* device = DeviceManager::GetDevice();
 
   sceneManager = device->getSceneManager();
 
@@ -157,8 +157,8 @@ void GameManager::draw(){
 
 void GameManager::drawTriangleSelection(){
 
-  IrrlichtDevice* device = DeviceManager::getInstance()->getDevice();
-  irr::video::IVideoDriver* driver = DeviceManager::getInstance()->getDriver();
+  IrrlichtDevice* device = DeviceManager::GetDevice();
+  irr::video::IVideoDriver* driver = DeviceManager::GetDriver();
 
 	core::line3d<f32> line;
 	line.start = camera->getPosition();
@@ -192,8 +192,8 @@ void GameManager::drawTriangleSelection(){
 }
 
 bool GameManager::displayWindowCaption(){
-  IrrlichtDevice* device = DeviceManager::getInstance()->getDevice();
-  irr::video::IVideoDriver* driver = DeviceManager::getInstance()->getDriver();
+  IrrlichtDevice* device = DeviceManager::GetDevice();
+  irr::video::IVideoDriver* driver = DeviceManager::GetDriver();
 
   irr::s32 fps = driver->getFPS();
 
@@ -232,8 +232,8 @@ void GameManager::run(){
   /*
    * while the device is running, processes the main game loop
    */
-  IrrlichtDevice* device = DeviceManager::getInstance()->getDevice();
-  irr::video::IVideoDriver* driver = DeviceManager::getInstance()->getDriver();
+  IrrlichtDevice* device = DeviceManager::GetDevice();
+  irr::video::IVideoDriver* driver = DeviceManager::GetDriver();
 
   while(device->run()){
 
@@ -257,12 +257,12 @@ void GameManager::run(){
 }
 
 irr::s32 GameManager::getFPS(){
-  irr::video::IVideoDriver* driver = DeviceManager::getInstance()->getDriver();
+  irr::video::IVideoDriver* driver = DeviceManager::GetDriver();
   return driver->getFPS();
 }
 
 irr::u32 GameManager::getDeltaTime(){
-  IrrlichtDevice* device = DeviceManager::getInstance()->getDevice();
+  IrrlichtDevice* device = DeviceManager::GetDevice();
   return device->getTimer()->getTime();
 }
 

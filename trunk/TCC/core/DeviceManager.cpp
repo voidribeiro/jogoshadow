@@ -14,17 +14,21 @@ void DeviceManager::initialize(
 		  bool fullscreen,
 		  bool stencilbuffer,
 		  bool vsync){
-  device = createDevice(deviceType, windowSize, bits, fullscreen, stencilbuffer, vsync, receiver);
+  DeviceManager::device = createDevice(deviceType, windowSize, bits, fullscreen, stencilbuffer, vsync, receiver);
   if (device == 0){
     throw 666;
   }
-  driver = device->getVideoDriver();
+  DeviceManager::driver = device->getVideoDriver();
 }
 
-DeviceManager* DeviceManager::getInstance(){
-  if (instance == NULL)
-    DeviceManager::instance = new DeviceManager();
-  return instance;
+IrrlichtDevice* DeviceManager::device;
+video::IVideoDriver* DeviceManager::driver;
+
+//Not code safe - if not initializated returns null
+IrrlichtDevice* DeviceManager::GetDevice(){
+  return DeviceManager::device;
+}
+video::IVideoDriver* DeviceManager::GetDriver(){
+  return DeviceManager::driver;
 }
 
-DeviceManager* DeviceManager::instance;
