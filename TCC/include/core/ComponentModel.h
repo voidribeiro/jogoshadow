@@ -14,6 +14,7 @@ using namespace video;
 class ComponentModel : public AbstractComponent{
   private:
     std::string filename;
+
     IAnimatedMesh* mesh;
     IAnimatedMeshSceneNode* node;
 
@@ -23,6 +24,7 @@ class ComponentModel : public AbstractComponent{
     virtual void Update(){};
     virtual void Draw();
     int GetType() { return CMODEL; };
+    void setMaterial( video::SMaterial material );
 };
 
 class ComponentModelBinder{
@@ -31,11 +33,13 @@ class ComponentModelBinder{
     static int bnd_Instantiate (lua_State* L);
     static int bnd_DontDestroy (lua_State* L);
     static int bnd_AddTo (lua_State* L);
+    static int bnd_SetTexture (lua_State* L);
 };
 
 static const luaL_reg componentModelFunctions[] = {
     {"Instantiate", ComponentModelBinder::bnd_Instantiate},
     {"AddTo", ComponentModelBinder::bnd_AddTo},
+    {"SetTexture", ComponentModelBinder::bnd_SetTexture},
     {NULL, NULL}
 };
 
