@@ -11,5 +11,10 @@ function startScript()
                                                 path .. "resources\\level2\\skybox\\irrlicht2_rt_i.jpg",
                                                 path .. "resources\\level2\\skybox\\irrlicht2_ft_i.jpg",
                                                 path .. "resources\\level2\\skybox\\irrlicht2_bk_i.jpg"  )
-  component:AddTo(gameObject)                                              
+  component:AddTo(gameObject)
+
+  local gameObject = GameObject.Instantiate()
+  
+  local model = ComponentModel.Instantiate( path .. "resources\\level2\\models\\cenario.x" );
+  model:AddTo(gameObject)
 end
