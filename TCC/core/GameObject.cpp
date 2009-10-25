@@ -1,6 +1,8 @@
 #include "GameObject.h"
 
 GameObject::GameObject(){
+  irr::scene::ISceneManager* sceneManager = DeviceManager::GetDevice()->getSceneManager();
+  sceneNode = sceneManager->addEmptySceneNode();
 }
 
 GameObject::~GameObject(){
@@ -12,6 +14,9 @@ GameObject::~GameObject(){
       c = NULL;
     }
   }
+  if (sceneNode)
+    sceneNode->remove();
+  sceneNode = NULL;
 }
 
 //TODO - Implement all of this
@@ -79,6 +84,14 @@ AbstractComponent* GameObject::GetComponentByIndex(int index){
   return NULL;
 }
 
+core::vector3df GameObject::GetPosition(){
+  return sceneNode->getPosition();
+}
+
+void GameObject::SetPosition(const core::vector3df &newpos){
+  sceneNode->setPosition(newpos);
+}
+
 /////////////////////////////////////////////////////////
 
 int GameObjectBinder::registerFunctions(lua_State* L){
@@ -98,6 +111,16 @@ int GameObjectBinder::bnd_Instantiate(lua_State* L){
   //Add object to the list - maybe we have to change this
   GameObjectList::Add(gameObject);
   binder.pushusertype(gameObject,"GameObject");
+  return 1;
+}
+
+int GameObjectBinder::bnd_SetPosition(lua_State* L){
+  LuaBinder binder(L);
+  GameObject* gameObject  = (GameObject*) binder.checkusertype(1,"GameObject");
+  float posX = lua_tonumber(L, 2);
+  float posY = lua_tonumber(L, 3);
+  float posZ = lua_tonumber(L, 4);
+  gameObject->SetPosition(core::vector3df(posX, posY, posZ));
   return 1;
 }
 

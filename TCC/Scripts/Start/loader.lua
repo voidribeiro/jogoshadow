@@ -3,6 +3,7 @@ local splashTime = 5000
 function startScript()
   print("Loading Start.")
   local gameObject = GameObject.Instantiate()
+  gameObject:SetPosition(278.5,150,0)
   --Load Splash Image
   local component = ComponentImage.Instantiate(path .. "resources\\splash\\lucasarts_logo.jpg")
   component:AddTo(gameObject)
