@@ -8,7 +8,7 @@
 class GameObject;
 
 class AbstractComponent{
-  private:
+  protected:
     //Parent is used to get atributes or call methods within in
     //but the cross dependency of class is a bad thing, isn't?
     GameObject* parent;

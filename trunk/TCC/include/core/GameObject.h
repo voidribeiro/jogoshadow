@@ -1,11 +1,15 @@
 #ifndef __GAMEOBJECT_H__
 #define __GAMEOBJECT_H__
 
+#include "irrlicht.h"
+
+#include "DeviceManager.h"
 #include "AbstractComponent.h"
 #include "LuaBinder.h"
 
 #include <List>
 using namespace std;
+using namespace irr;
 
 class AbstractComponent;
 
@@ -13,6 +17,7 @@ class GameObject{
   private:  
     std::list<AbstractComponent*> componentList;
     bool stepOver;
+    scene::ISceneNode* sceneNode;
   public:
     explicit GameObject ();
     virtual ~GameObject();
@@ -26,6 +31,8 @@ class GameObject{
     int GetComponentsCount();
     AbstractComponent* GetComponent(int componentType);
     AbstractComponent* GetComponentByIndex(int index);
+    irr::core::vector3df GetPosition();
+    void SetPosition(const core::vector3df &newpos);
 };
 
  class GameObjectBinder{
@@ -33,10 +40,12 @@ class GameObject{
     static int registerFunctions(lua_State* L);
     static int bnd_Instantiate (lua_State* L);
     static int bnd_DontDestroy (lua_State* L);
+    static int bnd_SetPosition (lua_State* L);
 };
 
 static const luaL_reg gameObjectFunctions[] = {
     {"Instantiate", GameObjectBinder::bnd_Instantiate},
+    {"SetPosition", GameObjectBinder::bnd_SetPosition},
     {NULL, NULL}
 };
 

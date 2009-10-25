@@ -9,7 +9,9 @@ ComponentImage::~ComponentImage(){
 
 void ComponentImage::Draw(){
   irr::video::IVideoDriver* driver = DeviceManager::GetDriver();
-  driver->draw2DImage(TextureManager::GetTexture(filename), core::position2d<s32>(0,0));
+  core::vector3df parentPosition = parent->GetPosition();
+  driver->draw2DImage(TextureManager::GetTexture(filename), 
+    core::position2d<s32>(parentPosition.X,parentPosition.Y));
 }
 
 
