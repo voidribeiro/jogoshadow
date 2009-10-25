@@ -31,8 +31,12 @@ class GameObject{
     int GetComponentsCount();
     AbstractComponent* GetComponent(int componentType);
     AbstractComponent* GetComponentByIndex(int index);
+
+    //Methods to acess the node
     irr::core::vector3df GetPosition();
     void SetPosition(const core::vector3df &newpos);
+
+    void AddChildNode(scene::ISceneNode* childNode);
 };
 
  class GameObjectBinder{
