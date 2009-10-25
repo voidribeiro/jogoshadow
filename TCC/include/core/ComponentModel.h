@@ -25,6 +25,7 @@ class ComponentModel : public AbstractComponent{
     virtual void Draw();
     int GetType() { return CMODEL; };
     void setMaterial( video::SMaterial material );
+    virtual void SetParent(GameObject* parent);
 };
 
 class ComponentModelBinder{

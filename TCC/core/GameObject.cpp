@@ -92,6 +92,10 @@ void GameObject::SetPosition(const core::vector3df &newpos){
   sceneNode->setPosition(newpos);
 }
 
+void GameObject::AddChildNode(scene::ISceneNode* childNode){
+  sceneNode->addChild(childNode);
+}
+
 /////////////////////////////////////////////////////////
 
 int GameObjectBinder::registerFunctions(lua_State* L){

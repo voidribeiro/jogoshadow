@@ -39,6 +39,11 @@ void ComponentModel::setMaterial(irr::video::SMaterial material){
   node->setAnimationSpeed(60); 
 }
 
+void ComponentModel::SetParent(GameObject* parent){
+  AbstractComponent::SetParent(parent);
+  parent->AddChildNode(node);
+}
+
 /////////////////////////////////////////////////////////
 
 int ComponentModelBinder::registerFunctions(lua_State* L){
