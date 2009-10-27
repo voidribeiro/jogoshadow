@@ -4,7 +4,7 @@ EventListener::EventListener(){}
 
 EventListener::~EventListener(){
   keysPressed.clear();
-  delete guiManager;
+  //delete guiManager;
 }
 
 /*
@@ -30,9 +30,11 @@ bool EventListener::isPressed( EKEY_CODE code ){
  * GUI EVENTS
  */
 
+/*
 void EventListener::setGUIManager(GUIManager* guiManager){
   this->guiManager = guiManager;
 }
+*/
 
 bool EventListener::OnEvent(const SEvent &event){
 
@@ -84,8 +86,8 @@ bool EventListener::OnEvent(const SEvent &event){
       id        = event.GUIEvent.Caller->getID();
       eventType = event.GUIEvent.EventType;
 
-      if(guiManager)
-        guiManager->processEventCallback(eventType, id);
+      //if(guiManager)
+      // guiManager->processEventCallback(eventType, id);
 
       break;
 

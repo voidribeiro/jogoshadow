@@ -18,6 +18,7 @@ extern "C"{
 #include "ComponentTimer.h"
 #include "ComponentSkybox.h"
 #include "ComponentModel.h"
+#include "ComponentGUI.h"
 
 using namespace std;
 
