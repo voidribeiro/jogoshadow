@@ -239,15 +239,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\core\Factory.cpp"
-					>
-				</File>
-				<File
 					RelativePath=".\core\GameObject.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\core\GUIManager.cpp"
 					>
 				</File>
 				<File
@@ -277,6 +269,10 @@
 				<Filter
 					Name="Components"
 					>
+					<File
+						RelativePath=".\core\ComponentGUI.cpp"
+						>
+					</File>
 					<File
 						RelativePath=".\core\ComponentImage.cpp"
 						>
@@ -393,15 +389,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\include\core\Factory.h"
-					>
-				</File>
-				<File
 					RelativePath=".\include\core\GameObject.h"
-					>
-				</File>
-				<File
-					RelativePath=".\include\core\GUIManager.h"
 					>
 				</File>
 				<File
@@ -437,6 +425,10 @@
 					>
 					<File
 						RelativePath=".\include\core\AbstractComponent.h"
+						>
+					</File>
+					<File
+						RelativePath=".\include\core\ComponentGUI.h"
 						>
 					</File>
 					<File

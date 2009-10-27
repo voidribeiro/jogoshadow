@@ -50,9 +50,9 @@ bool GameManager::init(){
    * instantiates the auxiliar managers
    */
   modelManager = new ModelManager( sceneManager );
-  guiManager   = new GUIManager( device->getGUIEnvironment(), device->getVideoDriver() );
+  //guiManager   = new GUIManager( device->getGUIEnvironment(), device->getVideoDriver() );
 
-  eventListener.setGUIManager( guiManager );
+  //eventListener.setGUIManager( guiManager );
 
   /*
 	Using the loader
@@ -145,9 +145,12 @@ bool GameManager::init(){
 }
 
 void GameManager::draw(){
-      
+  IrrlichtDevice* device = DeviceManager::GetDevice();
+  IGUIEnvironment* env = device->getGUIEnvironment();
+
   sceneManager->drawAll();
-  guiManager->drawAll();
+  env->drawAll();
+  //guiManager->drawAll();
 
   drawTriangleSelection();
 

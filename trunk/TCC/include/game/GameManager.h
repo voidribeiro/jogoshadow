@@ -21,11 +21,10 @@ the game features making them interact correctly.
 #include "game.h"
 
 #include "DeviceManager.h"
-#include "Factory.h"
 #include "Singleton.h"
 #include "EventListener.h"
 #include "Script.h"
-#include "GUIManager.h"
+//#include "GUIManager.h"
 #include "TextureManager.h"
 
 #include "ModelManager.h"
@@ -43,12 +42,6 @@ private:
   bool gameOver;
   std::string path;
 
-  /*
-   *main IrrLicht device, needed to run everything in the engine
-   */
-  //IrrlichtDevice* device;
-
-  //irr::video::IVideoDriver* driver;
   irr::scene::ISceneManager* sceneManager;
   irr::scene::ICameraSceneNode* camera;
 
@@ -57,7 +50,7 @@ private:
   EventListener eventListener;
 
   ModelManager* modelManager;
-  GUIManager*   guiManager;
+  //GUIManager*   guiManager;
   SoundManager  soundManager;
 
   irr::s32 lastFPS;

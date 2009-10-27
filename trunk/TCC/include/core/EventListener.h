@@ -14,7 +14,7 @@ affect the whole application
 
 #include <map>
 #include "irrlicht.h"
-#include "GUIManager.h"
+//#include "GUIManager.h"
 
 using namespace irr;
 
@@ -31,7 +31,7 @@ class EventListener : public irr::IEventReceiver{
     std::map <EKEY_CODE, bool> keysPressed;
     std::map <int, gui::EGUI_EVENT_TYPE> guiEvents;
 
-    GUIManager* guiManager;
+    //GUIManager* guiManager;
 
     // We'll create a struct to record info on the mouse state
 	  struct SMouseState{
@@ -53,7 +53,7 @@ class EventListener : public irr::IEventReceiver{
      */
     bool isPressed(EKEY_CODE code);
 
-    void setGUIManager( GUIManager* guiManager );
+    //void setGUIManager( GUIManager* guiManager );
 
     /*
      * Processes all the events
