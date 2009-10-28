@@ -25,17 +25,6 @@ bool EventListener::isPressed( EKEY_CODE code ){
   return keysPressed.find(code)->second;
 }
 
-
-/*
- * GUI EVENTS
- */
-
-/*
-void EventListener::setGUIManager(GUIManager* guiManager){
-  this->guiManager = guiManager;
-}
-*/
-
 bool EventListener::OnEvent(const SEvent &event){
 
   //KEY Event Variables
@@ -86,8 +75,7 @@ bool EventListener::OnEvent(const SEvent &event){
       id        = event.GUIEvent.Caller->getID();
       eventType = event.GUIEvent.EventType;
 
-      //if(guiManager)
-      // guiManager->processEventCallback(eventType, id);
+      //printf("Evento de GUI\n");
 
       break;
 

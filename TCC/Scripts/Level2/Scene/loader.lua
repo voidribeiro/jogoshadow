@@ -14,6 +14,7 @@ function startScript()
   component:AddTo(gameObject)
 
   local gameObject = GameObject.Instantiate()
+  gameObject:SetPosition(10,10,10)
   
   local model = ComponentModel.Instantiate( path .. "resources\\level2\\models\\cenario.x" );
   model:AddTo(gameObject)

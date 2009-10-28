@@ -87,7 +87,8 @@ bool GameManager::init(){
    *     bool noVerticalMovement=false,
 	 *	   f32 jumpSpeed = 0.f) = 0;
    */
-  camera = sceneManager->addCameraSceneNodeFPS( 0, 100.0f, .3f, -1, 0, 0, false, 3.f);
+  //  camera = sceneManager->addCameraSceneNodeFPS( 0, 100.0f, .3f, -1, 0, 0, false, 3.f);
+  camera = sceneManager->addCameraSceneNode();
   camera->setPosition( core::vector3df( -100, 75, -150 ) );
 
   /*
@@ -108,18 +109,6 @@ bool GameManager::init(){
 		video::SColorf(1.0f,1.0f,1.0f,1.0f),
 		600.0f);
 
-  /*
-   * Creates a skybox
-   */
-  /*
-  sceneManager->addSkyBoxSceneNode(
-        TextureManager::GetTexture("resources/irrlicht2_up.jpg"),
-				TextureManager::GetTexture("resources/irrlicht2_dn.jpg"),
-				TextureManager::GetTexture("resources/irrlicht2_lf.jpg"),
-				TextureManager::GetTexture("resources/irrlicht2_rt.jpg"),
-				TextureManager::GetTexture("resources/irrlicht2_ft.jpg"),
-				TextureManager::GetTexture("resources/irrlicht2_bk.jpg"));
-  */
 
   /* 
    * Creates a Scenario and a NPC
@@ -129,12 +118,7 @@ bool GameManager::init(){
                             TextureManager::GetTexture("resources/terrain-texture.jpg"),
                             TextureManager::GetTexture("resources/detailmap3.jpg"));
 
-  //modelManager->pushModel("resources/plano.3DS", SCENARIO_MODEL);
-  //modelManager->pushModel("resources/faerie.md2", NPC_MODEL, driver->getTexture("resources/faerie2.bmp") );
-
   modelManager->setSkeleton("resources/skeleton/player.x");
-  //modelManager->pushNpc("resources/faerie.md2");
-  //modelManager->pushModel("resources/skeleton/player.x", SKELETAL_MODEL);
 
   pm.push(process1, this);
   pm.push(process2, this);
