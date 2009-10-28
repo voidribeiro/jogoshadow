@@ -20,7 +20,6 @@ class ComponentGUI : public AbstractComponent{
     void addMessageBox(wchar_t* title, wchar_t* message, bool modal);
     void addImage(const std::string filename, int posX, int posY);
     int GetType() { return CGUI; };
-    wchar_t* convertStrToWChar(std::string text);
 };
 
 class ComponentGUIBinder{

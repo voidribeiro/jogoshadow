@@ -22,7 +22,7 @@ void ComponentGUI::addMessageBox(wchar_t* title, wchar_t* message, bool modal){
   IrrlichtDevice* device = DeviceManager::GetDevice();
   IGUIEnvironment* env = device->getGUIEnvironment();
 
-  env->addMessageBox(title, message, true);
+  env->addMessageBox(title, message, modal);
 
 }
 
@@ -41,18 +41,6 @@ void ComponentGUI::addImage(const std::string filename, int posX, int posY){
 }
 
 
-
-wchar_t* ComponentGUI::convertStrToWChar(std::string text)
-{
-	const char *tempChar = text.c_str();
-	size_t origsize = strlen(tempChar) + 1;
-	const size_t newsize = 100;
-	size_t convertedChars = 0;
-	wchar_t wcstring[newsize];
-	mbstowcs_s(&convertedChars, wcstring, origsize, tempChar, _TRUNCATE);
-	wcscat_s(wcstring, L"(wchar_t *)");
-	return wcstring;
-}
 
 /////////////////////////////////////////////////////////
 
@@ -86,14 +74,17 @@ int ComponentGUIBinder::bnd_AddMessageBox(lua_State* L){
   LuaBinder binder(L);
   ComponentGUI* componentGUI  = (ComponentGUI*) binder.checkusertype(1,"ComponentGUI");
 
-  wchar_t* text = L"b o l i n h o ";
+  std::string  stitle   = lua_tostring(L, 2);
+  std::wstring title    = std::wstring(stitle.begin(), stitle.end());
 
-  //text = componentGUI->convertStrToWChar( text );
+  std::string  smessage = lua_tostring(L, 3);
+  std::wstring message  = std::wstring(smessage.begin(), smessage.end());
 
-  //está fixo porque eu não sei converter de string pra wchar_t*
-  componentGUI->addMessageBox(text, 
-                              text, 
-                              true);
+  bool modal = lua_toboolean(L, 4);
+
+  componentGUI->addMessageBox( (wchar_t*)title.c_str(), 
+                               (wchar_t*)message.c_str(), 
+                                modal);
 
   return 1;
 }
