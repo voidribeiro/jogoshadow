@@ -5,12 +5,28 @@ ComponentGUI::ComponentGUI(){
 }
 
 ComponentGUI::~ComponentGUI(){
-
+  //elem->drop();
 }
 
 void ComponentGUI::Draw(){
-  elem->draw();
+  //elem->draw();
   //printf("%d", elem->getChildren().getSize());
+
+  /*
+  std::map <std::string, GUIElement*>::iterator elementIt;
+
+  for(int i = 0; i < (int)elements.size(); i++){
+    elementIt = elements.find(i);
+
+    //se não encontrar um objeto no map
+    if(elementIt == elements.end())
+      break;
+
+    elementIt->second->draw();
+
+  }
+  */
+
 }
 
 void ComponentGUI::Update(){
@@ -23,21 +39,25 @@ void ComponentGUI::addMessageBox(wchar_t* title, wchar_t* message, bool modal){
   IGUIEnvironment* env = device->getGUIEnvironment();
 
   env->addMessageBox(title, message, modal);
-
 }
 
-void ComponentGUI::addImage(const std::string filename, int posX, int posY){
+void ComponentGUI::addImageButton(const std::string instancename, const std::string filename, int posX, int posY){
   IrrlichtDevice* device = DeviceManager::GetDevice();
   IGUIEnvironment* env = device->getGUIEnvironment();
 
-  //IGUIImage* img = env->addImage(texture, irr::core::position2d);
+  ITexture* tex = TextureManager::GetTexture(filename);
 
-  elem = env->addButton( core::rect<s32>(250,250,500,400), 0, 666 );
+  irr::gui::IGUIElement* buf = env->addButton( core::rect<s32>(posX, posY, 
+                                               posX + tex->getOriginalSize().Width,
+                                               posY + tex->getOriginalSize().Height) );
 
   //adicina o parent na imagem
-  env->addImage(TextureManager::GetTexture(filename), 
+  env->addImage(tex, 
                 core::position2d<s32>(0, 0),
-                true, elem, 5 );
+                true, buf, 5 );
+
+  elements[instancename] = buf;
+
 }
 
 
@@ -89,15 +109,16 @@ int ComponentGUIBinder::bnd_AddMessageBox(lua_State* L){
   return 1;
 }
 
-int ComponentGUIBinder::bnd_AddImage(lua_State *L){
+int ComponentGUIBinder::bnd_AddImageButton(lua_State *L){
   LuaBinder binder(L);
   ComponentGUI* componentGUI  = (ComponentGUI*) binder.checkusertype(1,"ComponentGUI");
 
-  std::string text = lua_tostring(L, 2);
-  int posX         = lua_tointeger(L, 3);
-  int posY         = lua_tointeger(L, 4);
+  std::string instancename  = lua_tostring(L, 2);
+  std::string filename      = lua_tostring(L, 3);
+  int posX                  = lua_tointeger(L, 4);
+  int posY                  = lua_tointeger(L, 5);
 
-  componentGUI->addImage(text, posX, posY);
+  componentGUI->addImageButton(instancename, filename, posX, posY);
 
   return 1;
 }
