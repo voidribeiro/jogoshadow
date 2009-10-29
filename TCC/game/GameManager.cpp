@@ -87,9 +87,9 @@ bool GameManager::init(){
    *     bool noVerticalMovement=false,
 	 *	   f32 jumpSpeed = 0.f) = 0;
    */
-  //  camera = sceneManager->addCameraSceneNodeFPS( 0, 100.0f, .3f, -1, 0, 0, false, 3.f);
+ // camera = sceneManager->addCameraSceneNodeFPS( 0, 100.0f, .3f, -1, 0, 0, false, 3.f);
   camera = sceneManager->addCameraSceneNode();
-  camera->setPosition( core::vector3df( -100, 75, -150 ) );
+  camera->setPosition( core::vector3df( -100, 75, 0 ) );
 
   /*
    * Plays a 2D backgound music using the SoundManager

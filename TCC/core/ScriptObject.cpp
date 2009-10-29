@@ -16,7 +16,12 @@ ScriptObject::~ScriptObject(){
 }
 
 void ScriptObject::Execute(const char* functionToExecute){
-  luaScript.callFunction((char*)functionToExecute,0,0,0,0);
+  try{
+    luaScript.callFunction((char*)functionToExecute,0,0,0,0);
+  }catch(exception &e){
+    printf("%s", e.what());
+  }
+
 }
 
 void ScriptObject::AddGlobalVar(const char* name, const char* value){

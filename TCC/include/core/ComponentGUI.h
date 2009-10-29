@@ -3,6 +3,9 @@
 
 #include "AbstractComponent.h"
 #include "TextureManager.h"
+#include <map>
+#include <string>
+
 
 using namespace irr;
 using namespace gui;
@@ -10,7 +13,8 @@ using namespace gui;
 class ComponentGUI : public AbstractComponent{
 
   private:
-    IGUIElement* elem;
+
+    std::map <std::string, IGUIElement*> elements;
 
   public:
     explicit ComponentGUI();
@@ -18,25 +22,25 @@ class ComponentGUI : public AbstractComponent{
     virtual void Update();
     virtual void Draw();
     void addMessageBox(wchar_t* title, wchar_t* message, bool modal);
-    void addImage(const std::string filename, int posX, int posY);
+    void addImageButton(const std::string instancename, const std::string filename, int posX, int posY);
     int GetType() { return CGUI; };
 };
 
 class ComponentGUIBinder{
   public:
-    static int registerFunctions(lua_State* L);
-    static int bnd_Instantiate  (lua_State* L);
-    static int bnd_DontDestroy  (lua_State* L);
-    static int bnd_AddMessageBox(lua_State* L);
-    static int bnd_AddImage     (lua_State* L);
-    static int bnd_AddTo        (lua_State* L);
+    static int registerFunctions  (lua_State* L);
+    static int bnd_Instantiate    (lua_State* L);
+    static int bnd_DontDestroy    (lua_State* L);
+    static int bnd_AddMessageBox  (lua_State* L);
+    static int bnd_AddImageButton (lua_State* L);
+    static int bnd_AddTo          (lua_State* L);
 };
 
 static const luaL_reg componentGUIFunctions[] = {
     {"Instantiate", ComponentGUIBinder::bnd_Instantiate},
     {"AddTo", ComponentGUIBinder::bnd_AddTo},
     {"AddMessageBox", ComponentGUIBinder::bnd_AddMessageBox},
-    {"AddImage", ComponentGUIBinder::bnd_AddImage},
+    {"AddImageButton", ComponentGUIBinder::bnd_AddImageButton},
     {NULL, NULL}
 };
 
