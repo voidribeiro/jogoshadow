@@ -14,6 +14,7 @@ extern "C"{
 //Include classes for bind
 #include "Game.h"
 #include "GameObject.h"
+#include "ComponentScript.h"
 #include "ComponentImage.h"
 #include "ComponentTimer.h"
 #include "ComponentSkybox.h"

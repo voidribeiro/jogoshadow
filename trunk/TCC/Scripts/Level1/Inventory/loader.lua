@@ -11,4 +11,7 @@ function startScript()
   local component = ComponentImage.Instantiate(path .. "resources\\common\\inventory\\background.jpg")
   component:SetVisible(false);
   component:AddTo(gameObject)
+  
+  local component = ComponentScript.Instantiate(path .. "Scripts\\Level1\\Inventory\\inventoryManager.lua")
+  component:AddTo(gameObject)
 end
