@@ -27,7 +27,7 @@ void GameObject::Update(){
     if ((*it) != NULL)
       (*it)->Update();
     //TODO - resolve this problem. This happen due a object list update
-    if (componentList.empty()){
+    if (componentList.empty()){  
       return;
     }
     if (stepOver)
