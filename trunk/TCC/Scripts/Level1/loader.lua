@@ -6,4 +6,7 @@ function startScript()
   startScript();
   dofile(levelScriptsPath .. "NPCs\\" .. loaderScript);
   startScript();
+  --We need do generalize this
+  dofile(levelScriptsPath .. "Inventory\\" .. loaderScript);
+  startScript();
 end

@@ -30,7 +30,6 @@ void ComponentGUI::Draw(){
 }
 
 void ComponentGUI::Update(){
-
 }
 
 
