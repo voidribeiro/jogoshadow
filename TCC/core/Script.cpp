@@ -133,7 +133,8 @@ void Script::callFunction(char* name, int *args, int nArgs , int *res, int nRes)
   for (int i = 0; i < nRes; i++)
 	  res[i] = (int)lua_tonumber(state, -(nRes - i));
 
-	lua_pop(state, 1);
+  //TODO - Check the impact of this
+	//lua_pop(state, 1);
 }
 
 void Script::registerFunction(lua_CFunction function){

@@ -11,9 +11,7 @@ ComponentScript::~ComponentScript(){
 }
 
 void ComponentScript::Update(){
-  //TODO - Why this cause BUG!!!!????
-  //Caling script n times
-//  scriptObj->Execute("update");
+  scriptObj->Execute("update");
 }
 
 /////////////////////////////////////////////////////////
