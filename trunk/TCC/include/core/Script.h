@@ -75,6 +75,8 @@ class Script{
   void registerFunction(lua_CFunction function);
 
 	void addGlobalVar(char* name, char* value);
+  //[Rafael]Modified global var to put pointer to classes
+  void addGlobalUserVar(char* tname, void* udata);
 };
 
 #endif

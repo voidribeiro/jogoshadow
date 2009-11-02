@@ -21,7 +21,7 @@ extern "C"{
 #include "ComponentModel.h"
 #include "ComponentGUI.h"
 
-using namespace std;
+using namespace std; 
 
 class ScriptObject{
   protected:
@@ -31,6 +31,7 @@ class ScriptObject{
     virtual ~ScriptObject();
     void Execute(const char* functionToExecute);
     void AddGlobalVar(const char* name, const char* value);
+    void AddGlobalUserVar(const char* name, const void* value);
 };
 
 #endif

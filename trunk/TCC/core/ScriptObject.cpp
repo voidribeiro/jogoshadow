@@ -27,3 +27,7 @@ void ScriptObject::Execute(const char* functionToExecute){
 void ScriptObject::AddGlobalVar(const char* name, const char* value){
   luaScript.addGlobalVar((char*)name, (char*)value);
 }
+
+void ScriptObject::AddGlobalUserVar(const char* name, const void* value){
+  luaScript.addGlobalUserVar((char*)name, (void*)value);
+}

@@ -128,7 +128,13 @@ int GameObjectBinder::bnd_SetPosition(lua_State* L){
   return 1;
 }
 
-
+int GameObjectBinder::bnd_ReBind(lua_State* L){
+  LuaBinder binder(L);
+  GameObject* gameObject = (GameObject*)lua_touserdata(L,1);
+  binder.pushusertype(gameObject,"GameObject");  
+  return 1;
+}
+ 
 //---------------------------------------------------------
 
 std::list<GameObject*> GameObjectList::gameObjectList;

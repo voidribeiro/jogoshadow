@@ -45,13 +45,15 @@ class GameObject{
     static int bnd_Instantiate (lua_State* L);
     static int bnd_DontDestroy (lua_State* L);
     static int bnd_SetPosition (lua_State* L);
+    static int bnd_ReBind (lua_State* L);
 };
 
 static const luaL_reg gameObjectFunctions[] = {
     {"Instantiate", GameObjectBinder::bnd_Instantiate},
     {"SetPosition", GameObjectBinder::bnd_SetPosition},
+    {"ReBind", GameObjectBinder::bnd_ReBind},  
     {NULL, NULL}
-};
+}; 
 
 //TODO - See a better way to do this list
 class GameObjectList{
