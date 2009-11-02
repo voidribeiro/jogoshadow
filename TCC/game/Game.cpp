@@ -17,6 +17,10 @@ void Game::LoadLevel(std::string level){
   GameObjectList::StepOver();
 }
 
+const char* Game::GetPath(){
+  return path.c_str();
+}
+
 /****************************************************/
 //Binder to Lua
 
@@ -35,7 +39,7 @@ int GameBinder::bnd_DontDestroy(lua_State* L){
 
 int GameBinder::bnd_GetInstance(lua_State* L){
   LuaBinder binder(L);
-  binder.pushusertype(game,"Game");
+  binder.pushusertype(game,"Game"); 
   return 1;
 }
 
@@ -44,4 +48,10 @@ int GameBinder::bnd_LoadLevel(lua_State* L){
   Game* game = (Game*) binder.checkusertype(1,"Game");
   game->LoadLevel(lua_tostring(L,2));
   return 1;
-}
+} 
+
+int GameBinder::bnd_GetPath(lua_State* L){
+  LuaBinder binder(L);
+  binder.pushstring(game->GetPath());
+  return 1;
+}  

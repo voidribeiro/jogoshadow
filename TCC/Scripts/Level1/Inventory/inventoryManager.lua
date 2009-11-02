@@ -1,12 +1,14 @@
-local numero = 0
-
 function start()
 	print("Starting inventory manager")
 end
 
 function update()
-	numero = numero + 1
-	print(numero)
+  --Binds the object to use its functions
+  local gameObj = GameObject.ReBind(parentObject)
+--  local component = gameObj:GetComponentOfType(6)
+--  if component:IsButtonPressed("inventoryButton")
+--	print("Apertou")
+--  end
 end
 
 function destroy()

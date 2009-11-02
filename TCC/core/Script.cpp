@@ -149,3 +149,8 @@ void Script::addGlobalVar(char* name, char* value){
 	lua_pushfstring(state, value);
 	lua_setglobal(state, name);
 }
+
+void Script::addGlobalUserVar (char* tname, void* udata) {
+  lua_pushlightuserdata(state,udata);
+  lua_setglobal(state, tname);
+}

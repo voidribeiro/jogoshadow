@@ -2,6 +2,7 @@
 
 ComponentScript::ComponentScript(std::string script){
   scriptObj = new ScriptObject(script.c_str());
+  scriptObj->AddGlobalUserVar("parentObject",parent);
   scriptObj->Execute("start");
 }
 

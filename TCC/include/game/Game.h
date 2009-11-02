@@ -26,8 +26,9 @@ class Game : private boost::noncopyable
     explicit Game(std::string _path);
     virtual ~Game();
     void LoadLevel(std::string level);
+    const char* GetPath(); 
 };
-
+ 
 
 class GameBinder{
   public:
@@ -36,11 +37,13 @@ class GameBinder{
     static int bnd_GetInstance (lua_State* L);
     static int bnd_DontDestroy (lua_State* L);
     static int bnd_LoadLevel (lua_State* L);
+    static int bnd_GetPath(lua_State* L);
 };
 
 static const luaL_reg gameFunctions[] = {
     {"GetInstance", GameBinder::bnd_GetInstance},
     {"LoadLevel", GameBinder::bnd_LoadLevel},
+    {"GetPath", GameBinder::bnd_GetPath},
     {NULL, NULL}
 };
 
