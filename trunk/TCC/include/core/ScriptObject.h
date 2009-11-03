@@ -8,6 +8,7 @@ extern "C"{
 };
 
 #include <string>
+#include <iostream>
 
 #include "Script.h"
 
@@ -26,8 +27,9 @@ using namespace std;
 class ScriptObject{
   protected:
     Script luaScript;
+    std::string scriptToExecute;
   public:
-    explicit ScriptObject(const char* scriptToExecute);
+    explicit ScriptObject(const char* _scriptToExecute);
     virtual ~ScriptObject();
     void Execute(const char* functionToExecute);
     void AddGlobalVar(const char* name, const char* value);

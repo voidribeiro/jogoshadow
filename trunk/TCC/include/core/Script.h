@@ -70,7 +70,7 @@ class Script{
     /*
      * Calls a LUA function
      */
-    void callFunction( char* name, int *args, int nArgs , int *res, int nRes);
+    bool callFunction( char* name, int *args, int nArgs , int *res, int nRes);
 
   void registerFunction(lua_CFunction function);
 

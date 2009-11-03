@@ -109,8 +109,8 @@ void Script::closeSubStruct(){
 /*
  * Opens a structure inside an other structure
  */
-void Script::callFunction(char* name, int *args, int nArgs , int *res, int nRes){
-  
+bool Script::callFunction(char* name, int *args, int nArgs , int *res, int nRes){
+  bool noErrors = true;
   /*
    * Searchs the function name
    */
@@ -125,7 +125,9 @@ void Script::callFunction(char* name, int *args, int nArgs , int *res, int nRes)
   /*
    * call the function
    */
-	lua_call(state, nArgs, nRes);
+  int errorCode = 0;
+
+  noErrors = !lua_pcall(state, nArgs, nRes,errorCode);
 	
   /*
    * Recover results
@@ -135,6 +137,7 @@ void Script::callFunction(char* name, int *args, int nArgs , int *res, int nRes)
 
   //TODO - Check the impact of this
 	//lua_pop(state, 1);
+  return noErrors;
 }
 
 void Script::registerFunction(lua_CFunction function){
