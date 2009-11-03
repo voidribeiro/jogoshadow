@@ -1,7 +1,7 @@
 #include "ScriptObject.h"
 
-ScriptObject::ScriptObject(const char* scriptToExecute){
-  luaScript.startScript((char*)scriptToExecute);
+ScriptObject::ScriptObject(const char* _scriptToExecute):scriptToExecute(_scriptToExecute){
+  luaScript.startScript((char*)_scriptToExecute);
   luaScript.registerFunction(GameBinder::registerFunctions);
   luaScript.registerFunction(GameObjectBinder::registerFunctions);
   luaScript.registerFunction(ComponentScriptBinder::registerFunctions);
@@ -17,11 +17,8 @@ ScriptObject::~ScriptObject(){
 }
 
 void ScriptObject::Execute(const char* functionToExecute){
-  try{
-    luaScript.callFunction((char*)functionToExecute,0,0,0,0);
-  }catch(exception &e){
-    printf("%s", e.what());
-  }
+  if (!luaScript.callFunction((char*)functionToExecute,0,0,0,0))
+    std::cout<<"Lua Error! Script:"<<scriptToExecute<<" - Function:"<<functionToExecute<<std::endl;;
 }
 
 void ScriptObject::AddGlobalVar(const char* name, const char* value){
