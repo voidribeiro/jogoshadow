@@ -17,6 +17,7 @@ class ComponentTimer : public AbstractComponent{
     virtual void Update();
     virtual void Draw(){};
     int GetType() { return CTIMER; };
+    const char* GetTypeName() { return "ComponentTimer"; };
 };
 
 class ComponentTimerBinder{

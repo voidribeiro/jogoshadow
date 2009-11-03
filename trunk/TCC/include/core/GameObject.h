@@ -30,6 +30,7 @@ class GameObject{
     void StepOver();
     int GetComponentsCount();
     AbstractComponent* GetComponent(int componentType);
+    AbstractComponent* GetComponent(const char* componentTypeName);
     AbstractComponent* GetComponentByIndex(int index);
 
     //Methods to acess the node
@@ -46,12 +47,14 @@ class GameObject{
     static int bnd_DontDestroy (lua_State* L);
     static int bnd_SetPosition (lua_State* L);
     static int bnd_ReBind (lua_State* L);
+    static int bnd_GetComponentOfType (lua_State* L);
 };
 
 static const luaL_reg gameObjectFunctions[] = {
     {"Instantiate", GameObjectBinder::bnd_Instantiate},
     {"SetPosition", GameObjectBinder::bnd_SetPosition},
-    {"ReBind", GameObjectBinder::bnd_ReBind},  
+    {"ReBind", GameObjectBinder::bnd_ReBind},
+    {"GetComponentOfType", GameObjectBinder::bnd_GetComponentOfType},
     {NULL, NULL}
 }; 
 

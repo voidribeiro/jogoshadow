@@ -24,6 +24,7 @@ class ComponentSkybox : public AbstractComponent{
     virtual void Update(){};
     virtual void Draw();
     int GetType() { return CSKYBOX; };
+    const char* GetTypeName() { return "ComponentSkybox"; };
 };
 
 class ComponentSkyboxBinder{

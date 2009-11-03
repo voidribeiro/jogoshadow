@@ -17,6 +17,7 @@ class ComponentScript : public AbstractComponent{
     virtual void Update();
     virtual void Draw(){};
     int GetType() { return CSCRIPT; };
+    const char* GetTypeName() { return "ComponentScript"; };
 };
 
 class ComponentScriptBinder{

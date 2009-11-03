@@ -24,6 +24,7 @@ class ComponentModel : public AbstractComponent{
     virtual void Update(){};
     virtual void Draw();
     int GetType() { return CMODEL; };
+    const char* GetTypeName() { return "ComponentModel"; };
     void setMaterial( video::SMaterial material );
     virtual void SetParent(GameObject* parent);
 };

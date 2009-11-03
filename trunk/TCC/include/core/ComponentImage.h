@@ -16,6 +16,7 @@ class ComponentImage : public AbstractComponent{
     virtual void Draw();
     void SetVisible(bool visible);
     int GetType() { return CIMAGE; };
+    const char* GetTypeName() { return "ComponentImage"; };
 };
 
 class ComponentImageBinder{

@@ -17,6 +17,7 @@ class AbstractComponent{
     virtual ~AbstractComponent(){};
     virtual void SetParent(GameObject* parent) { this->parent = parent; };
     virtual int GetType() = 0;
+    const virtual char* GetTypeName() = 0;
     virtual void Update() = 0;
     virtual void Draw() = 0;
 };
