@@ -80,6 +80,14 @@ AbstractComponent* GameObject::GetComponent(int componentType){
   return NULL;
 }
 
+AbstractComponent* GameObject::GetComponent(const char* componentTypeName){
+  list<AbstractComponent*>::iterator it;
+  for (it = componentList.begin(); it != componentList.end(); it++)
+    if (((*it) != NULL) && (strcmp((*it)->GetTypeName(),componentTypeName)))
+        return (*it);
+  return NULL;
+}
+
 AbstractComponent* GameObject::GetComponentByIndex(int index){
   return NULL;
 }
@@ -132,6 +140,15 @@ int GameObjectBinder::bnd_ReBind(lua_State* L){
   LuaBinder binder(L);
   GameObject* gameObject = (GameObject*)lua_touserdata(L,1);
   binder.pushusertype(gameObject,"GameObject");  
+  return 1;
+}
+
+int GameObjectBinder::bnd_GetComponentOfType(lua_State* L){
+  LuaBinder binder(L);
+  GameObject* gameObject = (GameObject*)lua_touserdata(L,1);
+  AbstractComponent* component = gameObject->GetComponent(lua_tostring(L,2));
+  if (component!=NULL)
+    binder.pushusertype(component,(char*)component->GetTypeName());  
   return 1;
 }
  
