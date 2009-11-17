@@ -2,7 +2,7 @@ function startScript()
   
   print("Executando Script de GUI")
   
-  local gameObject = GameObject.Instantiate()
+  local gameObject = GameObject.Instantiate("testeGUI")
 
   local component = ComponentGUI.Instantiate()
   

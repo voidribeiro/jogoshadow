@@ -1,3 +1,3 @@
 function startScript()
-  print("Loading Objects from Level1")
+  print("Loading Objects from Level2")
 end

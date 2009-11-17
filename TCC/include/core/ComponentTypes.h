@@ -10,6 +10,6 @@ enum COMPONENT_TYPES{
   CTIMER   = 4,
   CSKYBOX  = 5,
   CGUI     = 6
-};
+}; 
 
 #endif
