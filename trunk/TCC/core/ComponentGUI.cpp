@@ -89,6 +89,13 @@ int ComponentGUIBinder::bnd_AddTo(lua_State* L){
   return 1;
 }
 
+int ComponentGUIBinder::bnd_GetFrom(lua_State* L){
+  LuaBinder binder(L);
+  GameObject* gameObject = (GameObject*) binder.checkusertype(1,"GameObject");
+  binder.pushusertype(gameObject->GetComponent(CGUI),"ComponentGUI");
+  return 1;  
+}
+
 int ComponentGUIBinder::bnd_AddMessageBox(lua_State* L){
   LuaBinder binder(L);
   ComponentGUI* componentGUI  = (ComponentGUI*) binder.checkusertype(1,"ComponentGUI");

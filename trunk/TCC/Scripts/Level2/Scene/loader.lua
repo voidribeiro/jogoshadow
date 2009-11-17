@@ -1,8 +1,8 @@
 function startScript()
-  print("Loading Scene from Level1")
+  print("Loading Scene from Level2")
 
   --criar um objeto
-  local gameObject = GameObject.Instantiate()
+  local gameObject = GameObject.Instantiate("skybox")
   
   --Load Splash Image
   local component = ComponentSkybox.Instantiate(path .. "resources\\level2\\skybox\\irrlicht2_up_i.jpg",

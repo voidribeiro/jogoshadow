@@ -1,6 +1,6 @@
 function startScript()
   --criar um objeto
-  local gameObject = GameObject.Instantiate()
+  local gameObject = GameObject.Instantiate("fada")
   
   --Load Splash Image
   local component = ComponentModel.Instantiate(path .. "resources\\level1\\models\\faerie.md2")

@@ -8,6 +8,7 @@
 #include "LuaBinder.h"
 
 #include <List>
+#include <iostream>
 using namespace std;
 using namespace irr;
 
@@ -18,8 +19,9 @@ class GameObject{
     std::list<AbstractComponent*> componentList;
     bool stepOver;
     scene::ISceneNode* sceneNode;
+    std::string name;
   public:
-    explicit GameObject ();
+    explicit GameObject (std::string _name);
     virtual ~GameObject();
     void Update();
     void Draw();
@@ -46,15 +48,13 @@ class GameObject{
     static int bnd_Instantiate (lua_State* L);
     static int bnd_DontDestroy (lua_State* L);
     static int bnd_SetPosition (lua_State* L);
-    static int bnd_ReBind (lua_State* L);
-    static int bnd_GetComponentOfType (lua_State* L);
+    static int bnd_ReBinder (lua_State* L);
 };
 
 static const luaL_reg gameObjectFunctions[] = {
     {"Instantiate", GameObjectBinder::bnd_Instantiate},
     {"SetPosition", GameObjectBinder::bnd_SetPosition},
-    {"ReBind", GameObjectBinder::bnd_ReBind},
-    {"GetComponentOfType", GameObjectBinder::bnd_GetComponentOfType},
+    {"ReBinder", GameObjectBinder::bnd_ReBinder},
     {NULL, NULL}
 }; 
 

@@ -2,7 +2,7 @@ function startScript()
   print("Loading Scene from Level1")
 
   --criar um objeto
-  local gameObject = GameObject.Instantiate()
+  local gameObject = GameObject.Instantiate("skybox")
   
   --Load Splash Image
   local component = ComponentSkybox.Instantiate(path .. "resources\\level1\\skybox\\irrlicht2_up.jpg",
@@ -23,7 +23,7 @@ function startScript()
   --component:AddTo(gameObject)
   --component:blah()
 
-  local gameObject = GameObject.Instantiate()
+  local gameObject = GameObject.Instantiate("plano")
 
   local model = ComponentModel.Instantiate( path .. "resources\\level1\\models\\plano.3DS" );
   model:AddTo(gameObject)

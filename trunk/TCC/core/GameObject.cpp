@@ -1,6 +1,6 @@
 #include "GameObject.h"
 
-GameObject::GameObject(){
+GameObject::GameObject(std::string _name):name(_name){
   irr::scene::ISceneManager* sceneManager = DeviceManager::GetDevice()->getSceneManager();
   sceneNode = sceneManager->addEmptySceneNode();
 }
@@ -119,11 +119,11 @@ int GameObjectBinder::bnd_DontDestroy(lua_State* L){
 
 int GameObjectBinder::bnd_Instantiate(lua_State* L){
   LuaBinder binder(L);
-  GameObject* gameObject = new GameObject();
+  GameObject* gameObject = new GameObject(lua_tostring(L,1));
   //Add object to the list - maybe we have to change this
   GameObjectList::Add(gameObject);
   binder.pushusertype(gameObject,"GameObject");
-  return 1;
+  return 1; 
 }
 
 int GameObjectBinder::bnd_SetPosition(lua_State* L){
@@ -136,21 +136,12 @@ int GameObjectBinder::bnd_SetPosition(lua_State* L){
   return 1;
 }
 
-int GameObjectBinder::bnd_ReBind(lua_State* L){
+int GameObjectBinder::bnd_ReBinder(lua_State* L){
   LuaBinder binder(L);
   GameObject* gameObject = (GameObject*)lua_touserdata(L,1);
   binder.pushusertype(gameObject,"GameObject");  
-  return 1;
-}
-
-int GameObjectBinder::bnd_GetComponentOfType(lua_State* L){
-  LuaBinder binder(L);
-  GameObject* gameObject = (GameObject*)lua_touserdata(L,1);
-  AbstractComponent* component = gameObject->GetComponent(lua_tostring(L,2));
-  if (component!=NULL)
-    binder.pushusertype(component,(char*)component->GetTypeName());  
-  return 1;
-}
+  return 1; 
+} 
  
 //---------------------------------------------------------
 

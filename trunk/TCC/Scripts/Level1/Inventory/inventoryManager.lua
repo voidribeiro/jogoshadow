@@ -4,8 +4,9 @@ end
 
 function update()
   --Binds the object to use its functions
-  local gameObj = GameObject.ReBind(parentObject)
---  local component = gameObj:GetComponentOfType(6)
+  --local gameObj = GameObject.ReBinder(parentObject)
+  --local component = ComponentGUI.GetFrom(gameObj)
+  --print (component)
 --  if component:IsButtonPressed("inventoryButton")
 --	print("Apertou")
 --  end
