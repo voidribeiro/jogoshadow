@@ -15,6 +15,6 @@ function startScript()
   local component = ComponentScript.Instantiate(path .. "Scripts\\Level1\\Inventory\\inventoryManager.lua")
   component:AddTo(gameObject)
   
-  local component = gameObject:GetComponentOfType("ComponentGUI")
-  print (component)
+  --local component = gameObject:GetComponentOfType("ComponentGUI")
+  --print (component)
 end

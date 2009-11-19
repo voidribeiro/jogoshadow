@@ -11,7 +11,7 @@ ScriptObject::ScriptObject(const char* _scriptToExecute):scriptToExecute(_script
   luaScript.registerFunction(ComponentModelBinder::registerFunctions);
   luaScript.registerFunction(ComponentGUIBinder::registerFunctions);
 }
-
+ 
 ScriptObject::~ScriptObject(){
   luaScript.endScript();
 }
