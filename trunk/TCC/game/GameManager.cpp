@@ -54,24 +54,6 @@ bool GameManager::init(){
 
   //eventListener.setGUIManager( guiManager );
 
-  /*
-	Using the loader
-  */
-//Factory will go to hell - Components rules
-/*
-  Factory factory;
-  factory.setModelFactory(modelManager);
-
-  FactoryBinder binder;
-  binder.factory = &factory;
-
-  Loader loader(path);
-  loader.RegisterFunction(binder.registerFunctions);
-  loader.RegisterFunction(GameObjectBinder::registerFunctions);
-  loader.RegisterFunction(ComponentImageBinder::registerFunctions);
-  loader.LoadLevel("Level1");
-*/
-
   GameBinder::game->LoadLevel("Start");
 
   /*
@@ -232,7 +214,6 @@ void GameManager::run(){
 
       GameObjectList::Update();
       GameObjectList::Draw();
-
 
 		  driver->endScene();
     }
