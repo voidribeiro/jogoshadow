@@ -173,7 +173,7 @@ void GameObjectMap::Update(){
       (it->second)->Update();
     //Only update require stepOver that is why don't start with a stepOver
     if (stepOver)
-      return;
+      return; 
   }
 }
 
