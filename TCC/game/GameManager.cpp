@@ -212,8 +212,8 @@ void GameManager::run(){
       update();
       draw();
 
-      GameObjectList::Update();
-      GameObjectList::Draw();
+      GameObjectMap::Update();
+      GameObjectMap::Draw();
 
 		  driver->endScene();
     }
