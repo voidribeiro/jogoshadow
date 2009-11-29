@@ -23,6 +23,7 @@ class ComponentGUI : public AbstractComponent{
     virtual void Draw();
     void addMessageBox(wchar_t* title, wchar_t* message, bool modal);
     void addImageButton(const std::string instancename, const std::string filename, int posX, int posY);
+    bool IsButtonPressed(const std::string elementName);
     int GetType() { return CGUI; };
     const char* GetTypeName() { return "ComponentGUI"; };
 };
@@ -34,6 +35,7 @@ class ComponentGUIBinder{
     static int bnd_DontDestroy    (lua_State* L);
     static int bnd_AddMessageBox  (lua_State* L);
     static int bnd_AddImageButton (lua_State* L);
+    static int bnd_IsButtonPressed(lua_State* L);
     static int bnd_AddTo          (lua_State* L);
     static int bnd_GetFrom        (lua_State* L);
 };
@@ -44,6 +46,7 @@ static const luaL_reg componentGUIFunctions[] = {
     {"GetFrom", ComponentGUIBinder::bnd_GetFrom},
     {"AddMessageBox", ComponentGUIBinder::bnd_AddMessageBox},
     {"AddImageButton", ComponentGUIBinder::bnd_AddImageButton},
+    {"IsButtonPressed", ComponentGUIBinder::bnd_IsButtonPressed},
     {NULL, NULL}
 };
 

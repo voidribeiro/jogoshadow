@@ -59,6 +59,9 @@ void ComponentGUI::addImageButton(const std::string instancename, const std::str
 
 }
 
+bool ComponentGUI::IsButtonPressed(const std::string elementName){
+  return ((irr::gui::IGUIButton*)elements[elementName])->isPressed();
+}   
 
 
 /////////////////////////////////////////////////////////
@@ -90,8 +93,8 @@ int ComponentGUIBinder::bnd_AddTo(lua_State* L){
 }
 
 int ComponentGUIBinder::bnd_GetFrom(lua_State* L){
-  LuaBinder binder(L);
-  GameObject* gameObject = (GameObject*) binder.checkusertype(1,"GameObject");
+  LuaBinder binder(L); 
+  GameObject* gameObject = GameObjectMap::Get(lua_tostring(L,1));
   binder.pushusertype(gameObject->GetComponent(CGUI),"ComponentGUI");
   return 1;  
 }
@@ -120,11 +123,18 @@ int ComponentGUIBinder::bnd_AddImageButton(lua_State *L){
   ComponentGUI* componentGUI  = (ComponentGUI*) binder.checkusertype(1,"ComponentGUI");
 
   std::string instancename  = lua_tostring(L, 2);
-  std::string filename      = lua_tostring(L, 3);
+  std::string filename      = lua_tostring(L, 3);   
   int posX                  = lua_tointeger(L, 4);
   int posY                  = lua_tointeger(L, 5);
 
   componentGUI->addImageButton(instancename, filename, posX, posY);
 
   return 1;
+}
+
+int ComponentGUIBinder::bnd_IsButtonPressed(lua_State* L){
+  LuaBinder binder(L); 
+  ComponentGUI* componentGUI  = (ComponentGUI*) binder.checkusertype(1,"ComponentGUI");
+  binder.pushnumber(componentGUI->IsButtonPressed(lua_tostring(L,2)));
+  return 1;   
 }
