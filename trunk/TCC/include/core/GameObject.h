@@ -8,7 +8,9 @@
 #include "LuaBinder.h"
 
 #include <List>
+#include <Map>
 #include <iostream>
+#include <string>
 using namespace std;
 using namespace irr;
 
@@ -59,12 +61,13 @@ static const luaL_reg gameObjectFunctions[] = {
 }; 
 
 //TODO - See a better way to do this list
-class GameObjectList{
+class GameObjectMap{
   private:
-    static std::list<GameObject*> gameObjectList;
+    static std::map<std::string,GameObject*> gameObjectMap;
     static bool stepOver;
   public:
-    static void Add(GameObject* gObj);
+    static void Add(std::string objName,GameObject* gObj);
+    static GameObject* Get(std::string objName);
     static void Clear();
     static void Draw();
     static void Update();

@@ -8,13 +8,13 @@ Game::~Game(){
 
 void Game::LoadLevel(std::string level){
   //Remove the objects from another scene
-  GameObjectList::Clear();
+  GameObjectMap::Clear();
   ScriptObject loader("Scripts/loader.lua");
   loader.AddGlobalVar("path", (char*)path.c_str());
   loader.AddGlobalVar("level",(char*)level.c_str());
   loader.Execute("startScript");
   //Turn to step the first iteration after update list
-  GameObjectList::StepOver();
+  GameObjectMap::StepOver();
 }
 
 const char* Game::GetPath(){

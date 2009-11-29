@@ -120,8 +120,8 @@ int GameObjectBinder::bnd_DontDestroy(lua_State* L){
 int GameObjectBinder::bnd_Instantiate(lua_State* L){
   LuaBinder binder(L);
   GameObject* gameObject = new GameObject(lua_tostring(L,1));
-  //Add object to the list - maybe we have to change this
-  GameObjectList::Add(gameObject);
+  //Add object to the map - maybe we have to change this
+  GameObjectMap::Add(lua_tostring(L,1),gameObject);
   binder.pushusertype(gameObject,"GameObject");
   return 1; 
 }
@@ -145,47 +145,53 @@ int GameObjectBinder::bnd_ReBinder(lua_State* L){
  
 //---------------------------------------------------------
 
-std::list<GameObject*> GameObjectList::gameObjectList;
-bool GameObjectList::stepOver;
+std::map<std::string,GameObject*> GameObjectMap::gameObjectMap;
+bool GameObjectMap::stepOver;
 
-void GameObjectList::Add(GameObject* gObj){
-  GameObjectList::gameObjectList.push_back(gObj);
+void GameObjectMap::Add(std::string objName, GameObject* gObj){
+  if (GameObjectMap::gameObjectMap[objName] != NULL)
+    std::cout<<"Sobrescrevendo objeto de nome "<<objName.c_str()<<std::endl;
+  GameObjectMap::gameObjectMap[objName] = gObj;
 }
 
-void GameObjectList::Clear(){
-  while (gameObjectList.size() > 0){
-    GameObject* gObj = (*gameObjectList.begin());
-    gameObjectList.pop_front();
-    if (gObj != NULL){
-      delete gObj;
-      gObj = NULL;
+void GameObjectMap::Clear(){
+  map<std::string,GameObject*>::iterator it;
+  for (it = gameObjectMap.begin(); it != gameObjectMap.end(); it++){
+    if ((it->second) != NULL){
+      delete (it->second);
+      it->second = NULL;
     }
   }
+  gameObjectMap.clear();
   StepOver();
 }
 
-void GameObjectList::Update(){
-  list<GameObject*>::iterator it;
-  for (it = gameObjectList.begin(); it != gameObjectList.end(); it++){
-    if ((*it) != NULL)
-      (*it)->Update();
+void GameObjectMap::Update(){
+  map<std::string,GameObject*>::iterator it;
+  for (it = gameObjectMap.begin(); it != gameObjectMap.end(); it++){
+    if ((it->second) != NULL)
+      (it->second)->Update();
     //Only update require stepOver that is why don't start with a stepOver
     if (stepOver)
       return;
   }
 }
 
-void GameObjectList::Draw(){
-  list<GameObject*>::iterator it;
+void GameObjectMap::Draw(){
+  map<std::string,GameObject*>::iterator it;
   //If update required stepOver will wait one drawcall before draw again
   if (!stepOver)
-    for (it = gameObjectList.begin(); it != gameObjectList.end(); it++)
-      if ((*it) != NULL)
-        (*it)->Draw();
+    for (it = gameObjectMap.begin(); it != gameObjectMap.end(); it++)
+      if ((it->second) != NULL)
+        (it->second)->Draw();
 
   stepOver = false;
 }
 
-void GameObjectList::StepOver(){
+void GameObjectMap::StepOver(){
   stepOver = true;
+}
+
+GameObject* GameObjectMap::Get(std::string objName){
+  return gameObjectMap[objName];
 }
