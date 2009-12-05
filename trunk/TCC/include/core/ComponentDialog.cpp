@@ -9,14 +9,29 @@ ComponentDialog::~ComponentDialog(){
 void ComponentDialog::Draw(){
 
 }
-
-void ComponentDialog::Say( wchar_t* message ){
+ 
+void ComponentDialog::Say( std::string imageFile, wchar_t* message, std::string fontFile ){
   IrrlichtDevice* device = DeviceManager::GetDevice();
   IGUIEnvironment* env = device->getGUIEnvironment();
 
-  core::rect<s32> quadrado(0,0,800,100);
-   
+  /* imagem */
+  ITexture* tex = TextureManager::GetTexture(imageFile);
+  env->addImage(tex, core::position2d<s32>(0, 0));
+
+  /* fala */
+  core::rect<s32> quadrado(100,0,800,100);
   env->addStaticText(message, quadrado,false, true, 0, -1, true);
+
+  /* fonte */
+  IGUISkin* skin = env->getSkin();
+  IGUIFont* font = env->getFont( fontFile.c_str() ); 
+
+  if (font)
+    skin->setFont(font);
+
+  skin->setFont(env->getBuiltInFont(), EGDF_TOOLTIP);
+
+  
 }
 
 /////////////////////////////////////////////////////////
@@ -55,10 +70,14 @@ int ComponentDialogBinder::bnd_Say(lua_State* L){
 
   ComponentDialog* componentDialog  = (ComponentDialog*) binder.checkusertype(1,"ComponentDialog");
 
-  std::string  smessage   = lua_tostring(L, 2); 
+  std::string  imageFile   = lua_tostring(L, 2); 
+
+  std::string  smessage   = lua_tostring(L, 3); 
   std::wstring message    = std::wstring(smessage.begin(), smessage.end());
 
-  componentDialog->Say((wchar_t*)message.c_str());
+  std::string  fontFile   = lua_tostring(L, 4); 
+
+  componentDialog->Say(imageFile, (wchar_t*)message.c_str(), fontFile);
 
   return 1;
 }
