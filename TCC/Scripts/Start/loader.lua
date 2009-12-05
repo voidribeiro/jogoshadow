@@ -9,7 +9,7 @@ function startScript()
   component:AddTo(gameObject)
   
   local component = ComponentDialog.Instantiate()
-  component:Say("esta é uma fala teste!")
+  component:Say(path .. "resources\\hero\\hero.png", "Esta eh uma fala teste!", path .. "resources\\font\\fontlucida.png")
   component:AddTo(gameObject)
   
   --Set a Timer Function

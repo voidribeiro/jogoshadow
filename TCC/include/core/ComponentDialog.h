@@ -17,9 +17,9 @@ class ComponentDialog : public AbstractComponent{
   public:
     explicit ComponentDialog();
     virtual ~ComponentDialog();
-    virtual void Update(){};
+    virtual void Update(){}; 
     virtual void Draw();
-    void Say( wchar_t* message );
+    void Say( std::string imageFile, wchar_t* message, std::string fontFile  );
     void SetVisible(bool visible);
     int GetType() { return CDIALOG; };
     const char* GetTypeName() { return "ComponentDialog"; };
