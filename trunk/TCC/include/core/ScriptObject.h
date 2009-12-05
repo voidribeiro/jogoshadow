@@ -21,6 +21,7 @@ extern "C"{
 #include "ComponentSkybox.h"
 #include "ComponentModel.h"
 #include "ComponentGUI.h"
+#include "ComponentDialog.h"
 
 using namespace std; 
 

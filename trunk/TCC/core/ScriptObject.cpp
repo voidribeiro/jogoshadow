@@ -10,6 +10,7 @@ ScriptObject::ScriptObject(const char* _scriptToExecute):scriptToExecute(_script
   luaScript.registerFunction(ComponentSkyboxBinder::registerFunctions);
   luaScript.registerFunction(ComponentModelBinder::registerFunctions);
   luaScript.registerFunction(ComponentGUIBinder::registerFunctions);
+  luaScript.registerFunction(ComponentDialogBinder::registerFunctions);
 }
  
 ScriptObject::~ScriptObject(){

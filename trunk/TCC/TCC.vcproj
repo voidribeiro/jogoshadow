@@ -270,6 +270,10 @@
 					Name="Components"
 					>
 					<File
+						RelativePath=".\include\core\ComponentDialog.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\core\ComponentGUI.cpp"
 						>
 					</File>
@@ -425,6 +429,10 @@
 					>
 					<File
 						RelativePath=".\include\core\AbstractComponent.h"
+						>
+					</File>
+					<File
+						RelativePath=".\include\core\ComponentDialog.h"
 						>
 					</File>
 					<File

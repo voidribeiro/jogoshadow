@@ -7,6 +7,11 @@ function startScript()
   --Load Splash Image
   local component = ComponentImage.Instantiate(path .. "resources\\splash\\lucasarts_logo.jpg")
   component:AddTo(gameObject)
+  
+  local component = ComponentDialog.Instantiate()
+  component:Say("esta é uma fala teste!")
+  component:AddTo(gameObject)
+  
   --Set a Timer Function
   local component = ComponentTimer.Instantiate(splashTime, path .. "Scripts\\Start\\loader.lua","onTimeOut")
   component:AddTo(gameObject)
