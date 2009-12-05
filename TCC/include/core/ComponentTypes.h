@@ -9,7 +9,8 @@ enum COMPONENT_TYPES{
   CIMAGE   = 3,
   CTIMER   = 4,
   CSKYBOX  = 5,
-  CGUI     = 6
+  CGUI     = 6,
+  CDIALOG  = 7
 }; 
 
 #endif
