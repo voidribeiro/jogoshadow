@@ -9,6 +9,11 @@ function startScript()
   component:AddTo(gameObject)
   
   local component = ComponentDialog.Instantiate()
+  
+  --component:SetPlayerImage()
+  --component:SetNpcImage()
+  --component:Visible()
+  
   component:Say(path .. "resources\\hero\\hero.png", "Esta eh uma fala teste!", path .. "resources\\font\\fontlucida.png")
   component:AddTo(gameObject)
   
@@ -20,5 +25,5 @@ end
 function onTimeOut()
   print("It should not get here before call timeout")
 	local game = Game.GetInstance()
-	game:LoadLevel("Level1");
+	game:LoadLevel("Level2");
 end

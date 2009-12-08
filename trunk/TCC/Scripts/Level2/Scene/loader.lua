@@ -13,7 +13,7 @@ function startScript()
                                                 path .. "resources\\level2\\skybox\\irrlicht2_bk_i.jpg"  )
   component:AddTo(gameObject)
 
-  local gameObject = GameObject.Instantiate()
+  local gameObject = GameObject.Instantiate("bolinho")
   gameObject:SetPosition(10,10,10)
   
   local model = ComponentModel.Instantiate( path .. "resources\\level2\\models\\cenario.x" );

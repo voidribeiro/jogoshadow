@@ -4,12 +4,19 @@ ComponentDialog::ComponentDialog(){
 }
 
 ComponentDialog::~ComponentDialog(){
+  if (window)
+    window->remove();
+
 }
 
 void ComponentDialog::Draw(){
 
 }
- 
+
+void ComponentDialog::Update(){
+
+}
+
 void ComponentDialog::Say( std::string imageFile, wchar_t* message, std::string fontFile ){
   IrrlichtDevice* device = DeviceManager::GetDevice();
   IGUIEnvironment* env = device->getGUIEnvironment();
@@ -18,9 +25,10 @@ void ComponentDialog::Say( std::string imageFile, wchar_t* message, std::string 
   ITexture* tex = TextureManager::GetTexture(imageFile);
   env->addImage(tex, core::position2d<s32>(0, 0));
 
-  /* fala */
+  /* fala */ 
   core::rect<s32> quadrado(100,0,800,100);
-  env->addStaticText(message, quadrado,false, true, 0, -1, true);
+  window = env->addStaticText(message, quadrado,false, true, 0, -1, true);
+  window->setBackgroundColor(video::SColor(200,250,250,250));
 
   /* fonte */
   IGUISkin* skin = env->getSkin();

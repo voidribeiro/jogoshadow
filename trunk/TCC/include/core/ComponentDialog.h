@@ -10,14 +10,14 @@ using namespace irr;
 using namespace gui;
 
 class ComponentDialog : public AbstractComponent{
-/*
+
   private:
-    std::string filename;
-*/
+    gui::IGUIStaticText* window;
+
   public:
     explicit ComponentDialog();
     virtual ~ComponentDialog();
-    virtual void Update(){}; 
+    virtual void Update(); 
     virtual void Draw();
     void Say( std::string imageFile, wchar_t* message, std::string fontFile  );
     void SetVisible(bool visible);
