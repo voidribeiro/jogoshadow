@@ -1,5 +1,5 @@
 function startScript()
-  print("Loading Level1.")
+  print("Loading Level2.")
   dofile(levelScriptsPath .. "Scene\\" .. loaderScript);
   startScript();
   dofile(levelScriptsPath .. "Objects\\" .. loaderScript);

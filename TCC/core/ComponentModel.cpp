@@ -10,7 +10,7 @@ ComponentModel::ComponentModel(const std::string filename){
 
   if(!mesh)
     printf("Unable to load mesh!");
-
+ 
   node = sceneManager->addAnimatedMeshSceneNode( mesh );
 }
 

@@ -115,7 +115,7 @@ int GameObjectBinder::registerFunctions(lua_State* L){
 int GameObjectBinder::bnd_DontDestroy(lua_State* L){
   return 0;
 }
-
+ 
 
 int GameObjectBinder::bnd_Instantiate(lua_State* L){
   LuaBinder binder(L);
