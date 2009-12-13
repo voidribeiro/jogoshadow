@@ -32,6 +32,9 @@ function onTimeOut()
 end
 
 function sayOther()
+
   local component = ComponentDialog.GetFrom("Logo")
-  component:Say("Era uma vez um outro texto de diálogo, blah blah blah!!!")
+  component:Say("Era uma vez um outro texto de dialogo, blah blah blah!!!")
+  --component:SetVisible(false)
+
 end

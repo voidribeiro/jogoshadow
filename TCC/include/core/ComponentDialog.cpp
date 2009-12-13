@@ -29,12 +29,8 @@ void ComponentDialog::Update(){
 
 }
 
-void ComponentDialog::Say(wchar_t* _message){
-
-  //message = _message;
-  //wchar_t * ptr;
-  //ptr = wcscat( message, L" BOLINHO");
-  windowText->setText(_message);
+void ComponentDialog::Say(wchar_t* message){
+  windowText->setText(message);
 }
 
 void ComponentDialog::SetPlayerImage(std::string filename){
@@ -68,8 +64,8 @@ void ComponentDialog::SetFont(std::string filename){
   skin->setFont(env->getBuiltInFont(), EGDF_TOOLTIP);
 }
 
-void ComponentDialog::SetVisible(bool _visible){
-  visible = _visible; 
+void ComponentDialog::SetVisible(bool visible){
+  windowAll->setVisible(visible);
 }
 
 /////////////////////////////////////////////////////////

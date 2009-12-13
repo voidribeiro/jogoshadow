@@ -26,11 +26,13 @@ class ComponentTimerBinder{
     static int bnd_Instantiate (lua_State* L);
     static int bnd_DontDestroy (lua_State* L);
     static int bnd_AddTo (lua_State* L);
+    static int bnd_GetFrom  (lua_State* L);
 };
 
 static const luaL_reg componentTimerFunctions[] = {
     {"Instantiate", ComponentTimerBinder::bnd_Instantiate},
     {"AddTo", ComponentTimerBinder::bnd_AddTo},
+    {"GetFrom", ComponentTimerBinder::bnd_GetFrom},
     {NULL, NULL}
 };
 
