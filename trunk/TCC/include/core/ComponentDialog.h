@@ -27,8 +27,6 @@ class ComponentDialog : public AbstractComponent{
     wchar_t* message;
     wchar_t* buffer;
 
-    bool visible;
-
   public:
     explicit ComponentDialog();
     virtual ~ComponentDialog();

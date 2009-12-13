@@ -45,3 +45,11 @@ int ComponentTimerBinder::bnd_AddTo(lua_State* L){
   gameObject->AddComponent(componentTimer);
   return 1;
 }
+
+
+int ComponentTimerBinder::bnd_GetFrom(lua_State* L){
+  LuaBinder binder(L); 
+  GameObject* gameObject = GameObjectMap::Get(lua_tostring(L,1));
+  binder.pushusertype(gameObject->GetComponent(CTIMER),"ComponentTimer");
+  return 1;  
+}
