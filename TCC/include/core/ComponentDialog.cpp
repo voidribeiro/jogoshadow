@@ -1,11 +1,22 @@
 #include "ComponentDialog.h"
 
-ComponentDialog::ComponentDialog(){
+ComponentDialog::ComponentDialog():
+rectAll(0,0,800,100),
+rectText(100,0,700,100)
+{
+  IrrlichtDevice* device = DeviceManager::GetDevice();
+  IGUIEnvironment* env = device->getGUIEnvironment();
+
+  windowAll = env->addStaticText(L"", rectAll, false, true, 0, -1, true);
+
+  windowText = env->addStaticText(L"", rectText, false, true, windowAll, -1, true);
+  windowText->setBackgroundColor(video::SColor(200,250,250,250));
+
 }
 
 ComponentDialog::~ComponentDialog(){
-  if (window)
-    window->remove();
+  if (windowAll)
+    windowAll->remove();
 
 }
 
@@ -15,31 +26,50 @@ void ComponentDialog::Draw(){
 
 void ComponentDialog::Update(){
 
+
 }
 
-void ComponentDialog::Say( std::string imageFile, wchar_t* message, std::string fontFile ){
+void ComponentDialog::Say(wchar_t* _message){
+
+  //message = _message;
+  //wchar_t * ptr;
+  //ptr = wcscat( message, L" BOLINHO");
+  windowText->setText(_message);
+}
+
+void ComponentDialog::SetPlayerImage(std::string filename){
   IrrlichtDevice* device = DeviceManager::GetDevice();
   IGUIEnvironment* env = device->getGUIEnvironment();
 
-  /* imagem */
-  ITexture* tex = TextureManager::GetTexture(imageFile);
-  env->addImage(tex, core::position2d<s32>(0, 0));
+  playerImage = TextureManager::GetTexture(filename);
+  env->addImage(playerImage, core::position2d<s32>(0, 0), true, windowAll);
 
-  /* fala */ 
-  core::rect<s32> quadrado(100,0,800,100);
-  window = env->addStaticText(message, quadrado,false, true, 0, -1, true);
-  window->setBackgroundColor(video::SColor(200,250,250,250));
+}
 
-  /* fonte */
+void ComponentDialog::SetNpcImage(std::string filename){
+  IrrlichtDevice* device = DeviceManager::GetDevice();
+  IGUIEnvironment* env = device->getGUIEnvironment();
+
+  npcImage = TextureManager::GetTexture(filename);
+  env->addImage(playerImage, core::position2d<s32>(0, 0), true, windowAll);
+
+}
+
+void ComponentDialog::SetFont(std::string filename){
+  IrrlichtDevice* device = DeviceManager::GetDevice();
+  IGUIEnvironment* env = device->getGUIEnvironment();
+
   IGUISkin* skin = env->getSkin();
-  IGUIFont* font = env->getFont( fontFile.c_str() ); 
+  IGUIFont* font = env->getFont( filename.c_str() ); 
 
   if (font)
     skin->setFont(font);
 
   skin->setFont(env->getBuiltInFont(), EGDF_TOOLTIP);
+}
 
-  
+void ComponentDialog::SetVisible(bool _visible){
+  visible = _visible; 
 }
 
 /////////////////////////////////////////////////////////
@@ -73,19 +103,58 @@ int ComponentDialogBinder::bnd_AddTo(lua_State* L){
   return 1;
 }
 
+int ComponentDialogBinder::bnd_GetFrom(lua_State* L){
+  LuaBinder binder(L); 
+  GameObject* gameObject = GameObjectMap::Get(lua_tostring(L,1));
+  binder.pushusertype(gameObject->GetComponent(CDIALOG),"ComponentDialog");
+  return 1;  
+}
+
 int ComponentDialogBinder::bnd_Say(lua_State* L){
   LuaBinder binder(L);
 
   ComponentDialog* componentDialog  = (ComponentDialog*) binder.checkusertype(1,"ComponentDialog");
 
-  std::string  imageFile   = lua_tostring(L, 2); 
-
-  std::string  smessage   = lua_tostring(L, 3); 
+  std::string  smessage   = lua_tostring(L, 2); 
   std::wstring message    = std::wstring(smessage.begin(), smessage.end());
 
-  std::string  fontFile   = lua_tostring(L, 4); 
+  componentDialog->Say((wchar_t*)message.c_str());
 
-  componentDialog->Say(imageFile, (wchar_t*)message.c_str(), fontFile);
+  return 1;
+}
+
+int ComponentDialogBinder::bnd_SetPlayerImage(lua_State* L){
+  LuaBinder binder(L);
+
+  ComponentDialog* componentDialog  = (ComponentDialog*) binder.checkusertype(1,"ComponentDialog");
+  componentDialog->SetPlayerImage( lua_tostring(L, 2) );
+
+  return 1;
+}
+
+int ComponentDialogBinder::bnd_SetNpcImage(lua_State* L){
+  LuaBinder binder(L);
+
+  ComponentDialog* componentDialog  = (ComponentDialog*) binder.checkusertype(1,"ComponentDialog");
+  componentDialog->SetNpcImage( lua_tostring(L, 2) );
+
+  return 1;
+}
+
+int ComponentDialogBinder::bnd_SetFont(lua_State* L){
+  LuaBinder binder(L);
+
+  ComponentDialog* componentDialog  = (ComponentDialog*) binder.checkusertype(1,"ComponentDialog");
+  componentDialog->SetFont( lua_tostring(L, 2) );
+
+  return 1;
+}
+
+int ComponentDialogBinder::bnd_SetVisible(lua_State* L){
+  LuaBinder binder(L);
+
+  ComponentDialog* componentDialog  = (ComponentDialog*) binder.checkusertype(1,"ComponentDialog");
+  componentDialog->SetVisible( (bool) lua_toboolean(L, 2) );
 
   return 1;
 }

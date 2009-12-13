@@ -1,4 +1,4 @@
-local splashTime = 5000
+local splashTime = 10000
 
 function startScript()
   print("Loading Start.")
@@ -9,21 +9,29 @@ function startScript()
   component:AddTo(gameObject)
   
   local component = ComponentDialog.Instantiate()
-  
-  --component:SetPlayerImage()
-  --component:SetNpcImage()
-  --component:Visible()
-  
-  component:Say(path .. "resources\\hero\\hero.png", "Esta eh uma fala teste!", path .. "resources\\font\\fontlucida.png")
+
+  component:Say( "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+  component:SetPlayerImage(path .. "resources\\hero\\hero.png")
+  component:SetFont(path .. "resources\\font\\fontlucida.png")
+
   component:AddTo(gameObject)
   
   --Set a Timer Function
   local component = ComponentTimer.Instantiate(splashTime, path .. "Scripts\\Start\\loader.lua","onTimeOut")
   component:AddTo(gameObject)
+  
+  local component = ComponentTimer.Instantiate(5000, path .. "Scripts\\Start\\loader.lua","sayOther")
+  component:AddTo(gameObject)
+
 end
 
 function onTimeOut()
   print("It should not get here before call timeout")
 	local game = Game.GetInstance()
 	game:LoadLevel("Level2");
+end
+
+function sayOther()
+  local component = ComponentDialog.GetFrom("Logo")
+  component:Say("Era uma vez um outro texto de diálogo, blah blah blah!!!")
 end
