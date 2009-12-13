@@ -15,15 +15,23 @@ using namespace gui;
 class ComponentDialog : public AbstractComponent{
 
   private:
+    //rect da janela toda
     core::rect<s32> rectAll;
+
+    //rect da área de texto
     core::rect<s32> rectText;
-    
+
+    //rect da área de opções de resposta
+    core::rect<s32> rectOptions;
+
     IGUIStaticText* windowAll;
     IGUIStaticText* windowText;
+    IGUIStaticText* windowOptions;
 
     ITexture* playerImage;
     ITexture* npcImage;
 
+    //ainda não está sendo usado
     wchar_t* message;
     wchar_t* buffer;
 
@@ -57,6 +65,7 @@ class ComponentDialogBinder{
     static int bnd_SetNpcImage(lua_State* L);
     static int bnd_SetFont(lua_State* L);
     static int bnd_SetVisible(lua_State* L);
+
 };
 
 static const luaL_reg componentDialogFunctions[] = {

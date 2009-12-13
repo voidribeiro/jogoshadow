@@ -2,7 +2,8 @@
 
 ComponentDialog::ComponentDialog():
 rectAll(0,0,800,100),
-rectText(100,0,700,100)
+rectText(64,0,736,64),
+rectOptions(64,64,736,100)
 {
   IrrlichtDevice* device = DeviceManager::GetDevice();
   IGUIEnvironment* env = device->getGUIEnvironment();
@@ -11,6 +12,9 @@ rectText(100,0,700,100)
 
   windowText = env->addStaticText(L"", rectText, false, true, windowAll, -1, true);
   windowText->setBackgroundColor(video::SColor(200,250,250,250));
+
+  windowOptions = env->addStaticText(L" Opcoes de dialogo aki", rectOptions, false, true, windowAll, -1, true);
+  windowOptions->setBackgroundColor(video::SColor(200,200,200,200));
 
 }
 
@@ -39,7 +43,7 @@ void ComponentDialog::SetPlayerImage(std::string filename){
 
   playerImage = TextureManager::GetTexture(filename);
   env->addImage(playerImage, core::position2d<s32>(0, 0), true, windowAll);
-
+ 
 }
 
 void ComponentDialog::SetNpcImage(std::string filename){
@@ -47,7 +51,7 @@ void ComponentDialog::SetNpcImage(std::string filename){
   IGUIEnvironment* env = device->getGUIEnvironment();
 
   npcImage = TextureManager::GetTexture(filename);
-  env->addImage(playerImage, core::position2d<s32>(0, 0), true, windowAll);
+  env->addImage(playerImage, core::position2d<s32>(736, 0), true, windowAll);
 
 }
 
