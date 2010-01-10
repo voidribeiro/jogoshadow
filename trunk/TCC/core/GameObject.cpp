@@ -115,13 +115,21 @@ int GameObjectBinder::registerFunctions(lua_State* L){
 int GameObjectBinder::bnd_DontDestroy(lua_State* L){
   return 0;
 }
- 
 
+int GameObjectBinder::bnd_InstPersistent(lua_State* L){
+  LuaBinder binder(L);
+  GameObject* gameObject = new GameObject(lua_tostring(L,1));
+  //Add object to the map - maybe we have to change this
+  GameObjectMap::Add(lua_tostring(L,1),gameObject, true);
+  binder.pushusertype(gameObject,"GameObject");
+  return 1; 
+}
+ 
 int GameObjectBinder::bnd_Instantiate(lua_State* L){
   LuaBinder binder(L);
   GameObject* gameObject = new GameObject(lua_tostring(L,1));
   //Add object to the map - maybe we have to change this
-  GameObjectMap::Add(lua_tostring(L,1),gameObject);
+  GameObjectMap::Add(lua_tostring(L,1),gameObject, false);
   binder.pushusertype(gameObject,"GameObject");
   return 1; 
 }
@@ -146,15 +154,37 @@ int GameObjectBinder::bnd_ReBinder(lua_State* L){
 //---------------------------------------------------------
 
 std::map<std::string,GameObject*> GameObjectMap::gameObjectMap;
+std::map<std::string,GameObject*> GameObjectMap::gameObjectPersistentMap;
 bool GameObjectMap::stepOver;
 
-void GameObjectMap::Add(std::string objName, GameObject* gObj){
+void GameObjectMap::Add(std::string objName, GameObject* gObj, bool persistent){
+  if (persistent){
+    if (GameObjectMap::gameObjectPersistentMap[objName] != NULL)
+      std::cout<<"Sobrescrevendo objeto de nome "<<objName.c_str()<<std::endl;
+    GameObjectMap::gameObjectPersistentMap[objName] = gObj;
+    return;
+  }
+
   if (GameObjectMap::gameObjectMap[objName] != NULL)
     std::cout<<"Sobrescrevendo objeto de nome "<<objName.c_str()<<std::endl;
   GameObjectMap::gameObjectMap[objName] = gObj;
 }
 
-void GameObjectMap::Clear(){
+void GameObjectMap::Clear(bool persistent){
+  if (persistent){
+    map<std::string,GameObject*>::iterator it;
+    for (it = gameObjectPersistentMap.begin(); 
+      it != gameObjectPersistentMap.end(); it++){
+      if ((it->second) != NULL){
+        delete (it->second);
+        it->second = NULL;
+      }
+    }
+    gameObjectMap.clear();
+    StepOver();
+    return;
+  }
+
   map<std::string,GameObject*>::iterator it;
   for (it = gameObjectMap.begin(); it != gameObjectMap.end(); it++){
     if ((it->second) != NULL){
@@ -168,6 +198,15 @@ void GameObjectMap::Clear(){
 
 void GameObjectMap::Update(){
   map<std::string,GameObject*>::iterator it;
+  for (it = gameObjectPersistentMap.begin(); 
+    it != gameObjectPersistentMap.end(); it++){
+    if ((it->second) != NULL)
+      (it->second)->Update();
+    //Only update require stepOver that is why don't start with a stepOver
+    if (stepOver)
+      return; 
+  }
+
   for (it = gameObjectMap.begin(); it != gameObjectMap.end(); it++){
     if ((it->second) != NULL)
       (it->second)->Update();
@@ -179,9 +218,17 @@ void GameObjectMap::Update(){
 
 void GameObjectMap::Draw(){
   map<std::string,GameObject*>::iterator it;
+
   //If update required stepOver will wait one drawcall before draw again
   if (!stepOver)
     for (it = gameObjectMap.begin(); it != gameObjectMap.end(); it++)
+      if ((it->second) != NULL)
+        (it->second)->Draw();
+  
+  //If update required stepOver will wait one drawcall before draw again
+  if (!stepOver) 
+    for (it = gameObjectPersistentMap.begin(); 
+      it != gameObjectPersistentMap.end(); it++)
       if ((it->second) != NULL)
         (it->second)->Draw();
 
@@ -193,5 +240,8 @@ void GameObjectMap::StepOver(){
 }
 
 GameObject* GameObjectMap::Get(std::string objName){
+  GameObject* gameObject = gameObjectPersistentMap[objName];
+  if (gameObject != NULL)
+    return gameObject;
   return gameObjectMap[objName];
 }
