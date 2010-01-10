@@ -48,6 +48,7 @@ class GameObject{
   public:
     static int registerFunctions(lua_State* L);
     static int bnd_Instantiate (lua_State* L);
+    static int bnd_InstPersistent (lua_State* L);
     static int bnd_DontDestroy (lua_State* L);
     static int bnd_SetPosition (lua_State* L);
     static int bnd_ReBinder (lua_State* L);
@@ -55,6 +56,7 @@ class GameObject{
 
 static const luaL_reg gameObjectFunctions[] = {
     {"Instantiate", GameObjectBinder::bnd_Instantiate},
+    {"InstPersistent", GameObjectBinder::bnd_InstPersistent},
     {"SetPosition", GameObjectBinder::bnd_SetPosition},
     {"ReBinder", GameObjectBinder::bnd_ReBinder},
     {NULL, NULL}
@@ -64,11 +66,12 @@ static const luaL_reg gameObjectFunctions[] = {
 class GameObjectMap{
   private:
     static std::map<std::string,GameObject*> gameObjectMap;
+    static std::map<std::string,GameObject*> gameObjectPersistentMap;
     static bool stepOver;
   public:
-    static void Add(std::string objName,GameObject* gObj);
+    static void Add(std::string objName,GameObject* gObj, bool persisent);
     static GameObject* Get(std::string objName);
-    static void Clear();
+    static void Clear(bool persisent);
     static void Draw();
     static void Update();
     static void StepOver();

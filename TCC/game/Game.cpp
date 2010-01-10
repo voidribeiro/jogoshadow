@@ -8,7 +8,7 @@ Game::~Game(){
 
 void Game::LoadLevel(std::string level){
   //Remove the objects from another scene
-  GameObjectMap::Clear();
+  GameObjectMap::Clear(false);
   ScriptObject loader("Scripts/loader.lua");
   loader.AddGlobalVar("path", (char*)path.c_str());
   loader.AddGlobalVar("level",(char*)level.c_str());
