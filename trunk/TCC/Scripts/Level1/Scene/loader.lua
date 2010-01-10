@@ -13,21 +13,26 @@ function startScript()
                                                 path .. "resources\\level1\\skybox\\irrlicht2_bk.jpg"  )
   component:AddTo(gameObject)                                              
 
-  --local component = ComponentTimer.Instantiate(10000, path .. "Scripts\\Level1\\Scene\\loader.lua","onTimeOut")
-  --component:AddTo(gameObject)
-
-  --local component = ComponentGUI.Instantiate()
-  
-  --component:AddImageButton("meuBolinho",path .. "resources\\level1\\textures\\portal1.bmp", 300, 300)
-
-  --component:AddTo(gameObject)
-  --component:blah()
-
   local gameObject = GameObject.Instantiate("plano")
 
   local model = ComponentModel.Instantiate( path .. "resources\\level1\\models\\plano.3DS" );
   model:AddTo(gameObject)
+  
+  local component = ComponentDialog.Instantiate()
 
+  component:Say( " Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.")
+  
+  component:SetPlayerImage(path .. "resources\\hero\\hero.png")
+  component:SetNpcImage(path .. "resources\\hero\\hero.png")
+  component:SetFont(path .. "resources\\font\\fontlucida.png")
+
+  component:AddOption("b1", "Diga Alguma coisa!", 10, 10);
+
+  component:AddTo(gameObject)
+  
+  local component = ComponentScript.Instantiate(path .. "Scripts\\Level1\\Dialog\\dialog.lua")
+  component:AddTo(gameObject)
+  
 end
 
 function onTimeOut()

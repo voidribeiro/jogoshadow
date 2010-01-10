@@ -16,12 +16,11 @@ rectOptions(64,64,736,100)
   windowOptions = env->addStaticText(L"", rectOptions, false, true, windowAll, -1, true);
   windowOptions->setBackgroundColor(video::SColor(200,200,200,200));
 
-}
-
+} 
+ 
 ComponentDialog::~ComponentDialog(){
   if (windowAll)
     windowAll->remove();
-
 }
 
 void ComponentDialog::Draw(){
@@ -57,7 +56,7 @@ bool ComponentDialog::IsButtonPressed(const std::string instanceName){
 }   
 
 void ComponentDialog::clearOptions(){
-/*  while (options.size != 0){
+/*  while (options.size != 0){ 
     AbstractComponent* c = (*options.begin());
     options.pop_front();
     if (c != NULL){
@@ -65,7 +64,7 @@ void ComponentDialog::clearOptions(){
       c = NULL;
     }
   }
-*/
+*/ 
 }
 
 void ComponentDialog::SetPlayerImage(std::string filename){
@@ -139,7 +138,7 @@ int ComponentDialogBinder::bnd_GetFrom(lua_State* L){
   GameObject* gameObject = GameObjectMap::Get(lua_tostring(L,1));
   binder.pushusertype(gameObject->GetComponent(CDIALOG),"ComponentDialog");
   return 1;  
-}
+} 
 
 int ComponentDialogBinder::bnd_Say(lua_State* L){
   LuaBinder binder(L);
@@ -177,7 +176,7 @@ int ComponentDialogBinder::bnd_IsButtonPressed(lua_State* L){
   binder.pushnumber(componentDialog->IsButtonPressed(lua_tostring(L,2)));
   return 1;   
 }
-
+ 
 int ComponentDialogBinder::bnd_SetPlayerImage(lua_State* L){
   LuaBinder binder(L);
 

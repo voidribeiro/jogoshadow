@@ -89,7 +89,7 @@ static const luaL_reg componentDialogFunctions[] = {
     {"SetNpcImage", ComponentDialogBinder::bnd_SetNpcImage },
     {"SetFont", ComponentDialogBinder::bnd_SetFont },
     {"SetVisible", ComponentDialogBinder::bnd_SetVisible },
-    {NULL, NULL} 
+    {NULL, NULL}
 };
 
 #endif
