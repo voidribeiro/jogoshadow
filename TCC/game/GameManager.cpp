@@ -215,6 +215,11 @@ void GameManager::run(){
       GameObjectMap::Update();
       GameObjectMap::Draw();
 
+      if (!GameObjectMap::levelToLoad.empty()){
+        GameBinder::game->LoadLevel(GameObjectMap::levelToLoad);
+        GameObjectMap::levelToLoad.clear();
+      }
+
 		  driver->endScene();
     }
 
