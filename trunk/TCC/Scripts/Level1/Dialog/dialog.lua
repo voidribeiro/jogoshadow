@@ -14,6 +14,16 @@ function update()
     component:Say("Era uma vez um outro texto de dialogo, blah blah blah!!!")
 
   end
+
+  if component:IsButtonPressed("b2") > 0 then
+    component:Say("Vc clicou no botão 2, que eh uma imagem")
+  end  
+
+  if component:IsButtonPressed("b3") > 0 then
+    local game = Game.GetInstance()
+    game:LoadLevel("Level2");
+  end  
+
 end
 
 function destroy()

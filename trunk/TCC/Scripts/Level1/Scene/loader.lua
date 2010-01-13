@@ -26,7 +26,9 @@ function startScript()
   component:SetNpcImage(path .. "resources\\hero\\hero.png")
   component:SetFont(path .. "resources\\font\\fontlucida.png")
 
-  component:AddOption("b1", "Diga Alguma coisa!", 10, 10);
+  component:AddOption("b1", "Diga Alguma coisa!", 10, 10, 150, 25);
+  component:AddImageOption("b2", path .. "resources\\common\\irrlichtlogo.jpg", 170, 10);
+  component:AddOption("b3", "LEVEL 2!", 300, 10, 450, 25);
 
   component:AddTo(gameObject)
   
