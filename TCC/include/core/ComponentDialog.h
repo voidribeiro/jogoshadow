@@ -43,13 +43,15 @@ class ComponentDialog : public AbstractComponent{
     virtual void Update(); 
     virtual void Draw();
 
-    void Say( wchar_t* _message );
-    void SetPlayerImage( std::string filename );
-    void SetNpcImage( std::string filename );
-    void SetFont( std::string filename );
+    void Say( const wchar_t* _message );
+    void SetPlayerImage( const std::string filename );
+    void SetNpcImage( const std::string filename );
+    void SetFont( const std::string filename );
     void SetVisible(bool _visible);
     
-    void AddOption( std::string instanceName,  wchar_t* buttonText, int posX, int posY );
+    void AddOption( const std::string instanceName, const wchar_t* buttonText, const int x1, const int y1, const int x2, const int y2 );
+    void AddImageOption( const std::string instanceName, const std::string filename, const int posX, const int posY);
+
     bool IsButtonPressed(const std::string instanceName);
     void clearOptions();
 
@@ -69,6 +71,7 @@ class ComponentDialogBinder{
     static int bnd_Say(lua_State* L);
 
     static int bnd_AddOption(lua_State* L);
+    static int bnd_AddImageOption(lua_State* L);
     static int bnd_IsButtonPressed(lua_State* L);
 
     static int bnd_SetPlayerImage(lua_State* L);
@@ -84,6 +87,7 @@ static const luaL_reg componentDialogFunctions[] = {
     {"GetFrom", ComponentDialogBinder::bnd_GetFrom},
     {"Say", ComponentDialogBinder::bnd_Say },
     {"AddOption", ComponentDialogBinder::bnd_AddOption },
+    {"AddImageOption", ComponentDialogBinder::bnd_AddImageOption },
     {"IsButtonPressed", ComponentDialogBinder::bnd_IsButtonPressed},
     {"SetPlayerImage", ComponentDialogBinder::bnd_SetPlayerImage },
     {"SetNpcImage", ComponentDialogBinder::bnd_SetNpcImage },

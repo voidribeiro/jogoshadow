@@ -21,7 +21,7 @@ rectOptions(64,64,736,100)
 ComponentDialog::~ComponentDialog(){
   if (windowAll)
     windowAll->remove();
-}
+} 
 
 void ComponentDialog::Draw(){
 
@@ -32,23 +32,40 @@ void ComponentDialog::Update(){
 
 }
 
-void ComponentDialog::Say(wchar_t* message){
+void ComponentDialog::Say( const wchar_t* message){
   windowText->setText(message);
-  clearOptions();
+  //clearOptions();
 }
 
 
-void ComponentDialog::AddOption(std::string instanceName, wchar_t* buttonText, int posX, int posY){
+void ComponentDialog::AddOption(const std::string instanceName, const wchar_t* buttonText, const int x1, const int y1, const int x2, const int y2){
   IrrlichtDevice* device = DeviceManager::GetDevice();
   IGUIEnvironment* env = device->getGUIEnvironment();
 
-  irr::gui::IGUIElement* buf = env->addButton( core::rect<s32>(posX, posY, 
-                                               posX + 150,
-                                               posY + 25 ), 
+  irr::gui::IGUIElement* buf = env->addButton( core::rect<s32>( x1, y1, x2, y2 ), 
                                                windowOptions, -1, buttonText );
 
   options[instanceName] = buf;
 
+}
+
+void ComponentDialog::AddImageOption( const std::string instanceName, const std::string filename, const int posX, const int posY){
+  IrrlichtDevice* device = DeviceManager::GetDevice();
+  IGUIEnvironment* env = device->getGUIEnvironment();
+
+  ITexture* tex = TextureManager::GetTexture(filename);
+
+  irr::gui::IGUIElement* buf = env->addButton( core::rect<s32>(posX, posY, 
+                                               posX + tex->getOriginalSize().Width,
+                                               posY + tex->getOriginalSize().Height), 
+                                               windowOptions );
+
+  //adicina o parent na imagem 
+  env->addImage(tex, 
+                core::position2d<s32>(0, 0),
+                true, buf, 5 );
+
+  options[instanceName] = buf;
 }
 
 bool ComponentDialog::IsButtonPressed(const std::string instanceName){
@@ -56,15 +73,13 @@ bool ComponentDialog::IsButtonPressed(const std::string instanceName){
 }   
 
 void ComponentDialog::clearOptions(){
-/*  while (options.size != 0){ 
-    AbstractComponent* c = (*options.begin());
-    options.pop_front();
-    if (c != NULL){
-      delete c;
-      c = NULL;
-    }
-  }
-*/ 
+ map<std::string, IGUIElement*>::iterator it;
+
+ for ( it = options.begin() ; it != options.end(); it++ )
+   it->second->drop();
+
+ options.clear();
+
 }
 
 void ComponentDialog::SetPlayerImage(std::string filename){
@@ -134,7 +149,7 @@ int ComponentDialogBinder::bnd_AddTo(lua_State* L){
 }
 
 int ComponentDialogBinder::bnd_GetFrom(lua_State* L){
-  LuaBinder binder(L); 
+  LuaBinder binder(L);
   GameObject* gameObject = GameObjectMap::Get(lua_tostring(L,1));
   binder.pushusertype(gameObject->GetComponent(CDIALOG),"ComponentDialog");
   return 1;  
@@ -162,10 +177,28 @@ int ComponentDialogBinder::bnd_AddOption(lua_State *L){
   std::string  buf = lua_tostring(L, 3);
   std::wstring buttonText    = std::wstring( buf.begin(), buf.end() );
 
-  int posX = lua_tointeger(L, 4);
-  int posY = lua_tointeger(L, 5);
+  int x1 = lua_tointeger(L, 4);
+  int y1 = lua_tointeger(L, 5);
+  int x2 = lua_tointeger(L, 6);
+  int y2 = lua_tointeger(L, 7);
 
-  componentDialog->AddOption(instanceName, (wchar_t*)buttonText.c_str(), posX, posY);
+  componentDialog->AddOption(instanceName, (wchar_t*)buttonText.c_str(), x1, y1, x2, y2);
+
+  return 1;
+}
+
+int ComponentDialogBinder::bnd_AddImageOption(lua_State *L){
+  LuaBinder binder(L);
+  ComponentDialog* componentDialog  = (ComponentDialog*) binder.checkusertype(1,"ComponentDialog");
+
+  std::string instanceName  = lua_tostring(L, 2);
+  
+  std::string filename = lua_tostring(L, 3);
+  
+  int x = lua_tointeger(L, 4);
+  int y = lua_tointeger(L, 5);
+
+  componentDialog->AddImageOption(instanceName, filename, x, y);
 
   return 1;
 }
