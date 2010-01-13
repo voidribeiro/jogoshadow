@@ -67,14 +67,13 @@ class GameObjectMap{
   private:
     static std::map<std::string,GameObject*> gameObjectMap;
     static std::map<std::string,GameObject*> gameObjectPersistentMap;
-    static bool stepOver;
   public:
     static void Add(std::string objName,GameObject* gObj, bool persisent);
     static GameObject* Get(std::string objName);
     static void Clear(bool persisent);
     static void Draw();
     static void Update();
-    static void StepOver();
+    static std::string levelToLoad;
 };
 
 #endif

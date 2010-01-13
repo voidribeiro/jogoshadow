@@ -155,7 +155,7 @@ int GameObjectBinder::bnd_ReBinder(lua_State* L){
 
 std::map<std::string,GameObject*> GameObjectMap::gameObjectMap;
 std::map<std::string,GameObject*> GameObjectMap::gameObjectPersistentMap;
-bool GameObjectMap::stepOver;
+std::string GameObjectMap::levelToLoad;
 
 void GameObjectMap::Add(std::string objName, GameObject* gObj, bool persistent){
   if (persistent){
@@ -181,7 +181,6 @@ void GameObjectMap::Clear(bool persistent){
       }
     }
     gameObjectMap.clear();
-    StepOver();
     return;
   }
 
@@ -193,7 +192,6 @@ void GameObjectMap::Clear(bool persistent){
     }
   }
   gameObjectMap.clear();
-  StepOver();
 }
 
 void GameObjectMap::Update(){
@@ -202,41 +200,25 @@ void GameObjectMap::Update(){
     it != gameObjectPersistentMap.end(); it++){
     if ((it->second) != NULL)
       (it->second)->Update();
-    //Only update require stepOver that is why don't start with a stepOver
-    if (stepOver)
-      return; 
   }
 
   for (it = gameObjectMap.begin(); it != gameObjectMap.end(); it++){
     if ((it->second) != NULL)
       (it->second)->Update();
-    //Only update require stepOver that is why don't start with a stepOver
-    if (stepOver)
-      return; 
   }
 }
 
 void GameObjectMap::Draw(){
   map<std::string,GameObject*>::iterator it;
 
-  //If update required stepOver will wait one drawcall before draw again
-  if (!stepOver)
-    for (it = gameObjectMap.begin(); it != gameObjectMap.end(); it++)
-      if ((it->second) != NULL)
-        (it->second)->Draw();
+  for (it = gameObjectMap.begin(); it != gameObjectMap.end(); it++)
+    if ((it->second) != NULL)
+      (it->second)->Draw();
   
-  //If update required stepOver will wait one drawcall before draw again
-  if (!stepOver) 
-    for (it = gameObjectPersistentMap.begin(); 
-      it != gameObjectPersistentMap.end(); it++)
+  for (it = gameObjectPersistentMap.begin(); 
+    it != gameObjectPersistentMap.end(); it++)
       if ((it->second) != NULL)
         (it->second)->Draw();
-
-  stepOver = false;
-}
-
-void GameObjectMap::StepOver(){
-  stepOver = true;
 }
 
 GameObject* GameObjectMap::Get(std::string objName){

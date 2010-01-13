@@ -13,8 +13,6 @@ void Game::LoadLevel(std::string level){
   loader.AddGlobalVar("path", (char*)path.c_str());
   loader.AddGlobalVar("level",(char*)level.c_str());
   loader.Execute("startScript");
-  //Turn to step the first iteration after update list
-  GameObjectMap::StepOver();
 }
 
 const char* Game::GetPath(){
@@ -45,8 +43,9 @@ int GameBinder::bnd_GetInstance(lua_State* L){
 
 int GameBinder::bnd_LoadLevel(lua_State* L){
   LuaBinder binder(L);
-  Game* game = (Game*) binder.checkusertype(1,"Game");
-  game->LoadLevel(lua_tostring(L,2));
+  std::string a;
+  a.empty();
+  GameObjectMap::levelToLoad = lua_tostring(L,2);
   return 1;
 } 
 
