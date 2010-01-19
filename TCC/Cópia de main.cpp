@@ -203,6 +203,8 @@ int main()
 		line.start = camera->getPosition();
 		line.end = line.start + (camera->getTarget() - line.start).normalize() * 1000.0f;
 
+
+
 		core::vector3df intersection;
 		core::triangle3df tri;
 
