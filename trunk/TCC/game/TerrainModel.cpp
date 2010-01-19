@@ -8,6 +8,7 @@ TerrainModel::TerrainModel(const int id, ITerrainSceneNode* node, ITriangleSelec
 : id(id), terrain(node), selector(_selector)
 {
   terrain->setTriangleSelector(selector);
+  //terrain->setVisible(false);
 }
 
 TerrainModel::~TerrainModel(){

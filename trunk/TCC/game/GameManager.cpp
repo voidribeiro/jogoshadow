@@ -129,9 +129,11 @@ void GameManager::drawTriangleSelection(){
   IrrlichtDevice* device = DeviceManager::GetDevice();
   irr::video::IVideoDriver* driver = DeviceManager::GetDriver();
 
-	core::line3d<f32> line;
-	line.start = camera->getPosition();
-	line.end = line.start + (camera->getTarget() - line.start).normalize() * 1000.0f;
+	//core::line3d<f32> line;
+  core::line3d<f32> line = sceneManager->getSceneCollisionManager()->getRayFromScreenCoordinates( eventListener.GetMouseState().pos , sceneManager->getActiveCamera() ); 
+
+	//line.start = camera->getPosition();
+	//line.end = line.start + (camera->getTarget() - line.start).normalize() * 1000.0f;
 
 	core::vector3df intersection;
   core::triangle3df tri;
