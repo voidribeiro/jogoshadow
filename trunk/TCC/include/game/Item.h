@@ -3,36 +3,37 @@
 
 #include "string.h"
 #include "TextureManager.h"
+#include "GameObject.h"
+#include <list>
 
 using namespace irr;
 using namespace scene;
 using namespace video;
+using namespace std;
 
 class Item{
 private:
   string name;
-  string* description;
-
+  std::list <string> descriptionList;
   ITexture* image;
-  
-  IAnimatedMesh* mesh;
-  IAnimatedMeshSceneNode* node;
-
+  GameObject* gameObject;
   bool isVisible;
   bool isInPlayerPosession;
 
 public:
   explicit Item();
-  explicit Item(const string name, const string description);
+  explicit Item(const string name);
   virtual ~Item();
 
-  string getName(){ return name; }
-  string getDescription(){ return description[0]; }
-  
-  ITexture* getImage(){ return image; }
+  void setGameObject(GameObject* obj){ gameObject = obj; }
+  void addDescription(const string description);
 
-  IAnimatedMesh*          getMesh() { return mesh; }
-  IAnimatedMeshSceneNode* getNode() { return node; }
+  string getName(){ return name; }
+  string getDescription(const int idx);
+  ITexture* getImage(){ return image; }
+  GameObject* getGameObject(){ return gameObject; }
+  bool getVisible(){ return isVisible; }
+  bool getInPlayerPosession(){ return isInPlayerPosession; }
 
 };
 
