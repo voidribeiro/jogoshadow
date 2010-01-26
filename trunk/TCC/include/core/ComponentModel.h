@@ -10,7 +10,6 @@ using namespace scene;
 using namespace video;
 
 
-//This class will substitute Image2D if is component driven
 class ComponentModel : public AbstractComponent{
   private:
     std::string filename;

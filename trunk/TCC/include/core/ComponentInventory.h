@@ -44,6 +44,7 @@ static const luaL_reg componentInventoryFunctions[] = {
     {"Instantiate", ComponentInventoryBinder::bnd_Instantiate},
     {"AddTo", ComponentInventoryBinder::bnd_AddTo},
     {"SetVisible", ComponentInventoryBinder::bnd_SetVisible},
+
     {"AddItem", ComponentInventoryBinder::bnd_AddItem},
     {"ViewItem", ComponentInventoryBinder::bnd_ViewItem},
     {"CombineItem", ComponentInventoryBinder::bnd_CombineItem},
