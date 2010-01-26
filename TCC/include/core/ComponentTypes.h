@@ -10,7 +10,8 @@ enum COMPONENT_TYPES{
   CTIMER   = 4,
   CSKYBOX  = 5,
   CGUI     = 6,
-  CDIALOG  = 7
+  CDIALOG  = 7,
+  CINVENTORY = 8
 }; 
 
 #endif
