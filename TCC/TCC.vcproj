@@ -243,6 +243,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\game\Item.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\core\LuaBinder.cpp"
 					>
 				</File>

@@ -4,10 +4,14 @@
 #include "string.h"
 #include "TextureManager.h"
 
+using namespace irr;
+using namespace scene;
+using namespace video;
+
 class Item{
 private:
   string name;
-  string[] description;
+  string* description;
 
   ITexture* image;
   
@@ -19,10 +23,16 @@ private:
 
 public:
   explicit Item();
-  explicit Item(string name, string description);
+  explicit Item(const string name, const string description);
   virtual ~Item();
 
-  static void view();
+  string getName(){ return name; }
+  string getDescription(){ return description[0]; }
+  
+  ITexture* getImage(){ return image; }
+
+  IAnimatedMesh*          getMesh() { return mesh; }
+  IAnimatedMeshSceneNode* getNode() { return node; }
 
 };
 
