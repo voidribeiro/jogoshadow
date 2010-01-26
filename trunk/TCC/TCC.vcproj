@@ -321,10 +321,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\include\game\Inventory.h"
-					>
-				</File>
-				<File
 					RelativePath=".\include\game\Item.h"
 					>
 				</File>
@@ -441,6 +437,10 @@
 					</File>
 					<File
 						RelativePath=".\include\core\ComponentImage.h"
+						>
+					</File>
+					<File
+						RelativePath=".\include\core\ComponentInventory.h"
 						>
 					</File>
 					<File
