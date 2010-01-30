@@ -118,6 +118,7 @@ void GameManager::draw(){
   env->drawAll();
   //guiManager->drawAll();
 
+  //TODO - This is update method should not be in draw
   drawTriangleSelection();
 
   //return true;
@@ -140,6 +141,8 @@ void GameManager::drawTriangleSelection(){
 
   ITriangleSelector* selector;
 
+  //TODO - This was used to select the character. I'll leave for reference for a while
+  /*
   for(int i = 0; i < modelManager->getNpcCount(); i++ ){
     selector = modelManager->getNpcById(i)->getSelector();
     if (sceneManager->getSceneCollisionManager()->getCollisionPoint(
@@ -149,7 +152,8 @@ void GameManager::drawTriangleSelection(){
       return;
     }
   }
-
+  */
+ 
   selector = modelManager->getTerrain()->getSelector();
   if (sceneManager->getSceneCollisionManager()->getCollisionPoint(
 		line, selector, intersection, tri)){
