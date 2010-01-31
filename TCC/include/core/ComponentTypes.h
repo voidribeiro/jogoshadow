@@ -11,7 +11,8 @@ enum COMPONENT_TYPES{
   CSKYBOX  = 5,
   CGUI     = 6,
   CDIALOG  = 7,
-  CINVENTORY = 8
+  CINVENTORY = 8,
+  CSELECTOR   = 9
 }; 
 
 #endif

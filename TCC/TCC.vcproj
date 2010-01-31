@@ -294,6 +294,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\core\ComponentSelector.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\core\ComponentSkybox.cpp"
 						>
 					</File>
@@ -453,6 +457,10 @@
 					</File>
 					<File
 						RelativePath=".\include\core\ComponentScript.h"
+						>
+					</File>
+					<File
+						RelativePath=".\include\core\ComponentSelector.h"
 						>
 					</File>
 					<File
