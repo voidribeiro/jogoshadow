@@ -28,19 +28,6 @@ bool GameManager::init(){
   
   lastFPS = -1;
   
-  /*
-   * IrrLicht Main Device
-   * instantiates all the engine
-   * 
-   *	IRRLICHT_API IrrlichtDevice* IRRCALLCONV createDevice(
-	 *	  video::E_DRIVER_TYPE deviceType = video::EDT_SOFTWARE,
-	 *	  const core::dimension2d<s32>& windowSize = (core::dimension2d<s32>(640,480)),
-	 *	  u32 bits = 16,
-	 *	  bool fullscreen = false,
-	 *	  bool stencilbuffer = false,
-	 *	  bool vsync = false,
-	 *	  IEventReceiver* receiver = 0);
-   */
   DeviceManager::initialize(&eventListener);
   IrrlichtDevice* device = DeviceManager::GetDevice();
 
