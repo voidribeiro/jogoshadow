@@ -286,6 +286,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\core\ComponentInventory.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\core\ComponentModel.cpp"
 						>
 					</File>
