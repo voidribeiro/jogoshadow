@@ -15,24 +15,31 @@ class Item{
 private:
   string name;
   std::list <string> descriptionList;
-  ITexture* image;
+  string imageName;
   GameObject* gameObject;
-  bool isVisible;
-  bool isInPlayerPosession;
+  bool modelIsVisible;      //se o modelo está visível
+  bool imageIsVisible;      //se a imagem 2D está visível
+  bool isInPlayerPosession; //se o jogador possui o ítem
 
 public:
   explicit Item();
-  explicit Item(const string name);
+  explicit Item(const string name, const bool _modelIsVisible, const bool _isInPlayerPosession);
   virtual ~Item();
 
   void setGameObject(GameObject* obj){ gameObject = obj; }
   void addDescription(const string description);
+  void drawImage(int posX, int posY);
+
+  void setModelVisible(bool b){ modelIsVisible = b; }
+  void setImageVisible(bool b){ imageIsVisible = b; }
+  void setPlayerPosession(bool b){ isInPlayerPosession = b; }
 
   string getName(){ return name; }
   string getDescription(const int idx);
-  ITexture* getImage(){ return image; }
+  string getImage(){ return imageName; }
   GameObject* getGameObject(){ return gameObject; }
-  bool getVisible(){ return isVisible; }
+  bool getModelVisible(){ return modelIsVisible; }
+  bool getImageVisible(){ return imageIsVisible; }
   bool getInPlayerPosession(){ return isInPlayerPosession; }
 
 };

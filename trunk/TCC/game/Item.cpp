@@ -3,7 +3,8 @@
 Item::Item(){
 }
 
-Item::Item(string _name):name(_name){
+Item::Item(string _name, bool _modelIsVisible, bool _isInPlayerPosession)
+:name(_name), modelIsVisible(_modelIsVisible), imageIsVisible(false), isInPlayerPosession(_isInPlayerPosession){
 }
 
 Item::~Item(){
@@ -20,8 +21,21 @@ string Item::getDescription(const int idx){
   if(descriptionList.size() < idx)
     it = descriptionList.end();
   else
-    for(int i =0 ; i < idx; i++)
+    for(int i=0 ; i < idx; i++)
       it++;
 
   return (*it);
+}
+
+void Item::drawImage(int posX, int posY){
+
+  if (!imageIsVisible)
+    return;
+
+  irr::video::IVideoDriver* driver = DeviceManager::GetDriver();
+
+  driver->draw2DImage(TextureManager::GetTexture(imageName), 
+                      core::position2d<s32>(posX, posY)
+                      );
+
 }
