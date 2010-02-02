@@ -23,6 +23,8 @@ class ComponentInventory : public AbstractComponent{
     virtual void Draw();
     void SetVisible(bool visible);
     
+    void SetBackground(std::string filename);
+    void ShowBackground(bool show);
     void LoadItem(std::string itemName, bool modelIsVisible, bool isInPlayerPosession); //carrega o ítem no map "items"
     void AddItem(std::string itemName);     //adiciona o ítem ao jogador
     void RemoveItem(std::string itemName);  //remove o ítem do jogador
@@ -41,6 +43,8 @@ class ComponentInventoryBinder{
     static int bnd_AddTo (lua_State* L);
     static int bnd_SetVisible (lua_State* L);
 
+    static int bnd_SetBackground(lua_State* L);
+    static int bnd_ShowBackground(lua_State* L);
     static int bnd_LoadItem  (lua_State* L);
     static int bnd_AddItem  (lua_State* L);
     static int bnd_RemoveItem  (lua_State* L);
@@ -54,7 +58,9 @@ static const luaL_reg componentInventoryFunctions[] = {
     {"AddTo", ComponentInventoryBinder::bnd_AddTo},
     {"SetVisible", ComponentInventoryBinder::bnd_SetVisible},
 
-    {"LoadItem", ComponentInventoryBinder::bnd_AddItem},
+    {"SetBackground", ComponentInventoryBinder::bnd_SetBackground},
+    {"ShowBackground", ComponentInventoryBinder::bnd_ShowBackground},
+    {"LoadItem", ComponentInventoryBinder::bnd_LoadItem},
     {"AddItem", ComponentInventoryBinder::bnd_AddItem},
     {"RemoveItem", ComponentInventoryBinder::bnd_RemoveItem},
     {"DisplayItemImage", ComponentInventoryBinder::bnd_DisplayItemImage},

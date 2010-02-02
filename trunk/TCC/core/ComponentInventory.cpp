@@ -21,6 +21,13 @@ void ComponentInventory::LoadItem(std::string itemName, bool modelIsVisible, boo
   items[itemName] = item;
 }
 
+void ComponentInventory::SetBackground(std::string filename){
+  backgroundImage = TextureManager::GetTexture(filename);
+}
+
+void ComponentInventory::ShowBackground(bool show){
+
+}
 
 void ComponentInventory::AddItem(std::string itemName){
   items[itemName]->setPlayerPosession(true);
@@ -75,6 +82,26 @@ int ComponentInventoryBinder::bnd_SetVisible(lua_State* L){
   componentInventory->SetVisible( lua_toboolean(L,2) );
   return 1;
 }
+
+int ComponentInventoryBinder::bnd_SetBackground(lua_State* L){
+  LuaBinder binder(L);
+  ComponentInventory* componentInventory  = (ComponentInventory*) binder.checkusertype(1,"ComponentInventory");
+
+  componentInventory->SetBackground( lua_tostring(L,2) );
+
+  return 1;
+}
+
+
+int ComponentInventoryBinder::bnd_ShowBackground(lua_State* L){
+  LuaBinder binder(L);
+  ComponentInventory* componentInventory  = (ComponentInventory*) binder.checkusertype(1,"ComponentInventory");
+
+  componentInventory->ShowBackground( lua_toboolean(L,2) );
+
+  return 1;
+}
+
 
 int ComponentInventoryBinder::bnd_LoadItem(lua_State* L){
 
