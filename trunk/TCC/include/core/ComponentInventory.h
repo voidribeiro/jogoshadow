@@ -24,10 +24,10 @@ class ComponentInventory : public AbstractComponent{
     void SetVisible(bool visible);
     
     void LoadItem(std::string itemName, bool modelIsVisible, bool isInPlayerPosession); //carrega o ítem no map "items"
-    void AddItem(std::string itemName);  //adiciona o ítem ao jogador
+    void AddItem(std::string itemName);     //adiciona o ítem ao jogador
+    void RemoveItem(std::string itemName);  //remove o ítem do jogador
     void DisplayItemImage(std::string itemName, bool visible);
     void ViewItemDescription(std::string itemName);
-    void CombineItem(std::string itemName1, std::string itemName2);
 
     int GetType() { return CINVENTORY; };
     const char* GetTypeName() { return "ComponentInventory"; };
@@ -43,6 +43,7 @@ class ComponentInventoryBinder{
 
     static int bnd_LoadItem  (lua_State* L);
     static int bnd_AddItem  (lua_State* L);
+    static int bnd_RemoveItem  (lua_State* L);
     static int bnd_DisplayItemImage (lua_State* L);
     static int bnd_ViewItemDescription (lua_State* L);
     static int bnd_CombineItem  (lua_State* L);
@@ -55,6 +56,7 @@ static const luaL_reg componentInventoryFunctions[] = {
 
     {"LoadItem", ComponentInventoryBinder::bnd_AddItem},
     {"AddItem", ComponentInventoryBinder::bnd_AddItem},
+    {"RemoveItem", ComponentInventoryBinder::bnd_RemoveItem},
     {"DisplayItemImage", ComponentInventoryBinder::bnd_DisplayItemImage},
     {"ViewItemDescription", ComponentInventoryBinder::bnd_ViewItemDescription},
     {"CombineItem", ComponentInventoryBinder::bnd_CombineItem},

@@ -26,6 +26,10 @@ void ComponentInventory::AddItem(std::string itemName){
   items[itemName]->setPlayerPosession(true);
 }
 
+void ComponentInventory::RemoveItem(std::string itemName){
+  items[itemName]->setPlayerPosession(false);
+}
+
 void ComponentInventory::DisplayItemImage(std::string itemName, bool visible){
   items[itemName]->drawImage(0, 0);
 }
@@ -33,8 +37,6 @@ void ComponentInventory::DisplayItemImage(std::string itemName, bool visible){
 void ComponentInventory::ViewItemDescription(std::string itemName){
 }
 
-void ComponentInventory::CombineItem(std::string itemName1, std::string itemName2){
-}
 
 //////////////////////////////////////////
 
@@ -86,12 +88,26 @@ int ComponentInventoryBinder::bnd_AddItem(lua_State* L){
   LuaBinder binder(L);
   ComponentInventory* componentInventory  = (ComponentInventory*) binder.checkusertype(1,"ComponentInventory");
 
+  componentInventory->AddItem( lua_tostring(L,2) );
+
   return 0;
 }
+
+int ComponentInventoryBinder::bnd_RemoveItem(lua_State* L){
+  LuaBinder binder(L);
+  ComponentInventory* componentInventory  = (ComponentInventory*) binder.checkusertype(1,"ComponentInventory");
+
+  componentInventory->RemoveItem( lua_tostring(L,2) );
+
+  return 0;
+}
+
 
 int ComponentInventoryBinder::bnd_DisplayItemImage(lua_State* L){
   LuaBinder binder(L);
   ComponentInventory* componentInventory  = (ComponentInventory*) binder.checkusertype(1,"ComponentInventory");
+
+  componentInventory->DisplayItemImage( lua_tostring(L,2), lua_toboolean(L,3) );
 
   return 0;
 }
@@ -106,6 +122,11 @@ int ComponentInventoryBinder::bnd_ViewItemDescription(lua_State* L){
 int ComponentInventoryBinder::bnd_CombineItem(lua_State* L){
   LuaBinder binder(L);
   ComponentInventory* componentInventory  = (ComponentInventory*) binder.checkusertype(1,"ComponentInventory");
+  
+  componentInventory->RemoveItem( lua_tostring(L,2) );
+  componentInventory->RemoveItem( lua_tostring(L,3) );
+
+  componentInventory->AddItem( lua_tostring(L,4) );
 
   return 0;
 }
