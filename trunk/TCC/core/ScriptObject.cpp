@@ -1,6 +1,7 @@
 #include "ScriptObject.h"
 
 ScriptObject::ScriptObject(const char* _scriptToExecute):scriptToExecute(_scriptToExecute){
+  //TODO - Check how to auto register functions here.
   luaScript.startScript((char*)_scriptToExecute);
   luaScript.registerFunction(GameBinder::registerFunctions);
   luaScript.registerFunction(GameObjectBinder::registerFunctions);
@@ -11,6 +12,7 @@ ScriptObject::ScriptObject(const char* _scriptToExecute):scriptToExecute(_script
   luaScript.registerFunction(ComponentModelBinder::registerFunctions);
   luaScript.registerFunction(ComponentGUIBinder::registerFunctions);
   luaScript.registerFunction(ComponentDialogBinder::registerFunctions);
+  luaScript.registerFunction(ComponentSelectorBinder::registerFunctions);
 }
  
 ScriptObject::~ScriptObject(){

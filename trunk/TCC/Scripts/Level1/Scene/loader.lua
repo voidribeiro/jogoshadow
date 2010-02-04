@@ -15,8 +15,11 @@ function startScript()
 
   local gameObject = GameObject.Instantiate("plano")
 
-  local model = ComponentModel.Instantiate( path .. "resources\\level1\\models\\plano.3DS" );
+  local model = ComponentModel.Instantiate( path .. "resources\\level1\\models\\plano.3DS" )
   model:AddTo(gameObject)
+  
+  local selector = ComponentSelector.Instantiate()
+  selector:AddTo(gameObject)
   
   local component = ComponentDialog.Instantiate()
 
