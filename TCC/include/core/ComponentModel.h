@@ -26,6 +26,8 @@ class ComponentModel : public AbstractComponent{
     const char* GetTypeName() { return "ComponentModel"; };
     void setMaterial( video::SMaterial material );
     virtual void SetParent(GameObject* parent);
+    IAnimatedMesh* GetMeshRef();
+    IAnimatedMeshSceneNode* GetNodeRef();
 };
 
 class ComponentModelBinder{

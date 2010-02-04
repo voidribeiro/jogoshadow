@@ -3,6 +3,7 @@
 
 #include "AbstractComponent.h"
 #include "ComponentModel.h"
+#include "DeviceManager.h"
 #include "irrlicht.h"
 
 using namespace irr;
@@ -13,6 +14,8 @@ using namespace video;
 class ComponentSelector : public AbstractComponent{
   private:
     ComponentModel* cModel;
+    scene::ITriangleSelector* selector;
+    void CreateSelector();
 
   public:
     explicit ComponentSelector();
@@ -22,6 +25,7 @@ class ComponentSelector : public AbstractComponent{
     int GetType() { return CSELECTOR; };
     const char* GetTypeName() { return "ComponentSelector"; };
     virtual void SetParent(GameObject* parent);
+    void SetComponentModelReference(ComponentModel* cModel);
 };
 
 class ComponentSelectorBinder{
@@ -33,8 +37,8 @@ class ComponentSelectorBinder{
 };
 
 static const luaL_reg componentSelectorFunctions[] = {
-    {"Instantiate", ComponentModelBinder::bnd_Instantiate},
-    {"AddTo", ComponentModelBinder::bnd_AddTo},
+    {"Instantiate", ComponentSelectorBinder::bnd_Instantiate},
+    {"AddTo", ComponentSelectorBinder::bnd_AddTo},
     {NULL, NULL}
 };
 

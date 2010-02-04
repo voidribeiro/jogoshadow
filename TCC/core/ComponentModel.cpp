@@ -44,6 +44,14 @@ void ComponentModel::SetParent(GameObject* parent){
   parent->AddChildNode(node);
 }
 
+IAnimatedMesh* ComponentModel::GetMeshRef(){
+  return mesh;
+}
+
+IAnimatedMeshSceneNode* ComponentModel::GetNodeRef(){
+  return node;
+}
+
 /////////////////////////////////////////////////////////
 
 int ComponentModelBinder::registerFunctions(lua_State* L){
