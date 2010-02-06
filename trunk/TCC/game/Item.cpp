@@ -18,7 +18,7 @@ string Item::getDescription(const int idx){
   list<string>::iterator it;
   it = descriptionList.begin();
 
-  if(descriptionList.size() < idx)
+  if(descriptionList.size() <= idx)
     it = descriptionList.end();
   else
     for(int i=0 ; i < idx; i++)
