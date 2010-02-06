@@ -53,4 +53,11 @@ int GameBinder::bnd_GetPath(lua_State* L){
   LuaBinder binder(L);
   binder.pushstring(game->GetPath());
   return 1;
+} 
+
+int GameBinder::bnd_GetMousePosition(lua_State* L){
+  LuaBinder binder(L);
+  binder.pushnumber(DeviceManager::eventListener->GetMouseState().pos.X);
+  binder.pushnumber(DeviceManager::eventListener->GetMouseState().pos.Y);
+  return 2;
 }  

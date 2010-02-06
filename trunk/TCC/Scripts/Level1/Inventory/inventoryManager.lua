@@ -15,6 +15,8 @@ function update()
   	--game:LoadLevel("Level1");
 
   end
+  local mouseX,mouseY = Game.GetMousePosition()
+  print(mouseX, mouseY)
 end
 
 function destroy()

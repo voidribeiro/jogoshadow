@@ -34,16 +34,18 @@ class GameBinder{
   public:
     static Game* game;
     static int registerFunctions(lua_State* L);
-    static int bnd_GetInstance (lua_State* L);
+    static int bnd_GetInstance (lua_State* L); 
     static int bnd_DontDestroy (lua_State* L);
-    static int bnd_LoadLevel (lua_State* L);
+    static int bnd_LoadLevel (lua_State* L); 
     static int bnd_GetPath(lua_State* L);
+    static int bnd_GetMousePosition(lua_State* L);
 };
 
 static const luaL_reg gameFunctions[] = {
     {"GetInstance", GameBinder::bnd_GetInstance},
-    {"LoadLevel", GameBinder::bnd_LoadLevel},
+    {"LoadLevel", GameBinder::bnd_LoadLevel}, 
     {"GetPath", GameBinder::bnd_GetPath},
+    {"GetMousePosition", GameBinder::bnd_GetMousePosition},
     {NULL, NULL}
 };
 
