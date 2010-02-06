@@ -42,6 +42,5 @@ end
 
 function onTimeOut()
   print("Clique do Botão!!!")
-	local game = Game.GetInstance()
-	game:LoadLevel("Level2");
+  Game.LoadLevel("Level2");
 end

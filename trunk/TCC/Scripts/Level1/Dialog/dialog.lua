@@ -20,8 +20,7 @@ function update()
   end  
 
   if component:IsButtonPressed("b3") > 0 then
-    local game = Game.GetInstance()
-    game:LoadLevel("Level2");
+    Game.LoadLevel("Level2");
   end  
 
 end
