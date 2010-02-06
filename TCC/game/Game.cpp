@@ -35,24 +35,16 @@ int GameBinder::bnd_DontDestroy(lua_State* L){
   return 0;
 }
 
-int GameBinder::bnd_GetInstance(lua_State* L){
-  LuaBinder binder(L);
-  binder.pushusertype(game,"Game"); 
-  return 1;
-}
-
 int GameBinder::bnd_LoadLevel(lua_State* L){
   LuaBinder binder(L);
-  std::string a;
-  a.empty();
-  GameObjectMap::levelToLoad = lua_tostring(L,2);
+  GameObjectMap::levelToLoad = lua_tostring(L,1);
   return 1;
 } 
 
 int GameBinder::bnd_GetPath(lua_State* L){
   LuaBinder binder(L);
   binder.pushstring(game->GetPath());
-  return 1;
+  return 1; 
 } 
 
 int GameBinder::bnd_GetMousePosition(lua_State* L){
