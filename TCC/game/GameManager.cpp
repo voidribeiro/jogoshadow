@@ -28,7 +28,7 @@ bool GameManager::init(){
   
   lastFPS = -1;
   
-  DeviceManager::initialize(&eventListener);
+  DeviceManager::initialize();
   IrrlichtDevice* device = DeviceManager::GetDevice();
 
   sceneManager = device->getSceneManager();
@@ -118,7 +118,7 @@ void GameManager::drawTriangleSelection(){
   irr::video::IVideoDriver* driver = DeviceManager::GetDriver();
 
 	//core::line3d<f32> line;
-  core::line3d<f32> line = sceneManager->getSceneCollisionManager()->getRayFromScreenCoordinates( eventListener.GetMouseState().pos , sceneManager->getActiveCamera() ); 
+  core::line3d<f32> line = sceneManager->getSceneCollisionManager()->getRayFromScreenCoordinates( DeviceManager::eventListener->GetMouseState().pos , sceneManager->getActiveCamera() ); 
 
 	//line.start = camera->getPosition();
 	//line.end = line.start + (camera->getTarget() - line.start).normalize() * 1000.0f;
@@ -148,7 +148,7 @@ void GameManager::drawTriangleSelection(){
     driver->draw3DTriangle(tri, video::SColor(255,255,0,0));
 
     //mudar isso de lugar depois
-    modelManager->animateSkeleton(intersection, eventListener.GetMouseState().LeftButtonDown );
+    modelManager->animateSkeleton(intersection, DeviceManager::eventListener->GetMouseState().LeftButtonDown );
   }
 
 }
@@ -184,7 +184,7 @@ bool GameManager::processLUAScripts(){
 bool GameManager::update(){
 
   //pm.process();
-  position2di pos = eventListener.GetMouseState().pos;
+  position2di pos = DeviceManager::eventListener->GetMouseState().pos;
   modelManager->update( pos );
 
   return true;

@@ -4,6 +4,8 @@
 #include <irrlicht.h>
 #include <exception>
 
+#include "EventListener.h"
+
 using namespace irr;
 using namespace std;
 
@@ -11,14 +13,12 @@ class DeviceManager{
   private:
     static IrrlichtDevice* device;
     static video::IVideoDriver* driver;
-
   public:
     explicit DeviceManager ();
     virtual ~DeviceManager();
 
     //Parameters from irrlicht create device (modified defaults)
     static void initialize(
-      IEventReceiver* receiver = 0,
       video::E_DRIVER_TYPE deviceType = video::EDT_DIRECT3D9,
 		  // parantheses are necessary for some compilers
       const core::dimension2d<s32>& windowSize = (core::dimension2d<s32>(800,600)),
@@ -29,6 +29,7 @@ class DeviceManager{
 
     static IrrlichtDevice* GetDevice();
     static video::IVideoDriver* GetDriver();
+    static EventListener* eventListener;
 };
 
 #endif
