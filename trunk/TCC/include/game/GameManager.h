@@ -22,7 +22,6 @@ the game features making them interact correctly.
 
 #include "DeviceManager.h"
 #include "Singleton.h"
-#include "EventListener.h"
 #include "Script.h"
 //#include "GUIManager.h"
 #include "TextureManager.h"
@@ -46,8 +45,6 @@ private:
   irr::scene::ICameraSceneNode* camera;
 
   Script luaScript;
-  
-  EventListener eventListener;
 
   ModelManager* modelManager;
   //GUIManager*   guiManager;

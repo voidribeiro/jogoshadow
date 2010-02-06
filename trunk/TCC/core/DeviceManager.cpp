@@ -21,14 +21,14 @@ DeviceManager::~DeviceManager(){
 	 *	  IEventReceiver* receiver = 0);
    */
 void DeviceManager::initialize(
-      IEventReceiver* receiver,
       video::E_DRIVER_TYPE deviceType,
 		  const core::dimension2d<s32>& windowSize,
 		  u32 bits,
 		  bool fullscreen,
 		  bool stencilbuffer,
 		  bool vsync){
-  DeviceManager::device = createDevice(deviceType, windowSize, bits, fullscreen, stencilbuffer, vsync, receiver);
+  DeviceManager::eventListener = new EventListener();
+  DeviceManager::device = createDevice(deviceType, windowSize, bits, fullscreen, stencilbuffer, vsync, eventListener);
   if (device == 0){
     throw 666;
   }
@@ -37,6 +37,7 @@ void DeviceManager::initialize(
 
 IrrlichtDevice* DeviceManager::device;
 video::IVideoDriver* DeviceManager::driver;
+EventListener* DeviceManager::eventListener;
 
 //Not code safe - if not initializated returns null
 IrrlichtDevice* DeviceManager::GetDevice(){
