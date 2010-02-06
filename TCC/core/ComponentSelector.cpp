@@ -7,6 +7,26 @@ ComponentSelector::~ComponentSelector(){
 }
 
 void ComponentSelector::Draw(){
+  //TODO - This is only for test. Remove this
+  
+  IrrlichtDevice* device = DeviceManager::GetDevice();
+  irr::video::IVideoDriver* driver = DeviceManager::GetDriver();
+  ISceneManager* sceneManager = DeviceManager::GetDevice()->getSceneManager();
+
+	//core::line3d<f32> line;
+  core::line3d<f32> line = sceneManager->getSceneCollisionManager()->getRayFromScreenCoordinates( DeviceManager::eventListener->GetMouseState().pos , sceneManager->getActiveCamera() ); 
+
+	//line.start = camera->getPosition();
+	//line.end = line.start + (camera->getTarget() - line.start).normalize() * 1000.0f;
+
+	core::vector3df intersection;
+  core::triangle3df tri;
+
+  if (sceneManager->getSceneCollisionManager()->getCollisionPoint(
+		line, selector, intersection, tri)){
+
+    driver->draw3DTriangle(tri, video::SColor(255,255,0,0));
+  }
 
 }
 
