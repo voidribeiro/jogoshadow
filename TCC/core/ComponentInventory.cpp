@@ -38,7 +38,8 @@ void ComponentInventory::RemoveItem(std::string itemName){
 }
 
 void ComponentInventory::DisplayItemImage(std::string itemName, bool visible){
-  items[itemName]->drawImage(0, 0);
+  if(visible)
+    items[itemName]->drawImage(0, 0);
 }
 
 void ComponentInventory::ViewItemDescription(std::string itemName){
@@ -107,6 +108,8 @@ int ComponentInventoryBinder::bnd_LoadItem(lua_State* L){
 
   LuaBinder binder(L);
   ComponentInventory* componentInventory  = (ComponentInventory*) binder.checkusertype(1,"ComponentInventory");
+
+  //LoadItem(lua_tostring(L,2), lua_toboolean(L,3), lua_toboolean(L,4) );
 
   return 0;
 }

@@ -16,7 +16,7 @@ private:
   string name;
   std::list <string> descriptionList;
   string imageName;
-  GameObject* gameObject;
+
   bool modelIsVisible;      //se o modelo está visível
   bool imageIsVisible;      //se a imagem 2D está visível
   bool isInPlayerPosession; //se o jogador possui o ítem
@@ -26,7 +26,6 @@ public:
   explicit Item(const string name, const bool _modelIsVisible, const bool _isInPlayerPosession);
   virtual ~Item();
 
-  void setGameObject(GameObject* obj){ gameObject = obj; }
   void addDescription(const string description);
   void drawImage(int posX, int posY);
 
@@ -37,7 +36,7 @@ public:
   string getName(){ return name; }
   string getDescription(const int idx);
   string getImage(){ return imageName; }
-  GameObject* getGameObject(){ return gameObject; }
+
   bool getModelVisible(){ return modelIsVisible; }
   bool getImageVisible(){ return imageIsVisible; }
   bool getInPlayerPosession(){ return isInPlayerPosession; }

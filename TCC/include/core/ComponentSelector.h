@@ -13,7 +13,7 @@ using namespace video;
 
 class ComponentSelector : public AbstractComponent{
   private:
-    ComponentModel* cModel;
+
     scene::ITriangleSelector* selector;
     void CreateSelector();
 
@@ -25,7 +25,8 @@ class ComponentSelector : public AbstractComponent{
     int GetType() { return CSELECTOR; };
     const char* GetTypeName() { return "ComponentSelector"; };
     virtual void SetParent(GameObject* parent);
-    void SetComponentModelReference(ComponentModel* cModel);
+    scene::ITriangleSelector* GetSelector();
+
 };
 
 class ComponentSelectorBinder{

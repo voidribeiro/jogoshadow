@@ -1,6 +1,7 @@
 #include "ComponentSelector.h"
 
 ComponentSelector::ComponentSelector(){
+  selector = NULL;
 }
 
 ComponentSelector::~ComponentSelector(){
@@ -34,14 +35,22 @@ void ComponentSelector::SetParent(GameObject* parent){
   AbstractComponent::SetParent(parent);
 }
 
-void ComponentSelector::SetComponentModelReference(ComponentModel* cModelRef){
-  this->cModel = cModelRef;
-  CreateSelector();
-}
-
 void ComponentSelector::CreateSelector(){
+
+  ComponentModel* cModel = (ComponentModel*)parent->GetComponent(CMODEL);
+  if (cModel == NULL){
+    printf("Missing Model Reference\n");
+    return;
+  }
+
   ISceneManager* sceneManager = DeviceManager::GetDevice()->getSceneManager();
   this->selector = sceneManager->createOctTreeTriangleSelector(cModel->GetMeshRef(), cModel->GetNodeRef());
+}
+
+scene::ITriangleSelector* ComponentSelector::GetSelector(){
+  if(selector == NULL)
+    CreateSelector();
+  return selector;
 }
 
 /////////////////////////////////////////////////////////
@@ -68,13 +77,8 @@ int ComponentSelectorBinder::bnd_AddTo(lua_State* L){
   LuaBinder binder(L);
   ComponentSelector* componentSelector  = (ComponentSelector*) binder.checkusertype(1,"ComponentSelector");
   GameObject* gameObject = (GameObject*) binder.checkusertype(2,"GameObject");
-  ComponentModel* cModelReference = (ComponentModel*)gameObject->GetComponent(CMODEL);
-  if (cModelReference == NULL){
-    delete(componentSelector);
-    componentSelector = NULL;
-    return 1;
-  }
-  componentSelector->SetComponentModelReference(cModelReference);
+
   gameObject->AddComponent(componentSelector);
+  componentSelector->GetSelector();
   return 1;
 }
