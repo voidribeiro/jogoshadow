@@ -13,6 +13,7 @@ extern "C"{
 #include "noncopyable.hpp"
 #include "ScriptObject.h"
 #include "GameObject.h"
+#include "Inventory.h"
 
 using namespace std;
 
@@ -22,11 +23,18 @@ class Game : private boost::noncopyable
 {
   private:
     std::string path;
+    Inventory* inventory;
+    int scope;        //escopo de onde eu estou no jogo, para tratamento dos inputs corretamente
+                      // 1 - jogo normal, 2 - diálogo, 3 - inventário
+
   public:
     explicit Game(std::string _path);
     virtual ~Game();
     void LoadLevel(std::string level);
     const char* GetPath(); 
+    
+    int GetCurrentScope(){return scope;}
+    void SetScope(int i){ scope = i;}
 };
  
 
@@ -39,6 +47,8 @@ class GameBinder{
     static int bnd_GetPath(lua_State* L);
     static int bnd_GetMousePosition(lua_State* L);
     static int bnd_GetMouseClick(lua_State* L);
+    static int bnd_GetCurrentScope(lua_State* L);
+    static int bnd_SetScope(lua_State* L);
     //static int bnd_AddToInventory(lua_State* L);
     //static int bnd_GetFromInventory(lua_State* L);
 };
@@ -48,6 +58,8 @@ static const luaL_reg gameFunctions[] = {
     {"GetPath", GameBinder::bnd_GetPath},
     {"GetMouseClick", GameBinder::bnd_GetMouseClick},
     {"GetMousePosition", GameBinder::bnd_GetMousePosition},
+    {"GetCurrentScope", GameBinder::bnd_GetCurrentScope},
+    {"SetScope", GameBinder::bnd_SetScope},
     //{"AddToInventory", GameBinder::bnd_AddToInventory},
     //{"GetFromInventory", GameBinder::bnd_GetFromInventory},
     {NULL, NULL}
