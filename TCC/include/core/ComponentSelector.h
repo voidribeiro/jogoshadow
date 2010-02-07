@@ -26,7 +26,7 @@ class ComponentSelector : public AbstractComponent{
     const char* GetTypeName() { return "ComponentSelector"; };
     virtual void SetParent(GameObject* parent);
     scene::ITriangleSelector* GetSelector();
-
+ 
 };
 
 class ComponentSelectorBinder{
