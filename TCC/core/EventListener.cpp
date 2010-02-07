@@ -53,6 +53,14 @@ bool EventListener::OnEvent(const SEvent &event){
 		      MouseState.LeftButtonDown = false;
 		      break;
 
+	      case EMIE_RMOUSE_PRESSED_DOWN:
+		      MouseState.RightButtonDown = true;
+		      break;
+
+	      case EMIE_RMOUSE_LEFT_UP:
+		      MouseState.RightButtonDown = false;
+		      break;
+
       }
 
       break;

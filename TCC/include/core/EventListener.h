@@ -37,7 +37,9 @@ class EventListener : public irr::IEventReceiver{
 	  struct SMouseState{
       irr::core::position2di pos;
 		  bool LeftButtonDown;
-		  SMouseState() : LeftButtonDown(false) { }
+      bool RightButtonDown;
+		  SMouseState() : LeftButtonDown(false), RightButtonDown(false) { }
+
 	  } MouseState;
 
 	public:

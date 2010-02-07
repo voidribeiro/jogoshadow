@@ -38,6 +38,7 @@ class GameBinder{
     static int bnd_LoadLevel (lua_State* L); 
     static int bnd_GetPath(lua_State* L);
     static int bnd_GetMousePosition(lua_State* L);
+    static int bnd_GetMouseClick(lua_State* L);
     //static int bnd_AddToInventory(lua_State* L);
     //static int bnd_GetFromInventory(lua_State* L);
 };
@@ -45,6 +46,7 @@ class GameBinder{
 static const luaL_reg gameFunctions[] = {
     {"LoadLevel", GameBinder::bnd_LoadLevel}, 
     {"GetPath", GameBinder::bnd_GetPath},
+    {"GetMouseClick", GameBinder::bnd_GetMouseClick},
     {"GetMousePosition", GameBinder::bnd_GetMousePosition},
     //{"AddToInventory", GameBinder::bnd_AddToInventory},
     //{"GetFromInventory", GameBinder::bnd_GetFromInventory},

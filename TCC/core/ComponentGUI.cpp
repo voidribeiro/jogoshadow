@@ -109,7 +109,7 @@ int ComponentGUIBinder::bnd_AddMessageBox(lua_State* L){
   std::string  smessage = lua_tostring(L, 3);
   std::wstring message  = std::wstring(smessage.begin(), smessage.end());
 
-  bool modal = lua_toboolean(L, 4);
+  bool modal = ( lua_toboolean(L, 4) != 0 ) ;
 
   componentGUI->addMessageBox( (wchar_t*)title.c_str(), 
                                (wchar_t*)message.c_str(), 

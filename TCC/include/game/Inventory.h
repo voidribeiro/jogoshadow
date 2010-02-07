@@ -15,20 +15,22 @@ class Inventory {
     ITexture* backgroundImage; //imagem de fundo
     bool isVisible;            //se o inventário está visível, caso verdadeiro deve mudar o input para o contexto 
                                //de inventário e não interagir na tela "atrás"
+
+    ComponentModel* getComponentModel(std::string objName);
+    ComponentImage* getComponentImage(std::string objName);
+
   public:
     explicit Inventory();
     virtual ~Inventory();
 
-    void Add(std::string objName, GameObject* obj);     //adiciona o ítem ao jogador
-    void Remove(std::string objName);                   //remove o ítem do jogador
+    void add(std::string objName, GameObject* obj);     //adiciona o ítem ao jogador
+    void remove(std::string objName);                   //remove o ítem do jogador
 
-    void SetBackground(std::string filename);
+    void setBackground(std::string filename);
     void setVisible(bool visible);
-    void Draw();
+    void draw();
 
     GameObject* getGameObject(std::string objName);
-    ComponentModel* getComponentModel(std::string objName);
-    ComponentImage* getComponentImage(std::string objName);
 
 };
 

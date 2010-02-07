@@ -42,7 +42,7 @@ double Script::getDoubleScript(char *name){
 
 bool Script::getBoolScript(char *name){
   lua_getglobal(state, name);
-  return lua_toboolean(state, -1);
+  return ( lua_toboolean(state, -1) != 0);
 }
 
 const char * Script::getStringScript(char *name){

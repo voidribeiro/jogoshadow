@@ -137,9 +137,9 @@ int GameObjectBinder::bnd_Instantiate(lua_State* L){
 int GameObjectBinder::bnd_SetPosition(lua_State* L){
   LuaBinder binder(L);
   GameObject* gameObject  = (GameObject*) binder.checkusertype(1,"GameObject");
-  float posX = lua_tonumber(L, 2);
-  float posY = lua_tonumber(L, 3);
-  float posZ = lua_tonumber(L, 4);
+  float posX = (float) lua_tonumber(L, 2);
+  float posY = (float) lua_tonumber(L, 3);
+  float posZ = (float) lua_tonumber(L, 4);
   gameObject->SetPosition(core::vector3df(posX, posY, posZ));
   return 1;
 }

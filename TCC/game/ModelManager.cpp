@@ -338,7 +338,7 @@ void ModelManager::animateSkeleton(vector3df pos, bool mousePresed){
 
   pos.Y += 30;
 
-  anim =	sceneManager->createFlyStraightAnimator(node->getPosition(), pos, 10 * pos.getDistanceFrom(node->getPosition()), false);
+  anim =	sceneManager->createFlyStraightAnimator(node->getPosition(), pos, (irr::u32) 10 * pos.getDistanceFrom(node->getPosition()), false);
 
   if(pos.getDistanceFrom(node->getPosition()) < 1.0f)
     getSkeleton()->setAnimType(CSK_ANIM_STAND);
@@ -358,7 +358,7 @@ void ModelManager::animateSkeleton(vector3df pos, bool mousePresed){
     anim =	sceneManager->createFlyStraightAnimator(
              node->getPosition(), 
              pos,
-             10*pos.getDistanceFrom(node->getPosition()),
+             10 * (irr::u32) pos.getDistanceFrom(node->getPosition()),
              false);
 
     node->addAnimator(anim);
