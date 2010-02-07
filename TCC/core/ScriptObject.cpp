@@ -13,6 +13,7 @@ ScriptObject::ScriptObject(const char* _scriptToExecute):scriptToExecute(_script
   luaScript.registerFunction(ComponentGUIBinder::registerFunctions);
   luaScript.registerFunction(ComponentDialogBinder::registerFunctions);
   luaScript.registerFunction(ComponentSelectorBinder::registerFunctions);
+  luaScript.registerFunction(ComponentInteractBinder::registerFunctions);
 }
  
 ScriptObject::~ScriptObject(){

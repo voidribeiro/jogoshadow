@@ -9,15 +9,15 @@
 class ScriptObject;
 
 class ComponentScript : public AbstractComponent{
-  private:
+  protected:
     ScriptObject* scriptObj;
   public:
     explicit ComponentScript(std::string script);
     virtual ~ComponentScript();
     virtual void Update();
     virtual void Draw(){};
-    int GetType() { return CSCRIPT; };
-    const char* GetTypeName() { return "ComponentScript"; };
+    virtual int GetType() { return CSCRIPT; };
+    virtual const char* GetTypeName() { return "ComponentScript"; };
 };
 
 class ComponentScriptBinder{

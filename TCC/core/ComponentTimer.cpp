@@ -10,7 +10,7 @@ ComponentTimer::~ComponentTimer(){
 }
 
 void ComponentTimer::Update(){
-  if (DeviceManager::GetDevice()->getTimer()->getTime()>timeOut){
+  if ((int)(DeviceManager::GetDevice()->getTimer()->getTime())>(timeOut)){
     ScriptObject scriptObj(scriptToExec.c_str());
     scriptObj.Execute(functionToExec.c_str());
   }
