@@ -80,7 +80,7 @@ int ComponentInventoryBinder::bnd_SetVisible(lua_State* L){
 
   //bool visible =  reinterpret_cast<bool>( lua_toboolean(L,2) );
 
-  componentInventory->SetVisible( lua_toboolean(L,2) );
+  componentInventory->SetVisible( ( lua_toboolean(L,2) != 0) );
   return 1;
 }
 
@@ -98,7 +98,7 @@ int ComponentInventoryBinder::bnd_ShowBackground(lua_State* L){
   LuaBinder binder(L);
   ComponentInventory* componentInventory  = (ComponentInventory*) binder.checkusertype(1,"ComponentInventory");
 
-  componentInventory->ShowBackground( lua_toboolean(L,2) );
+  componentInventory->ShowBackground( (lua_toboolean(L,2) != 0) );
 
   return 1;
 }
@@ -137,7 +137,7 @@ int ComponentInventoryBinder::bnd_DisplayItemImage(lua_State* L){
   LuaBinder binder(L);
   ComponentInventory* componentInventory  = (ComponentInventory*) binder.checkusertype(1,"ComponentInventory");
 
-  componentInventory->DisplayItemImage( lua_tostring(L,2), lua_toboolean(L,3) );
+  componentInventory->DisplayItemImage( lua_tostring(L,2), ( lua_toboolean(L,3) !=0) );
 
   return 0;
 }

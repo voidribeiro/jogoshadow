@@ -47,9 +47,29 @@ int GameBinder::bnd_GetPath(lua_State* L){
   return 1; 
 } 
 
+int GameBinder::bnd_GetMouseClick(lua_State* L){
+  LuaBinder binder(L);
+
+  // 0 = nada, 1 = esquerda, 2 = direita
+  if(DeviceManager::eventListener->GetMouseState().LeftButtonDown){
+    binder.pushnumber(1);
+    return 1;
+  }
+
+  if(DeviceManager::eventListener->GetMouseState().RightButtonDown){
+    binder.pushnumber(2);
+    return 1;
+  }
+
+  binder.pushnumber(0);
+  return 1;
+
+}
+
 int GameBinder::bnd_GetMousePosition(lua_State* L){
   LuaBinder binder(L);
   binder.pushnumber(DeviceManager::eventListener->GetMouseState().pos.X);
   binder.pushnumber(DeviceManager::eventListener->GetMouseState().pos.Y);
   return 2;
 }  
+

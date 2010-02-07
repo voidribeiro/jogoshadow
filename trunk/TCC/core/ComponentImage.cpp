@@ -13,7 +13,7 @@ void ComponentImage::Draw(){
   irr::video::IVideoDriver* driver = DeviceManager::GetDriver();
   core::vector3df parentPosition = parent->GetPosition();
   driver->draw2DImage(TextureManager::GetTexture(filename), 
-    core::position2d<s32>(parentPosition.X,parentPosition.Y));
+  core::position2d<s32>( (irr::s32)parentPosition.X, (irr::s32)parentPosition.Y));
 }
 
 void ComponentImage::SetVisible(bool visible){
@@ -51,6 +51,6 @@ int ComponentImageBinder::bnd_AddTo(lua_State* L){
 int ComponentImageBinder::bnd_SetVisible(lua_State* L){
   LuaBinder binder(L);
   ComponentImage* componentImage  = (ComponentImage*) binder.checkusertype(1,"ComponentImage");
-  componentImage->SetVisible(lua_toboolean(L,2));
+  componentImage->SetVisible( ( lua_toboolean(L,2) != 0) );
   return 1;
 }

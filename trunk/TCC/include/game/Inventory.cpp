@@ -10,13 +10,15 @@ Inventory::~Inventory(){
     (*i).second->~GameObject();
   }
 
+  delete backgroundImage;
+
 }
 
-void Inventory::Add(std::string objName, GameObject* obj){
+void Inventory::add(std::string objName, GameObject* obj){
   items[objName] = obj;
 }
 
-void Inventory::Remove(std::string objName){
+void Inventory::remove(std::string objName){
    GameObject* obj =  items[objName];
    obj->RemoveAllComponents();
    obj->~GameObject();
@@ -26,7 +28,7 @@ GameObject* Inventory::getGameObject(std::string objName){
   return items[objName];
 }
 
-void Inventory::SetBackground(std::string filename){
+void Inventory::setBackground(std::string filename){
   backgroundImage = TextureManager::GetTexture(filename);
 }
 
@@ -34,7 +36,7 @@ void Inventory::setVisible(bool visible){
   isVisible = visible;
 }
 
-void Inventory::Draw(){
+void Inventory::draw(){
   if (!isVisible)
     return;
   irr::video::IVideoDriver* driver = DeviceManager::GetDriver();
@@ -54,7 +56,7 @@ ComponentModel* Inventory::getComponentModel(std::string objName){
 ComponentImage* Inventory::getComponentImage(std::string objName){
   ComponentImage* cImage = (ComponentImage*)items[objName]->GetComponent(CIMAGE);
   if (cImage == NULL)
-    printf("Missing Model Reference\n");
+    printf("Missing Image Reference\n");
 
   return cImage;
 }

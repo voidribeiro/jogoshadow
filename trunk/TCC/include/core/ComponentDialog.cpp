@@ -241,7 +241,7 @@ int ComponentDialogBinder::bnd_SetVisible(lua_State* L){
   LuaBinder binder(L);
 
   ComponentDialog* componentDialog  = (ComponentDialog*) binder.checkusertype(1,"ComponentDialog");
-  componentDialog->SetVisible( (bool) lua_toboolean(L, 2) );
+  componentDialog->SetVisible( ( lua_toboolean(L, 2) != 0 ) );
 
   return 1;
 }
