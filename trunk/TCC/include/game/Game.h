@@ -42,7 +42,7 @@ class GameBinder{
     //static int bnd_AddToInventory(lua_State* L);
     //static int bnd_GetFromInventory(lua_State* L);
 };
-
+ 
 static const luaL_reg gameFunctions[] = {
     {"LoadLevel", GameBinder::bnd_LoadLevel}, 
     {"GetPath", GameBinder::bnd_GetPath},

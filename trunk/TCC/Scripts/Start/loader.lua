@@ -15,6 +15,10 @@ function startScript()
   local component = ComponentTimer.Instantiate(splashTime, path .. "Scripts\\Start\\loader.lua","onTimeOut")
   component:AddTo(gameObject)
 
+  local gameObject = GameObject.InstPersistent("Input")
+  local component = ComponentScript.Instantiate(path .. "Scripts\\Common\\input.lua")
+  component:AddTo(gameObject)
+
 end
 
 function onTimeOut()
