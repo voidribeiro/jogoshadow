@@ -286,6 +286,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\core\ComponentInteract.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\core\ComponentInventory.cpp"
 						>
 					</File>
@@ -449,6 +453,10 @@
 					</File>
 					<File
 						RelativePath=".\include\core\ComponentImage.h"
+						>
+					</File>
+					<File
+						RelativePath=".\include\core\ComponentInteract.h"
 						>
 					</File>
 					<File

@@ -23,6 +23,7 @@ extern "C"{
 #include "ComponentGUI.h"
 #include "ComponentDialog.h"
 #include "ComponentSelector.h"
+#include "ComponentInteract.h"
 
 using namespace std; 
 

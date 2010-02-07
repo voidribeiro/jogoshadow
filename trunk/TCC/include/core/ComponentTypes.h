@@ -12,7 +12,8 @@ enum COMPONENT_TYPES{
   CGUI     = 6,
   CDIALOG  = 7,
   CINVENTORY = 8,
-  CSELECTOR   = 9
+  CSELECTOR   = 9,
+  CINTERACT = 10
 }; 
 
 #endif
