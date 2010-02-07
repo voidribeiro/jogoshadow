@@ -73,3 +73,14 @@ int GameBinder::bnd_GetMousePosition(lua_State* L){
   return 2;
 }  
 
+int GameBinder::bnd_GetCurrentScope(lua_State* L){
+  LuaBinder binder(L);
+  binder.pushnumber(game->GetCurrentScope());
+  return 2;
+}  
+
+int GameBinder::bnd_SetScope(lua_State* L){
+  LuaBinder binder(L);
+  game->SetScope( lua_tonumber(L,1) );
+  return 2;
+}  
