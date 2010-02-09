@@ -81,6 +81,6 @@ int GameBinder::bnd_GetCurrentScope(lua_State* L){
 
 int GameBinder::bnd_SetScope(lua_State* L){
   LuaBinder binder(L);
-  game->SetScope( lua_tonumber(L,1) );
+  game->SetScope( (int) lua_tonumber(L,1) );
   return 2;
 }  

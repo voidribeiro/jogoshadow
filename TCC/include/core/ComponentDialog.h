@@ -47,7 +47,7 @@ class ComponentDialog : public AbstractComponent{
     void SetPlayerImage( const std::string filename );
     void SetNpcImage( const std::string filename );
     void SetFont( const std::string filename );
-    void SetVisible(bool _visible);
+    void SetVisible(const bool _visible);
     
     void AddOption( const std::string instanceName, const wchar_t* buttonText, const int x1, const int y1, const int x2, const int y2 );
     void AddImageOption( const std::string instanceName, const std::string filename, const int posX, const int posY);

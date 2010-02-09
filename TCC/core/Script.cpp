@@ -4,13 +4,14 @@ Script::Script(){
 }
 
 Script::~Script(){
+  delete state;
 }
 
 int Script::startScript(char *filename){
   state = lua_open();
 
   luaopen_base(state);
-  //luaopen_io(state);
+  luaopen_io(state);
   luaopen_string(state);
   luaopen_math(state);
 
