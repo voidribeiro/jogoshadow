@@ -21,6 +21,11 @@ rectOptions(64,64,736,100)
 ComponentDialog::~ComponentDialog(){
   if (windowAll)
     windowAll->remove();
+  
+  delete playerImage;
+  delete npcImage;
+  delete message;
+  delete buffer;
 } 
 
 void ComponentDialog::Draw(){

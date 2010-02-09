@@ -30,11 +30,11 @@ class Game : private boost::noncopyable
   public:
     explicit Game(std::string _path);
     virtual ~Game();
-    void LoadLevel(std::string level);
+    void LoadLevel(const std::string level);
     const char* GetPath(); 
     
     int GetCurrentScope(){return scope;}
-    void SetScope(int i){ scope = i;}
+    void SetScope(const int i){ scope = i;}
 };
  
 

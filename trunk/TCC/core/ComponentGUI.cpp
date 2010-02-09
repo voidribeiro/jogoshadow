@@ -5,7 +5,15 @@ ComponentGUI::ComponentGUI(){
 }
 
 ComponentGUI::~ComponentGUI(){
-  //elem->drop();
+
+  std::map <std::string, IGUIElement*>::iterator i;
+
+  for( i = elements.begin(); i!=elements.end(); ++i){
+    (*i).second->drop();
+  }
+
+  elements.clear();
+
 }
 
 void ComponentGUI::Draw(){
