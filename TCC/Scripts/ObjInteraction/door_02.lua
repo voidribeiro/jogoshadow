@@ -6,8 +6,16 @@ function interact()
   
 end
 
+speachCounter = 0
+
 function inspect()
-  print("This is another nice door!!!")
+  if (speachCounter == 0) then
+    print("This is another nice door!!!")
+    speachCounter = speachCounter + 1
+  else
+    print("No... this is not a door. It look like one but its an ugly farrie model!!!")
+  end
+  
 end
 
 function interactWith()
