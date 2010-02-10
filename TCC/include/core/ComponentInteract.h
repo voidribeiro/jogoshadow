@@ -40,7 +40,7 @@ static const luaL_reg componentInteractFunctions[] = {
     {"InterectWith", ComponentInteractBinder::bnd_InteractWith},
     {"Inspect", ComponentInteractBinder::bnd_Inspect},
     {"Interect", ComponentInteractBinder::bnd_Interact},
-    {NULL, NULL}
+    {NULL, NULL} 
 };
 
 #endif

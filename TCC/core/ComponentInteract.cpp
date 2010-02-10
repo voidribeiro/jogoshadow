@@ -60,7 +60,7 @@ int ComponentInteractBinder::bnd_InteractWith (lua_State* L){
 }
 
 int ComponentInteractBinder::bnd_Inspect (lua_State* L){
-  LuaBinder binder(L);
+  LuaBinder binder(L); 
   ComponentInteract* componentInteract  = (ComponentInteract*) binder.checkusertype(1,"ComponentInteract");
   componentInteract->Inspect();
   return 1;
