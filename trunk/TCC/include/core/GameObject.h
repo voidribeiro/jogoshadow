@@ -65,9 +65,9 @@ static const luaL_reg gameObjectFunctions[] = {
 //TODO - See a better way to do this list
 class GameObjectMap{
   private:
-    static std::map<std::string,GameObject*> gameObjectMap;
     static std::map<std::string,GameObject*> gameObjectPersistentMap;
   public:
+    static std::map<std::string,GameObject*> gameObjectMap;
     static void Add(std::string objName,GameObject* gObj, bool persisent);
     static GameObject* Get(std::string objName);
     static void Clear(bool persisent);

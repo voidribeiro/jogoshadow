@@ -25,8 +25,8 @@ class ComponentSelector : public AbstractComponent{
     int GetType() { return CSELECTOR; };
     const char* GetTypeName() { return "ComponentSelector"; };
     virtual void SetParent(GameObject* parent);
-    scene::ITriangleSelector* GetSelector();
- 
+    void CheckSelector();
+    float GetDistanceFromMouse(irr::core::position2d<s32> mousePosition);
 };
 
 class ComponentSelectorBinder{

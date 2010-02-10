@@ -47,10 +47,26 @@ void ComponentSelector::CreateSelector(){
   this->selector = sceneManager->createOctTreeTriangleSelector(cModel->GetMeshRef(), cModel->GetNodeRef());
 }
 
-scene::ITriangleSelector* ComponentSelector::GetSelector(){
+void ComponentSelector::CheckSelector(){
   if(selector == NULL)
     CreateSelector();
-  return selector;
+}
+
+float ComponentSelector::GetDistanceFromMouse(irr::core::position2d<s32> mousePosition){
+  CheckSelector();
+  IrrlichtDevice* device = DeviceManager::GetDevice();
+  irr::video::IVideoDriver* driver = DeviceManager::GetDriver();
+  ISceneManager* sceneManager = DeviceManager::GetDevice()->getSceneManager();
+
+  core::line3d<f32> line = sceneManager->getSceneCollisionManager()->getRayFromScreenCoordinates(mousePosition, sceneManager->getActiveCamera()); 
+	core::vector3df intersection;
+  core::triangle3df tri;
+
+  if (sceneManager->getSceneCollisionManager()->getCollisionPoint(
+		line, selector, intersection, tri)){
+      return intersection.getDistanceFrom(sceneManager->getActiveCamera()->getPosition());
+  }
+  return -1;
 }
 
 /////////////////////////////////////////////////////////
@@ -77,8 +93,7 @@ int ComponentSelectorBinder::bnd_AddTo(lua_State* L){
   LuaBinder binder(L);
   ComponentSelector* componentSelector  = (ComponentSelector*) binder.checkusertype(1,"ComponentSelector");
   GameObject* gameObject = (GameObject*) binder.checkusertype(2,"GameObject");
-
   gameObject->AddComponent(componentSelector);
-  componentSelector->GetSelector();
+  componentSelector->CheckSelector();
   return 1;
 }

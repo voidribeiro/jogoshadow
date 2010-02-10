@@ -21,6 +21,9 @@ function startScript()
   local selector = ComponentSelector.Instantiate()
   selector:AddTo(gameObject)
   
+  local interact = ComponentInteract.Instantiate(path .. "Scripts\\ObjInteraction\\door_01.lua")
+  interact:AddTo(gameObject)
+  
   local component = ComponentDialog.Instantiate()
 
   component:Say( " Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.")

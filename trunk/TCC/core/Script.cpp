@@ -4,14 +4,16 @@ Script::Script(){
 }
 
 Script::~Script(){
-  delete state;
+  //TODO - This line crashes the project. Use it for emergency only.
+  //delete state;
 }
 
 int Script::startScript(char *filename){
   state = lua_open();
 
   luaopen_base(state);
-  luaopen_io(state);
+  //TODO - This line crashes the project. Use it for emergency only.
+  //luaopen_io(state);
   luaopen_string(state);
   luaopen_math(state);
 

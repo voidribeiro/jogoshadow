@@ -19,7 +19,7 @@ class LuaBinder
 
     void pushstring (const char* s);
     const char* checkstring (int index);
- 
+  
     void init (const char* tname, const char* bname, 
 	  const luaL_reg *flist, int (*destroy) (lua_State*)); 
 
