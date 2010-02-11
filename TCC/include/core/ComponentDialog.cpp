@@ -22,10 +22,10 @@ ComponentDialog::~ComponentDialog(){
   if (windowAll)
     windowAll->remove();
   
-  delete playerImage;
-  delete npcImage;
-  delete message;
-  delete buffer;
+//  delete playerImage;
+//  delete npcImage;
+//  delete message;
+//  delete buffer;
 } 
 
 void ComponentDialog::Draw(){
