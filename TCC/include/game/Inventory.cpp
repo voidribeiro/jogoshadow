@@ -1,6 +1,7 @@
 #include "Inventory.h"
 
 Inventory::Inventory(){
+  //setBackground(backgroundImageName);
 }
 
 Inventory::~Inventory(){

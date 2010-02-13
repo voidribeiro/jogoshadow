@@ -1,6 +1,7 @@
 #include "Game.h"
 
-Game::Game(std::string _path):path(_path){
+Game::Game(std::string _path):path(_path), scope(1){
+
 }
 
 Game::~Game(){
@@ -17,6 +18,22 @@ void Game::LoadLevel(std::string level){
 
 const char* Game::GetPath(){
   return path.c_str();
+}
+
+void Game::SetInventoryBackground(const std::string background){
+  inventory.setBackground(background);
+}
+
+void Game::DisplayInventory(const bool visible){
+  inventory.setVisible(visible);
+}
+
+void Game::AddToInventory(const std::string objName, GameObject* obj){
+  inventory.add(objName, obj);
+}
+
+void Game::RemoveFromInventory(const std::string objName){
+  inventory.remove(objName);
 }
 
 /****************************************************/
@@ -113,4 +130,32 @@ int GameBinder::bnd_PickNearestInteract(lua_State* L){
   }
   binder.pushusertype(compInteract,"ComponentInteract");
   return 1;
+}
+
+int GameBinder::bnd_SetInventoryBackground(lua_State* L){
+  LuaBinder binder(L);
+  game->SetInventoryBackground( lua_tostring(L,1) );
+  return 0;
+}
+
+int GameBinder::bnd_DisplayInventory(lua_State* L){
+  LuaBinder binder(L);
+  game->DisplayInventory( (lua_toboolean(L,1) != 0) );
+  return 0;
+}
+
+int GameBinder::bnd_AddToInventory(lua_State* L){
+  LuaBinder binder(L);
+
+  std::string objName = lua_tostring(L,1);
+  GameObject* gameObject = (GameObject*) binder.checkusertype(2,"GameObject");
+
+  game->AddToInventory(objName, gameObject );
+  return 0;
+}
+
+int GameBinder::bnd_RemoveFromInventory(lua_State* L){
+  LuaBinder binder(L);
+  game->RemoveFromInventory( lua_tostring(L,1) );
+  return 0;
 }

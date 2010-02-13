@@ -19,6 +19,7 @@ function startScript()
   local component = ComponentScript.Instantiate(path .. "Scripts\\Common\\input.lua")
   component:AddTo(gameObject)
 
+  Game.SetInventoryBackground(path .. "resources\\Common\\inventory\\background.jpg")
 end
 
 function onTimeOut()

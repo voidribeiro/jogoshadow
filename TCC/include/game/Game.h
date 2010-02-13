@@ -23,7 +23,7 @@ class Game : private boost::noncopyable
 {
   private:
     std::string path;
-    Inventory* inventory;
+    Inventory inventory;
     int scope;        //escopo de onde eu estou no jogo, para tratamento dos inputs corretamente
                       // 1 - jogo normal, 2 - diálogo, 3 - inventário
 
@@ -35,6 +35,12 @@ class Game : private boost::noncopyable
     
     int GetCurrentScope(){return scope;}
     void SetScope(const int i){ scope = i;}
+    
+    void SetInventoryBackground(const std::string background);
+    void DisplayInventory(const bool visible);
+    
+    void AddToInventory(const std::string objName, GameObject* obj);
+    void RemoveFromInventory(const std::string objName);
 };
  
 
@@ -50,8 +56,11 @@ class GameBinder{
     static int bnd_GetCurrentScope(lua_State* L);
     static int bnd_SetScope(lua_State* L);
     static int bnd_PickNearestInteract(lua_State* L);
-    //static int bnd_AddToInventory(lua_State* L);
-    //static int bnd_GetFromInventory(lua_State* L);
+
+    static int bnd_SetInventoryBackground(lua_State* L);
+    static int bnd_DisplayInventory(lua_State* L);
+    static int bnd_AddToInventory(lua_State* L);
+    static int bnd_RemoveFromInventory(lua_State* L);
 };
  
 static const luaL_reg gameFunctions[] = { 
@@ -62,10 +71,13 @@ static const luaL_reg gameFunctions[] = {
     {"GetCurrentScope", GameBinder::bnd_GetCurrentScope},
     {"SetScope", GameBinder::bnd_SetScope},
     {"PickNearestInteract", GameBinder::bnd_PickNearestInteract},
-    //{"AddToInventory", GameBinder::bnd_AddToInventory},
-    //{"GetFromInventory", GameBinder::bnd_GetFromInventory},
+    
+    {"SetInventoryBackground", GameBinder::bnd_SetInventoryBackground},
+    {"DisplayInventory", GameBinder::bnd_DisplayInventory},
+    {"AddToInventory", GameBinder::bnd_AddToInventory},
+    {"RemoveFromInventory", GameBinder::bnd_RemoveFromInventory},
     {NULL, NULL}
 };
 
 
-#endif
+#endif 

@@ -23,11 +23,11 @@ class Inventory {
     explicit Inventory();
     virtual ~Inventory();
 
-    void add(std::string objName, GameObject* obj);     //adiciona o ítem ao jogador
-    void remove(std::string objName);                   //remove o ítem do jogador
+    void add(const std::string objName, GameObject* obj);     //adiciona o ítem ao jogador
+    void remove(const std::string objName);                   //remove o ítem do jogador
 
-    void setBackground(std::string filename);
-    void setVisible(bool visible);
+    void setBackground(const std::string filename);
+    void setVisible(const bool visible);
     void draw();
 
     GameObject* getGameObject(std::string objName);
