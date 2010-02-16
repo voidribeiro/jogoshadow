@@ -1,7 +1,7 @@
 #include "ModelManager.h"
 
 ModelManager::ModelManager(irr::scene::ISceneManager* sm)
-: hero(), skeleton(),scenario(){
+: hero(), scenario(){
   sceneManager = sm;
 }
 
@@ -127,6 +127,7 @@ void ModelManager::setTerrain(const char *filename, ITexture* texture0, ITexture
 }
 
 
+/*
 void ModelManager::setSkeleton(const char *filename){
   scene::IAnimatedMesh* mesh;
   scene::IAnimatedMeshSceneNode* animatedNode;
@@ -143,19 +144,11 @@ void ModelManager::setSkeleton(const char *filename){
     skeleton = 0;
   }
 
-  /*
-   *  SkeletalModel( 
-   *    int id, 
-   *    int modelType, 
-   *    IAnimatedMesh* mesh, 
-   *    IAnimatedMeshSceneNode* node, 
-   *    u32 animationSpeed )
-   */
-
   skeleton = new SkeletalModel(5, mesh, animatedNode, 8);
   skeleton->setAnimType(CSK_ANIM_WALK);
   skeleton->getSkeletonSceneNode()->setPosition( core::vector3df(80,30,-50) );
 }
+*/
 
 void ModelManager::pushNpc(const char *filename, ITexture* texture){
   NpcModel* npc;
@@ -272,9 +265,11 @@ void ModelManager::pushModel(const char *filename, int modelType){
       //pushObject(filename, texture);
       break;
 
+    /*
     case SKELETAL_MODEL:
       setSkeleton(filename);
       break;
+    */
   }
 
 }
@@ -304,7 +299,7 @@ void ModelManager::popNpc(const int id){
 }
 
 
-void ModelManager::update(position2di pos){
+void ModelManager::update(irr::core::position2di pos){
 
   /*
    * changes the scenario scale
@@ -322,15 +317,16 @@ void ModelManager::update(position2di pos){
   getNpcNodeById(0)->setPosition(irr::core::vector3df(0,30,0));
   */
 
+  /*
   IAnimatedMeshSceneNode* node;
   node = skeleton->getSkeletonSceneNode();
   node->setScale( core::vector3df(8,8,8) );
-
+*/
   /* ponto onde o modelo olha */
-  skeleton->animSkeleton( pos );
+  //skeleton->animSkeleton( pos );
 
 }
-
+/*
 void ModelManager::animateSkeleton(vector3df pos, bool mousePresed){
 
   IAnimatedMeshSceneNode* node = getSkeleton()->getSkeletonSceneNode();
@@ -366,7 +362,7 @@ void ModelManager::animateSkeleton(vector3df pos, bool mousePresed){
   }
 
 }
-
+*/
 NpcModel* ModelManager::getNpcById(const int id){
   return npcs.find(id)->second;
 }

@@ -19,7 +19,7 @@ class ComponentInteract : public AbstractComponent{
     virtual int GetType() { return CINTERACT; };
     virtual const char* GetTypeName() { return "ComponentInteract"; };
     void Interact();
-    void Interact(string object);
+    void Interact(std::string object);
     void Inspect();
 };
 

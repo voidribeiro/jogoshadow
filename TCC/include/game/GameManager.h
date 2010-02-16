@@ -26,7 +26,7 @@ the game features making them interact correctly.
 //#include "GUIManager.h"
 #include "TextureManager.h"
 
-#include "ModelManager.h"
+//#include "ModelManager.h"
 #include "SoundManager.h"
 
 #include "ProcessManager.h"
@@ -46,7 +46,7 @@ private:
 
   Script luaScript;
 
-  ModelManager* modelManager;
+ // ModelManager* modelManager;
   //GUIManager*   guiManager;
   SoundManager  soundManager;
 

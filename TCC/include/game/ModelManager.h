@@ -55,7 +55,7 @@ private:
   std::map <int, NpcModel*> npcs;
 
 
-  SkeletalModel* skeleton;
+  //SkeletalModel* skeleton;
 
 public:
   explicit ModelManager(irr::scene::ISceneManager* sm);
@@ -69,7 +69,7 @@ public:
   void setHero      (const char* filename, ITexture* texture);
   void setScenario  (const char* filename);
   void setTerrain   (const char* filename, ITexture* texture0, ITexture* texture1);
-  void setSkeleton  (const char* filename);
+  //void setSkeleton  (const char* filename);
 
   void pushNpc      (const char* filename);
   void pushNpc      (const char* filename, ITexture* texture);
@@ -91,13 +91,13 @@ public:
    * changing the SceneNodes directly.
    * This function being here, allows it to run a different number of times from the main loop.
    */
-  void update( position2di pos );
+  void update( irr::core::position2di pos );
 
-  void animateSkeleton( vector3df pos, bool mousePresed );
+  //void animateSkeleton( vector3df pos, bool mousePresed );
 
   ScenarioModel* getScenario() { return scenario; } 
   boost::shared_ptr<HeroModel>  getHero()     { return hero; } 
-  SkeletalModel* getSkeleton() { return skeleton; } 
+  //SkeletalModel* getSkeleton() { return skeleton; } 
   TerrainModel* getTerrain() { return terrain; } 
 
   /*

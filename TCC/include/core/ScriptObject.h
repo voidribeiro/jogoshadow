@@ -24,6 +24,7 @@ extern "C"{
 #include "ComponentDialog.h"
 #include "ComponentSelector.h"
 #include "ComponentInteract.h"
+#include "ComponentSkeleton.h"
 
 using namespace std; 
 

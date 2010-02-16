@@ -310,6 +310,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\include\core\ComponentSkeleton.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\core\ComponentSkybox.cpp"
 						>
 					</File>
@@ -481,6 +485,10 @@
 					</File>
 					<File
 						RelativePath=".\include\core\ComponentSelector.h"
+						>
+					</File>
+					<File
+						RelativePath=".\include\core\ComponentSkeleton.h"
 						>
 					</File>
 					<File

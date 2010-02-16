@@ -108,7 +108,7 @@ int GameBinder::bnd_PickNearestInteract(lua_State* L){
   ComponentInteract* compInteract = NULL;
 
   //Check the objects searching for the nearst object
-  map<std::string,GameObject*>::iterator it; 
+  std::map<std::string,GameObject*>::iterator it; 
   for (it = GameObjectMap::gameObjectMap.begin(); 
     it != GameObjectMap::gameObjectMap.end(); it++){
       if ((it->second) != NULL){
