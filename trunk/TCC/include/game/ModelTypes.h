@@ -5,7 +5,7 @@
 #include "ScenarioModel.h"
 #include "NpcModel.h"
 #include "ObjectModel.h"
-#include "SkeletalModel.h"
+//#include "SkeletalModel.h"
 #include "TerrainModel.h"
 
 enum ENUM_MODEL_TYPES{
@@ -13,7 +13,7 @@ enum ENUM_MODEL_TYPES{
   SCENARIO_MODEL    = 2,
   NPC_MODEL         = 3,
   OBJECT_MODEL      = 4,
-  SKELETAL_MODEL    = 5,
+  //SKELETAL_MODEL    = 5,
   TERRAIN_MODEL     = 6
 };
 

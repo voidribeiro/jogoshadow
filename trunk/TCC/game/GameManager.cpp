@@ -36,7 +36,7 @@ bool GameManager::init(){
   /*
    * instantiates the auxiliar managers
    */
-  modelManager = new ModelManager( sceneManager );
+  //modelManager = new ModelManager( sceneManager );
   //guiManager   = new GUIManager( device->getGUIEnvironment(), device->getVideoDriver() );
 
   //eventListener.setGUIManager( guiManager );
@@ -56,9 +56,9 @@ bool GameManager::init(){
    *     bool noVerticalMovement=false,
 	 *	   f32 jumpSpeed = 0.f) = 0;
    */
- // camera = sceneManager->addCameraSceneNodeFPS( 0, 100.0f, .3f, -1, 0, 0, false, 3.f);
+  //camera = sceneManager->addCameraSceneNodeFPS( 0, 100.0f, .3f, -1, 0, 0, false, 3.f);
   camera = sceneManager->addCameraSceneNode();
-  camera->setPosition( core::vector3df( -100, 75, 0 ) );
+  camera->setPosition( core::vector3df( 100, 200, 150 ) );
 
   /*
    * Plays a 2D backgound music using the SoundManager
@@ -83,11 +83,11 @@ bool GameManager::init(){
    * Creates a Scenario and a NPC
    */
   //modelManager->setScenario("resources/plano.3DS");
-  modelManager->setTerrain( "resources/terrain-heightmap.bmp", 
+ /* modelManager->setTerrain( "resources/terrain-heightmap.bmp", 
                             TextureManager::GetTexture("resources/terrain-texture.jpg"),
                             TextureManager::GetTexture("resources/detailmap3.jpg"));
-
-  modelManager->setSkeleton("resources/skeleton/player.x");
+*/
+  //modelManager->setSkeleton("resources/skeleton/player.x");
 
   pm.push(process1, this);
   pm.push(process2, this);
@@ -106,7 +106,7 @@ void GameManager::draw(){
   //guiManager->drawAll();
 
   //TODO - This is update method should not be in draw
-  drawTriangleSelection();
+  //drawTriangleSelection();
 
   //return true;
 
@@ -126,7 +126,7 @@ void GameManager::drawTriangleSelection(){
 	core::vector3df intersection;
   core::triangle3df tri;
 
-  ITriangleSelector* selector;
+  //ITriangleSelector* selector;
 
   //TODO - This was used to select the character. I'll leave for reference for a while
   /*
@@ -140,7 +140,7 @@ void GameManager::drawTriangleSelection(){
     }
   }
   */
- 
+ /*
   selector = modelManager->getTerrain()->getSelector();
   if (sceneManager->getSceneCollisionManager()->getCollisionPoint(
 		line, selector, intersection, tri)){
@@ -148,9 +148,9 @@ void GameManager::drawTriangleSelection(){
     driver->draw3DTriangle(tri, video::SColor(255,255,0,0));
 
     //mudar isso de lugar depois
-    modelManager->animateSkeleton(intersection, DeviceManager::eventListener->GetMouseState().LeftButtonDown );
+    //modelManager->animateSkeleton(intersection, DeviceManager::eventListener->GetMouseState().LeftButtonDown );
   }
-
+*/
 }
 
 bool GameManager::displayWindowCaption(){
@@ -184,8 +184,8 @@ bool GameManager::processLUAScripts(){
 bool GameManager::update(){
 
   //pm.process();
-  position2di pos = DeviceManager::eventListener->GetMouseState().pos;
-  modelManager->update( pos );
+  //position2di pos = DeviceManager::eventListener->GetMouseState().pos;
+  //modelManager->update( pos );
 
   return true;
 }

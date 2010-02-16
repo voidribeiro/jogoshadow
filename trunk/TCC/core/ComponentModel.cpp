@@ -19,9 +19,9 @@ ComponentModel::~ComponentModel(){
     node->remove();
   node = 0;
 
-  if (mesh)
+  /*  if (mesh)
     mesh->drop();
-	mesh = 0;
+	mesh = 0;*/
 }
 
 void ComponentModel::Draw(){
