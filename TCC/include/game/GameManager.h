@@ -27,7 +27,6 @@ the game features making them interact correctly.
 #include "TextureManager.h"
 
 //#include "ModelManager.h"
-#include "SoundManager.h"
 
 #include "ProcessManager.h"
 
@@ -48,7 +47,7 @@ private:
 
  // ModelManager* modelManager;
   //GUIManager*   guiManager;
-  SoundManager  soundManager;
+  //SoundManager  soundManager;
 
   irr::s32 lastFPS;
   //irr::s32 fps;

@@ -215,10 +215,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\game\SoundManager.cpp"
-					>
-				</File>
-				<File
 					RelativePath=".\game\TerrainModel.cpp"
 					>
 				</File>
@@ -226,10 +222,6 @@
 			<Filter
 				Name="core"
 				>
-				<File
-					RelativePath=".\core\BMaths.cpp"
-					>
-				</File>
 				<File
 					RelativePath=".\core\DeviceManager.cpp"
 					>
@@ -385,10 +377,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\include\game\SoundManager.h"
-					>
-				</File>
-				<File
 					RelativePath=".\include\game\TerrainModel.h"
 					>
 				</File>
@@ -404,10 +392,6 @@
 			<Filter
 				Name="core"
 				>
-				<File
-					RelativePath=".\include\core\BMaths.h"
-					>
-				</File>
 				<File
 					RelativePath=".\include\core\DeviceManager.h"
 					>

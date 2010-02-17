@@ -58,30 +58,20 @@ bool GameManager::init(){
    */
   //camera = sceneManager->addCameraSceneNodeFPS( 0, 100.0f, .3f, -1, 0, 0, false, 3.f);
   camera = sceneManager->addCameraSceneNode();
-  camera->setPosition( core::vector3df( 100, 200, 150 ) );
-
-  /*
-   * Plays a 2D backgound music using the SoundManager
-  
-  */
-
-  if( !soundManager.init() )
-    printf("Unable to initialize IrrKlang\n");
-  else;
-    //soundManager.playSound("resources/IrrlichtTheme.ogg",true);
+  camera->setPosition( core::vector3df( 100, 150, 150 ) );
 
   /*
    * HARDCODE!
    */
 
-	sceneManager->addLightSceneNode(0, core::vector3df(-60,300,100),
+  sceneManager->addLightSceneNode(0, core::vector3df(-60,200,-100),
 		video::SColorf(1.0f,1.0f,1.0f,1.0f),
 		600.0f);
-
 
   /* 
    * Creates a Scenario and a NPC
    */
+
   //modelManager->setScenario("resources/plano.3DS");
  /* modelManager->setTerrain( "resources/terrain-heightmap.bmp", 
                             TextureManager::GetTexture("resources/terrain-texture.jpg"),

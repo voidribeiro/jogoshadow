@@ -28,7 +28,7 @@ void ComponentModel::Draw(){
 
 }
 
-void ComponentModel::setMaterial(irr::video::SMaterial material){
+void ComponentModel::setMaterial( irr::video::SMaterial material){
   IrrlichtDevice* device = DeviceManager::GetDevice();
   irr::scene::ISceneManager* sceneManager = device->getSceneManager();
 
@@ -63,7 +63,6 @@ int ComponentModelBinder::registerFunctions(lua_State* L){
 int ComponentModelBinder::bnd_DontDestroy(lua_State* L){
   return 0;
 }
-
 
 int ComponentModelBinder::bnd_Instantiate(lua_State* L){
   LuaBinder binder(L);

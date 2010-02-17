@@ -20,6 +20,7 @@ function startScript()
   component:AddTo(gameObject)
 
   Game.SetInventoryBackground(path .. "resources\\Common\\inventory\\background.jpg")
+  Game.PlayMusic(path .. "resources\\Common\\background.ogg", true)
 end
 
 function onTimeOut()
