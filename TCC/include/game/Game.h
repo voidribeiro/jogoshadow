@@ -40,6 +40,7 @@ class Game : private boost::noncopyable
 
     void SetInventoryBackground(const std::string background);
     void DisplayInventory(const bool visible);
+    void DrawInventory();
 
     void AddToInventory(const std::string objName, GameObject* obj);
     void RemoveFromInventory(const std::string objName);
@@ -64,6 +65,7 @@ class GameBinder{
 
     static int bnd_SetInventoryBackground(lua_State* L);
     static int bnd_DisplayInventory(lua_State* L);
+    static int bnd_DrawInventory(lua_State* L);
     static int bnd_AddToInventory(lua_State* L);
     static int bnd_RemoveFromInventory(lua_State* L);
 
@@ -78,9 +80,10 @@ static const luaL_reg gameFunctions[] = {
     {"GetCurrentScope", GameBinder::bnd_GetCurrentScope},
     {"SetScope", GameBinder::bnd_SetScope},
     {"PickNearestInteract", GameBinder::bnd_PickNearestInteract},
-    
+
     {"SetInventoryBackground", GameBinder::bnd_SetInventoryBackground},
     {"DisplayInventory", GameBinder::bnd_DisplayInventory},
+    {"DrawInventory", GameBinder::bnd_DrawInventory},
     {"AddToInventory", GameBinder::bnd_AddToInventory},
     {"RemoveFromInventory", GameBinder::bnd_RemoveFromInventory},
     

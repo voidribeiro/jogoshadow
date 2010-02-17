@@ -25,7 +25,7 @@ function startScript()
 
 
   local estante = GameObject.Instantiate("estante")
-  estante:SetPosition(-20,0,0)  
+  estante:SetPosition(-20,15,0)
 
   local component = ComponentModel.Instantiate(path .. "resources\\level2\\models\\estante.3ds")
   component:SetTexture( path .. "resources\\level2\\textures\\textura_estante.jpg")

@@ -27,6 +27,10 @@ void Game::DisplayInventory(bool visible){
   inventory.setVisible(visible);
 }
 
+void Game::DrawInventory(){
+  inventory.draw();
+}
+
 void Game::AddToInventory(std::string objName, GameObject* obj){
   inventory.add(objName, obj);
 }
@@ -146,6 +150,13 @@ int GameBinder::bnd_DisplayInventory(lua_State* L){
   game->DisplayInventory( (lua_toboolean(L,1) != 0) );
   return 0;
 }
+
+int GameBinder::bnd_DrawInventory(lua_State* L){
+  LuaBinder binder(L);
+  game->DrawInventory();
+  return 0;
+}
+
 
 int GameBinder::bnd_AddToInventory(lua_State* L){
   LuaBinder binder(L);
