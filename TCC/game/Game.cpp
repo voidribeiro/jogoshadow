@@ -90,6 +90,30 @@ int GameBinder::bnd_GetMouseClick(lua_State* L){
 
 }
 
+int GameBinder::bnd_GetMouseLeft(lua_State* L){
+  LuaBinder binder(L);
+ 
+  if(DeviceManager::eventListener->GetMouseState().LeftButtonDown){
+    binder.pushnumber(1);
+    return 1;
+  }
+
+  binder.pushnumber(0);
+  return 1;
+}
+
+int GameBinder::bnd_GetMouseRight(lua_State* L){
+  LuaBinder binder(L);
+ 
+  if(DeviceManager::eventListener->GetMouseState().RightButtonDown){
+    binder.pushnumber(1);
+    return 1;
+  } 
+
+  binder.pushnumber(0);
+  return 1;
+}  
+
 int GameBinder::bnd_GetMousePosition(lua_State* L){
   LuaBinder binder(L);
   binder.pushnumber(DeviceManager::eventListener->GetMouseState().pos.X);

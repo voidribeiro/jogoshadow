@@ -59,6 +59,8 @@ class GameBinder{
     static int bnd_GetPath(lua_State* L);
     static int bnd_GetMousePosition(lua_State* L);
     static int bnd_GetMouseClick(lua_State* L);
+    static int bnd_GetMouseLeft(lua_State* L);
+    static int bnd_GetMouseRight(lua_State* L);
     static int bnd_GetCurrentScope(lua_State* L);
     static int bnd_SetScope(lua_State* L);
     static int bnd_PickNearestInteract(lua_State* L);
@@ -76,6 +78,8 @@ static const luaL_reg gameFunctions[] = {
     {"LoadLevel", GameBinder::bnd_LoadLevel}, 
     {"GetPath", GameBinder::bnd_GetPath},
     {"GetMouseClick", GameBinder::bnd_GetMouseClick},
+    {"GetMouseLeft", GameBinder::bnd_GetMouseLeft},
+    {"GetMouseRight", GameBinder::bnd_GetMouseRight},
     {"GetMousePosition", GameBinder::bnd_GetMousePosition},
     {"GetCurrentScope", GameBinder::bnd_GetCurrentScope},
     {"SetScope", GameBinder::bnd_SetScope},
