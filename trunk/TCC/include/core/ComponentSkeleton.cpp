@@ -33,7 +33,7 @@ ComponentSkeleton::ComponentSkeleton(std::string filename, u32 _speed):speed( _s
   node = sceneManager->addAnimatedMeshSceneNode( mesh );
   
   setAnimType(CSK_ANIM_WALK);
-  node->setPosition( core::vector3df(0,30,0) );
+  node->setPosition( core::vector3df(0, 45, 0) );
 
   init(node, speed);
 

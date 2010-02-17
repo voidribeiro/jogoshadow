@@ -5,6 +5,9 @@
 #include <exception>
 
 #include "EventListener.h"
+#include "irrKlang.h"
+
+using namespace irrklang;
 
 using namespace irr;
 using namespace std;
@@ -30,6 +33,7 @@ class DeviceManager{
     static IrrlichtDevice* GetDevice();
     static video::IVideoDriver* GetDriver();
     static EventListener* eventListener;
+    static ISoundEngine* soundDevice;
 };
 
 #endif

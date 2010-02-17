@@ -11,13 +11,13 @@ By "xray" on Irrlicht forums
 */
 
 #include "irrlicht.h"
-#include "BMaths.h"
 #include "Model.h"
 #include "Skeleton.h"
 
 using namespace irr;
 using namespace scene;
 using namespace video;
+using namespace core;
 
 class SkeletalModel : public Model{
 public:
@@ -54,6 +54,7 @@ public:
 	// return player velocity
 	core::vector3df getSkeletonVelocity() const;
 
+  core::vector3df matrixRotation(core::vector3df rotation, core::vector3df vec);
 
 private:
   IAnimatedMesh*          mesh;

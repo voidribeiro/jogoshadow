@@ -1,5 +1,5 @@
-#ifndef __ABSTRACTCOMPONENT_H__
-#define __ABSTRACTCOMPONENT_H__
+#ifndef _ABSTRACTCOMPONENT_H_
+#define _ABSTRACTCOMPONENT_H_
 
 #include "ComponentTypes.h"
 #include "GameObject.h"
@@ -22,4 +22,4 @@ class AbstractComponent{
     virtual void Draw() = 0;
 };
 
-#endif
+#endif 

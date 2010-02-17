@@ -4,6 +4,7 @@ DeviceManager::DeviceManager(){
 }
 
 DeviceManager::~DeviceManager(){
+   soundDevice->drop();
 }
 
 
@@ -33,11 +34,17 @@ void DeviceManager::initialize(
     throw 666;
   }
   DeviceManager::driver = device->getVideoDriver();
+
+  soundDevice = createIrrKlangDevice();
+
+  if(!soundDevice)
+    printf("Unable to initialize IrrKlang\n");
 }
 
 IrrlichtDevice* DeviceManager::device;
 video::IVideoDriver* DeviceManager::driver;
 EventListener* DeviceManager::eventListener;
+ISoundEngine* DeviceManager::soundDevice;
 
 //Not code safe - if not initializated returns null
 IrrlichtDevice* DeviceManager::GetDevice(){

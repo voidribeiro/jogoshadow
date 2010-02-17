@@ -1,7 +1,6 @@
 #include "Game.h"
 
 Game::Game(std::string _path):path(_path), scope(1){
-
 }
 
 Game::~Game(){
@@ -20,20 +19,24 @@ const char* Game::GetPath(){
   return path.c_str();
 }
 
-void Game::SetInventoryBackground(const std::string background){
+void Game::SetInventoryBackground(std::string background){
   inventory.setBackground(background);
 }
 
-void Game::DisplayInventory(const bool visible){
+void Game::DisplayInventory(bool visible){
   inventory.setVisible(visible);
 }
 
-void Game::AddToInventory(const std::string objName, GameObject* obj){
+void Game::AddToInventory(std::string objName, GameObject* obj){
   inventory.add(objName, obj);
 }
 
-void Game::RemoveFromInventory(const std::string objName){
+void Game::RemoveFromInventory(std::string objName){
   inventory.remove(objName);
+}
+
+void Game::PlayMusic(std::string filename, bool loop){
+  DeviceManager::soundDevice->play2D(filename.c_str(), loop);
 }
 
 /****************************************************/
@@ -159,3 +162,10 @@ int GameBinder::bnd_RemoveFromInventory(lua_State* L){
   game->RemoveFromInventory( lua_tostring(L,1) );
   return 0;
 }
+
+int GameBinder::bnd_PlayMusic(lua_State* L){
+  LuaBinder binder(L);
+  game->PlayMusic( lua_tostring(L,1), (lua_toboolean(L,2) != 0) );
+
+  return 0;
+}  
