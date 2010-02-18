@@ -10,7 +10,7 @@ GameManager::GameManager(std::string path){
   //TODO - Remove this hack
   int pos = path.find("TCC.exe");
   this->path = path.substr(0,pos);
-  GameBinder::game = new Game(this->path);  
+  GameBinder::game = new Game(this->path);   
 }
 
 /*
