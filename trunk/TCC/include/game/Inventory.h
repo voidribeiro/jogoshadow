@@ -23,8 +23,9 @@ class Inventory {
     explicit Inventory();
     virtual ~Inventory();
 
-    void add(const std::string objName, GameObject* obj);     //adiciona o ítem ao jogador
-    void remove(const std::string objName);                   //remove o ítem do jogador
+    void add(GameObject* obj);                  //adiciona o ítem ao jogador
+    void remove(const std::string objName);     //remove o ítem do jogador
+    bool isInInventory(const std::string objName);
 
     void setBackground(const std::string filename);
     void setVisible(const bool visible);

@@ -1,9 +1,16 @@
+local isInInvetory = 0
+
 function start()
-	print("Starting inventory manager")
+  isInInventory = Game.IsInInventory(parentObject)
 end
 
 function interact()
-  
+    if (isInInventory == 0) then
+      print("adicionou a fada no inventário")
+      Game.AddToInventory(parentObject)  
+    else
+      print("interact da fada no inventário")
+    end
 end
 
 speachCounter = 0

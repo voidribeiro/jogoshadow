@@ -15,15 +15,27 @@ Inventory::~Inventory(){
 
 }
 
-void Inventory::add(std::string objName, GameObject* obj){
-  items[objName] = obj;
+void Inventory::add( GameObject* obj){
+  ComponentImage* cImage = (ComponentImage*) obj->GetComponent(CIMAGE);
+
+  if (cImage == NULL){
+    printf("Missing Image Reference\n");
+    return;
+  }
+
+  items[obj->GetName()] = obj;
 }
 
 void Inventory::remove(std::string objName){
-   GameObject* obj =  items[objName];
+   GameObject* obj =  items[obj->GetName()];
    obj->RemoveAllComponents();
    obj->~GameObject();
 }
+
+bool Inventory::isInInventory( std::string objName ){
+  return (items[objName] != NULL);
+}
+
 
 GameObject* Inventory::getGameObject(std::string objName){
   return items[objName];
