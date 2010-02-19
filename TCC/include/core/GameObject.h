@@ -33,6 +33,9 @@ class GameObject{
     void RemoveComponentByIndex(int index);
     void StepOver();
     int GetComponentsCount();
+
+    std::string GetName(){return name;}
+
     AbstractComponent* GetComponent(int componentType);
     AbstractComponent* GetComponent(const char* componentTypeName);
     AbstractComponent* GetComponentByIndex(int index);

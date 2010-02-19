@@ -31,8 +31,13 @@ void Game::DrawInventory(){
   inventory.draw();
 }
 
-void Game::AddToInventory(std::string objName, GameObject* obj){
-  inventory.add(objName, obj);
+int Game::IsInInventory(const std::string objName){
+  return ( inventory.isInInventory(objName)? 1 : 0 );
+}
+
+
+void Game::AddToInventory( GameObject* obj){
+  inventory.add(obj);
 }
 
 void Game::RemoveFromInventory(std::string objName){
@@ -181,14 +186,23 @@ int GameBinder::bnd_DrawInventory(lua_State* L){
   return 0;
 }
 
+int GameBinder::bnd_IsInInventory(lua_State* L){
+  LuaBinder binder(L);
+
+  GameObject* gameObject = (GameObject*) binder.checkusertype(1,"GameObject");
+
+  binder.pushnumber( game->IsInInventory( gameObject->GetName() ) );
+
+  return 0;
+}
+
 
 int GameBinder::bnd_AddToInventory(lua_State* L){
   LuaBinder binder(L);
 
-  std::string objName = lua_tostring(L,1);
-  GameObject* gameObject = (GameObject*) binder.checkusertype(2,"GameObject");
+  GameObject* gameObject = (GameObject*) binder.checkusertype(1,"GameObject");
 
-  game->AddToInventory(objName, gameObject );
+  game->AddToInventory( gameObject );
   return 0;
 }
 
