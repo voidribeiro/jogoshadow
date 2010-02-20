@@ -42,8 +42,3 @@ function startScript()
   component:AddTo(gameObject)
   
 end
-
-function onTimeOut()
-  print("Clique do Botão!!!")
-  Game.LoadLevel("Level2");
-end
