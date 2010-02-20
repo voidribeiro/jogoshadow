@@ -5,13 +5,22 @@ function start()
 end
 
 function interact()
-    if (isInInventory == 0) then
-      print("adicionou a fada no inventário")
-      Game.AddToInventory(parentObject)
-      isInInventory = 1
-    else
-      print("interact da fada no inventário")
-    end
+  if (isInInventory == 0) then
+    -- local selector = ComponentSelector.GetFrom(parentObject)
+    -- local skeleton = ComponentSkeleton.GetFrom("player")
+
+    -- local mouseX,mouseY = Game.GetMousePosition()
+
+    -- local posX, posY, posZ = selector:GetCollisionPoint(mouseX, mouseY)
+
+    -- skeleton:WalkTo(posX, posY, posZ)
+
+    print("adicionou a fada no inventário")
+    Game.AddToInventory(parentObject)
+    isInInventory = 1
+  else
+    print("interact da fada no inventário")
+  end
 end
 
 speachCounter = 0

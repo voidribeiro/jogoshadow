@@ -235,3 +235,12 @@ int GameBinder::bnd_PlayMusic(lua_State* L){
 
   return 0;
 }  
+
+int GameBinder::bnd_GetObject(lua_State* L){
+  LuaBinder binder(L); 
+ 
+  //tem que retornar nulo caso não exista!
+  binder.pushusertype(GameObjectMap::Get(lua_tostring(L,1)), "GameObject" );
+
+  return 1;
+}  
