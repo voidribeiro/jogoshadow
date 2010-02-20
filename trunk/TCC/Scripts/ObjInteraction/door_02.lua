@@ -43,11 +43,14 @@ end
 speachCounter = 0
 
 function inspect()
+  local dialog = ComponentDialog.GetFrom("dialogo")
+  dialog:ClearOptions()
+
   if (speachCounter == 0) then
-    print("This is another nice door!!!")
+    dialog:Say("Oi Fada")
     speachCounter = speachCounter + 1
   else
-    print("No... this is not a door. It look like one but its an ugly farrie model!!!")
+    dialog:Say("Hmm eu posso pegar a fada e por no inventario!!!")
   end
   
 end

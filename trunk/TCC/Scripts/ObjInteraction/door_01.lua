@@ -19,7 +19,10 @@ function interact()
 end
 
 function inspect()
-  print("This is a nice door")
+  local dialog = ComponentDialog.GetFrom("dialogo")
+  --dialog:ClearOptions()
+  dialog:Say("Este eh o chao... ele eh Verde")
+
 end
 
 function interactWith()
