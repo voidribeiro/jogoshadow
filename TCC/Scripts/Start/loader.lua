@@ -25,6 +25,6 @@ end
 
 function onTimeOut()
   print("It should not get here before call timeout")
-  Game.LoadLevel("Level1");
+  Game.LoadLevel("Menu");
 end
 

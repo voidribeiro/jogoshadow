@@ -102,47 +102,6 @@ void GameManager::draw(){
 
 }
 
-void GameManager::drawTriangleSelection(){
-
-  IrrlichtDevice* device = DeviceManager::GetDevice();
-  irr::video::IVideoDriver* driver = DeviceManager::GetDriver();
-
-	//core::line3d<f32> line;
-  core::line3d<f32> line = sceneManager->getSceneCollisionManager()->getRayFromScreenCoordinates( DeviceManager::eventListener->GetMouseState().pos , sceneManager->getActiveCamera() ); 
-
-	//line.start = camera->getPosition();
-	//line.end = line.start + (camera->getTarget() - line.start).normalize() * 1000.0f;
-
-	core::vector3df intersection;
-  core::triangle3df tri;
-
-  //ITriangleSelector* selector;
-
-  //TODO - This was used to select the character. I'll leave for reference for a while
-  /*
-  for(int i = 0; i < modelManager->getNpcCount(); i++ ){
-    selector = modelManager->getNpcById(i)->getSelector();
-    if (sceneManager->getSceneCollisionManager()->getCollisionPoint(
-	    line, selector, intersection, tri)){
-
-      driver->draw3DTriangle(tri, video::SColor(255,0,255,0));
-      return;
-    }
-  }
-  */
- /*
-  selector = modelManager->getTerrain()->getSelector();
-  if (sceneManager->getSceneCollisionManager()->getCollisionPoint(
-		line, selector, intersection, tri)){
-
-    driver->draw3DTriangle(tri, video::SColor(255,255,0,0));
-
-    //mudar isso de lugar depois
-    //modelManager->animateSkeleton(intersection, DeviceManager::eventListener->GetMouseState().LeftButtonDown );
-  }
-*/
-}
-
 bool GameManager::displayWindowCaption(){
   IrrlichtDevice* device = DeviceManager::GetDevice();
   irr::video::IVideoDriver* driver = DeviceManager::GetDriver();
@@ -174,9 +133,6 @@ bool GameManager::processLUAScripts(){
 bool GameManager::update(){
 
   //pm.process();
-  //position2di pos = DeviceManager::eventListener->GetMouseState().pos;
-  //modelManager->update( pos );
-
   return true;
 }
 
@@ -187,7 +143,7 @@ void GameManager::run(){
   IrrlichtDevice* device = DeviceManager::GetDevice();
   irr::video::IVideoDriver* driver = DeviceManager::GetDriver();
 
-  while(device->run()){
+  while(device->run() && !GameBinder::game->IsGameOver() ){
 
     if (device->isWindowActive()){
 		  driver->beginScene(true, true, 0);

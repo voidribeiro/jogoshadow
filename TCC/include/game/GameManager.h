@@ -23,10 +23,7 @@ the game features making them interact correctly.
 #include "DeviceManager.h"
 #include "Singleton.h"
 #include "Script.h"
-//#include "GUIManager.h"
 #include "TextureManager.h"
-
-//#include "ModelManager.h"
 
 #include "ProcessManager.h"
 
@@ -37,21 +34,14 @@ class GameManager : private boost::noncopyable
 {
 private:
 
-  bool gameOver;
-  std::string path;
+ std::string path;
 
   irr::scene::ISceneManager* sceneManager;
   irr::scene::ICameraSceneNode* camera;
 
   Script luaScript;
 
- // ModelManager* modelManager;
-  //GUIManager*   guiManager;
-  //SoundManager  soundManager;
-
   irr::s32 lastFPS;
-  //irr::s32 fps;
-  //irr::u32 deltaTime;
 
   ProcessManager pm;
 
@@ -83,8 +73,6 @@ public:
    * Draw all elements, models, scene, GUI etc...
    */
   void draw();
-
-  void drawTriangleSelection();
 
   /*
    * Updates the window caption with FPS

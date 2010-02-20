@@ -24,6 +24,7 @@ class ScriptObject;
 class Game : private boost::noncopyable
 {
   private:
+    bool gameOver;
     std::string path;
     Inventory inventory;
     int scope;        //escopo de onde eu estou no jogo, para tratamento dos inputs corretamente
@@ -34,6 +35,7 @@ class Game : private boost::noncopyable
     virtual ~Game();
     void LoadLevel(const std::string level);
     const char* GetPath(); 
+    bool IsGameOver(){return gameOver;}
 
     int GetCurrentScope(){return scope;}
     void SetScope(const int i){ scope = i;}
@@ -47,6 +49,8 @@ class Game : private boost::noncopyable
     void RemoveFromInventory(const std::string objName);
 
     void PlayMusic(const std::string filename, const bool loop);
+
+    void End();
 
 };
  
@@ -76,6 +80,7 @@ class GameBinder{
     static int bnd_PlayMusic(lua_State* L);
 
     static int bnd_GetObject(lua_State* L);
+    static int bnd_End(lua_State* L);
 };
  
 static const luaL_reg gameFunctions[] = { 
@@ -98,7 +103,8 @@ static const luaL_reg gameFunctions[] = {
     
     {"PlayMusic", GameBinder::bnd_PlayMusic},
 
-    {"GameObject", GameBinder::bnd_GetObject},
+    {"GetObject", GameBinder::bnd_GetObject},
+    {"End", GameBinder::bnd_End},
 
     {NULL, NULL}
 };

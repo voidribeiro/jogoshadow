@@ -6,14 +6,13 @@ ComponentGUI::ComponentGUI(){
 
 ComponentGUI::~ComponentGUI(){
 
-/*  std::map <std::string, IGUIElement*>::iterator i;
+  std::map <std::string, IGUIElement*>::iterator i;
 
   for( i = elements.begin(); i!=elements.end(); ++i){
-    (*i).second->drop();
+    (*i).second->remove();
   }
 
   elements.clear();
-*/
 }
 
 void ComponentGUI::Draw(){
@@ -70,7 +69,6 @@ void ComponentGUI::addImageButton(const std::string instancename, const std::str
 bool ComponentGUI::IsButtonPressed(const std::string elementName){
   return ((irr::gui::IGUIButton*)elements[elementName])->isPressed();
 }   
-
 
 /////////////////////////////////////////////////////////
 

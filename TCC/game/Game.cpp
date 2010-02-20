@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game(std::string _path):path(_path), scope(1){
+Game::Game(std::string _path):path(_path), scope(1), gameOver(false){
 }
 
 Game::~Game(){
@@ -62,6 +62,10 @@ void Game::RemoveFromInventory(std::string objName){
 
 void Game::PlayMusic(std::string filename, bool loop){
   DeviceManager::soundDevice->play2D(filename.c_str(), loop);
+}
+
+void Game::End(){
+  gameOver = true;
 }
 
 /****************************************************/
@@ -243,4 +247,12 @@ int GameBinder::bnd_GetObject(lua_State* L){
   binder.pushusertype(GameObjectMap::Get(lua_tostring(L,1)), "GameObject" );
 
   return 1;
+}  
+
+int GameBinder::bnd_End(lua_State* L){
+  LuaBinder binder(L); 
+ 
+  game->End();
+ 
+  return 0;
 }  
