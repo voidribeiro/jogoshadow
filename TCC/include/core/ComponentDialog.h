@@ -53,7 +53,7 @@ class ComponentDialog : public AbstractComponent{
     void AddImageOption( const std::string instanceName, const std::string filename, const int posX, const int posY);
 
     bool IsButtonPressed(const std::string instanceName);
-    void clearOptions();
+    void ClearOptions();
 
     int GetType() { return CDIALOG; };
     const char* GetTypeName() { return "ComponentDialog"; };
@@ -73,6 +73,7 @@ class ComponentDialogBinder{
     static int bnd_AddOption(lua_State* L);
     static int bnd_AddImageOption(lua_State* L);
     static int bnd_IsButtonPressed(lua_State* L);
+    static int bnd_ClearOptions(lua_State* L);
 
     static int bnd_SetPlayerImage(lua_State* L);
     static int bnd_SetNpcImage(lua_State* L);
@@ -89,6 +90,7 @@ static const luaL_reg componentDialogFunctions[] = {
     {"AddOption", ComponentDialogBinder::bnd_AddOption },
     {"AddImageOption", ComponentDialogBinder::bnd_AddImageOption },
     {"IsButtonPressed", ComponentDialogBinder::bnd_IsButtonPressed},
+    {"ClearOptions", ComponentDialogBinder::bnd_ClearOptions },
     {"SetPlayerImage", ComponentDialogBinder::bnd_SetPlayerImage },
     {"SetNpcImage", ComponentDialogBinder::bnd_SetNpcImage },
     {"SetFont", ComponentDialogBinder::bnd_SetFont },

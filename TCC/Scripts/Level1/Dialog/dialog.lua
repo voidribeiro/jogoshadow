@@ -5,14 +5,11 @@ end
 function update()
   --Binds the object to use its functions
   --local gameObj = GameObject.ReBinder(parentObject)
-  local component = ComponentDialog.GetFrom("plano")
+  local component = ComponentDialog.GetFrom("dialogo")
 --  print (component)
+
   if component:IsButtonPressed("b1") > 0 then
-  	-- print("Apertou")
-  	-- print(component:IsButtonPressed("b1"))
-
-    component:Say("Era uma vez um outro texto de dialogo, blah blah blah!!!")
-
+     component:Say("Era uma vez um outro texto de dialogo, blah blah blah!!!")
   end
 
   if component:IsButtonPressed("b2") > 0 then
@@ -21,7 +18,7 @@ function update()
 
   if component:IsButtonPressed("b3") > 0 then
     Game.LoadLevel("Level2");
-  end  
+  end
 
 end
 

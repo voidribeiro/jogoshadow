@@ -74,17 +74,23 @@ void ComponentDialog::AddImageOption( const std::string instanceName, const std:
 }
 
 bool ComponentDialog::IsButtonPressed(const std::string instanceName){
+  if(options[instanceName] == NULL)
+    return false;
+
   return ((irr::gui::IGUIButton*)options[instanceName])->isPressed();
-}   
+}
 
-void ComponentDialog::clearOptions(){
- map<std::string, IGUIElement*>::iterator it;
+void ComponentDialog::ClearOptions(){
+  map<std::string, IGUIElement*>::iterator it;
 
- for ( it = options.begin() ; it != options.end(); it++ )
-   it->second->drop();
+  for ( it = options.begin() ; it != options.end(); it++ ){
+   if(it->second != NULL){
+     it->second->remove();
+     it->second = NULL;
+   }
+  }
 
- options.clear();
-
+  options.clear();
 }
 
 void ComponentDialog::SetPlayerImage(std::string filename){
@@ -93,7 +99,6 @@ void ComponentDialog::SetPlayerImage(std::string filename){
 
   playerImage = TextureManager::GetTexture(filename);
   env->addImage(playerImage, core::position2d<s32>(0, 0), true, windowAll);
- 
 }
 
 void ComponentDialog::SetNpcImage(std::string filename){
@@ -102,7 +107,6 @@ void ComponentDialog::SetNpcImage(std::string filename){
 
   npcImage = TextureManager::GetTexture(filename);
   env->addImage(playerImage, core::position2d<s32>(736, 0), true, windowAll);
-
 }
 
 void ComponentDialog::SetFont(std::string filename){
@@ -215,6 +219,15 @@ int ComponentDialogBinder::bnd_IsButtonPressed(lua_State* L){
   return 1;   
 }
  
+int ComponentDialogBinder::bnd_ClearOptions(lua_State* L){
+  LuaBinder binder(L); 
+  ComponentDialog* componentDialog  = (ComponentDialog*) binder.checkusertype(1,"ComponentDialog");
+  
+  componentDialog->ClearOptions();
+
+  return 1;   
+}
+
 int ComponentDialogBinder::bnd_SetPlayerImage(lua_State* L){
   LuaBinder binder(L);
 
