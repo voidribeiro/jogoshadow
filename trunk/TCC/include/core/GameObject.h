@@ -79,6 +79,7 @@ class GameObjectMap{
     static void Clear(bool persisent);
     static void Draw();
     static void Update();
+    static GameObject* RemoveReference(std::string objName);
     static std::string levelToLoad;
 };
 
