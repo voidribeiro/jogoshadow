@@ -44,6 +44,16 @@ void Game::AddToInventory(std::string objName){
     return;
   }
   inventory.add(obj);
+
+  //TODO - Remove this evil code!
+  ComponentModel* cModel = (ComponentModel*)obj->GetComponent(CMODEL);
+  if (cModel != NULL){
+    delete (cModel);
+    cModel = NULL;
+  } 
+
+  //This is not better than the other code.
+  GameObjectMap::RemoveReference(objName);
 }
 
 void Game::RemoveFromInventory(std::string objName){

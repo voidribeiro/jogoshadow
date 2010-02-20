@@ -244,3 +244,18 @@ void GameObjectMap::GetGameObjectList(std::list<GameObject*>* objectList){
     it != GameObjectMap::gameObjectMap.end(); it++)
     objectList->push_back(it->second);
 }
+
+//Danger!!! This method can cause memory overflow. Use wisely.
+GameObject* GameObjectMap::RemoveReference(std::string objName){
+  GameObject* gO = NULL;
+  if (GameObjectMap::gameObjectPersistentMap[objName] != NULL){
+    gO = GameObjectMap::gameObjectPersistentMap[objName];
+    GameObjectMap::gameObjectPersistentMap[objName] = NULL;
+    return gO;
+  }
+  if (GameObjectMap::gameObjectMap[objName] != NULL){
+    gO = GameObjectMap::gameObjectMap[objName];
+    GameObjectMap::gameObjectMap[objName] = NULL;
+    return gO;  
+  }
+}
