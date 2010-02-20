@@ -3,6 +3,15 @@ function start()
 end
 
 function interact()
+  local selector = ComponentSelector.GetFrom(parentObject)
+  local skeleton = ComponentSkeleton.GetFrom("player")
+
+  local mouseX,mouseY = Game.GetMousePosition()
+  
+  local posX, posY, posZ = selector:GetCollisionPoint(mouseX, mouseY)
+  print(posX, posY, posZ)
+  
+  skeleton:WalkTo(posX, posY, posZ)
   
 end
 

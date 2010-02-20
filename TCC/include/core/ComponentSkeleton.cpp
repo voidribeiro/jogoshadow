@@ -710,6 +710,42 @@ void ComponentSkeleton::animInterpolation() {
 
 }
 
+void ComponentSkeleton::WalkTo(vector3df pos){
+
+  IrrlichtDevice* device = DeviceManager::GetDevice();
+  ISceneManager* sceneManager = device->getSceneManager();
+
+  scene::ISceneNodeAnimator* anim;
+
+  if(pos.getDistanceFrom(node->getPosition()) < 1.0f){
+    setAnimType(CSK_ANIM_STAND);
+    return;
+  }
+  
+  pos.Y += 30;
+
+  setAnimType(CSK_ANIM_WALK);
+
+  core::vector3df requiredRotation = (pos - node->getAbsolutePosition());
+  requiredRotation = requiredRotation.getHorizontalAngle();
+
+  //Doesnt require to point down... so just rotates on Y axis
+  requiredRotation.X = 0;
+  requiredRotation.Z = 0;
+
+  node->setRotation(requiredRotation);
+
+  anim =	sceneManager->createFlyStraightAnimator(
+           node->getPosition(), 
+           pos,
+           10 * (irr::u32) pos.getDistanceFrom(node->getPosition()),
+           false);
+
+  node->addAnimator(anim);
+  anim->drop();
+
+}
+
 /////////////////////////////////////////////////////////
 
 int ComponentSkeletonBinder::registerFunctions(lua_State* L){
@@ -743,4 +779,26 @@ int ComponentSkeletonBinder::bnd_SetVisible(lua_State* L){
   ComponentSkeleton* componentSkeleton  = (ComponentSkeleton*) binder.checkusertype(1,"ComponentSkeleton");
   componentSkeleton->SetVisible( ( lua_toboolean(L,2) != 0) );
   return 1;
+}
+
+int ComponentSkeletonBinder::bnd_WalkTo(lua_State* L){
+  LuaBinder binder(L);
+  irr::core::vector3df pos;
+
+  ComponentSkeleton* componentSkeleton  = (ComponentSkeleton*) binder.checkusertype(1,"ComponentSkeleton");
+
+  pos.X = (float) lua_tonumber(L,2);
+  pos.Y = (float) lua_tonumber(L,3);
+  pos.Z = (float) lua_tonumber(L,4);
+  
+  componentSkeleton->WalkTo( pos );
+
+  return 1;
+}
+
+int ComponentSkeletonBinder::bnd_GetFrom(lua_State* L){
+  LuaBinder binder(L); 
+  GameObject* gameObject = GameObjectMap::Get(lua_tostring(L,1));
+  binder.pushusertype(gameObject->GetComponent(CSKELETON),"ComponentSkeleton");
+  return 1;  
 }
