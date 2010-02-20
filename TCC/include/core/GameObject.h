@@ -55,6 +55,7 @@ class GameObject{
     static int bnd_DontDestroy (lua_State* L);
     static int bnd_SetPosition (lua_State* L);
     static int bnd_ReBinder (lua_State* L);
+    static int bnd_GetName (lua_State* L);
 };
 
 static const luaL_reg gameObjectFunctions[] = {
@@ -62,17 +63,19 @@ static const luaL_reg gameObjectFunctions[] = {
     {"InstPersistent", GameObjectBinder::bnd_InstPersistent},
     {"SetPosition", GameObjectBinder::bnd_SetPosition},
     {"ReBinder", GameObjectBinder::bnd_ReBinder},
+    {"GetName", GameObjectBinder::bnd_GetName},
     {NULL, NULL}
 }; 
 
 //TODO - See a better way to do this list
 class GameObjectMap{
   private:
+    static std::map<std::string,GameObject*> gameObjectMap;
     static std::map<std::string,GameObject*> gameObjectPersistentMap;
   public:
-    static std::map<std::string,GameObject*> gameObjectMap;
     static void Add(std::string objName,GameObject* gObj, bool persisent);
     static GameObject* Get(std::string objName);
+    static void GetGameObjectList(std::list<GameObject*>* objectList);
     static void Clear(bool persisent);
     static void Draw();
     static void Update();

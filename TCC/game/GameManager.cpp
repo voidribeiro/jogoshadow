@@ -11,7 +11,7 @@ GameManager::GameManager(std::string path){
   int pos = path.find("TCC.exe");
   this->path = path.substr(0,pos);
   GameBinder::game = new Game(this->path);   
-}
+} 
 
 /*
  * frees all IrrLicht allocated memory

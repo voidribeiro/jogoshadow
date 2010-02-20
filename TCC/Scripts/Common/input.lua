@@ -16,7 +16,11 @@ function update()
     --print(mouseX, mouseY)
     local interact = Game.PickNearestInteract()
     if (interact) then
-      interact:Inspect()
+      if (mouseLeftButton == 1) then
+        interact:Inspect()
+      else
+        interact:Interact()
+      end
     end
   end
   

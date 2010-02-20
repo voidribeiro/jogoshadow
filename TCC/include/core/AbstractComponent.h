@@ -13,7 +13,7 @@ class AbstractComponent{
     //but the cross dependency of class is a bad thing, isn't?
     GameObject* parent;
   public:
-    explicit AbstractComponent (){};
+    explicit AbstractComponent (){parent = NULL;};
     virtual ~AbstractComponent(){};
     virtual void SetParent(GameObject* parent) { this->parent = parent; };
     virtual int GetType() = 0;

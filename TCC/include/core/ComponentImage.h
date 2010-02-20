@@ -16,7 +16,7 @@ class ComponentImage : public AbstractComponent{
     virtual void Draw();
     void SetVisible(bool visible);
     int GetType() { return CIMAGE; };
-    const char* GetTypeName() { return "ComponentImage"; };
+    const char* GetTypeName() { return "ComponentImage"; }; 
 };
 
 class ComponentImageBinder{
@@ -32,7 +32,7 @@ static const luaL_reg componentImageFunctions[] = {
     {"Instantiate", ComponentImageBinder::bnd_Instantiate},
     {"AddTo", ComponentImageBinder::bnd_AddTo},
     {"SetVisible", ComponentImageBinder::bnd_SetVisible},
-    {NULL, NULL}
+    {NULL, NULL} 
 };
 
 #endif

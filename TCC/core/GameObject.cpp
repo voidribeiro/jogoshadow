@@ -150,6 +150,13 @@ int GameObjectBinder::bnd_ReBinder(lua_State* L){
   binder.pushusertype(gameObject,"GameObject");  
   return 1; 
 } 
+
+int GameObjectBinder::bnd_GetName(lua_State* L){
+  LuaBinder binder(L); 
+  GameObject* gameObject = (GameObject*)lua_touserdata(L,1);
+  binder.pushstring(gameObject->GetName().c_str());  
+  return 1; 
+}  
  
 //---------------------------------------------------------
 
@@ -218,7 +225,7 @@ void GameObjectMap::Draw(){
   for (it = gameObjectPersistentMap.begin(); 
     it != gameObjectPersistentMap.end(); it++)
       if ((it->second) != NULL)
-        (it->second)->Draw();
+        (it->second)->Draw(); 
 }
 
 GameObject* GameObjectMap::Get(std::string objName){
@@ -226,4 +233,14 @@ GameObject* GameObjectMap::Get(std::string objName){
   if (gameObject != NULL)
     return gameObject;
   return gameObjectMap[objName];
+}
+
+void GameObjectMap::GetGameObjectList(std::list<GameObject*>* objectList){
+  std::map<std::string,GameObject*>::iterator it; 
+  for (it = GameObjectMap::gameObjectPersistentMap.begin(); 
+    it != GameObjectMap::gameObjectPersistentMap.end(); it++)
+    objectList->push_back(it->second);
+  for (it = GameObjectMap::gameObjectMap.begin(); 
+    it != GameObjectMap::gameObjectMap.end(); it++)
+    objectList->push_back(it->second);
 }

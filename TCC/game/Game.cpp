@@ -36,7 +36,13 @@ int Game::IsInInventory(const std::string objName){
 }
 
 
-void Game::AddToInventory( GameObject* obj){
+void Game::AddToInventory(std::string objName){
+  GameObject* obj = GameObjectMap::Get(objName);
+  if (obj == NULL){
+    std::cout<<"Item " << objName
+      <<" is not in the object map and cannot be added to inventory."<<std::endl;
+    return;
+  }
   inventory.add(obj);
 }
 
@@ -143,13 +149,17 @@ int GameBinder::bnd_PickNearestInteract(lua_State* L){
   float nearstObjDist = -1;
   ComponentInteract* compInteract = NULL;
 
+  //TODO - Check if object is visible in scene
+  std::list<GameObject*> objectList;
+  GameObjectMap::GetGameObjectList(&objectList);
+  std::list<GameObject*>::iterator it;
+
   //Check the objects searching for the nearst object
-  std::map<std::string,GameObject*>::iterator it; 
-  for (it = GameObjectMap::gameObjectMap.begin(); 
-    it != GameObjectMap::gameObjectMap.end(); it++){
-      if ((it->second) != NULL){
-        ComponentSelector* selector = (ComponentSelector*)it->second->GetComponent(CSELECTOR);
-        ComponentInteract* interact = (ComponentInteract*)it->second->GetComponent(CINTERACT);
+  for (it = objectList.begin(); 
+    it != objectList.end(); it++){
+      if ((*it) != NULL){
+        ComponentSelector* selector = (ComponentSelector*)(*it)->GetComponent(CSELECTOR);
+        ComponentInteract* interact = (ComponentInteract*)(*it)->GetComponent(CINTERACT);
         //If isnear and has interect. Keep the reference.
         if ((selector != NULL) && (interact != NULL)){
           float currentObjDist = selector->GetDistanceFromMouse(DeviceManager::eventListener->GetMouseState().pos);
@@ -187,22 +197,19 @@ int GameBinder::bnd_DrawInventory(lua_State* L){
 }
 
 int GameBinder::bnd_IsInInventory(lua_State* L){
-  LuaBinder binder(L);
+  LuaBinder binder(L); 
+ 
+  binder.pushnumber( game->IsInInventory( lua_tostring(L,1) ) );
 
-  GameObject* gameObject = (GameObject*) binder.checkusertype(1,"GameObject");
+  return 1;   
+}   
 
-  binder.pushnumber( game->IsInInventory( gameObject->GetName() ) );
-
-  return 0;
-}
-
-
+ 
 int GameBinder::bnd_AddToInventory(lua_State* L){
   LuaBinder binder(L);
+ 
+  game->AddToInventory( lua_tostring(L,1) );
 
-  GameObject* gameObject = (GameObject*) binder.checkusertype(1,"GameObject");
-
-  game->AddToInventory( gameObject );
   return 0;
 }
 

@@ -21,6 +21,7 @@ class ComponentInteract : public AbstractComponent{
     void Interact();
     void Interact(std::string object);
     void Inspect();
+    void Initialize();
 };
 
 class ComponentInteractBinder{
@@ -39,7 +40,7 @@ static const luaL_reg componentInteractFunctions[] = {
     {"AddTo", ComponentInteractBinder::bnd_AddTo},
     {"InterectWith", ComponentInteractBinder::bnd_InteractWith},
     {"Inspect", ComponentInteractBinder::bnd_Inspect},
-    {"Interect", ComponentInteractBinder::bnd_Interact},
+    {"Interact", ComponentInteractBinder::bnd_Interact},
     {NULL, NULL} 
 };
 
