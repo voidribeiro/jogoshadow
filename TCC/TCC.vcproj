@@ -193,34 +193,6 @@
 					RelativePath=".\game\GameManager.cpp"
 					>
 				</File>
-				<File
-					RelativePath=".\game\HeroModel.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\game\ModelManager.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\game\NpcModel.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\game\ObjectModel.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\game\ScenarioModel.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\game\SkeletalModel.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\game\TerrainModel.cpp"
-					>
-				</File>
 			</Filter>
 			<Filter
 				Name="core"
@@ -336,10 +308,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\include\game\HeroModel.h"
-					>
-				</File>
-				<File
 					RelativePath=".\include\game\Inventory.h"
 					>
 				</File>
@@ -348,39 +316,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\include\game\Model.h"
-					>
-				</File>
-				<File
-					RelativePath=".\include\game\ModelManager.h"
-					>
-				</File>
-				<File
-					RelativePath=".\include\game\ModelTypes.h"
-					>
-				</File>
-				<File
-					RelativePath=".\include\game\NpcModel.h"
-					>
-				</File>
-				<File
-					RelativePath=".\include\game\ObjectModel.h"
-					>
-				</File>
-				<File
-					RelativePath=".\include\game\ScenarioModel.h"
-					>
-				</File>
-				<File
-					RelativePath=".\include\game\SkeletalModel.h"
-					>
-				</File>
-				<File
 					RelativePath=".\include\game\Skeleton.h"
-					>
-				</File>
-				<File
-					RelativePath=".\include\game\TerrainModel.h"
 					>
 				</File>
 				<Filter
