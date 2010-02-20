@@ -1,4 +1,11 @@
 function startScript()
+
+  local player = GameObject.InstPersistent("player")
+  player:SetPosition(50,30,50)
+
+  local component = ComponentSkeleton.Instantiate(path .. "resources\\level2\\models\\skeleton\\player.x", 8 )
+  component:AddTo(player)
+  
   --criar um objeto
   if (Game.IsInInventory("fada") == 0) then
     local gameObject = GameObject.Instantiate("fada")

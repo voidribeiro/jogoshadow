@@ -105,9 +105,14 @@ class ComponentSkeleton : public AbstractComponent{
 
     virtual void Update();
     virtual void Draw();
+
+    void WalkTo(vector3df pos);
+    
     int GetType() { return CSKELETON; };
     const char* GetTypeName() { return "ComponentSkeleton"; };
     void SetVisible(bool visible){ isVisible = visible; }
+
+
 };
 
 class ComponentSkeletonBinder{
@@ -117,12 +122,16 @@ class ComponentSkeletonBinder{
     static int bnd_DontDestroy (lua_State* L);
     static int bnd_AddTo (lua_State* L);
     static int bnd_SetVisible (lua_State* L);
+    static int bnd_WalkTo (lua_State* L);
+    static int bnd_GetFrom (lua_State* L);
 };
 
 static const luaL_reg componentSkeletonFunctions[] = {
     {"Instantiate", ComponentSkeletonBinder::bnd_Instantiate},
     {"AddTo", ComponentSkeletonBinder::bnd_AddTo},
     {"SetVisible", ComponentSkeletonBinder::bnd_SetVisible},
+    {"WalkTo", ComponentSkeletonBinder::bnd_WalkTo},
+    {"GetFrom", ComponentSkeletonBinder::bnd_GetFrom},
     {NULL, NULL}
 };
 
