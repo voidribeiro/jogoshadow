@@ -43,7 +43,7 @@ class Game : private boost::noncopyable
     void DrawInventory();
 
     int  IsInInventory(const std::string objName);
-    void AddToInventory(GameObject* obj);
+    void AddToInventory(std::string objName);
     void RemoveFromInventory(const std::string objName);
 
     void PlayMusic(const std::string filename, const bool loop);

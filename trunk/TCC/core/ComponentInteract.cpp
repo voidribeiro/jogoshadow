@@ -2,10 +2,16 @@
 
 ComponentInteract::ComponentInteract(std::string script){
   scriptObj = new ScriptObject(script.c_str());
-  scriptObj->AddGlobalUserVar("parentObject",parent);
-  scriptObj->Execute("start");
 }
 
+void ComponentInteract::Initialize(){
+  if (parent != NULL)
+    scriptObj->AddGlobalVar("parentObject",parent->GetName().c_str());
+  else
+    std::cout<<("Error parent object cannot be null");
+  scriptObj->Execute("start");
+}
+ 
 ComponentInteract::~ComponentInteract(){
   scriptObj->Execute("destroy");
   delete scriptObj;
@@ -49,6 +55,7 @@ int ComponentInteractBinder::bnd_AddTo(lua_State* L){
   ComponentInteract* componentInteract  = (ComponentInteract*) binder.checkusertype(1,"ComponentInteract");
   GameObject* gameObject = (GameObject*) binder.checkusertype(2,"GameObject");
   gameObject->AddComponent(componentInteract);
+  componentInteract->Initialize();
   return 1;
 }
 

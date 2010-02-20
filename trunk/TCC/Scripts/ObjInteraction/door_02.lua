@@ -7,7 +7,8 @@ end
 function interact()
     if (isInInventory == 0) then
       print("adicionou a fada no inventário")
-      Game.AddToInventory(parentObject)  
+      Game.AddToInventory(parentObject)
+      isInInventory = 1
     else
       print("interact da fada no inventário")
     end
