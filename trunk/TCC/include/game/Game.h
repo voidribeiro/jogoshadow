@@ -74,6 +74,8 @@ class GameBinder{
     static int bnd_RemoveFromInventory(lua_State* L);
 
     static int bnd_PlayMusic(lua_State* L);
+
+    static int bnd_GetObject(lua_State* L);
 };
  
 static const luaL_reg gameFunctions[] = { 
@@ -95,6 +97,8 @@ static const luaL_reg gameFunctions[] = {
     {"RemoveFromInventory", GameBinder::bnd_RemoveFromInventory},
     
     {"PlayMusic", GameBinder::bnd_PlayMusic},
+
+    {"GameObject", GameBinder::bnd_GetObject},
 
     {NULL, NULL}
 };

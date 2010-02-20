@@ -69,6 +69,8 @@ class ComponentSkeleton : public AbstractComponent{
 
     core::vector3df matrixRotation(core::vector3df rotation, core::vector3df vec);
 
+    core::vector3df* destination;
+
   public:
 
 	  // constructor
@@ -111,7 +113,8 @@ class ComponentSkeleton : public AbstractComponent{
     int GetType() { return CSKELETON; };
     const char* GetTypeName() { return "ComponentSkeleton"; };
     void SetVisible(bool visible){ isVisible = visible; }
-
+  
+    int IsWalking();
 
 };
 
@@ -123,6 +126,7 @@ class ComponentSkeletonBinder{
     static int bnd_AddTo (lua_State* L);
     static int bnd_SetVisible (lua_State* L);
     static int bnd_WalkTo (lua_State* L);
+    static int bnd_IsWalking (lua_State* L);
     static int bnd_GetFrom (lua_State* L);
 };
 
@@ -131,6 +135,7 @@ static const luaL_reg componentSkeletonFunctions[] = {
     {"AddTo", ComponentSkeletonBinder::bnd_AddTo},
     {"SetVisible", ComponentSkeletonBinder::bnd_SetVisible},
     {"WalkTo", ComponentSkeletonBinder::bnd_WalkTo},
+    {"IsWalking", ComponentSkeletonBinder::bnd_IsWalking},
     {"GetFrom", ComponentSkeletonBinder::bnd_GetFrom},
     {NULL, NULL}
 };

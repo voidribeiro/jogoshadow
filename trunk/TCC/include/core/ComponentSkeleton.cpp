@@ -1,6 +1,6 @@
 #include "ComponentSkeleton.h"
 
-ComponentSkeleton::ComponentSkeleton(){
+ComponentSkeleton::ComponentSkeleton():destination(NULL){
  	i=b=a=c=kTemp=k=0;
 	sinAlpha=sinGamma=0;
 	sinAlphaTwo=0;
@@ -11,7 +11,7 @@ ComponentSkeleton::ComponentSkeleton(){
   
 }
 
-ComponentSkeleton::ComponentSkeleton(std::string filename, u32 _speed):speed( _speed){
+ComponentSkeleton::ComponentSkeleton(std::string filename, u32 _speed):speed( _speed), destination(NULL){
 
   IrrlichtDevice* device = DeviceManager::GetDevice();
   irr::video::IVideoDriver* driver = DeviceManager::GetDriver(); 
@@ -43,9 +43,19 @@ ComponentSkeleton::~ComponentSkeleton(){
 }
 
 void ComponentSkeleton::Update(){
-  
+
   node->setScale( core::vector3df(8,8,8) );
+
   animSkeleton();
+
+  if(destination == NULL)
+    return;
+
+  if(destination->getDistanceFrom(node->getPosition()) < 1.0f){
+    setAnimType(CSK_ANIM_STAND);
+    delete destination;
+    destination = NULL;
+  }
 
 }
 
@@ -715,14 +725,16 @@ void ComponentSkeleton::WalkTo(vector3df pos){
   IrrlichtDevice* device = DeviceManager::GetDevice();
   ISceneManager* sceneManager = device->getSceneManager();
 
-  scene::ISceneNodeAnimator* anim;
-
-  if(pos.getDistanceFrom(node->getPosition()) < 1.0f){
-    setAnimType(CSK_ANIM_STAND);
-    return;
+  if(destination != NULL){
+    delete destination;
+    destination = NULL;
   }
-  
+
   pos.Y += 30;
+
+  destination = new irr::core::vector3df(pos.X, pos.Y, pos.Z);
+
+  scene::ISceneNodeAnimator* anim;
 
   setAnimType(CSK_ANIM_WALK);
 
@@ -744,6 +756,13 @@ void ComponentSkeleton::WalkTo(vector3df pos){
   node->addAnimator(anim);
   anim->drop();
 
+}
+
+int ComponentSkeleton::IsWalking(){
+  if(destination != NULL)
+    return 1;
+
+  return 0;
 }
 
 /////////////////////////////////////////////////////////
@@ -792,6 +811,18 @@ int ComponentSkeletonBinder::bnd_WalkTo(lua_State* L){
   pos.Z = (float) lua_tonumber(L,4);
   
   componentSkeleton->WalkTo( pos );
+
+  return 1;
+}
+
+int ComponentSkeletonBinder::bnd_IsWalking(lua_State* L){
+  LuaBinder binder(L);
+  int walking;
+
+  ComponentSkeleton* componentSkeleton  = (ComponentSkeleton*) binder.checkusertype(1,"ComponentSkeleton");
+  walking = componentSkeleton->IsWalking();
+
+  binder.pushnumber(walking);
 
   return 1;
 }
