@@ -11,10 +11,10 @@ class ScriptObject;
 class ComponentInteract : public AbstractComponent{
   protected:
     ScriptObject* scriptObj;
-  public:
+  public:  
     explicit ComponentInteract(std::string script);
     virtual ~ComponentInteract();
-    virtual void Update(){};
+    virtual void Update();   
     virtual void Draw(){};
     virtual int GetType() { return CINTERACT; };
     virtual const char* GetTypeName() { return "ComponentInteract"; };

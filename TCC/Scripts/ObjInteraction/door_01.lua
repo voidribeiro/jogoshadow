@@ -2,6 +2,9 @@ function start()
 	print("Starting inventory manager")
 end
 
+function update()
+end
+
 function interact()
   local selector = ComponentSelector.GetFrom(parentObject)
   local skeleton = ComponentSkeleton.GetFrom("player")

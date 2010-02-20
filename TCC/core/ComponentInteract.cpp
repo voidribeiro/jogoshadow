@@ -17,6 +17,10 @@ ComponentInteract::~ComponentInteract(){
   delete scriptObj;
 }
 
+void ComponentInteract::Update(){
+  scriptObj->Execute("update");
+}
+
 void ComponentInteract::Interact(){
   scriptObj->Execute("interact");
 }

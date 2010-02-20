@@ -817,8 +817,8 @@ int ComponentSkeletonBinder::bnd_WalkTo(lua_State* L){
 
 int ComponentSkeletonBinder::bnd_IsWalking(lua_State* L){
   LuaBinder binder(L);
-  int walking;
-
+  int walking;     
+ 
   ComponentSkeleton* componentSkeleton  = (ComponentSkeleton*) binder.checkusertype(1,"ComponentSkeleton");
   walking = componentSkeleton->IsWalking();
 
