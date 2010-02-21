@@ -1,9 +1,9 @@
 #include "ComponentDialog.h"
 
 ComponentDialog::ComponentDialog():
-rectAll(0,0,800,100),
-rectText(64,0,736,64),
-rectOptions(64,64,736,100)
+rectAll(0,500,707,600),
+rectText(64,0,643,64),
+rectOptions(64,64,643,100)
 {
   IrrlichtDevice* device = DeviceManager::GetDevice();
   IGUIEnvironment* env = device->getGUIEnvironment();
@@ -21,11 +21,7 @@ rectOptions(64,64,736,100)
 ComponentDialog::~ComponentDialog(){
   if (windowAll)
     windowAll->remove();
-  
-//  delete playerImage;
-//  delete npcImage;
-//  delete message;
-//  delete buffer;
+ 
 } 
 
 void ComponentDialog::Draw(){
@@ -102,7 +98,7 @@ void ComponentDialog::SetNpcImage(std::string filename){
   IGUIEnvironment* env = device->getGUIEnvironment();
 
   npcImage = TextureManager::GetTexture(filename);
-  env->addImage(playerImage, core::position2d<s32>(736, 0), true, windowAll);
+  env->addImage(playerImage, core::position2d<s32>(643, 0), true, windowAll);
 }
 
 void ComponentDialog::SetFont(std::string filename){

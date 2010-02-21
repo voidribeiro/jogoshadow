@@ -5,7 +5,7 @@ function startScript()
   local gameObject = GameObject.InstPersistent("INV_GUI")
   local component = ComponentGUI.Instantiate()
   
-  component:AddImageButton("inventoryButton",path .. "resources\\common\\inventory\\backpackcartoon.jpg", 800-121, 600-129)
+  component:AddImageButton("inventoryButton",path .. "resources\\common\\inventory\\backpackcartoon.jpg", 707, 500)
   component:AddTo(gameObject)
   
   local component = ComponentImage.Instantiate(path .. "resources\\common\\inventory\\background.jpg")
