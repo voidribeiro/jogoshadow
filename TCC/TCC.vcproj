@@ -210,7 +210,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\include\game\Inventory.cpp"
+					RelativePath=".\game\Inventory.cpp"
 					>
 				</File>
 				<File
@@ -219,10 +219,6 @@
 				</File>
 				<File
 					RelativePath=".\core\LuaBinder.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\core\ProcessManager.cpp"
 					>
 				</File>
 				<File
@@ -341,10 +337,6 @@
 				</File>
 				<File
 					RelativePath=".\include\core\LuaBinder.h"
-					>
-				</File>
-				<File
-					RelativePath=".\include\core\ProcessManager.h"
 					>
 				</File>
 				<File

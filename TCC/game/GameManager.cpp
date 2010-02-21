@@ -33,14 +33,6 @@ bool GameManager::init(){
 
   sceneManager = device->getSceneManager();
 
-  /*
-   * instantiates the auxiliar managers
-   */
-  //modelManager = new ModelManager( sceneManager );
-  //guiManager   = new GUIManager( device->getGUIEnvironment(), device->getVideoDriver() );
-
-  //eventListener.setGUIManager( guiManager );
-
   GameBinder::game->LoadLevel("Start");
 
   /*
@@ -68,22 +60,6 @@ bool GameManager::init(){
 		video::SColorf(1.0f,1.0f,1.0f,1.0f),
 		600.0f);
 
-  /* 
-   * Creates a Scenario and a NPC
-   */
-
-  //modelManager->setScenario("resources/plano.3DS");
- /* modelManager->setTerrain( "resources/terrain-heightmap.bmp", 
-                            TextureManager::GetTexture("resources/terrain-texture.jpg"),
-                            TextureManager::GetTexture("resources/detailmap3.jpg"));
-*/
-  //modelManager->setSkeleton("resources/skeleton/player.x");
-
-  pm.push(process1, this);
-  pm.push(process2, this);
-
-  //modelManager->popNpc(0);
-
   return succesful;
 }
 
@@ -93,12 +69,6 @@ void GameManager::draw(){
 
   sceneManager->drawAll();
   env->drawAll();
-  //guiManager->drawAll();
-
-  //TODO - This is update method should not be in draw
-  //drawTriangleSelection();
-
-  //return true;
 
 }
 
@@ -119,20 +89,7 @@ bool GameManager::displayWindowCaption(){
   return true;
 }
 
-bool GameManager::processLUAScripts(){
-
-  //The test folder could be some folder that specifies some stage
-
-  //commented for performance issues
-
-  //luaScript.startScript("LuaScripts/teste/teste.lua");
-  //luaScript.endScript();
-  return true;
-}
-
 bool GameManager::update(){
-
-  //pm.process();
   return true;
 }
 
@@ -176,13 +133,4 @@ irr::s32 GameManager::getFPS(){
 irr::u32 GameManager::getDeltaTime(){
   IrrlichtDevice* device = DeviceManager::GetDevice();
   return device->getTimer()->getTime();
-}
-
-void GameManager::process1(void *ptr, long purpose){
-  GameManager* gm = (GameManager*) ptr;
-  printf("p1!\n");
-}
-
-void GameManager::process2(void *ptr, long purpose){
-  printf("p2!\n");
 }
