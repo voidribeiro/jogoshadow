@@ -19,7 +19,12 @@ function update()
       if (mouseLeftButton == 1) then
         interact:Inspect()
       else
-        interact:Interact()
+        local selItem = Game.GetSelectedItem()
+        if (selItem == "") then
+          interact:Interact()
+        else
+          interact:InteractWith(selItem)
+        end
       end
     end
   end

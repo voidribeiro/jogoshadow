@@ -3,6 +3,7 @@
 Inventory::Inventory(){
   //setBackground(backgroundImageName);
   setVisible(false);
+  SelectedItem.name.clear();
   SelectedItem.element = NULL;
 }
 
@@ -79,20 +80,7 @@ void Inventory::draw(){
         if (DeviceManager::eventListener->GetMouseState().RightButtonDown){
           SelectedItem.name = (*it).first;
           if (SelectedItem.element == NULL){
-            IrrlichtDevice* device = DeviceManager::GetDevice();
-            IGUIEnvironment* env = device->getGUIEnvironment();
-            float posX = 650;
-            float posY = 150;
-            irr::gui::IGUIButton* buf = env->addButton( core::rect<s32>(posX, posY, 
-                                                 posX + 100,
-                                                 posY + 100) );
-
-            
-            GameObject* gO = (*it).second;  
-            ComponentImage* cImage = (ComponentImage*)(gO->GetComponent(CIMAGE));
-            ITexture* tex = TextureManager::GetTexture(cImage->GetFileName());
-            buf->setImage(tex);
-            SelectedItem.element = buf;
+            CreateSelItemButton(); 
           }
         }
         //ComponentInteract* cInteract = (ComponentInteract*)(*it).second->GetComponent(CINTERACT);
@@ -100,8 +88,36 @@ void Inventory::draw(){
       }
     }
   }
+
+  if(SelectedItem.element != NULL){
+    if(SelectedItem.element->isPressed()){
+      SelectedItem.name.clear();
+      SelectedItem.element->remove();
+      SelectedItem.element = NULL;
+    }
+  }
   //irr::video::IVideoDriver* driver = DeviceManager::GetDriver();
   //driver->draw2DImage(backgroundImage, core::position2d<s32>(0,0));
+}
+
+void Inventory::CreateSelItemButton(){
+  if ((SelectedItem.name.empty()) ||
+    (SelectedItem.element != NULL))
+    return;
+
+  IrrlichtDevice* device = DeviceManager::GetDevice();
+  IGUIEnvironment* env = device->getGUIEnvironment();
+  float posX = 650;
+  float posY = 150;
+  irr::gui::IGUIButton* buf = env->addButton(core::rect<s32>(posX, posY, 
+                                       posX + 100,
+                                       posY + 100) );
+  
+  GameObject* gO = items[SelectedItem.name];  
+  ComponentImage* cImage = (ComponentImage*)(gO->GetComponent(CIMAGE));
+  ITexture* tex = TextureManager::GetTexture(cImage->GetFileName());
+  buf->setImage(tex);
+  SelectedItem.element = buf;
 }
 
 void Inventory::CreateInventoryButtons(){
@@ -141,6 +157,7 @@ void Inventory::CreateInventoryButtons(){
       inventoryButtons[(*it).first] = buf;
     }
   }
+  CreateSelItemButton();
 }
 
 void Inventory::RemoveInventoryButtons(){

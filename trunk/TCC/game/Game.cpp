@@ -70,6 +70,10 @@ void Game::End(){
   gameOver = true;
 }
 
+std::string Game::GetSelectedItem(){
+  return inventory.GetSelectedItem();
+}
+
 /****************************************************/
 //Binder to Lua
 
@@ -209,6 +213,12 @@ int GameBinder::bnd_DisplayInventory(lua_State* L){
 int GameBinder::bnd_IsInventoryVisible(lua_State* L){
   LuaBinder binder(L);
   binder.pushnumber(game->IsInventoryVisible()?1:0);
+  return 1;   
+}
+
+int GameBinder::bnd_GetSelectedItem(lua_State* L){
+  LuaBinder binder(L);
+  binder.pushstring(game->GetSelectedItem().c_str());
   return 1;   
 }
 
