@@ -208,8 +208,8 @@ int GameBinder::bnd_DisplayInventory(lua_State* L){
 
 int GameBinder::bnd_IsInventoryVisible(lua_State* L){
   LuaBinder binder(L);
-  game->IsInventoryVisible();
-  return 0;
+  binder.pushnumber(game->IsInventoryVisible()?1:0);
+  return 1;   
 }
 
 int GameBinder::bnd_DrawInventory(lua_State* L){

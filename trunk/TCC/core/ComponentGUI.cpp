@@ -16,24 +16,6 @@ ComponentGUI::~ComponentGUI(){
 }
 
 void ComponentGUI::Draw(){
-  //elem->draw();
-  //printf("%d", elem->getChildren().getSize());
-
-  /*
-  std::map <std::string, GUIElement*>::iterator elementIt;
-
-  for(int i = 0; i < (int)elements.size(); i++){
-    elementIt = elements.find(i);
-
-    //se não encontrar um objeto no map
-    if(elementIt == elements.end())
-      break;
-
-    elementIt->second->draw();
-
-  }
-  */
-
 }
 
 void ComponentGUI::Update(){
@@ -53,14 +35,11 @@ void ComponentGUI::addImageButton(const std::string instancename, const std::str
 
   ITexture* tex = TextureManager::GetTexture(filename);
 
-  irr::gui::IGUIElement* buf = env->addButton( core::rect<s32>(posX, posY, 
-                                               posX + tex->getOriginalSize().Width,
-                                               posY + tex->getOriginalSize().Height) );
+  irr::gui::IGUIButton* buf = env->addButton( core::rect<s32>(posX, posY, 
+                                               posX + tex->getOriginalSize().Width + 3,
+                                               posY + tex->getOriginalSize().Height + 3) );
 
-  //adicina o parent na imagem
-  env->addImage(tex, 
-                core::position2d<s32>(0, 0),
-                true, buf, 5 );
+  buf->setImage(tex);
 
   elements[instancename] = buf;
 

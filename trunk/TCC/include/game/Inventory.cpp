@@ -60,11 +60,12 @@ void Inventory::draw(){
       RemoveInventoryButtons();
     }
   }
-  if (!isVisible){
-    lastVisible = false;
+
+  lastVisible = isVisible;
+
+  if (!isVisible)
     return;
-  }
-  lastVisible = true;
+
   std::map<std::string,GameObject*>::iterator it;
   for(it = items.begin(); it!=items.end(); it++){
     if ((*it).second != NULL){
@@ -88,24 +89,32 @@ void Inventory::CreateInventoryButtons(){
                   true, 0, 5 );
   inventoryButtons["INVENTORY_BACKGROUND"] = back;
 
+  int numCols = 5;
+  int offsetX = 110;
+  int offsetY = 110;
+  int offX = -50;
+  int offY = -50;
+  
+  int itemNum = 0;
   std::map<std::string,GameObject*>::iterator it;
   for( it = items.begin(); it!=items.end(); it++){
     if ((*it).second != NULL){
       GameObject* gO = (*it).second;  
       ComponentImage* cImage = (ComponentImage*)(gO->GetComponent(CIMAGE));
 
-      float posX = 0;
-      float posY = 0;
+      
+      float posX = ((itemNum % 5) + 1) * offsetX + offX;
+      float posY = (irr::core::abs_(itemNum/5)+1) * offsetY + offY;
+
+      itemNum++;
 
       ITexture* tex = TextureManager::GetTexture(cImage->GetFileName());
-      irr::gui::IGUIElement* buf = env->addButton( core::rect<s32>(posX, posY, 
-                                                 posX + tex->getOriginalSize().Width,
-                                                 posY + tex->getOriginalSize().Height) );
+      irr::gui::IGUIButton* buf = env->addButton( core::rect<s32>(posX, posY, 
+                                                 posX + 100,
+                                                 posY + 100) );
 
       //adicina o parent na imagem
-      env->addImage(tex, 
-                  core::position2d<s32>(0, 0),
-                  true, buf, 5 );
+      buf->setImage(tex);
 
       inventoryButtons[(*it).first] = buf;
     }

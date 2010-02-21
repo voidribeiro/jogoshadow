@@ -2,7 +2,7 @@ function startScript()
   print("Loading Scene from Level1")
 
   --criar um objeto
-  local gameObject = GameObject.Instantiate("OBJ_GUI")
+  local gameObject = GameObject.InstPersistent("INV_GUI")
   local component = ComponentGUI.Instantiate()
   
   component:AddImageButton("inventoryButton",path .. "resources\\common\\inventory\\backpackcartoon.jpg", 800-121, 600-129)
