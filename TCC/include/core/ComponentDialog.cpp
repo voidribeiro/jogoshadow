@@ -60,22 +60,18 @@ void ComponentDialog::AddImageOption( const std::string instanceName, const std:
 
   ITexture* tex = TextureManager::GetTexture(filename);
 
-  irr::gui::IGUIElement* buf = env->addButton( core::rect<s32>(posX, posY, 
-                                               posX + tex->getOriginalSize().Width,
-                                               posY + tex->getOriginalSize().Height), 
+  irr::gui::IGUIButton* buf = env->addButton( core::rect<s32>(posX, posY, 
+                                               posX + tex->getOriginalSize().Width + 3,
+                                               posY + tex->getOriginalSize().Height + 3), 
                                                windowOptions );
-
-  //adicina o parent na imagem 
-  env->addImage(tex, 
-                core::position2d<s32>(0, 0),
-                true, buf, 5 );
-
+  buf->setImage(tex);
+ 
   options[instanceName] = buf;
 }
 
 bool ComponentDialog::IsButtonPressed(const std::string instanceName){
   if(options[instanceName] == NULL)
-    return false;
+    return false;  
 
   return ((irr::gui::IGUIButton*)options[instanceName])->isPressed();
 }

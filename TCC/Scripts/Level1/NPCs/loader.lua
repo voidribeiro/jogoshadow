@@ -6,9 +6,18 @@ function startScript()
   local component = ComponentSkeleton.Instantiate(path .. "resources\\level2\\models\\skeleton\\player.x", 8 )
   component:AddTo(player)
   
-  --criar um objeto
-  if (Game.IsInInventory("fada") == 0) then
-    local gameObject = GameObject.Instantiate("fada")
+  for counter = 1,10 do
+    createFada(counter)
+  end
+  
+end
+
+function createFada(counter)
+  local fadaName = "fada"..counter
+  if (Game.IsInInventory(fadaName) == 0) then
+    local gameObject = GameObject.Instantiate(fadaName)
+    
+    gameObject:SetPosition(0,0,25*counter)
   
     --Load Splash Image
     local component = ComponentModel.Instantiate(path .. "resources\\level1\\models\\faerie.md2")
