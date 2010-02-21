@@ -15,6 +15,10 @@ class Inventory {
   private:
     std::map <std::string, GameObject*> items;
     std::map <std::string, IGUIElement*> inventoryButtons;
+    struct SSelectedItem{
+      std::string name;
+      IGUIElement* element;
+    } SelectedItem;
 
     core::rect<s32> rectAll;   //rect da janela toda
     ITexture* backgroundImage; //imagem de fundo

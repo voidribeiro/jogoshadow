@@ -13,6 +13,7 @@ function update()
 end
 
 function interact()
+  if (speachCounter > 0) then
   if (isInInventory == 0) then
     local selector = ComponentSelector.GetFrom(parentObject)
     local skeleton = ComponentSkeleton.GetFrom("player")
@@ -26,6 +27,7 @@ function interact()
     co = coroutine.create(addToInventory);
   else
     print("interact da fada no inventário")
+  end
   end
 end
 
