@@ -121,7 +121,10 @@ int ComponentSelectorBinder::bnd_GetCollisionPoint(lua_State* L){
   irr::core::position2di mousePos;
   irr::core::vector3df intersection;
 
-  mousePos = irr::core::position2di(lua_tonumber(L,2), lua_tonumber(L,3));
+  irr::s32 x = (irr::s32)lua_tonumber(L,2);
+  irr::s32 y = (irr::s32)lua_tonumber(L,3);
+
+  mousePos = irr::core::position2di( x, y);
   
   intersection = componentSelector->GetCollisionPoint(mousePos);
 

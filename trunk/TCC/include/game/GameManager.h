@@ -25,8 +25,6 @@ the game features making them interact correctly.
 #include "Script.h"
 #include "TextureManager.h"
 
-#include "ProcessManager.h"
-
 using namespace irr;
 using namespace std;
 
@@ -39,11 +37,7 @@ private:
   irr::scene::ISceneManager* sceneManager;
   irr::scene::ICameraSceneNode* camera;
 
-  Script luaScript;
-
   irr::s32 lastFPS;
-
-  ProcessManager pm;
 
 public:
   explicit GameManager(std::string path);
@@ -65,11 +59,6 @@ public:
   bool update();
 
   /*
-   * Processes all lua script calls
-   */
-  bool processLUAScripts();
-
-  /*
    * Draw all elements, models, scene, GUI etc...
    */
   void draw();
@@ -79,13 +68,9 @@ public:
    */
   bool displayWindowCaption();
   
-  static void process1(void *ptr, long purpose);
-  static void process2(void *ptr, long purpose);
 
   //gets
-  //irr::video::IVideoDriver*  getVideoDriver() { return driver; }
   irr::scene::ISceneManager* getSceneManager(){ return sceneManager; }
-  //irr::IrrlichtDevice*       getDevice()      { return device; }
 
   irr::s32 getFPS();
   irr::u32 getDeltaTime();

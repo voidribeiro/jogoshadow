@@ -30,7 +30,7 @@ void Inventory::add( GameObject* obj){
 }
 
 void Inventory::remove(std::string objName){
-   GameObject* obj =  items[obj->GetName()];
+   GameObject* obj = items[obj->GetName()];
    obj->RemoveAllComponents();
    obj->~GameObject();
 }
@@ -107,11 +107,8 @@ void Inventory::CreateSelItemButton(){
 
   IrrlichtDevice* device = DeviceManager::GetDevice();
   IGUIEnvironment* env = device->getGUIEnvironment();
-  float posX = 650;
-  float posY = 150;
-  irr::gui::IGUIButton* buf = env->addButton(core::rect<s32>(posX, posY, 
-                                       posX + 100,
-                                       posY + 100) );
+
+  irr::gui::IGUIButton* buf = env->addButton(core::rect<s32>(650, 150, 750, 250) );
   
   GameObject* gO = items[SelectedItem.name];  
   ComponentImage* cImage = (ComponentImage*)(gO->GetComponent(CIMAGE));
@@ -125,8 +122,9 @@ void Inventory::CreateInventoryButtons(){
   IGUIEnvironment* env = device->getGUIEnvironment();
   
   irr::gui::IGUIElement* back = env->addImage(backgroundImage, 
-                  core::position2d<s32>(0, 0),
-                  true, 0, 5 );
+                                              core::position2d<s32>(0, 0),
+                                              true, 0, 5 );
+
   inventoryButtons["INVENTORY_BACKGROUND"] = back;
 
   int numCols = 5;
@@ -143,8 +141,8 @@ void Inventory::CreateInventoryButtons(){
       ComponentImage* cImage = (ComponentImage*)(gO->GetComponent(CIMAGE));
       ITexture* tex = TextureManager::GetTexture(cImage->GetFileName());
       
-      float posX = ((itemNum % 5) + 1) * offsetX + offX;
-      float posY = (irr::core::abs_(itemNum/5)+1) * offsetY + offY;
+      irr::s32 posX = ((itemNum % 5) + 1) * offsetX + offX;
+      irr::s32 posY = (irr::core::abs_(itemNum/5)+1) * offsetY + offY;
 
       itemNum++;
 
