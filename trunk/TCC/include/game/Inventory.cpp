@@ -3,6 +3,7 @@
 Inventory::Inventory(){
   //setBackground(backgroundImageName);
   setVisible(false);
+  SelectedItem.element = NULL;
 }
 
 Inventory::~Inventory(){
@@ -69,10 +70,33 @@ void Inventory::draw(){
   std::map<std::string,GameObject*>::iterator it;
   for(it = items.begin(); it!=items.end(); it++){
     if ((*it).second != NULL){
-      if (((irr::gui::IGUIButton*)inventoryButtons[(*it).first])->isPressed()){
+      if (((irr::gui::IGUIButton*)inventoryButtons[(*it).first])->isPointInside(DeviceManager::eventListener->GetMouseState().pos)){
+        if (DeviceManager::eventListener->GetMouseState().LeftButtonDown){
+          //ComponentInteract* cInteract = (ComponentInteract*)(*it).second->GetComponent(CINTERACT);
+          //cInteract->Inspect();
+          return;
+        }
+        if (DeviceManager::eventListener->GetMouseState().RightButtonDown){
+          SelectedItem.name = (*it).first;
+          if (SelectedItem.element == NULL){
+            IrrlichtDevice* device = DeviceManager::GetDevice();
+            IGUIEnvironment* env = device->getGUIEnvironment();
+            float posX = 650;
+            float posY = 150;
+            irr::gui::IGUIButton* buf = env->addButton( core::rect<s32>(posX, posY, 
+                                                 posX + 100,
+                                                 posY + 100) );
+
+            
+            GameObject* gO = (*it).second;  
+            ComponentImage* cImage = (ComponentImage*)(gO->GetComponent(CIMAGE));
+            ITexture* tex = TextureManager::GetTexture(cImage->GetFileName());
+            buf->setImage(tex);
+            SelectedItem.element = buf;
+          }
+        }
         //ComponentInteract* cInteract = (ComponentInteract*)(*it).second->GetComponent(CINTERACT);
         //cInteract->Interact();
-        setVisible(false);
       }
     }
   }
@@ -94,26 +118,24 @@ void Inventory::CreateInventoryButtons(){
   int offsetY = 110;
   int offX = -50;
   int offY = -50;
-  
+   
   int itemNum = 0;
   std::map<std::string,GameObject*>::iterator it;
   for( it = items.begin(); it!=items.end(); it++){
     if ((*it).second != NULL){
       GameObject* gO = (*it).second;  
       ComponentImage* cImage = (ComponentImage*)(gO->GetComponent(CIMAGE));
-
+      ITexture* tex = TextureManager::GetTexture(cImage->GetFileName());
       
       float posX = ((itemNum % 5) + 1) * offsetX + offX;
       float posY = (irr::core::abs_(itemNum/5)+1) * offsetY + offY;
 
       itemNum++;
 
-      ITexture* tex = TextureManager::GetTexture(cImage->GetFileName());
       irr::gui::IGUIButton* buf = env->addButton( core::rect<s32>(posX, posY, 
                                                  posX + 100,
                                                  posY + 100) );
 
-      //adicina o parent na imagem
       buf->setImage(tex);
 
       inventoryButtons[(*it).first] = buf;
@@ -122,6 +144,10 @@ void Inventory::CreateInventoryButtons(){
 }
 
 void Inventory::RemoveInventoryButtons(){
+  if (SelectedItem.element != NULL){
+    SelectedItem.element->remove();
+    SelectedItem.element = NULL;
+  }
   std::map<std::string,IGUIElement*>::iterator it;
   for(it = inventoryButtons.begin(); it!=inventoryButtons.end(); it++){
     (*it).second->remove();
