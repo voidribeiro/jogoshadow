@@ -17,6 +17,7 @@ class ComponentImage : public AbstractComponent{
     void SetVisible(bool visible);
     int GetType() { return CIMAGE; };
     const char* GetTypeName() { return "ComponentImage"; }; 
+    std::string GetFileName(){ return filename; }
 };
 
 class ComponentImageBinder{

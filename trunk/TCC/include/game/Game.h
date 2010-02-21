@@ -15,8 +15,6 @@ extern "C"{
 #include "GameObject.h"
 #include "Inventory.h"
 
-
-
 using namespace std;
 
 class ScriptObject;
@@ -41,8 +39,10 @@ class Game : private boost::noncopyable
     void SetScope(const int i){ scope = i;}
 
     void SetInventoryBackground(const std::string background);
+    void SetInventoryButton(const std::string button);
     void DisplayInventory(const bool visible);
     void DrawInventory();
+    bool IsInventoryVisible();
 
     int  IsInInventory(const std::string objName);
     void AddToInventory(std::string objName);
@@ -72,6 +72,7 @@ class GameBinder{
 
     static int bnd_SetInventoryBackground(lua_State* L);
     static int bnd_DisplayInventory(lua_State* L);
+    static int bnd_IsInventoryVisible(lua_State* L);
     static int bnd_DrawInventory(lua_State* L);
     static int bnd_IsInInventory(lua_State* L);
     static int bnd_AddToInventory(lua_State* L);
@@ -96,6 +97,7 @@ static const luaL_reg gameFunctions[] = {
 
     {"SetInventoryBackground", GameBinder::bnd_SetInventoryBackground},
     {"DisplayInventory", GameBinder::bnd_DisplayInventory},
+    {"IsInventoryVisible", GameBinder::bnd_IsInventoryVisible},
     {"DrawInventory", GameBinder::bnd_DrawInventory},
     {"IsInInventory", GameBinder::bnd_IsInInventory},
     {"AddToInventory", GameBinder::bnd_AddToInventory},
