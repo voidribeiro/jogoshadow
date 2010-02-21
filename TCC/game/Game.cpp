@@ -35,6 +35,9 @@ int Game::IsInInventory(const std::string objName){
   return ( inventory.isInInventory(objName)? 1 : 0 );
 }
 
+bool Game::IsInventoryVisible(){
+  return inventory.getVisible();
+}
 
 void Game::AddToInventory(std::string objName){
   GameObject* obj = GameObjectMap::Get(objName);
@@ -45,11 +48,10 @@ void Game::AddToInventory(std::string objName){
   }
   inventory.add(obj);
 
-  //TODO - Remove this evil code!
+  //Evil code was removed from here.
   ComponentModel* cModel = (ComponentModel*)obj->GetComponent(CMODEL);
   if (cModel != NULL){
-    delete (cModel);
-    cModel = NULL;
+    cModel->SetVisible(false);
   } 
 
   //This is not better than the other code.
@@ -201,6 +203,12 @@ int GameBinder::bnd_SetInventoryBackground(lua_State* L){
 int GameBinder::bnd_DisplayInventory(lua_State* L){
   LuaBinder binder(L);
   game->DisplayInventory( (lua_toboolean(L,1) != 0) );
+  return 0;
+}
+
+int GameBinder::bnd_IsInventoryVisible(lua_State* L){
+  LuaBinder binder(L);
+  game->IsInventoryVisible();
   return 0;
 }
 

@@ -5,14 +5,20 @@
 #include "TextureManager.h"
 #include "ComponentModel.h"
 #include "ComponentImage.h"
+//#include "ComponentInteract.h"
 #include <map>
+
+using namespace irr;
+using namespace gui;
 
 class Inventory {
   private:
     std::map <std::string, GameObject*> items;
+    std::map <std::string, IGUIElement*> inventoryButtons;
 
     core::rect<s32> rectAll;   //rect da janela toda
     ITexture* backgroundImage; //imagem de fundo
+    bool lastVisible;
     bool isVisible;            //se o inventário está visível, caso verdadeiro deve mudar o input para o contexto 
                                //de inventário e não interagir na tela "atrás"
 
@@ -29,7 +35,11 @@ class Inventory {
 
     void setBackground(const std::string filename);
     void setVisible(const bool visible);
+    bool getVisible() {return isVisible;}
     void draw();
+
+    void CreateInventoryButtons();
+    void RemoveInventoryButtons();
 
     GameObject* getGameObject(std::string objName);
 

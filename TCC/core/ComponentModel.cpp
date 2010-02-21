@@ -28,6 +28,10 @@ void ComponentModel::Draw(){
 
 }
 
+void ComponentModel::SetVisible(bool visible){
+  node->setVisible(visible);
+}
+
 void ComponentModel::setMaterial( irr::video::SMaterial material){
   IrrlichtDevice* device = DeviceManager::GetDevice();
   irr::scene::ISceneManager* sceneManager = device->getSceneManager();

@@ -2,7 +2,6 @@ function start()
 	print("Starting inventory manager")
 end
 
-local visible = false
 local lastButtonPressed = 0;
 
 function update()
@@ -13,15 +12,15 @@ function update()
 --  print (component)
   local isInventoryButtonPressed = component:IsButtonPressed("inventoryButton")
   if ((isInventoryButtonPressed > 0) and not (isInventoryButtonPressed == lastButtonPressed)) then
-    visible = not visible
+    visible = not Game.IsInventoryVisible();
 
     print("Apertou")
   	print(component:IsButtonPressed("inventoryButton"))
+    Game.DisplayInventory(visible)
   end
   
   lastButtonPressed = isInventoryButtonPressed
   
-  Game.DisplayInventory(visible)
   Game.DrawInventory()
   --local mouseX,mouseY = Game.GetMousePosition()
   --print(mouseX, mouseY)
