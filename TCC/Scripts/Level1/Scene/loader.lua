@@ -30,7 +30,7 @@ function startScript()
   component:Say( " Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.")
   
   component:SetPlayerImage(path .. "resources\\hero\\hero.png")
-  --component:SetNpcImage(path .. "resources\\hero\\hero.png")
+  component:SetNpcImage(path .. "resources\\hero\\hero.png")
   component:SetFont(path .. "resources\\font\\fontlucida.png")
 
   component:AddOption("b1", "Diga Alguma coisa!", 10, 10, 150, 25);
