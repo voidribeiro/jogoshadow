@@ -31,7 +31,7 @@ function createFada(counter)
     local selector = ComponentSelector.Instantiate()
     selector:AddTo(gameObject)
   
-    local interact = ComponentInteract.Instantiate(path .. "Scripts\\ObjInteraction\\door_02.lua")
+    local interact = ComponentInteract.Instantiate(path .. "Scripts\\ObjInteraction\\fada_" .. counter .. ".lua" )
     interact:AddTo(gameObject)  
   end
 end

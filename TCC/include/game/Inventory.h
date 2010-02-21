@@ -5,19 +5,18 @@
 #include "TextureManager.h"
 #include "ComponentModel.h"
 #include "ComponentImage.h"
-//#include "ComponentInteract.h"
 #include <map>
 
 using namespace irr;
 using namespace gui;
 
-class Inventory {
+class Inventory { 
   private:
     std::map <std::string, GameObject*> items;
     std::map <std::string, IGUIElement*> inventoryButtons;
     struct SSelectedItem{
       std::string name;
-      IGUIElement* element;
+      IGUIButton* element;
     } SelectedItem;
 
     core::rect<s32> rectAll;   //rect da janela toda
@@ -28,6 +27,7 @@ class Inventory {
 
     ComponentModel* getComponentModel(std::string objName);
     ComponentImage* getComponentImage(std::string objName);
+    void CreateSelItemButton();
 
   public:
     explicit Inventory();
@@ -44,6 +44,7 @@ class Inventory {
 
     void CreateInventoryButtons();
     void RemoveInventoryButtons();
+    std::string GetSelectedItem() { return SelectedItem.name; }
 
     GameObject* getGameObject(std::string objName);
 

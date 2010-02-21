@@ -47,6 +47,7 @@ class Game : private boost::noncopyable
     int  IsInInventory(const std::string objName);
     void AddToInventory(std::string objName);
     void RemoveFromInventory(const std::string objName);
+    std::string GetSelectedItem();
 
     void PlayMusic(const std::string filename, const bool loop);
 
@@ -77,6 +78,7 @@ class GameBinder{
     static int bnd_IsInInventory(lua_State* L);
     static int bnd_AddToInventory(lua_State* L);
     static int bnd_RemoveFromInventory(lua_State* L);
+    static int bnd_GetSelectedItem(lua_State* L);
 
     static int bnd_PlayMusic(lua_State* L);
 
@@ -102,6 +104,7 @@ static const luaL_reg gameFunctions[] = {
     {"IsInInventory", GameBinder::bnd_IsInInventory},
     {"AddToInventory", GameBinder::bnd_AddToInventory},
     {"RemoveFromInventory", GameBinder::bnd_RemoveFromInventory},
+    {"GetSelectedItem", GameBinder::bnd_GetSelectedItem},
     
     {"PlayMusic", GameBinder::bnd_PlayMusic},
 

@@ -31,8 +31,8 @@ void ComponentInteract::Inspect(){
 
 void ComponentInteract::Interact(std::string object){
   scriptObj->AddGlobalVar("interactionObject",object.c_str());
-  scriptObj->Execute("interactWith");
-}
+  scriptObj->Execute("interactWith");  
+} 
 
 /////////////////////////////////////////////////////////
 
@@ -82,4 +82,11 @@ int ComponentInteractBinder::bnd_Interact (lua_State* L){
   ComponentInteract* componentInteract  = (ComponentInteract*) binder.checkusertype(1,"ComponentInteract");
   componentInteract->Interact(); 
   return 1;
+}
+
+int ComponentInteractBinder::bnd_GetFrom(lua_State* L){
+  LuaBinder binder(L); 
+  GameObject* gameObject = GameObjectMap::Get(lua_tostring(L,1));
+  binder.pushusertype(gameObject->GetComponent(CINTERACT),"ComponentInteract");
+  return 1;  
 }

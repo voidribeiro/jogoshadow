@@ -33,14 +33,16 @@ class ComponentInteractBinder{
     static int bnd_InteractWith (lua_State* L);
     static int bnd_Inspect (lua_State* L);
     static int bnd_Interact (lua_State* L);
+    static int bnd_GetFrom (lua_State* L);
 };
 
 static const luaL_reg componentInteractFunctions[] = {
     {"Instantiate", ComponentInteractBinder::bnd_Instantiate},
     {"AddTo", ComponentInteractBinder::bnd_AddTo},
-    {"InterectWith", ComponentInteractBinder::bnd_InteractWith},
+    {"InteractWith", ComponentInteractBinder::bnd_InteractWith},
     {"Inspect", ComponentInteractBinder::bnd_Inspect},
     {"Interact", ComponentInteractBinder::bnd_Interact},
+    {"GetFrom", ComponentInteractBinder::bnd_GetFrom},
     {NULL, NULL} 
 };
 
