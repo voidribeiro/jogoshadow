@@ -1,14 +1,14 @@
 #ifndef __COMPONENTINTERACT_H__
 #define __COMPONENTINTERACT_H__
 
-#include "AbstractComponent.h"
+#include "AbstractInteract.h"
 #include "ScriptObject.h"
 
 #include <string>
 
 class ScriptObject;
 
-class ComponentInteract : public AbstractComponent{
+class ComponentInteract : public AbstractInteract{
   protected:
     ScriptObject* scriptObj;
   public:  

@@ -5,6 +5,7 @@
 #include "TextureManager.h"
 #include "ComponentModel.h"
 #include "ComponentImage.h"
+#include "AbstractInteract.h"
 #include <map>
 
 using namespace irr;
