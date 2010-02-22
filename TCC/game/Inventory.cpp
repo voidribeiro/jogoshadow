@@ -68,19 +68,19 @@ void Inventory::draw(){
   if (!isVisible)
     return;
 
-  std::map<std::string,GameObject*>::iterator it;
+  std::map<std::string,GameObject*>::iterator it; 
   for(it = items.begin(); it!=items.end(); it++){
     if ((*it).second != NULL){
       if (((irr::gui::IGUIButton*)inventoryButtons[(*it).first])->isPointInside(DeviceManager::eventListener->GetMouseState().pos)){
         if (DeviceManager::eventListener->GetMouseState().LeftButtonDown){
           AbstractInteract* cInteract = (AbstractInteract*)(*it).second->GetComponent(CINTERACT);
           cInteract->Inspect();
-          return;
+          return; 
         }
         if (DeviceManager::eventListener->GetMouseState().RightButtonDown){
           SelectedItem.name = (*it).first;
           if (SelectedItem.element == NULL){
-            CreateSelItemButton(); 
+            CreateSelItemButton();   
           }
         }
         //ComponentInteract* cInteract = (ComponentInteract*)(*it).second->GetComponent(CINTERACT);
