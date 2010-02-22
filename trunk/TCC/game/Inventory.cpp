@@ -73,8 +73,8 @@ void Inventory::draw(){
     if ((*it).second != NULL){
       if (((irr::gui::IGUIButton*)inventoryButtons[(*it).first])->isPointInside(DeviceManager::eventListener->GetMouseState().pos)){
         if (DeviceManager::eventListener->GetMouseState().LeftButtonDown){
-          //ComponentInteract* cInteract = (ComponentInteract*)(*it).second->GetComponent(CINTERACT);
-          //cInteract->Inspect();
+          AbstractInteract* cInteract = (AbstractInteract*)(*it).second->GetComponent(CINTERACT);
+          cInteract->Inspect();
           return;
         }
         if (DeviceManager::eventListener->GetMouseState().RightButtonDown){

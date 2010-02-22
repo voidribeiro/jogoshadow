@@ -367,6 +367,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\include\core\AbstractInteract.h"
+						>
+					</File>
+					<File
 						RelativePath=".\include\core\ComponentDialog.h"
 						>
 					</File>
