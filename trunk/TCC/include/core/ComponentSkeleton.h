@@ -83,6 +83,7 @@ class ComponentSkeleton : public AbstractComponent{
 
 	  // destructor
 	  virtual ~ComponentSkeleton();
+    virtual void SetParent(GameObject* parent);
 
 	  // set the type of animation
 	  void setAnimType(CSK_ANIM setAnimType);
