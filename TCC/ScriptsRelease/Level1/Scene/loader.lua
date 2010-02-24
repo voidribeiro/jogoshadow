@@ -32,6 +32,6 @@ function createWalkableFloor()
   local selector = ComponentSelector.Instantiate()
   selector:AddTo(gameObject)
   
-  --local interact = ComponentInteract.Instantiate(path .. "Scripts\\Level1\\Interaction\\chao.lua" )
-  --interact:AddTo(gameObject)
+  local interact = ComponentInteract.Instantiate(path .. "Scripts\\Level1\\Interaction\\chao.lua" )
+  interact:AddTo(gameObject)
 end
