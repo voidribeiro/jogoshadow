@@ -24,10 +24,6 @@ ComponentModel::~ComponentModel(){
 	mesh = 0;*/
 }
 
-void ComponentModel::Draw(){
-
-}
-
 void ComponentModel::SetVisible(bool visible){
   node->setVisible(visible);
 }

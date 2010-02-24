@@ -32,14 +32,20 @@ ComponentSkeleton::ComponentSkeleton(std::string filename, u32 _speed):speed( _s
  
   node = sceneManager->addAnimatedMeshSceneNode( mesh );
   
-  setAnimType(CSK_ANIM_WALK);
-  node->setPosition( core::vector3df(0, 45, 0) );
+  //setAnimType(CSK_ANIM_WALK);
+  //node->setPosition( core::vector3df(0, 45, 0) );
 
   init(node, speed);
 
 }
 
 ComponentSkeleton::~ComponentSkeleton(){
+  //TODO - Remove node from scene
+}
+
+void ComponentSkeleton::SetParent(GameObject* parent){
+  AbstractComponent::SetParent(parent);
+  parent->AddChildNode(node);
 }
 
 void ComponentSkeleton::Update(){

@@ -21,7 +21,7 @@ class ComponentModel : public AbstractComponent{
     explicit ComponentModel(const std::string filename);
     virtual ~ComponentModel();
     virtual void Update(){};
-    virtual void Draw();
+    virtual void Draw(){};
     int GetType() { return CMODEL; };
     const char* GetTypeName() { return "ComponentModel"; };
     void setMaterial( video::SMaterial material );
