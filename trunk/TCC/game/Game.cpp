@@ -270,7 +270,24 @@ int GameBinder::bnd_GetObject(lua_State* L){
 int GameBinder::bnd_End(lua_State* L){
   LuaBinder binder(L); 
  
-  game->End();
+  game->End(); 
  
   return 0;
-}  
+} 
+
+int GameBinder::bnd_SetCameraPosition(lua_State* L){
+  LuaBinder binder(L);
+
+  irr::scene::ICameraSceneNode* camera = DeviceManager::GetDevice()->getSceneManager()->getActiveCamera();
+  camera->setPosition(core::vector3df(lua_tonumber(L,1),lua_tonumber(L,2),lua_tonumber(L,3)));
+ 
+  return 0;
+}
+
+int GameBinder::bnd_SetCameraLookAt(lua_State* L){
+  LuaBinder binder(L); 
+
+  irr::scene::ICameraSceneNode* camera = DeviceManager::GetDevice()->getSceneManager()->getActiveCamera();    
+  camera->setTarget(core::vector3df(lua_tonumber(L,1),lua_tonumber(L,2),lua_tonumber(L,3)));
+  return 0;
+}
