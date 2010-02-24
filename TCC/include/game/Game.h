@@ -84,6 +84,9 @@ class GameBinder{
 
     static int bnd_GetObject(lua_State* L);
     static int bnd_End(lua_State* L);
+
+    static int bnd_SetCameraPosition(lua_State* L);
+    static int bnd_SetCameraLookAt(lua_State* L);
 };
  
 static const luaL_reg gameFunctions[] = { 
@@ -110,6 +113,9 @@ static const luaL_reg gameFunctions[] = {
 
     {"GetObject", GameBinder::bnd_GetObject},
     {"End", GameBinder::bnd_End},
+
+    {"CameraPosition", GameBinder::bnd_SetCameraPosition},
+    {"CameraLookAt", GameBinder::bnd_SetCameraLookAt},
 
     {NULL, NULL}
 };

@@ -75,12 +75,12 @@ void Inventory::draw(){
         if (DeviceManager::eventListener->GetMouseState().LeftButtonDown){
           AbstractInteract* cInteract = (AbstractInteract*)(*it).second->GetComponent(CINTERACT);
           cInteract->Inspect();
-          return; 
+          return;   
         }
         if (DeviceManager::eventListener->GetMouseState().RightButtonDown){
           SelectedItem.name = (*it).first;
           if (SelectedItem.element == NULL){
-            CreateSelItemButton();   
+            CreateSelItemButton();  
           }
         }
         //ComponentInteract* cInteract = (ComponentInteract*)(*it).second->GetComponent(CINTERACT);

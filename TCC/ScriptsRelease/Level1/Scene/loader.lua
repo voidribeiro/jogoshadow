@@ -13,9 +13,11 @@ function startScript()
                                                 path .. "resources\\level1\\skybox\\irrlicht2_bk_i.jpg"  )
   component:AddTo(gameObject)
 
-  local gameObject = GameObject.Instantiate("bolinho")
-  gameObject:SetPosition(10,10,10)
+  local gameObject = GameObject.Instantiate("Cenario1")
   
-  local model = ComponentModel.Instantiate( path .. "resources\\level1\\models\\cenario.x" );
+  local model = ComponentModel.Instantiate( path .. "resources\\level1\\models\\ambient.3DS" );
   model:AddTo(gameObject)
+  
+  Game.CameraPosition(-70,40,-70)
+  Game.CameraLookAt(0,-40,0)
 end
