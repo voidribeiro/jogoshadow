@@ -43,9 +43,8 @@ ComponentSkeleton::~ComponentSkeleton(){
   //TODO - Remove node from scene
 }
 
-void ComponentSkeleton::SetParent(GameObject* parent){
-  AbstractComponent::SetParent(parent);
-  parent->AddChildNode(node);
+void ComponentSkeleton::SetPosition(const core::vector3df &newpos){
+  node->setPosition(newpos);
 }
 
 void ComponentSkeleton::Update(){
@@ -838,4 +837,14 @@ int ComponentSkeletonBinder::bnd_GetFrom(lua_State* L){
   GameObject* gameObject = GameObjectMap::Get(lua_tostring(L,1));
   binder.pushusertype(gameObject->GetComponent(CSKELETON),"ComponentSkeleton");
   return 1;  
+}
+
+int ComponentSkeletonBinder::bnd_SetPosition(lua_State* L){
+  LuaBinder binder(L);
+  ComponentSkeleton* componentSkeleton  = (ComponentSkeleton*) binder.checkusertype(1,"ComponentSkeleton");
+  float posX = (float) lua_tonumber(L, 2);
+  float posY = (float) lua_tonumber(L, 3);
+  float posZ = (float) lua_tonumber(L, 4);
+  componentSkeleton->SetPosition(core::vector3df(posX, posY, posZ));
+  return 1;
 }

@@ -83,7 +83,6 @@ class ComponentSkeleton : public AbstractComponent{
 
 	  // destructor
 	  virtual ~ComponentSkeleton();
-    virtual void SetParent(GameObject* parent);
 
 	  // set the type of animation
 	  void setAnimType(CSK_ANIM setAnimType);
@@ -117,6 +116,8 @@ class ComponentSkeleton : public AbstractComponent{
   
     int IsWalking();
 
+    //TODO - This method should never exist
+    void SetPosition(const core::vector3df &newpos);
 };
 
 class ComponentSkeletonBinder{
@@ -129,6 +130,7 @@ class ComponentSkeletonBinder{
     static int bnd_WalkTo (lua_State* L);
     static int bnd_IsWalking (lua_State* L);
     static int bnd_GetFrom (lua_State* L);
+    static int bnd_SetPosition (lua_State* L); 
 };
 
 static const luaL_reg componentSkeletonFunctions[] = {
@@ -138,6 +140,7 @@ static const luaL_reg componentSkeletonFunctions[] = {
     {"WalkTo", ComponentSkeletonBinder::bnd_WalkTo},
     {"IsWalking", ComponentSkeletonBinder::bnd_IsWalking},
     {"GetFrom", ComponentSkeletonBinder::bnd_GetFrom},
+    {"SetPosition", ComponentSkeletonBinder::bnd_SetPosition},
     {NULL, NULL}
 };
 
