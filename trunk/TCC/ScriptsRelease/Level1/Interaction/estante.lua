@@ -5,6 +5,7 @@ function update()
 end
 
 function interact()
+  walk()
   local dialog = ComponentDialog.GetFrom("dialogo")
   dialog:Say("Melhor deixar a estante onde esta.")
 end
@@ -15,6 +16,7 @@ end
 local speachCounter = 0
 
 function inspect()
+  walk()
   local dialog = ComponentDialog.GetFrom("dialogo")
   dialog:ClearOptions()
 
@@ -32,6 +34,12 @@ function inspect()
     end
   end
   speachCounter = speachCounter + 1
+end
+
+function walk()
+  local selector = ComponentSelector.GetFrom(parentObject)
+  local skeleton = ComponentSkeleton.GetFrom("player")
+  skeleton:WalkTo(-12, -40, 63.7)
 end
 
 function interactWith()
