@@ -4,8 +4,8 @@ function startScript()
   local gameObject = GameObject.Instantiate("Menu")
   local gui = ComponentGUI.Instantiate()
   
-  gui:AddImageButton("StartGame",path .. "resources\\common\\irrlichtlogo.jpg", 121, 129)
-  gui:AddImageButton("ExitGame" ,path .. "resources\\common\\irrlichtlogo.jpg", 121, 259)
+  gui:AddImageButton("StartGame",path .. "resources\\common\\menu\\newGameButton.jpg", 121, 129)
+  gui:AddImageButton("ExitGame" ,path .. "resources\\common\\menu\\exitGameButton.jpg", 121, 259)
   
   gui:AddTo(gameObject)
 
